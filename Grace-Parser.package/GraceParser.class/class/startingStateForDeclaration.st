@@ -1,0 +1,3 @@
+generated
+startingStateForDeclaration
+	^ 4

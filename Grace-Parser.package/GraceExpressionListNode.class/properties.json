@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceRootNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"expressions",
+		"semicolonTokens"
+	],
+	"name" : "GraceExpressionListNode",
+	"type" : "normal"
+}

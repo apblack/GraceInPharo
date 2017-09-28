@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceRootNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"request",
+		"selfDotToken"
+	],
+	"name" : "GraceSelfRequestNode",
+	"type" : "normal"
+}

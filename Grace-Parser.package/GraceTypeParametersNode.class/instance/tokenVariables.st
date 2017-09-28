@@ -1,0 +1,3 @@
+generated
+tokenVariables
+	^ #(#openTPToken #closeTPToken)
