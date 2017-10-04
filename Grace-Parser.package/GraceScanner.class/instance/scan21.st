@@ -1,11 +1,10 @@
 generated
 scan21
-	[ self recordMatch: #(41 43).
 	self step.
-	currentCharacter == $.
-		ifTrue:
-			[ ^ self scan21X1 ].
-	currentCharacter == $\
-		ifTrue: [ ^ self scan16 ].
-	currentCharacter isDigit ] whileTrue.
-	^ self scan21X2
+	currentCharacter == $U
+		ifTrue: [ ^ self scan22 ].
+	currentCharacter == $u
+		ifTrue: [ ^ self scan23 ].
+	('"_lnrt{}' includes: currentCharacter)
+		ifTrue: [ ^ self scan20 ].
+	^ self reportLastMatch

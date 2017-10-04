@@ -6,9 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"semicolonTokens",
-		"item",
-		"statements"
+		"_s",
+		"items"
 	],
 	"name" : "GraceBlockBodyNode",
 	"type" : "normal"

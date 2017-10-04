@@ -1,28 +1,22 @@
 generated
 scan33
-	self recordMatch: #(42).
+	[ self recordMatch: #(39 50).
 	self step.
-	currentCharacter == $l
-		ifTrue:
-			[ ^ self scan33X2 ].
-	currentCharacter == $o
-		ifTrue: [ self recordMatch: #(42).
+	currentCharacter == $\
+		ifTrue: [ ^ self scan33X1 ].
+	('"{' includes: currentCharacter)
+		ifTrue: [ [ self recordMatch: #(50).
 			self step.
-			currentCharacter == $n
-				ifTrue:
-					[ ^ self scan33X1 ].
-			(currentCharacter <= $m
-				or: [ (currentCharacter between: $o and: (Character value: 8249))
-						or: [ currentCharacter >= (Character value: 8251) ] ])
-				ifTrue: [ [ self recordMatch: #(42).
-					self step.
-					currentCharacter ~~ (Character value: 8250) ] whileTrue ].
+			currentCharacter <= Character tab
+				or: [ (currentCharacter between: Character pageUp and: Character newPage)
+						or: [ (currentCharacter
+								between: (Character value: 14)
+								and: (Character value: 8231))
+								or: [ currentCharacter >= (Character value: 8233) ] ] ] ]
+				whileTrue.
 			^ self reportLastMatch ].
-	(currentCharacter <= $k
-		or: [ (currentCharacter between: $m and: $n)
-				or: [ (currentCharacter between: $p and: (Character value: 8249))
-						or: [ currentCharacter >= (Character value: 8251) ] ] ])
-		ifTrue: [ [ self recordMatch: #(42).
-			self step.
-			currentCharacter ~~ (Character value: 8250) ] whileTrue ].
-	^ self reportLastMatch
+	(currentCharacter == Character lf
+		or: [ currentCharacter == Character cr
+				or: [ currentCharacter = (Character value: 8232) ] ])
+		ifTrue: [ ^ self scan20 ].
+	true ] whileTrue

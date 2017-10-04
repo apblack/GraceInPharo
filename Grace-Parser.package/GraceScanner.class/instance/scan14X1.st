@@ -1,17 +1,83 @@
 generated
 scan14X1
-	self recordMatch: #(17 41 47).
+	self recordMatch: #(49).
 	self step.
-	currentCharacter == $=
-		ifTrue: [ ^ self scan14X1X1 ].
-	currentCharacter == $\
-		ifTrue: [ ^ self scan20 ].
-	(currentCharacter == $!
-		or: [ (currentCharacter between: $# and: $&)
-				or: [ (currentCharacter between: $* and: $+)
-						or: [ (currentCharacter between: $- and: $/)
-								or: [ (':<' includes: currentCharacter)
-										or: [ (currentCharacter between: $> and: $@)
-												or: [ '^|~' includes: currentCharacter ] ] ] ] ] ])
-		ifTrue: [ ^ self scan19 ].
-	^ self scan14X1X2
+	currentCharacter == $b
+		ifTrue: [ self recordMatch: #(49).
+			self step.
+			currentCharacter == $l
+				ifTrue: [ self recordMatch: #(49).
+					self step.
+					currentCharacter == $i
+						ifTrue: [ self recordMatch: #(49).
+							self step.
+							currentCharacter == $c
+								ifTrue: [ self recordMatch: #(3 49).
+									self step.
+									(currentCharacter == $'
+										or: [ (currentCharacter between: $0 and: $9)
+												or: [ (currentCharacter between: $A and: $Z)
+														or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ])
+										ifTrue: [ [ self recordMatch: #(49).
+											self step.
+											currentCharacter == $'
+												or: [ (currentCharacter between: $0 and: $9)
+														or: [ (currentCharacter between: $A and: $Z)
+																or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ] ]
+												whileTrue ].
+									^ self reportLastMatch ].
+							(currentCharacter == $'
+								or: [ (currentCharacter between: $0 and: $9)
+										or: [ (currentCharacter between: $A and: $Z)
+												or: [ currentCharacter == $_
+														or: [ (currentCharacter between: $a and: $b)
+																or: [ currentCharacter between: $d and: $z ] ] ] ] ])
+								ifTrue: [ [ self recordMatch: #(49).
+									self step.
+									currentCharacter == $'
+										or: [ (currentCharacter between: $0 and: $9)
+												or: [ (currentCharacter between: $A and: $Z)
+														or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ] ]
+										whileTrue ].
+							^ self reportLastMatch ].
+					(currentCharacter == $'
+						or: [ (currentCharacter between: $0 and: $9)
+								or: [ (currentCharacter between: $A and: $Z)
+										or: [ currentCharacter == $_
+												or: [ (currentCharacter between: $a and: $h)
+														or: [ currentCharacter between: $j and: $z ] ] ] ] ])
+						ifTrue: [ [ self recordMatch: #(49).
+							self step.
+							currentCharacter == $'
+								or: [ (currentCharacter between: $0 and: $9)
+										or: [ (currentCharacter between: $A and: $Z)
+												or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ] ]
+								whileTrue ].
+					^ self reportLastMatch ].
+			(currentCharacter == $'
+				or: [ (currentCharacter between: $0 and: $9)
+						or: [ (currentCharacter between: $A and: $Z)
+								or: [ currentCharacter == $_
+										or: [ (currentCharacter between: $a and: $k)
+												or: [ currentCharacter between: $m and: $z ] ] ] ] ])
+				ifTrue: [ [ self recordMatch: #(49).
+					self step.
+					currentCharacter == $'
+						or: [ (currentCharacter between: $0 and: $9)
+								or: [ (currentCharacter between: $A and: $Z)
+										or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ] ]
+						whileTrue ].
+			^ self reportLastMatch ].
+	(currentCharacter == $'
+		or: [ (currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ ('_a' includes: currentCharacter)
+								or: [ currentCharacter between: $c and: $z ] ] ] ])
+		ifTrue: [ [ self recordMatch: #(49).
+			self step.
+			currentCharacter == $'
+				or: [ (currentCharacter between: $0 and: $9)
+						or: [ (currentCharacter between: $A and: $Z)
+								or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ] ]
+				whileTrue ].
+	^ self reportLastMatch

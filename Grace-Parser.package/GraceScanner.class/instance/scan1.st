@@ -1,25 +1,15 @@
 generated
 scan1
-	self recordMatch: #(35).
 	self step.
+	currentCharacter == Character lf
+		ifTrue:
+			[ ^ self scan1X19 ].
+	currentCharacter == Character cr
+		ifTrue:
+			[ ^ self scan1X15 ].
+	currentCharacter == Character space
+		ifTrue:
+			[ ^ self scan1X21 ].
 	currentCharacter == $"
-		ifTrue: [ ^ self recordAndReportMatch: #(46) ].
-	currentCharacter == $(
-		ifTrue: [ ^ self recordAndReportMatch: #(33) ].
-	currentCharacter == $)
-		ifTrue: [ ^ self recordAndReportMatch: #(32) ].
-	currentCharacter == $,
-		ifTrue: [ ^ self recordAndReportMatch: #(2) ].
-	currentCharacter == $-
-		ifTrue:
-			[ ^ self scan1X8 ].
-	currentCharacter == $.
-		ifTrue:
-			[ ^ self scan1X14 ].
-	currentCharacter == $:
-		ifTrue:
-			[ ^ self scan1X4 ].
-	currentCharacter == $;
-		ifTrue:
-			[ ^ self scan1X22 ].
-	^ self scan1X26
+		ifTrue: [ ^ self recordAndReportMatch: #(54) ].
+	^ self scan1X29

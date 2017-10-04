@@ -1,42 +1,30 @@
 generated
 scan30
-	[ self recordMatch: #(42 43).
+	self recordMatch: #(55).
 	self step.
-	currentCharacter == $.
-		ifTrue: [ self recordMatch: #(42).
+	currentCharacter == $U
+		ifTrue: [ ^ self scan22 ].
+	currentCharacter == $u
+		ifTrue: [ ^ self scan23 ].
+	('"_lnrt{}' includes: currentCharacter)
+		ifTrue: [ ^ self scan20 ].
+	(currentCharacter == $!
+		or: [ (currentCharacter between: $# and: $&)
+				or: [ (currentCharacter between: $* and: $+)
+						or: [ (currentCharacter between: $- and: $/)
+								or: [ currentCharacter == $:
+										or: [ (currentCharacter between: $< and: $@)
+												or:
+													[ '\^|~' includes: currentCharacter ] ] ] ] ] ])
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
-			currentCharacter isDigit
-				ifTrue: [ [ self recordMatch: #(42 43).
-					self step.
-					currentCharacter isDigit ] whileTrue.
-					('Ee' includes: currentCharacter)
-						ifTrue: [ ^ self scan31 ].
-					(currentCharacter <= $/
-						or: [ (currentCharacter between: $: and: $D)
-								or: [ (currentCharacter between: $F and: $d)
-										or: [ (currentCharacter between: $f and: (Character value: 8249))
-												or: [ currentCharacter >= (Character value: 8251) ] ] ] ])
-						ifTrue: [ [ self recordMatch: #(42).
-							self step.
-							currentCharacter ~~ (Character value: 8250) ] whileTrue ].
-					^ self reportLastMatch ].
-			(currentCharacter <= $/
-				or: [ (currentCharacter between: $: and: (Character value: 8249))
-						or: [ currentCharacter >= (Character value: 8251) ] ])
-				ifTrue: [ [ self recordMatch: #(42).
-					self step.
-					currentCharacter ~~ (Character value: 8250) ] whileTrue ].
-			^ self reportLastMatch ].
-	currentCharacter isDigit ] whileTrue.
-	('Ee' includes: currentCharacter)
-		ifTrue: [ ^ self scan31 ].
-	(currentCharacter <= $-
-		or: [ currentCharacter == $/
-				or: [ (currentCharacter between: $: and: $D)
-						or: [ (currentCharacter between: $F and: $d)
-								or: [ (currentCharacter between: $f and: (Character value: 8249))
-										or: [ currentCharacter >= (Character value: 8251) ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(42).
-			self step.
-			currentCharacter ~~ (Character value: 8250) ] whileTrue ].
+			currentCharacter == $!
+				or: [ (currentCharacter between: $# and: $&)
+						or: [ (currentCharacter between: $* and: $+)
+								or: [ (currentCharacter between: $- and: $/)
+										or: [ currentCharacter == $:
+												or: [ (currentCharacter between: $< and: $@)
+														or:
+															[ '\^|~' includes: currentCharacter ] ] ] ] ] ] ]
+				whileTrue ].
 	^ self reportLastMatch

@@ -1,24 +1,24 @@
 generated
 scan1X6
-	self recordMatch: #(40).
+	self recordMatch: #(49).
 	self step.
-	currentCharacter == $l
-		ifTrue: [ self recordMatch: #(40).
+	currentCharacter == $a
+		ifTrue: [ self recordMatch: #(49).
 			self step.
-			currentCharacter == $i
-				ifTrue: [ self recordMatch: #(40).
+			currentCharacter == $l
+				ifTrue: [ self recordMatch: #(49).
 					self step.
-					currentCharacter == $a
-						ifTrue: [ self recordMatch: #(40).
+					currentCharacter == $s
+						ifTrue: [ self recordMatch: #(49).
 							self step.
-							currentCharacter == $s
-								ifTrue: [ self recordMatch: #(20 40).
+							currentCharacter == $e
+								ifTrue: [ self recordMatch: #(29 49).
 									self step.
 									(currentCharacter == $'
 										or: [ (currentCharacter between: $0 and: $9)
 												or: [ (currentCharacter between: $A and: $Z)
 														or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ])
-										ifTrue: [ [ self recordMatch: #(40).
+										ifTrue: [ [ self recordMatch: #(49).
 											self step.
 											currentCharacter == $'
 												or: [ (currentCharacter between: $0 and: $9)
@@ -30,9 +30,9 @@ scan1X6
 								or: [ (currentCharacter between: $0 and: $9)
 										or: [ (currentCharacter between: $A and: $Z)
 												or: [ currentCharacter == $_
-														or: [ (currentCharacter between: $a and: $r)
-																or: [ currentCharacter between: $t and: $z ] ] ] ] ])
-								ifTrue: [ [ self recordMatch: #(40).
+														or: [ (currentCharacter between: $a and: $d)
+																or: [ currentCharacter between: $f and: $z ] ] ] ] ])
+								ifTrue: [ [ self recordMatch: #(49).
 									self step.
 									currentCharacter == $'
 										or: [ (currentCharacter between: $0 and: $9)
@@ -43,8 +43,10 @@ scan1X6
 					(currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
 								or: [ (currentCharacter between: $A and: $Z)
-										or: [ currentCharacter == $_ or: [ currentCharacter between: $b and: $z ] ] ] ])
-						ifTrue: [ [ self recordMatch: #(40).
+										or: [ currentCharacter == $_
+												or: [ (currentCharacter between: $a and: $r)
+														or: [ currentCharacter between: $t and: $z ] ] ] ] ])
+						ifTrue: [ [ self recordMatch: #(49).
 							self step.
 							currentCharacter == $'
 								or: [ (currentCharacter between: $0 and: $9)
@@ -56,9 +58,9 @@ scan1X6
 				or: [ (currentCharacter between: $0 and: $9)
 						or: [ (currentCharacter between: $A and: $Z)
 								or: [ currentCharacter == $_
-										or: [ (currentCharacter between: $a and: $h)
-												or: [ currentCharacter between: $j and: $z ] ] ] ] ])
-				ifTrue: [ [ self recordMatch: #(40).
+										or: [ (currentCharacter between: $a and: $k)
+												or: [ currentCharacter between: $m and: $z ] ] ] ] ])
+				ifTrue: [ [ self recordMatch: #(49).
 					self step.
 					currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -69,10 +71,8 @@ scan1X6
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $k)
-										or: [ currentCharacter between: $m and: $z ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(40).
+						or: [ currentCharacter == $_ or: [ currentCharacter between: $b and: $z ] ] ] ])
+		ifTrue: [ [ self recordMatch: #(49).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

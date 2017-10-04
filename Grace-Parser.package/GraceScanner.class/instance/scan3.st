@@ -1,26 +1,17 @@
 generated
 scan3
-	self recordMatch: #(40).
+	[ self recordMatch: #(42).
 	self step.
-	currentCharacter == $]
-		ifTrue: [ ^ self recordAndReportMatch: #(37) ].
-	currentCharacter == $l
-		ifTrue:
-			[ ^ self scan3X1 ].
-	currentCharacter == $o
-		ifTrue: [ ^ self scan4 ].
-	(currentCharacter == $'
-		or: [ (currentCharacter between: $0 and: $9)
-				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $k)
-										or: [ (currentCharacter between: $m and: $n)
-												or: [ currentCharacter between: $p and: $z ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(40).
+	currentCharacter == Character cr
+		ifTrue: [ ^ self scan2 ].
+	(currentCharacter == Character lf
+		or: [ currentCharacter =
+				(Character value: 8232) ])
+		ifTrue: [ [ self recordMatch: #(44).
 			self step.
-			currentCharacter == $'
-				or: [ (currentCharacter between: $0 and: $9)
-						or: [ (currentCharacter between: $A and: $Z)
-								or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ] ]
-				whileTrue ].
+			currentCharacter == Character space
+				or: [ currentCharacter = (Character value: 160) ] ] whileTrue.
+			^ self reportLastMatch ].
+	currentCharacter == Character space
+		or: [ currentCharacter = (Character value: 160) ] ] whileTrue.
 	^ self reportLastMatch

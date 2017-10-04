@@ -1,16 +1,10 @@
 generated
 scan19
-	[ self recordMatch: #(41 47).
 	self step.
-	currentCharacter == $\
-		ifTrue: [ ^ self scan20 ].
-	currentCharacter == $!
-		or: [ (currentCharacter between: $# and: $&)
-				or: [ (currentCharacter between: $* and: $+)
-						or: [ (currentCharacter between: $- and: $/)
-								or: [ currentCharacter == $:
-										or: [ (currentCharacter between: $< and: $@)
-												or:
-													[ '^|~' includes: currentCharacter ] ] ] ] ] ] ]
-		whileTrue.
-	^ self scan19X1
+	currentCharacter == Character lf
+		ifTrue: [ ^ self scan19X10 ].
+	currentCharacter == Character cr
+		ifTrue: [ ^ self scan19X5 ].
+	currentCharacter == Character space
+		ifTrue: [ ^ self scan19X12 ].
+	^ self scan19X26

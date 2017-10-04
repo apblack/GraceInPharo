@@ -5,7 +5,16 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"braceDepth",
+		"indentStack",
+		"newlineChars",
+		"priorLineBraceDepth",
+		"priorLineIndent",
+		"lineStarts",
+		"currentIndent",
+		"closingBraceLine"
+	],
 	"name" : "GraceScanner",
 	"type" : "normal"
 }

@@ -1,8 +1,13 @@
 generated
 scan1X21
-	[ self recordMatch: #(35).
+	self recordMatch: #(41).
 	self step.
-	currentCharacter == Character cr
-		or: [ currentCharacter == Character space
-				or: [ currentCharacter = (Character value: 160) ] ] ] whileTrue.
+	currentCharacter == $]
+		ifTrue: [ ^ self recordAndReportMatch: #(46) ].
+	(currentCharacter == Character space
+		or: [ currentCharacter = (Character value: 160) ])
+		ifTrue: [ [ self recordMatch: #(41).
+			self step.
+			currentCharacter == Character space
+				or: [ currentCharacter = (Character value: 160) ] ] whileTrue ].
 	^ self reportLastMatch

@@ -1,21 +1,24 @@
 generated
 scan13
-	self recordMatch: #(40).
+	self recordMatch: #(49).
 	self step.
-	currentCharacter == $r
+	currentCharacter == $]
+		ifTrue: [ ^ self recordAndReportMatch: #(46) ].
+	currentCharacter == $b
+		ifTrue:
+			[ ^ self scan13X3 ].
+	currentCharacter == $u
 		ifTrue:
 			[ ^ self scan13X1 ].
+	currentCharacter == $v
+		ifTrue:
+			[ ^ self scan13X4 ].
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $q)
-										or: [ currentCharacter between: $s and: $z ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(40).
-			self step.
-			currentCharacter == $'
-				or: [ (currentCharacter between: $0 and: $9)
-						or: [ (currentCharacter between: $A and: $Z)
-								or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ] ]
-				whileTrue ].
+						or: [ ('_a' includes: currentCharacter)
+								or: [ (currentCharacter between: $c and: $t)
+										or: [ currentCharacter between: $w and: $z ] ] ] ] ])
+		ifTrue:
+			[ self scan13X5 ].
 	^ self reportLastMatch

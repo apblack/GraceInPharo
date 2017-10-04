@@ -1,6 +1,6 @@
 generated
 scan1X3
-	self recordMatch: #(40).
+	self recordMatch: #(49).
 	self step.
 	currentCharacter == $e
 		ifTrue:
@@ -11,7 +11,7 @@ scan1X3
 						or: [ currentCharacter == $_
 								or: [ (currentCharacter between: $a and: $d)
 										or: [ currentCharacter between: $f and: $z ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(40).
+		ifTrue: [ [ self recordMatch: #(49).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

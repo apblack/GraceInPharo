@@ -1,26 +1,37 @@
 generated
 definitionComment
 "%unicode ;
+%id <error> <newline> ;
 
-<whitespace>:  (\x20|\xA0|\r)* ;
-<dot>: [\.] ;
+### State-specific token rules ###
+
+%states string uninterpString;
+
+string <h> : [0-9a-fA-F] ;
+string <stringSegment> : ( \\[nt\{\}\""rl_] | \\u<h><h><h><h> | \\U<h><h><h><h><h><h> | \xA0 | [^\""\{\\] )+ ;
+uninterpString <uninterpretedString> : [^›]+ ;
+
+### Lexical token rules  ###
+
+<whitespace>:  ( \x20 | \xA0 ) + ;
+<newline>:  (\r | \n |  \r\n  | \x2028 ) <whitespace> ? ;
+<error>: [\x00\cA-\cI\cK\cL\cO–\x1F] ;
+<blankline>:  <newline> <newline> ;
+<dot>: \. ;
 <openTP>: ⟦ | [[ ;
 <closeTP>: ⟧ | ]] ;
 <outer>: outer ;
-<outerDot>: <outer><whitespace><dot> ;
+<outerDot>: <outer> <whitespace>? <dot> ;
 <self>: self ;
-<selfDot> : <self><whitespace><dot> ;
+<selfDot> : <self> <whitespace>? <dot> ;
 <name> :  [a-zA-Z_] [a-zA-Z0-9_'] *;
-<h> : [0-9a-fA-F] ;
-%states string uninterpString;
-string <stringSegment>: ( \\[nt\{\}\""rl_] | \\u<h><h><h><h> | \\U<h><h><h><h><h><h> | \xA0 | [^\""\{\\] )+ ;
-uninterpString <uninterpretedString>: [^›]+ ;
+<comment>: // [^\r\n\x2028] * ;
 <decimalNumeral> :  [0-9]+ ( [.][0-9]+ )? ;
 <baseExponentNumeral> : <decimalNumeral> [eE][\+\-]?[0-9]+ ;
 <basedRadixNumeral>: [0-9]+x[0-9A-Za-z]+ ;
 <arrow>:  -> | → ;
-<dquote>:  [""];
-<elipsis>: \.\.\.;
+<dquote>:  [""] ;
+<elipsis>: \.\.\. ;
 <operator>: [!\?@#%^&\|~=\+\-\*/\\><:\.$]+ ;  # or any unicode mathematical operator symbol
 
 %prefix Grace ;
@@ -29,21 +40,40 @@ uninterpString <uninterpretedString>: [^›]+ ;
 %annotate_tokens ;
 %start ArgumentList Block Declaration Expression Module Numeral Request Statement String Term;
 
+#############
+# Statements #
+#############
+
 Module
-	: StatementSequence
+	: BlockBody 'body' {{ }}
 	;
-StatementSequence
-	: {{ }}
-	| Statement 'statement' ( "";"" Statement 'statement' ) * {{ }}
+Sep
+	: "";"" | <newline>
 	;
 Statement
 	: Expression
 	| Declaration
 	| Assignment
+	| Return
 	| ReuseStatement
+	| ImportStatement
+	| DialectStatement
+	| StandaloneComment
 	;
 Assignment
 	: Identifier 'lhs' "":="" Expression 'rhs' {{ }}
+	;
+Return
+	: ""return"" Expression 'value' {{ }}
+	;
+ImportStatement
+	: ""import"" StringLiteral 'resource' ""as"" Identifier 'id' {{ }}
+	;
+DialectStatement
+	: ""dialect"" StringLiteral 'resource' {{ }}
+	;
+StandaloneComment
+	: <blankline> <comment> 'commentary' <newline> {{ }}
 	;
 Declaration
 	: VarDeclaration
@@ -63,10 +93,6 @@ TypeDeclaration
 	;
 TypePart
 	: "":"" Type {{ Type }}
-	;
-Type
-	: Identifier 'id' {{ }}
-	| ""Unknown"" {{ }}
 	;
 AnnotationPart
 	: ""is"" Annotation 'ann' ( "","" Annotation 'ann' ) *  {{ }}
@@ -123,69 +149,11 @@ TypeParameters
 	: 
 	| <openTP> Identifier 'param' ( "","" Identifier 'param' ) * <closeTP> {{ }}
 	;
-Block
-	# this is written as two alternatives, rather than making ParameterList optional,
-	# because the latter creates a shift-reduce conflict that SmaCC can't resolve.
-	: ""{"" (ParameterList  'parameters' <arrow> ) BlockBody  'body' ? ""}""  {{}}
-	| ""{"" BlockBody 'body' ? ""}""  {{}}
-	;
-BlockBody
-	: Statement 'item' ( "";"" Statement  'item'  ) * {{ }}		
-	# which does not contain MethodsDeclarations or ReuseStatements
-	;
-ObjectBody
-	:  BlockBody
-	;
-ReuseStatement
-	: ""use"" Expression 'parent' (ReuseModifier 'modifier') * {{ }}
-	| ""inherit"" Expression 'parent' (ReuseModifier 'modifier') * {{ }}
-	;
-ReuseModifier
-	: ExcludeClause
-	| AliasClause
-	;
-ExcludeClause
-	: ""exclude"" MethodHeader 'name' {{ }}
-	;
-AliasClause
-	: ""alias"" MethodHeader 'newName' ""="" MethodHeader 'oldName' {{ }}
-	;
-ParameterList
-	:  <name> 'parameter'  ("","" <name> 'parameter') * {{}}
-	;
-Expression
-	: Factor 'left'  (<operator> 'op' Factor 'right')+  {{ BinaryRequest }}
-	| Factor
-	;
-Term
-	: DelimitedTerm
-	| Identifier 
-	| Request
-	;
-Factor
-	: Term
-	| ObjectConstructor
-	| UnaryRequest
-	;
-UnaryRequest
-	: <operator> 'op' Term 'receiver' {{  }}
-	;
-DelimitedTerm
-	: Numeral
-	| Block
-	| String
-	| SpecialTerm
-	| ""("" Expression 'expr' "")""  {{  }}
-	;
-SpecialTerm
-	: ""self""  {{ }}
-	| ""true"" {{ }}
-	| ""false"" {{ }}
-	| ""outer"" {{ }}
-	;
-Identifier
-	: <name> 'id' {{ }}
-	;
+	
+################
+#        Requests       #
+################
+
 Request
 	: RequestPartWithArguments 
 	| SelfRequest
@@ -212,6 +180,62 @@ ArgumentList
 	: DelimitedTerm 'arg' {{ }}
 	| ""("" Expression 'arg' ("",""  Expression 'arg' ) + "")""  {{ }}
 	;
+UnaryRequest
+	: <operator> 'op' Term 'receiver' {{  }}
+	;
+
+#########################
+#          Other Expressions          #
+#########################
+
+Block
+	# this is written as two alternatives, rather than making BlockParameters optional,
+	# because the latter creates a shift-reduce conflict that SmaCC can't resolve.
+	: ""{"" (BlockParameters  'parameters' <arrow> ) BlockBody  'body' ""}""  {{ }}
+	| ""{"" BlockBody 'body'  ""}""  {{ }}
+	;
+BlockParameters
+	:  <name> 'parameter'  ("","" <name> 'parameter') * {{ }}
+	;
+BlockBody
+	: {{ }}
+	| Statement 'item' ( Sep '_' Statement  'item'  ) * Sep '_' ?  {{ }}		
+	# which does not contain MethodsDeclarations or ReuseStatements, but that will be checked later.
+	;
+Expression
+	: Factor 'left'  (<operator> 'op' Factor 'right')+  {{ BinaryRequest }}
+	| Factor
+	;
+Term
+	: DelimitedTerm
+	| Identifier 
+	| Request
+	;
+Factor
+	: Term
+	| ObjectConstructor
+	| UnaryRequest
+	;
+DelimitedTerm
+	: Numeral
+	| Block
+	| String
+	| SpecialTerm
+	| ""("" Expression 'expr' "")""  {{  }}
+	;
+SpecialTerm
+	: ""self""  {{ }}
+	| ""true"" {{ }}
+	| ""false"" {{ }}
+	| ""outer"" {{ }}
+	;
+Type
+	: Identifier 'id' {{ }}
+	| ""Unknown"" {{ }}
+	;
+Identifier
+	: <name> 'id' {{ }}
+	;
 Numeral
 	: <decimalNumeral> {{ }}
 	| <baseExponentNumeral> {{ }}
@@ -233,6 +257,28 @@ StringConstructor
 	;
 UninterpretedString
 	: StartUninterp '_' ""‹"" (<uninterpretedString> 'chars')? RetDefault '_' ""›"" {{ }}
+	;
+
+#######################
+#    Objects Constructors    #
+#######################
+
+ObjectBody
+	:  BlockBody
+	;
+ReuseStatement
+	: ""use"" Expression 'parent' (ReuseModifier 'modifier') * {{ }}
+	| ""inherit"" Expression 'parent' (ReuseModifier 'modifier') * {{ }}
+	;
+ReuseModifier
+	: ExcludeClause
+	| AliasClause
+	;
+ExcludeClause
+	: ""exclude"" MethodHeader 'name' {{ }}
+	;
+AliasClause
+	: ""alias"" MethodHeader 'newName' ""="" MethodHeader 'oldName' {{ }}
 	;
 
 StartString: { self state: #string . ^ nil} ;

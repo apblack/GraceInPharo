@@ -1,24 +1,25 @@
 generated
 scan33X1
-	self recordMatch: #(42).
+	self recordMatch: #(50).
 	self step.
-	currentCharacter == $f
-		ifTrue: [ self recordMatch: #(42).
-			self step.
-			currentCharacter == $i
-				ifTrue:
-					[ ^ self scan33X1X1 ].
-			(currentCharacter <= $h
-				or: [ (currentCharacter between: $j and: (Character value: 8249))
-						or: [ currentCharacter >= (Character value: 8251) ] ])
-				ifTrue: [ [ self recordMatch: #(42).
-					self step.
-					currentCharacter ~~ (Character value: 8250) ] whileTrue ].
-			^ self reportLastMatch ].
-	(currentCharacter <= $e
-		or: [ (currentCharacter between: $g and: (Character value: 8249))
-				or: [ currentCharacter >= (Character value: 8251) ] ])
-		ifTrue: [ [ self recordMatch: #(42).
-			self step.
-			currentCharacter ~~ (Character value: 8250) ] whileTrue ].
+	currentCharacter == $U
+		ifTrue: [ ^ self scan34 ].
+	currentCharacter == $u
+		ifTrue: [ ^ self scan35 ].
+	('"_lnrt{}' includes: currentCharacter)
+		ifTrue: [ ^ self scan33 ].
+	(currentCharacter <= Character tab
+		or: [ (currentCharacter between: Character pageUp and: Character newPage)
+				or: [ (currentCharacter between: (Character value: 14) and: $!)
+						or: [ (currentCharacter between: $# and: $T)
+								or: [ (currentCharacter between: $V and: $^)
+										or: [ (currentCharacter between: $` and: $k)
+												or: [ currentCharacter == $m
+														or: [ (currentCharacter between: $o and: $q)
+																or: [ currentCharacter == $s
+																		or: [ (currentCharacter between: $v and: $z)
+																				or: [ currentCharacter == $|
+																						or: [ (currentCharacter between: $~ and: (Character value: 8231))
+																								or: [ currentCharacter >= (Character value: 8233) ] ] ] ] ] ] ] ] ] ] ] ])
+		ifTrue: [ self scan33X1X1 ].
 	^ self reportLastMatch

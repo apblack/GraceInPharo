@@ -1,20 +1,15 @@
 generated
 scan5
-	self recordMatch: #(40).
 	self step.
-	currentCharacter == $f
-		ifTrue: [ ^ self scan6 ].
-	(currentCharacter == $'
-		or: [ (currentCharacter between: $0 and: $9)
-				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $e)
-										or: [ currentCharacter between: $g and: $z ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(40).
+	currentCharacter isDigit
+		ifTrue: [ [ self recordMatch: #(52).
 			self step.
-			currentCharacter == $'
-				or: [ (currentCharacter between: $0 and: $9)
-						or: [ (currentCharacter between: $A and: $Z)
-								or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ] ]
-				whileTrue ].
+			currentCharacter isDigit ] whileTrue.
+			^ self reportLastMatch ].
+	('+-' includes: currentCharacter)
+		ifTrue: [ self step.
+			currentCharacter isDigit
+				ifTrue: [ [ self recordMatch: #(52).
+					self step.
+					currentCharacter isDigit ] whileTrue ] ].
 	^ self reportLastMatch

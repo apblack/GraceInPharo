@@ -1,37 +1,25 @@
 generated
 scan1X26
-	currentCharacter == $=
+	('<>|' includes: currentCharacter)
 		ifTrue:
-			[ ^ self scan1X13 ].
-	currentCharacter == $U
+			[ ^ self scan1X9 ].
+	('PTl' includes: currentCharacter)
 		ifTrue:
-			[ ^ self scan1X15 ].
-	currentCharacter == $a
+			[ ^ self scan1X18 ].
+	(currentCharacter <= Character backspace
+		or: [ currentCharacter == Character pageUp
+				or: [ currentCharacter =
+						(Character value: 14)
+						or: [ currentCharacter == Character arrowDown
+								or: [ currentCharacter =
+										(Character value: 8211) ] ] ] ])
+		ifTrue: [ ^ self recordAndReportMatch: #(43) ].
+	(currentCharacter isSpecial
+		or: [ (currentCharacter between: $# and: $$)
+				or: [ currentCharacter == $^ ] ])
 		ifTrue:
-			[ ^ self scan1X6 ].
-	currentCharacter == $c
-		ifTrue: [ ^ self scan3 ].
-	currentCharacter == $d
+			[ ^ self scan1X17 ].
+	currentCharacter isSafeForHTTP
 		ifTrue:
-			[ ^ self scan1X12 ].
-	currentCharacter == $e
-		ifTrue:
-			[ ^ self scan1X2 ].
-	currentCharacter == $f
-		ifTrue:
-			[ ^ self scan1X5 ].
-	currentCharacter == $i
-		ifTrue: [ ^ self scan8 ].
-	currentCharacter == $m
-		ifTrue:
-			[ ^ self scan1X3 ].
-	currentCharacter == $o
-		ifTrue: [ ^ self scan9 ].
-	currentCharacter == $p
-		ifTrue: [ ^ self scan10 ].
-	currentCharacter == $r
-		ifTrue: [ ^ self scan11 ].
-	currentCharacter == $s
-		ifTrue:
-			[ ^ self scan1X1 ].
-	^ self scan1X25
+			[ self scan1X20 ].
+	^ self reportLastMatch

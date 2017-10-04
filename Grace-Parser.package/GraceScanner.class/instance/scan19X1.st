@@ -1,14 +1,11 @@
 generated
 scan19X1
-	(currentCharacter <= Character space
-		or: [ (currentCharacter between: $' and: $))
-				or: [ currentCharacter == $,
-						or: [ (currentCharacter between: $0 and: $9)
-								or: [ currentCharacter == $;
-										or: [ (currentCharacter between: $A and: $[)
-												or: [ currentCharacter == $]
-														or: [ (currentCharacter between: $_ and: $z)
-																or: [ currentCharacter == $}
-																		or: [ currentCharacter >= (Character value: 127) ] ] ] ] ] ] ] ] ])
-		ifTrue: [ ^ self scan15 ].
-	^ self reportLastMatch
+	self recordMatch: #(2 39 55).
+	self step.
+	currentCharacter == $=
+		ifTrue: [ ^ self scan19X1X1 ].
+	currentCharacter == $\
+		ifTrue: [ ^ self scan30 ].
+	currentCharacter == $]
+		ifTrue: [ ^ self scan27 ].
+	^ self scan19X1X2

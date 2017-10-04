@@ -1,15 +1,12 @@
 generated
 scan2
+	self recordMatch: #(44).
 	self step.
-	currentCharacter isDigit
+	(currentCharacter == Character lf
+		or: [ currentCharacter == Character space
+				or: [ currentCharacter = (Character value: 160) ] ])
 		ifTrue: [ [ self recordMatch: #(44).
 			self step.
-			currentCharacter isDigit ] whileTrue.
-			^ self reportLastMatch ].
-	('+-' includes: currentCharacter)
-		ifTrue: [ self step.
-			currentCharacter isDigit
-				ifTrue: [ [ self recordMatch: #(44).
-					self step.
-					currentCharacter isDigit ] whileTrue ] ].
+			currentCharacter == Character space
+				or: [ currentCharacter = (Character value: 160) ] ] whileTrue ].
 	^ self reportLastMatch

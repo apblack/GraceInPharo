@@ -1,9 +1,9 @@
 generated
 scan1X8
-	self recordMatch: #(47).
+	self recordMatch: #(55).
 	self step.
 	currentCharacter == $>
-		ifTrue: [ self recordMatch: #(45 47).
+		ifTrue: [ self recordMatch: #(53 55).
 			self step.
 			(currentCharacter == $!
 				or: [ (currentCharacter between: $# and: $&)
@@ -13,7 +13,7 @@ scan1X8
 												or: [ (currentCharacter between: $< and: $@)
 														or:
 															[ '\^|~' includes: currentCharacter ] ] ] ] ] ])
-				ifTrue: [ [ self recordMatch: #(47).
+				ifTrue: [ [ self recordMatch: #(55).
 					self step.
 					currentCharacter == $!
 						or: [ (currentCharacter between: $# and: $&)
@@ -34,7 +34,7 @@ scan1X8
 												or: [ (currentCharacter between: $? and: $@)
 														or:
 															[ '\^|~' includes: currentCharacter ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(47).
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $!
 				or: [ (currentCharacter between: $# and: $&)

@@ -1,17 +1,9 @@
 generated
 scan1X20
-	[ self recordMatch: #(43).
+	[ self recordMatch: #(49).
 	self step.
-	currentCharacter == $.
-		ifTrue: [ self step.
-			currentCharacter isDigit
-				ifTrue: [ [ self recordMatch: #(43).
-					self step.
-					currentCharacter isDigit ] whileTrue.
-					('Ee' includes: currentCharacter)
-						ifTrue: [ ^ self scan2 ] ].
-			^ self reportLastMatch ].
-	currentCharacter isDigit ] whileTrue.
-	('Ee' includes: currentCharacter)
-		ifTrue: [ ^ self scan2 ].
-	^ self reportLastMatch
+	currentCharacter == $'
+		or: [ (currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ currentCharacter == $_ or: [ currentCharacter between: $a and: $z ] ] ] ] ]
+		whileTrue

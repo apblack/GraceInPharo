@@ -1,31 +1,30 @@
 generated
 scan34
-	self recordMatch: #(42).
+	self recordMatch: #(50).
 	self step.
-	currentCharacter == $b
-		ifTrue:
-			[ ^ self scan34X2 ].
-	currentCharacter == $u
-		ifTrue:
-			[ ^ self scan34X3 ].
-	currentCharacter == $v
-		ifTrue: [ self recordMatch: #(42).
+	(currentCharacter isDigit
+		or: [ (currentCharacter between: $A and: $F)
+				or: [ currentCharacter between: $a and: $f ] ])
+		ifTrue: [ self recordMatch: #(50).
 			self step.
-			currentCharacter == $e
-				ifTrue:
-					[ ^ self scan34X1 ].
-			(currentCharacter <= $d
-				or: [ (currentCharacter between: $f and: (Character value: 8249))
-						or: [ currentCharacter >= (Character value: 8251) ] ])
-				ifTrue: [ [ self recordMatch: #(42).
-					self step.
-					currentCharacter ~~ (Character value: 8250) ] whileTrue ].
-			^ self reportLastMatch ].
-	(currentCharacter <= $a
-		or: [ (currentCharacter between: $c and: $t)
-				or: [ (currentCharacter between: $w and: (Character value: 8249))
-						or: [ currentCharacter >= (Character value: 8251) ] ] ])
-		ifTrue: [ [ self recordMatch: #(42).
+			(currentCharacter isDigit
+				or: [ (currentCharacter between: $A and: $F)
+						or: [ currentCharacter between: $a and: $f ] ])
+				ifTrue: [ ^ self scan35 ] ].
+	(currentCharacter <= Character tab
+		or: [ (currentCharacter between: Character pageUp and: Character newPage)
+				or: [ (currentCharacter between: (Character value: 14) and: $/)
+						or: [ (currentCharacter between: $: and: $@)
+								or: [ (currentCharacter between: $G and: $`)
+										or: [ (currentCharacter between: $g and: (Character value: 8231))
+												or: [ currentCharacter >= (Character value: 8233) ] ] ] ] ] ])
+		ifTrue: [ [ self recordMatch: #(50).
 			self step.
-			currentCharacter ~~ (Character value: 8250) ] whileTrue ].
+			currentCharacter <= Character tab
+				or: [ (currentCharacter between: Character pageUp and: Character newPage)
+						or: [ (currentCharacter
+								between: (Character value: 14)
+								and: (Character value: 8231))
+								or: [ currentCharacter >= (Character value: 8233) ] ] ] ]
+				whileTrue ].
 	^ self reportLastMatch

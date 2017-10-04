@@ -1,6 +1,6 @@
 generated
 scan1X13
-	self recordMatch: #(15 47).
+	self recordMatch: #(9 55).
 	self step.
 	(currentCharacter == $!
 		or: [ (currentCharacter between: $# and: $&)
@@ -10,7 +10,7 @@ scan1X13
 										or: [ (currentCharacter between: $< and: $@)
 												or:
 													[ '\^|~' includes: currentCharacter ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(47).
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $!
 				or: [ (currentCharacter between: $# and: $&)
