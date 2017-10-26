@@ -1,0 +1,10 @@
+SmalltalkCISpec {
+  #specName : 'SmallGrace',
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Grace',
+      #onWarningLog : true,
+      #directory : ''
+    }
+  ]
+}
