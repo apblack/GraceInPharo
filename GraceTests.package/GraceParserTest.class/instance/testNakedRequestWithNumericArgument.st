@@ -1,4 +1,4 @@
 tests-Requests
 testNakedRequestWithNumericArgument
-	self good: #Request as: #RequestPartWithArguments parse: 'foo 8' 
+	self good: #Request as: #RequestWithArguments parse: 'foo 8' 
 	

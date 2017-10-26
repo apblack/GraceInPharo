@@ -1,14 +1,7 @@
 generated
 scan1X17
-	[ self recordMatch: #(55).
+	self recordMatch: #(23).
 	self step.
-	currentCharacter == $!
-		or: [ (currentCharacter between: $# and: $&)
-				or: [ (currentCharacter between: $* and: $+)
-						or: [ (currentCharacter between: $- and: $/)
-								or: [ currentCharacter == $:
-										or: [ (currentCharacter between: $< and: $@)
-												or:
-													[ '\^|~' includes: currentCharacter ] ] ] ] ] ] ]
-		whileTrue.
+	currentCharacter == $[
+		ifTrue: [ ^ self recordAndReportMatch: #(49) ].
 	^ self reportLastMatch

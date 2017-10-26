@@ -1,16 +1,12 @@
 generated
 scan28
-	[ self recordMatch: #(39 41).
 	self step.
-	currentCharacter == $\
-		ifTrue: [ ^ self scan21 ].
-	currentCharacter == Character space
-		or: [ currentCharacter = (Character value: 160) ] ] whileTrue.
-	(currentCharacter <= Character arrowDown
-		or: [ currentCharacter == $!
-				or: [ (currentCharacter between: $# and: $[)
-						or: [ (currentCharacter between: $] and: $z)
-								or: [ (currentCharacter between: $| and: (Character value: 159))
-										or: [ currentCharacter >= (Character value: 161) ] ] ] ] ])
-		ifTrue: [ ^ self scan20 ].
+	(currentCharacter isDecimalDigit
+		or: [ (currentCharacter between: $A and: $F)
+				or: [ currentCharacter between: $a and: $f ] ])
+		ifTrue: [ self step.
+			(currentCharacter isDecimalDigit
+				or: [ (currentCharacter between: $A and: $F)
+						or: [ currentCharacter between: $a and: $f ] ])
+				ifTrue: [ ^ self scan29 ] ].
 	^ self reportLastMatch

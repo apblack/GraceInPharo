@@ -1,16 +1,18 @@
 generated
 scan78
-	[ self recordMatch: #(40 41).
+	self recordMatch: #(42 53).
 	self step.
-	currentCharacter == Character space
-		or: [ currentCharacter = (Character value: 160) ] ] whileTrue.
-	(currentCharacter <= Character arrowDown
-		or: [ (currentCharacter between: $! and: (Character value: 159))
-				or: [ (currentCharacter
-						between: (Character value: 161)
-						and: (Character value: 8249))
-						or: [ currentCharacter >= (Character value: 8251) ] ] ])
-		ifTrue: [ [ self recordMatch: #(40).
-			self step.
-			currentCharacter ~~ (Character value: 8250) ] whileTrue ].
-	^ self reportLastMatch
+	currentCharacter == $\
+		ifTrue: [ ^ self scan27 ].
+	currentCharacter == $e
+		ifTrue:
+			[ ^ self scan78X1 ].
+	(currentCharacter == $'
+		or: [ (currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ currentCharacter == $_
+								or: [ (currentCharacter between: $a and: $d)
+										or: [ (currentCharacter between: $f and: $z)
+												or: [ currentCharacter = (Character value: 230) ] ] ] ] ] ])
+		ifTrue: [ ^ self scan39 ].
+	^ self scan78X2

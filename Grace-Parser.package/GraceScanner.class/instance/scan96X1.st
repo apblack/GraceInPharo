@@ -1,15 +1,12 @@
 generated
 scan96X1
-	self recordMatch: #(40 49).
+	[ self recordMatch: #(45).
 	self step.
-	currentCharacter == $f
-		ifTrue:
-			[ ^ self scan96X1X1 ].
-	(currentCharacter == $'
-		or: [ (currentCharacter between: $0 and: $9)
-				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $e)
-										or: [ currentCharacter between: $g and: $z ] ] ] ] ])
-		ifTrue: [ ^ self scan85 ].
-	^ self scan96X1X3
+	currentCharacter <= Character tab
+		or: [ (currentCharacter between: Character pageUp and: Character newPage)
+				or: [ (currentCharacter
+						between: (Character value: 14)
+						and: (Character value: 8231))
+						or: [ currentCharacter >= (Character value: 8233) ] ] ] ]
+		whileTrue.
+	^ self reportLastMatch

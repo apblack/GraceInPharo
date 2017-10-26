@@ -1,5 +1,5 @@
 generated
 scan102X1X1X1X1X1
-	self recordMatch: #(20 40 49).
+	[ self recordMatch: #(43).
 	self step.
-	^ self scan102X1X1X1X1X1X2
+	currentCharacter ~~ (Character value: 8250) ] whileTrue

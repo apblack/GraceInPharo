@@ -1,18 +1,29 @@
 generated
 scan96
-	self recordMatch: #(40 49).
+	[ self recordMatch: #(43 45 59).
 	self step.
-	currentCharacter == $e
+	currentCharacter =
+		(Character value: 8250)
 		ifTrue:
-			[ ^ self scan96X1 ].
-	currentCharacter == $i
-		ifTrue: [ ^ self scan97 ].
-	(currentCharacter == $'
-		or: [ (currentCharacter between: $0 and: $9)
-				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $d)
-										or: [ (currentCharacter between: $f and: $h)
-												or: [ currentCharacter between: $j and: $z ] ] ] ] ] ])
-		ifTrue: [ ^ self scan85 ].
-	^ self scan96X3
+			[ ^ self scan96X2 ].
+	(currentCharacter == Character lf
+		or: [ currentCharacter == Character cr
+				or: [ currentCharacter =
+						(Character value: 8232) ] ])
+		ifTrue:
+			[ ^ self scan96X4 ].
+	currentCharacter isDashPunctuation
+		or: [ currentCharacter == $!
+				or: [ (currentCharacter between: $# and: $&)
+						or: [ (currentCharacter between: $* and: $+)
+								or: [ (currentCharacter between: $. and: $/)
+										or: [ currentCharacter == $:
+												or: [ (currentCharacter between: $< and: $@)
+														or: [ ('\^|~' includes: currentCharacter)
+																or: [ (currentCharacter
+																		between: (Character value: 8804)
+																		and: (Character value: 8805))
+																		or: [ currentCharacter =
+																				(Character value: 8901) ] ] ] ] ] ] ] ] ] ]
+		whileTrue.
+	^ self scan96X5

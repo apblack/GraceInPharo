@@ -1,19 +1,15 @@
 generated
 scan108
-	self recordMatch: #(40 49).
+	self recordMatch: #(43 53).
 	self step.
-	currentCharacter == $r
-		ifTrue:
-			[ ^ self scan108X2 ].
-	currentCharacter == $u
-		ifTrue:
-			[ ^ self scan108X1 ].
+	currentCharacter == $f
+		ifTrue: [ ^ self scan109 ].
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $q)
-										or: [ (currentCharacter between: $s and: $t)
-												or: [ currentCharacter between: $v and: $z ] ] ] ] ] ])
-		ifTrue: [ ^ self scan85 ].
-	^ self scan108X4
+								or: [ (currentCharacter between: $a and: $e)
+										or: [ (currentCharacter between: $g and: $z)
+												or: [ currentCharacter = (Character value: 230) ] ] ] ] ] ])
+		ifTrue: [ ^ self scan100 ].
+	^ self scan108X2

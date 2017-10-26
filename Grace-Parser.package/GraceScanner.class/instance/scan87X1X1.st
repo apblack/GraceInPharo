@@ -1,15 +1,18 @@
 generated
 scan87X1X1
-	self recordMatch: #(40 49).
+	self recordMatch: #(42 53).
 	self step.
-	currentCharacter == $w
+	currentCharacter == $\
+		ifTrue: [ ^ self scan27 ].
+	currentCharacter == $t
 		ifTrue:
 			[ ^ self scan87X1X1X1 ].
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $v)
-										or: [ currentCharacter between: $x and: $z ] ] ] ] ])
-		ifTrue: [ ^ self scan85 ].
-	^ self scan87X1X1X3
+								or: [ (currentCharacter between: $a and: $s)
+										or: [ (currentCharacter between: $u and: $z)
+												or: [ currentCharacter = (Character value: 230) ] ] ] ] ] ])
+		ifTrue: [ ^ self scan39 ].
+	^ self scan87X1X1X2

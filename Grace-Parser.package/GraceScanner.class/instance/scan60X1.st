@@ -1,11 +1,18 @@
 generated
 scan60X1
-	(currentCharacter <= $!
-		or: [ (currentCharacter between: $# and: $&)
-				or: [ (currentCharacter between: $( and: $/)
-						or: [ (currentCharacter between: $: and: $@)
-								or: [ currentCharacter == $[
-										or: [ (currentCharacter between: $] and: $^)
-												or: [ currentCharacter == $` or: [ currentCharacter >= $| ] ] ] ] ] ] ])
-		ifTrue: [ ^ self scan20 ].
-	^ self reportLastMatch
+	self recordMatch: #(42 53).
+	self step.
+	currentCharacter == $\
+		ifTrue: [ ^ self scan27 ].
+	currentCharacter == $l
+		ifTrue:
+			[ ^ self scan60X1X1 ].
+	(currentCharacter == $'
+		or: [ (currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ currentCharacter == $_
+								or: [ (currentCharacter between: $a and: $k)
+										or: [ (currentCharacter between: $m and: $z)
+												or: [ currentCharacter = (Character value: 230) ] ] ] ] ] ])
+		ifTrue: [ ^ self scan39 ].
+	^ self scan60X1X2

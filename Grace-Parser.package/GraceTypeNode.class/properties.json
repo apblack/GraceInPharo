@@ -10,7 +10,11 @@
 		"id",
 		"unknownToken",
 		"arrowToken",
-		"type"
+		"type",
+		"typeargs",
+		"interfaceToken",
+		"interface",
+		"typeToken"
 	],
 	"name" : "GraceTypeNode",
 	"type" : "normal"

@@ -1,15 +1,5 @@
 generated
 scan115X1
-	self recordMatch: #(40 49).
+	[ self recordMatch: #(43).
 	self step.
-	currentCharacter == $i
-		ifTrue:
-			[ ^ self scan115X1X1 ].
-	(currentCharacter == $'
-		or: [ (currentCharacter between: $0 and: $9)
-				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $h)
-										or: [ currentCharacter between: $j and: $z ] ] ] ] ])
-		ifTrue: [ ^ self scan85 ].
-	^ self scan115X1X3
+	currentCharacter ~~ (Character value: 8250) ] whileTrue

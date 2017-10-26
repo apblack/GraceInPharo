@@ -1,19 +1,18 @@
 generated
 scan64
-	self recordMatch: #(39 49).
+	self recordMatch: #(42 53).
 	self step.
 	currentCharacter == $\
-		ifTrue: [ ^ self scan21 ].
-	currentCharacter == $a
-		ifTrue: [ ^ self scan65 ].
-	currentCharacter == $t
+		ifTrue: [ ^ self scan27 ].
+	currentCharacter == $e
 		ifTrue:
 			[ ^ self scan64X1 ].
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $b and: $s)
-										or: [ currentCharacter between: $u and: $z ] ] ] ] ])
+								or: [ (currentCharacter between: $a and: $d)
+										or: [ (currentCharacter between: $f and: $z)
+												or: [ currentCharacter = (Character value: 230) ] ] ] ] ] ])
 		ifTrue: [ ^ self scan39 ].
 	^ self scan64X2

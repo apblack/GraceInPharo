@@ -1,44 +1,45 @@
 generated
 definitionComment
 "%unicode ;
-%id <error> <newline> ;
+%id <comment> <error> <newline> ;
 
 ### State-specific token rules ###
 
 %states string uninterpString;
 
 string <h> : [0-9a-fA-F] ;
-string <stringSegment> : ( \\[nt\{\}\""rl_] | \\u<h><h><h><h> | \\U<h><h><h><h><h><h> | \xA0 | [^\""\{\\] )+ ;
+string <stringSegment> : ( \\[nt\{\}\""rl_\\] | \\u<h><h><h><h> | \\U<h><h><h><h><h><h> | \xA0 
+					| [^\""\{\\\x00-\x09\x0B\x0C] ) + ;  # \x0C\x0E–\x1F\x7F
 uninterpString <uninterpretedString> : [^›]+ ;
 
 ### Lexical token rules  ###
 
 <whitespace>:  ( \x20 | \xA0 ) + ;
-<newline>:  (\r | \n |  \r\n  | \x2028 ) <whitespace> ? ;
-<error>: [\x00\cA-\cI\cK\cL\cO–\x1F] ;
-<blankline>:  <newline> <newline> ;
+<comment>: // [^\r\n\x2028] * ;
+<newline>:  ( \r | \n |  \r\n  | \x2028 ) <whitespace> ? ;
+<error>: [\x00-\x09\x0b\x0c\x0e–\x1F\x7f] ;
 <dot>: \. ;
-<openTP>: ⟦ | [[ ;
-<closeTP>: ⟧ | ]] ;
+<openTP>: ⟦ | \[\[ ;
+<closeTP>: ⟧ | \]\] ;
 <outer>: outer ;
 <outerDot>: <outer> <whitespace>? <dot> ;
 <self>: self ;
 <selfDot> : <self> <whitespace>? <dot> ;
-<name> :  [a-zA-Z_] [a-zA-Z0-9_'] *;
-<comment>: // [^\r\n\x2028] * ;
+<name> :  [a-zA-Z_æ] [a-zA-Zæ0-9_'] *;				# and all the other non-ascii letters
 <decimalNumeral> :  [0-9]+ ( [.][0-9]+ )? ;
 <baseExponentNumeral> : <decimalNumeral> [eE][\+\-]?[0-9]+ ;
 <basedRadixNumeral>: [0-9]+x[0-9A-Za-z]+ ;
 <arrow>:  -> | → ;
 <dquote>:  [""] ;
 <elipsis>: \.\.\. ;
-<operator>: [!\?@#%^&\|~=\+\-\*/\\><:\.$]+ ;  # or any unicode mathematical operator symbol
+<operator>: [!\?@#%^&\|~=\+\-\*/\\><:\.\$\x22C5≤≥]+ ;   # or any other unicode mathematical operator symbol like \x22C5
 
+#%right "":="" ;
 %prefix Grace ;
 %suffix Node ;
 %root Root ;
 %annotate_tokens ;
-%start ArgumentList Block Declaration Expression Module Numeral Request Statement String Term;
+%start ArgumentList Block Declaration Expression Module Numeral Request Statement String Term Type;
 
 #############
 # Statements #
@@ -48,7 +49,8 @@ Module
 	: BlockBody 'body' {{ }}
 	;
 Sep
-	: "";"" | <newline>
+	: "";"" 										{{ }}
+	| <comment> 'commentary' ? <newline>  	{{ }}
 	;
 Statement
 	: Expression
@@ -58,10 +60,12 @@ Statement
 	| ReuseStatement
 	| ImportStatement
 	| DialectStatement
-	| StandaloneComment
+	| EmptyStatement
+	| <error>
 	;
 Assignment
 	: Identifier 'lhs' "":="" Expression 'rhs' {{ }}
+	| AssignmentRequest 
 	;
 Return
 	: ""return"" Expression 'value' {{ }}
@@ -72,8 +76,8 @@ ImportStatement
 DialectStatement
 	: ""dialect"" StringLiteral 'resource' {{ }}
 	;
-StandaloneComment
-	: <blankline> <comment> 'commentary' <newline> {{ }}
+EmptyStatement
+	:  {{ }}
 	;
 Declaration
 	: VarDeclaration
@@ -90,9 +94,10 @@ DefDeclaration
 	;
 TypeDeclaration
 	: ""type"" Identifier 'id' ""="" Type 'value' {{ }}
+	| ""type"" Identifier 'id' ""="" InterfaceLiteral 'value' {{ }}
 	;
 TypePart
-	: "":"" Type {{ Type }}
+	: "":"" Type 'type' {{ Type }}
 	;
 AnnotationPart
 	: ""is"" Annotation 'ann' ( "","" Annotation 'ann' ) *  {{ }}
@@ -108,8 +113,8 @@ MethodDeclaration
 	: ""method"" MethodHeader 'header' ReturnTypePart 'returnType' ? ""{"" BlockBody 'body' ""}"" {{ }}
 	;
 ClassOrTraitDeclaration
-	: ""class"" MethodHeader 'header' ReturnTypePart 'returnType' ? ""{"" ObjectBody 'body' ""}"" {{ ClassDeclaration }}
-	| ""trait"" MethodHeader 'header' ReturnTypePart 'returnType' ? ""{"" ObjectBody 'body' ""}"" {{ TraitDeclaration }}
+	: ""class"" MethodHeader 'header' ReturnTypePart 'returnType' ? (AnnotationPart 'annotation')?  ""{"" ObjectBody 'body' ""}"" {{ ClassDeclaration }}
+	| ""trait"" MethodHeader 'header' ReturnTypePart 'returnType' ? (AnnotationPart 'annotation')?  ""{"" ObjectBody 'body' ""}"" {{ TraitDeclaration }}
 	;
 ObjectConstructor
 	: ""object"" ""{"" ObjectBody 'body' ""}"" {{ }}
@@ -147,15 +152,15 @@ ReturnTypePart
 	;
 TypeParameters
 	: 
-	| <openTP> Identifier 'param' ( "","" Identifier 'param' ) * <closeTP> {{ }}
+	| <openTP> Identifier 'param' ( "","" '_' Identifier 'param' ) * <closeTP> {{ }}
 	;
-	
+
 ################
 #        Requests       #
 ################
 
 Request
-	: RequestPartWithArguments 
+	: RequestWithArguments 
 	| SelfRequest
 	| OuterRequest
 	| TargetedRequest
@@ -169,19 +174,27 @@ OuterRequest
 TargetedRequest
 	: Term 'target' <dot> RequestPart 'request' {{ }}
 	;
+AssignmentRequest
+	: Term 'target' <dot> <name> 'name' "":="" Expression 'arg'  {{ }}
+	;
 RequestPart
 	: Identifier 
-	| RequestPartWithArguments
+	| RequestWithArguments
 	;
-RequestPartWithArguments 
-	:  <name> 'namePart'  ArgumentList  'argList' ( <name>  'namePart' ArgumentList 'argList' )*  {{ }}
+RequestWithArguments 
+	:  <name> 'namePart'  TypeArguments 'typeArgs' ArgumentList  'argList' ( <name>  'namePart' ArgumentList 'argList' )*  {{ }}		# Both type args and normal args
+	|  <name> 'namePart'  TypeArguments 'typeArgs'  {{ }}																		# Just type args
+	|  <name> 'namePart'  ArgumentList  'argList' ( <name>  'namePart' ArgumentList 'argList' )*  {{ }}								# Junst normal args
 	;
 ArgumentList
 	: DelimitedTerm 'arg' {{ }}
 	| ""("" Expression 'arg' ("",""  Expression 'arg' ) + "")""  {{ }}
 	;
 UnaryRequest
-	: <operator> 'op' Term 'receiver' {{  }}
+	: <operator> 'op' TypeArguments 'typeArgs' ? Term 'receiver' {{  }}
+	;
+BinaryRequest
+	: Factor 'receiver'  (<operator> 'op' TypeArguments 'typeArgs' ? Factor 'arg')+  {{  }}
 	;
 
 #########################
@@ -191,25 +204,44 @@ UnaryRequest
 Block
 	# this is written as two alternatives, rather than making BlockParameters optional,
 	# because the latter creates a shift-reduce conflict that SmaCC can't resolve.
-	: ""{"" (BlockParameters  'parameters' <arrow> ) BlockBody  'body' ""}""  {{ }}
+	: ""{"" (BlockParameterList  'parameters' <arrow> ) BlockBody  'body' ""}""  {{ }}
 	| ""{"" BlockBody 'body'  ""}""  {{ }}
 	;
-BlockParameters
-	:  <name> 'parameter'  ("","" <name> 'parameter') * {{ }}
+BlockParameterList
+	: BlockParameter 'param'	{{ }}
+	| BlockParameter 'param' ( "","" BlockParameter 'param' ) + {{ }}
+	;
+BlockParameter
+	:  <name> 'parameter' PatternPart 'pattern' ?  {{ }}
+	| NonIdExpression 'pattern' {{ }}
+	;
+PatternPart
+	: "":"" Expression  { ^ '2' }
 	;
 BlockBody
-	: {{ }}
-	| Statement 'item' ( Sep '_' Statement  'item'  ) * Sep '_' ?  {{ }}		
+	: Statement 'item' ( Sep '_' Statement  'item'  ) *  {{ }}		
 	# which does not contain MethodsDeclarations or ReuseStatements, but that will be checked later.
 	;
+NonIdExpression
+	: BinaryRequest
+	| NonIdFactor
+	;
 Expression
-	: Factor 'left'  (<operator> 'op' Factor 'right')+  {{ BinaryRequest }}
+	: BinaryRequest
 	| Factor
 	;
-Term
+NonIdTerm
 	: DelimitedTerm
-	| Identifier 
 	| Request
+	;
+Term
+	: NonIdTerm
+	| Identifier 
+	;
+NonIdFactor
+	: NonIdTerm
+	| ObjectConstructor
+	| UnaryRequest
 	;
 Factor
 	: Term
@@ -220,8 +252,9 @@ DelimitedTerm
 	: Numeral
 	| Block
 	| String
+	| SequenceConstructor
 	| SpecialTerm
-	| ""("" Expression 'expr' "")""  {{  }}
+	| ""("" Expression 'expr' "")""  {{ Expression }}
 	;
 SpecialTerm
 	: ""self""  {{ }}
@@ -230,8 +263,20 @@ SpecialTerm
 	| ""outer"" {{ }}
 	;
 Type
-	: Identifier 'id' {{ }}
+	:  Identifier 'id' TypeArguments 'typeargs' ? {{ }}
 	| ""Unknown"" {{ }}
+	| ""interface"" InterfaceLiteral  'interface' {{ }}
+	| ""type"" InterfaceLiteral 'interface' 	   {{ }}		# for backward compatibility
+	;
+TypeArguments
+	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   {{ }}
+	;
+Signature
+	: MethodHeader 'methName' ReturnTypePart 'returnType'  {{ }}
+	;
+InterfaceLiteral
+	:  ""{"" Sep '_' ? ""}""														{{ Interface }}
+	|  ""{"" Signature 'method' ( Sep '_' Signature 'method' ) * Sep '_' ? ""}""		{{ Interface }}
 	;
 Identifier
 	: <name> 'id' {{ }}
@@ -239,7 +284,11 @@ Identifier
 Numeral
 	: <decimalNumeral> {{ }}
 	| <baseExponentNumeral> {{ }}
-	| <radixNumeral> {{ }}
+	| <basedRadixNumeral> {{ }}
+	;
+SequenceConstructor
+	: ""["" ""]""	{{ }}
+	| ""["" Expression 'element' ("","" Expression 'element' ) * ""]"" {{ }}
 	;
 String
 	: StringLiteral 'stringLiteral'  {{ StringLiteral }}

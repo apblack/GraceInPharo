@@ -1,26 +1,34 @@
 generated
 scan1X9
-	self recordMatch: #(55).
+	self recordMatch: #(48 59).
 	self step.
-	currentCharacter == $]
-		ifTrue: [ ^ self recordAndReportMatch: #(46) ].
-	(currentCharacter == $!
-		or: [ (currentCharacter between: $# and: $&)
-				or: [ (currentCharacter between: $* and: $+)
-						or: [ (currentCharacter between: $- and: $/)
-								or: [ currentCharacter == $:
-										or: [ (currentCharacter between: $< and: $@)
-												or:
-													[ '\^|~' includes: currentCharacter ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(55).
-			self step.
-			currentCharacter == $!
+	(currentCharacter isDashPunctuation
+		or: [ currentCharacter == $!
 				or: [ (currentCharacter between: $# and: $&)
 						or: [ (currentCharacter between: $* and: $+)
-								or: [ (currentCharacter between: $- and: $/)
+								or: [ (currentCharacter between: $. and: $/)
 										or: [ currentCharacter == $:
 												or: [ (currentCharacter between: $< and: $@)
-														or:
-															[ '\^|~' includes: currentCharacter ] ] ] ] ] ] ]
+														or: [ ('\^|~' includes: currentCharacter)
+																or: [ (currentCharacter
+																		between: (Character value: 8804)
+																		and: (Character value: 8805))
+																		or: [ currentCharacter =
+																				(Character value: 8901) ] ] ] ] ] ] ] ] ])
+		ifTrue: [ [ self recordMatch: #(59).
+			self step.
+			currentCharacter isDashPunctuation
+				or: [ currentCharacter == $!
+						or: [ (currentCharacter between: $# and: $&)
+								or: [ (currentCharacter between: $* and: $+)
+										or: [ (currentCharacter between: $. and: $/)
+												or: [ currentCharacter == $:
+														or: [ (currentCharacter between: $< and: $@)
+																or: [ ('\^|~' includes: currentCharacter)
+																		or: [ (currentCharacter
+																				between: (Character value: 8804)
+																				and: (Character value: 8805))
+																				or: [ currentCharacter =
+																						(Character value: 8901) ] ] ] ] ] ] ] ] ] ]
 				whileTrue ].
 	^ self reportLastMatch

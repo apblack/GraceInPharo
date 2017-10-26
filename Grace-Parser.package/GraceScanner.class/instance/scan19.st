@@ -1,10 +1,23 @@
 generated
 scan19
+	self recordMatch: #(53).
 	self step.
-	currentCharacter == Character lf
-		ifTrue: [ ^ self scan19X10 ].
-	currentCharacter == Character cr
-		ifTrue: [ ^ self scan19X5 ].
-	currentCharacter == Character space
-		ifTrue: [ ^ self scan19X12 ].
-	^ self scan19X26
+	currentCharacter == $e
+		ifTrue: [ ^ self scan20 ].
+	(currentCharacter == $'
+		or: [ (currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ currentCharacter == $_
+								or: [ (currentCharacter between: $a and: $d)
+										or: [ (currentCharacter between: $f and: $z)
+												or: [ currentCharacter = (Character value: 230) ] ] ] ] ] ])
+		ifTrue: [ [ self recordMatch: #(53).
+			self step.
+			currentCharacter == $'
+				or: [ (currentCharacter between: $0 and: $9)
+						or: [ (currentCharacter between: $A and: $Z)
+								or: [ currentCharacter == $_
+										or: [ (currentCharacter between: $a and: $z)
+												or: [ currentCharacter = (Character value: 230) ] ] ] ] ] ]
+				whileTrue ].
+	^ self reportLastMatch

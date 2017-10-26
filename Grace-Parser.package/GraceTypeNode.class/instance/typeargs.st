@@ -1,0 +1,3 @@
+generated
+typeargs
+	^ typeargs

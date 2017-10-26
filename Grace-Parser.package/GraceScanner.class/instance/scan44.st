@@ -1,16 +1,13 @@
 generated
 scan44
-	self recordMatch: #(39 49).
+	self recordMatch: #(42 50).
 	self step.
 	currentCharacter == $\
-		ifTrue: [ ^ self scan21 ].
-	currentCharacter == $n
-		ifTrue: [ ^ self scan45 ].
-	(currentCharacter == $'
-		or: [ (currentCharacter between: $0 and: $9)
-				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $m)
-										or: [ currentCharacter between: $o and: $z ] ] ] ] ])
-		ifTrue: [ ^ self scan39 ].
-	^ self scan44X1
+		ifTrue: [ ^ self scan27 ].
+	(currentCharacter == Character lf
+		or: [ (currentCharacter between: Character cr and: $!)
+				or: [ (currentCharacter between: $# and: $[)
+						or: [ (currentCharacter between: $] and: $z)
+								or: [ currentCharacter >= $| ] ] ] ])
+		ifTrue: [ ^ self scan26 ].
+	^ self reportLastMatch

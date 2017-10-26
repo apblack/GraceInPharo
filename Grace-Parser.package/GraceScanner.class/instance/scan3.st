@@ -1,17 +1,15 @@
 generated
 scan3
-	[ self recordMatch: #(42).
 	self step.
-	currentCharacter == Character cr
-		ifTrue: [ ^ self scan2 ].
-	(currentCharacter == Character lf
-		or: [ currentCharacter =
-				(Character value: 8232) ])
-		ifTrue: [ [ self recordMatch: #(44).
+	currentCharacter isDecimalDigit
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
-			currentCharacter == Character space
-				or: [ currentCharacter = (Character value: 160) ] ] whileTrue.
+			currentCharacter isDecimalDigit ] whileTrue.
 			^ self reportLastMatch ].
-	currentCharacter == Character space
-		or: [ currentCharacter = (Character value: 160) ] ] whileTrue.
+	(currentCharacter isDashPunctuation or: [ currentCharacter == $+ ])
+		ifTrue: [ self step.
+			currentCharacter isDecimalDigit
+				ifTrue: [ [ self recordMatch: #(55).
+					self step.
+					currentCharacter isDecimalDigit ] whileTrue ] ].
 	^ self reportLastMatch

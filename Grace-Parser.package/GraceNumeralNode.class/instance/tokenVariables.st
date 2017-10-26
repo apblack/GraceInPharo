@@ -1,3 +1,3 @@
 generated
 tokenVariables
-	^ #(#decimalNumeralToken #baseExponentNumeralToken #radixNumeralToken)
+	^ #(#decimalNumeralToken #baseExponentNumeralToken #basedRadixNumeralToken)

@@ -8,8 +8,8 @@
 	"instvars" : [
 		"openTPToken",
 		"params",
-		"commaTokens",
-		"closeTPToken"
+		"closeTPToken",
+		"_s"
 	],
 	"name" : "GraceTypeParametersNode",
 	"type" : "normal"

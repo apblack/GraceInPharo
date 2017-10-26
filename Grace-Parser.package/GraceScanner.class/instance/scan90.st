@@ -1,14 +1,17 @@
 generated
 scan90
-	self recordMatch: #(40 49).
+	self recordMatch: #(42 53).
 	self step.
-	currentCharacter == $n
+	currentCharacter == $\
+		ifTrue: [ ^ self scan27 ].
+	currentCharacter == $t
 		ifTrue: [ ^ self scan91 ].
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $m)
-										or: [ currentCharacter between: $o and: $z ] ] ] ] ])
-		ifTrue: [ ^ self scan85 ].
-	^ self scan90X2
+								or: [ (currentCharacter between: $a and: $s)
+										or: [ (currentCharacter between: $u and: $z)
+												or: [ currentCharacter = (Character value: 230) ] ] ] ] ] ])
+		ifTrue: [ ^ self scan39 ].
+	^ self scan90X1

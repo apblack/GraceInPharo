@@ -1,3 +1,0 @@
-generated
-radixNumeralToken
-	^ radixNumeralToken

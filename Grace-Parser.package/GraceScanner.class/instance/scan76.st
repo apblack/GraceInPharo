@@ -1,13 +1,18 @@
 generated
 scan76
-	[ self recordMatch: #(40 42).
+	self recordMatch: #(42 53).
 	self step.
-	currentCharacter == Character cr
-		ifTrue: [ ^ self scan75 ].
-	(currentCharacter == Character lf
-		or: [ currentCharacter =
-				(Character value: 8232) ])
-		ifTrue: [ ^ self scan74 ].
-	currentCharacter == Character space
-		or: [ currentCharacter = (Character value: 160) ] ] whileTrue.
+	currentCharacter == $\
+		ifTrue: [ ^ self scan27 ].
+	currentCharacter == $r
+		ifTrue:
+			[ ^ self scan76X1 ].
+	(currentCharacter == $'
+		or: [ (currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ currentCharacter == $_
+								or: [ (currentCharacter between: $a and: $q)
+										or: [ (currentCharacter between: $s and: $z)
+												or: [ currentCharacter = (Character value: 230) ] ] ] ] ] ])
+		ifTrue: [ ^ self scan39 ].
 	^ self scan76X2

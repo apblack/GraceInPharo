@@ -1,14 +1,17 @@
 generated
 scan79
-	[ self recordMatch: #(40 55).
+	self recordMatch: #(42 53).
 	self step.
-	currentCharacter == $!
-		or: [ (currentCharacter between: $# and: $&)
-				or: [ (currentCharacter between: $* and: $+)
-						or: [ (currentCharacter between: $- and: $/)
-								or: [ currentCharacter == $:
-										or: [ (currentCharacter between: $< and: $@)
-												or:
-													[ '\^|~' includes: currentCharacter ] ] ] ] ] ] ]
-		whileTrue.
+	currentCharacter == $\
+		ifTrue: [ ^ self scan27 ].
+	currentCharacter == $b
+		ifTrue:
+			[ ^ self scan79X1 ].
+	(currentCharacter == $'
+		or: [ (currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ ('_a' includes: currentCharacter)
+								or: [ (currentCharacter between: $c and: $z)
+										or: [ currentCharacter = (Character value: 230) ] ] ] ] ])
+		ifTrue: [ ^ self scan39 ].
 	^ self scan79X2

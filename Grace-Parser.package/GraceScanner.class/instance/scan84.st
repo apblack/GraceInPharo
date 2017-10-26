@@ -1,12 +1,18 @@
 generated
 scan84
-	[ self recordMatch: #(40 52).
+	self recordMatch: #(42 53).
 	self step.
-	currentCharacter isDigit ] whileTrue.
-	(currentCharacter <= $/
-		or: [ (currentCharacter between: $: and: (Character value: 8249))
-				or: [ currentCharacter >= (Character value: 8251) ] ])
-		ifTrue: [ [ self recordMatch: #(40).
-			self step.
-			currentCharacter ~~ (Character value: 8250) ] whileTrue ].
-	^ self reportLastMatch
+	currentCharacter == $\
+		ifTrue: [ ^ self scan27 ].
+	currentCharacter == $e
+		ifTrue:
+			[ ^ self scan84X1 ].
+	(currentCharacter == $'
+		or: [ (currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ currentCharacter == $_
+								or: [ (currentCharacter between: $a and: $d)
+										or: [ (currentCharacter between: $f and: $z)
+												or: [ currentCharacter = (Character value: 230) ] ] ] ] ] ])
+		ifTrue: [ ^ self scan39 ].
+	^ self scan84X2

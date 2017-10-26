@@ -1,3 +1,3 @@
 generated
 tokenVariables
-	^ #(#colonToken #unknownToken #arrowToken)
+	^ #(#colonToken #arrowToken #unknownToken #interfaceToken #typeToken)

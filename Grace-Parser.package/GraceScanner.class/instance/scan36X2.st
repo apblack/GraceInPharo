@@ -1,14 +1,17 @@
 generated
 scan36X2
-	('Ee' includes: currentCharacter)
-		ifTrue: [ ^ self scan37 ].
-	(currentCharacter <= $!
-		or: [ (currentCharacter between: $# and: $-)
-				or: [ currentCharacter == $/
-						or: [ (currentCharacter between: $: and: $D)
-								or: [ (currentCharacter between: $F and: $[)
-										or: [ (currentCharacter between: $] and: $d)
-												or: [ (currentCharacter between: $f and: $z)
-														or: [ currentCharacter >= $| ] ] ] ] ] ] ])
-		ifTrue: [ ^ self scan20 ].
-	^ self reportLastMatch
+	self recordMatch: #(42).
+	self step.
+	currentCharacter == $\
+		ifTrue: [ ^ self scan27 ].
+	((currentCharacter between: $0 and: $9)
+		or: [ (currentCharacter between: $A and: $Z)
+				or: [ currentCharacter between: $a and: $z ] ])
+		ifTrue: [ [ self recordMatch: #(42 56).
+			self step.
+			currentCharacter == $\
+				ifTrue: [ ^ self scan27 ].
+			(currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ currentCharacter between: $a and: $z ] ] ] whileTrue ].
+	^ self scan36X2X1

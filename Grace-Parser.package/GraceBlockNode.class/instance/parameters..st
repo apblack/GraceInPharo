@@ -1,7 +1,7 @@
 generated
-parameters: aGraceBlockParametersNode
+parameters: aGraceBlockParameterListNode
 	self parameters notNil
 		ifTrue: [ self parameters parent: nil ].
-	parameters := aGraceBlockParametersNode.
+	parameters := aGraceBlockParameterListNode.
 	self parameters notNil
 		ifTrue: [ self parameters parent: self ]

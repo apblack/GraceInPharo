@@ -8,7 +8,7 @@
 	"instvars" : [
 		"decimalNumeralToken",
 		"baseExponentNumeralToken",
-		"radixNumeralToken"
+		"basedRadixNumeralToken"
 	],
 	"name" : "GraceNumeralNode",
 	"type" : "normal"

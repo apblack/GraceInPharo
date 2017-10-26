@@ -11,7 +11,8 @@
 		"returnType",
 		"leftBraceToken",
 		"body",
-		"rightBraceToken"
+		"rightBraceToken",
+		"annotation"
 	],
 	"name" : "GraceTraitDeclarationNode",
 	"type" : "normal"

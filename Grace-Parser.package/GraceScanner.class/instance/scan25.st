@@ -1,20 +1,16 @@
 generated
 scan25
-	self recordMatch: #(39 44).
+	[ self recordMatch: #(42 46).
 	self step.
 	currentCharacter == $\
-		ifTrue: [ ^ self scan21 ].
+		ifTrue: [ ^ self scan27 ].
+	currentCharacter isSpaceSeparator ] whileTrue.
 	(currentCharacter == Character lf
-		or: [ currentCharacter == Character space
-				or: [ currentCharacter = (Character value: 160) ] ])
-		ifTrue: [ ^ self scan24 ].
-	(currentCharacter <= Character tab
-		or:
-			[ (currentCharacter between: Character pageUp and: Character arrowDown)
+		or: [ (currentCharacter between: Character cr and: Character arrowDown)
 				or: [ currentCharacter == $!
 						or: [ (currentCharacter between: $# and: $[)
 								or: [ (currentCharacter between: $] and: $z)
 										or: [ (currentCharacter between: $| and: (Character value: 159))
 												or: [ currentCharacter >= (Character value: 161) ] ] ] ] ] ])
-		ifTrue: [ ^ self scan20 ].
+		ifTrue: [ ^ self scan26 ].
 	^ self reportLastMatch

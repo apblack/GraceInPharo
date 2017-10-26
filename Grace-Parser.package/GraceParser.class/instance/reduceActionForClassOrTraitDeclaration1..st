@@ -5,7 +5,8 @@ reduceActionForClassOrTraitDeclaration1: nodes
 	result classToken: (nodes at: 1).
 	result header: (nodes at: 2).
 	result returnType: (nodes at: 3).
-	result leftBraceToken: (nodes at: 4).
-	result body: (nodes at: 5).
-	result rightBraceToken: (nodes at: 6).
+	result annotation: (nodes at: 4).
+	result leftBraceToken: (nodes at: 5).
+	result body: (nodes at: 6).
+	result rightBraceToken: (nodes at: 7).
 	^ result

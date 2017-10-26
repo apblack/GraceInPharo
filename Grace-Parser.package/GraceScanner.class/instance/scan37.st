@@ -1,31 +1,33 @@
 generated
 scan37
-	self recordMatch: #(39).
+	self recordMatch: #(42).
 	self step.
 	currentCharacter == $\
-		ifTrue: [ ^ self scan21 ].
-	currentCharacter isDigit
+		ifTrue: [ ^ self scan27 ].
+	currentCharacter isDecimalDigit
 		ifTrue: [ ^ self scan38 ].
-	('+-' includes: currentCharacter)
-		ifTrue: [ self recordMatch: #(39).
+	(currentCharacter isDashPunctuation or: [ currentCharacter == $+ ])
+		ifTrue: [ self recordMatch: #(42).
 			self step.
 			currentCharacter == $\
-				ifTrue: [ ^ self scan21 ].
-			currentCharacter isDigit
+				ifTrue: [ ^ self scan27 ].
+			currentCharacter isDecimalDigit
 				ifTrue: [ ^ self scan38 ].
-			(currentCharacter <= $!
-				or: [ (currentCharacter between: $# and: $/)
-						or: [ (currentCharacter between: $: and: $[)
-								or: [ (currentCharacter between: $] and: $z)
-										or: [ currentCharacter >= $| ] ] ] ])
-				ifTrue: [ ^ self scan20 ].
-			^ self reportLastMatch ].
-	(currentCharacter <= $!
-		or: [ (currentCharacter between: $# and: $*)
-				or: [ currentCharacter == $,
-						or: [ (currentCharacter between: $. and: $/)
+			(currentCharacter == Character lf
+				or: [ (currentCharacter between: Character cr and: $!)
+						or: [ (currentCharacter between: $# and: $/)
 								or: [ (currentCharacter between: $: and: $[)
 										or: [ (currentCharacter between: $] and: $z)
-												or: [ currentCharacter >= $| ] ] ] ] ] ])
-		ifTrue: [ ^ self scan20 ].
+												or: [ currentCharacter >= $| ] ] ] ] ])
+				ifTrue: [ ^ self scan26 ].
+			^ self reportLastMatch ].
+	(currentCharacter == Character lf
+		or: [ (currentCharacter between: Character cr and: $!)
+				or: [ (currentCharacter between: $# and: $*)
+						or: [ currentCharacter == $,
+								or: [ (currentCharacter between: $. and: $/)
+										or: [ (currentCharacter between: $: and: $[)
+												or: [ (currentCharacter between: $] and: $z)
+														or: [ currentCharacter >= $| ] ] ] ] ] ] ])
+		ifTrue: [ ^ self scan26 ].
 	^ self reportLastMatch

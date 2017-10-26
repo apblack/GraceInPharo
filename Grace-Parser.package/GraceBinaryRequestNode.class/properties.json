@@ -6,9 +6,10 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"left",
 		"ops",
-		"rights"
+		"receiver",
+		"typeArgses",
+		"args"
 	],
 	"name" : "GraceBinaryRequestNode",
 	"type" : "normal"

@@ -1,13 +1,13 @@
 generated
 scan73
+	self recordMatch: #(42 51).
 	self step.
-	currentCharacter == Character lf
-		ifTrue:
-			[ ^ self scan73X11 ].
-	currentCharacter == Character cr
-		ifTrue:
-			[ ^ self scan73X8 ].
-	currentCharacter == Character space
-		ifTrue:
-			[ ^ self scan73X12 ].
-	^ self scan73X28
+	currentCharacter == $\
+		ifTrue: [ ^ self scan27 ].
+	(currentCharacter == Character lf
+		or: [ (currentCharacter between: Character cr and: $!)
+				or: [ (currentCharacter between: $# and: $[)
+						or: [ (currentCharacter between: $] and: $z)
+								or: [ currentCharacter >= $| ] ] ] ])
+		ifTrue: [ ^ self scan26 ].
+	^ self reportLastMatch
