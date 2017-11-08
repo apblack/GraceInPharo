@@ -1,3 +1,0 @@
-generated
-startingStateForString
-	^ 9

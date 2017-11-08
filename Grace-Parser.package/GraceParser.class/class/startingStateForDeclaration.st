@@ -1,3 +1,0 @@
-generated
-startingStateForDeclaration
-	^ 4

@@ -1,3 +1,0 @@
-generated
-startingStateForArgumentList
-	^ 2

@@ -1,3 +1,0 @@
-generated
-compositeTokenVariables
-	^ #(#parameters #commaTokens)

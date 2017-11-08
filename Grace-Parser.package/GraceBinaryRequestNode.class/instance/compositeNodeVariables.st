@@ -1,3 +1,0 @@
-generated
-compositeNodeVariables
-	^ #(#typeArgses #args)

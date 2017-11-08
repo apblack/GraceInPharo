@@ -1,4 +1,4 @@
-line handling
+continuation lines
 isContinuationLine
-	braceDepth > priorLineBraceDepth ifTrue: [ ^ true ].
-	^ currentIndent > priorLineIndent
+	indentOfLineBeingContinued ifNotNil: [ ^ true ].
+	^ currentLineIndent > priorLineIndent

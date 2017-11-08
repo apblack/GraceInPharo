@@ -1,4 +1,4 @@
 token-actions
 leftBrace
-	braceDepth := braceDepth + 1.
+	(state = #default) ifTrue:  [ self incrementBraceDepth ].
 	^ self createTokenFor: '{'

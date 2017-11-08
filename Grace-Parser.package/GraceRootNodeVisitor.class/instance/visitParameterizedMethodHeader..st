@@ -1,3 +1,0 @@
-generated
-visitParameterizedMethodHeader: aParameterizedMethodHeader
-	^ self visitRoot: aParameterizedMethodHeader

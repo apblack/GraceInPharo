@@ -1,3 +1,0 @@
-generated
-typeArgses
-	^ typeArgses

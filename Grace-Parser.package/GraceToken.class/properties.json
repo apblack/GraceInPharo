@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "AndrewBlack 10/12/2017 10:47",
+	"super" : "SmaCCToken",
+	"category" : "Grace-Parser",
+	"classinstvars" : [
+		"symbolTable"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"scanner"
+	],
+	"name" : "GraceToken",
+	"type" : "normal"
+}

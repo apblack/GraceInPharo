@@ -1,3 +1,0 @@
-generated
-startingStateForRequest
-	^ 7

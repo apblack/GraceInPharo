@@ -1,3 +1,0 @@
-generated
-nodeVariables
-	^ #(#reuse #item)

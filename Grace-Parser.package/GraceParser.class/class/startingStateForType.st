@@ -1,3 +1,0 @@
-generated
-startingStateForType
-	^ 11

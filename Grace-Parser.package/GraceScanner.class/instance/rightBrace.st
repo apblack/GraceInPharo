@@ -1,4 +1,4 @@
 token-actions
 rightBrace
-	braceDepth := braceDepth - 1.
+	(state = #default) ifTrue: [ currentLineBraceDepth := currentLineBraceDepth - 1 ].
 	^ self createTokenFor: '}'

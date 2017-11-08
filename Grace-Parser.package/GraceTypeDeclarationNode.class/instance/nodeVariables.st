@@ -1,3 +1,0 @@
-generated
-nodeVariables
-	^ #(#id #value)

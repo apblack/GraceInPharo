@@ -1,3 +1,0 @@
-generated
-namePart
-	^ namePart

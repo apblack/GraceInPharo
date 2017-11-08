@@ -1,19 +1,22 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "AndrewBlack 10/7/2017 12:05",
 	"super" : "SmaCCScanner",
 	"category" : "Grace-Parser",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"braceDepth",
+		"braceChange",
+		"currentLineBraceDepth",
+		"currentLineIndent",
+		"indentOfLineBeingContinued",
 		"indentStack",
+		"maxIndentOfContinuation",
 		"newlineChars",
+		"previousMatch",
 		"priorLineBraceDepth",
 		"priorLineIndent",
-		"lineStarts",
-		"currentIndent",
-		"closingBraceLine"
+		"symbolNames"
 	],
 	"name" : "GraceScanner",
 	"type" : "normal"

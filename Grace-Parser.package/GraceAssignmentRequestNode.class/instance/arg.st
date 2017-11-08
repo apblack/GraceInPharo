@@ -1,3 +1,0 @@
-generated
-arg
-	^ arg
