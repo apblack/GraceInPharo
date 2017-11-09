@@ -1,0 +1,3 @@
+generated
+visitParameterlessMethodHeader: aParameterlessMethodHeader
+	^ self visitRoot: aParameterlessMethodHeader

@@ -1,0 +1,3 @@
+generated
+visitBaseExponentNumeral: aBaseExponentNumeral
+	^ self visitNumeral: aBaseExponentNumeral

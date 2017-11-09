@@ -1,0 +1,3 @@
+generated
+visitRequestWithArguments: aRequestWithArguments
+	^ self visitRequest: aRequestWithArguments

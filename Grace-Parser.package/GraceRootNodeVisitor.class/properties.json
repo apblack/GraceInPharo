@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SmaCCParseNodeVisitor",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceRootNodeVisitor",
+	"type" : "normal"
+}

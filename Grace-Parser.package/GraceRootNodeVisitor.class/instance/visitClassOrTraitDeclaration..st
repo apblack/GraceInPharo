@@ -1,0 +1,3 @@
+generated
+visitClassOrTraitDeclaration: aClassOrTraitDeclaration
+	^ self visitDeclaration: aClassOrTraitDeclaration
