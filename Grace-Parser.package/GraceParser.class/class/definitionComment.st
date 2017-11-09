@@ -45,7 +45,7 @@ default <comment>: // [^\r\n\x2028] * ;
 %hierarchy Root (Declaration Parameters Expression Numeral String Statement Oneself Request ObjectConstructor) ;
 %hierarchy Declaration (MethodDeclaration Import Dialect VarDeclaration DefDeclaration ClassOrTraitDeclaration Parameters) ;
 %hierarchy Parameters (SingleMethodParameter MethodParameters BlockParameter TypeParameters) ;
-%hierarchy Expression (Request Block Factor Term Identifier ObjectConstructor Numeral String Sequence Oneself Boolean) ;
+%hierarchy Expression (Request Block Factor Term Name ObjectConstructor Numeral String Sequence Oneself Boolean) ;
 %hierarchy Numeral (DecimalNumeral BaseExponentNumeral BasedRadixNumeral) ;
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return Import Dialect EmptyStatement) ;
@@ -81,14 +81,14 @@ Pragma
 	: ""#pragma"" <name> 'pragma'  {{ }}
 	;
 Assignment
-	: Identifier 'lhs' "":="" Expression 'rhs' {{ }}
+	: Name 'lhs' "":="" Expression 'rhs' {{ }}
 	| AssignmentRequest 
 	;
 Return
 	: ""return"" Expression 'value' ? {{ }}
 	;
 Import
-	: ""import"" StringLiteral 'resource' ""as"" Identifier 'id' AnnotationOption 'annotation' {{ }}
+	: ""import"" StringLiteral 'resource' ""as"" Name 'id' AnnotationOption 'annotation' {{ }}
 	;
 Dialect
 	: ""dialect"" StringLiteral 'resource' {{ }}
@@ -102,10 +102,10 @@ Declaration
 	| TypeDeclaration
 	;
 VarDeclaration
-	: ""var"" Identifier 'id' (TypeOption 'type' )?  AnnotationOption  'annotation' ( "":="" Expression 'initializer' ) ?  {{  }}
+	: ""var"" Name 'id' (TypeOption 'type' )?  AnnotationOption  'annotation' ( "":="" Expression 'initializer' ) ?  {{  }}
 	;
 DefDeclaration
-	: ""def"" Identifier 'id' (TypeOption 'type')?  AnnotationOption  'annotation' ""="" Expression 'initializer'  {{  }}
+	: ""def"" Name 'id' (TypeOption 'type')?  AnnotationOption  'annotation' ""="" Expression 'initializer'  {{  }}
 	;
 AnnotationOption
 	:
@@ -137,7 +137,7 @@ MethodHeader
 	| UnaryMethodHeader 
 	;
 AssignmentMethodHeader
-	: Identifier 'name' "":="" TypeParameters 'typeParameter' SingleMethodParameter  'parameter' {{ }}
+	: Name 'name' "":="" TypeParameters 'typeParameter' SingleMethodParameter  'parameter' {{ }}
 	;
 ParameterizedMethodHeader
 	: (<name> 'part' TypeParameters 'typeParameter' MethodParameters 'paramList' ) + {{ }}
@@ -152,10 +152,10 @@ UnaryMethodHeader
 	: ""prefix"" <operator> TypeParameters 'typeParameter' {{ }}
 	;
 MethodParameters 
-	:  ""("" Identifier 'name' TypeOption 'type' ? ("","" Identifier 'name' TypeOption 'type' ? ) * "")"" {{ }}
+	:  ""("" Name 'name' TypeOption 'type' ? ("","" Name 'name' TypeOption 'type' ? ) * "")"" {{ }}
 	;
 SingleMethodParameter
-	:  ""("" Identifier 'name' TypeOption 'type' ? "")"" {{ }}
+	:  ""("" Name 'name' TypeOption 'type' ? "")"" {{ }}
 	;
 ReturnTypeOption
 	: 						{{ Type }}	
@@ -185,7 +185,7 @@ AssignmentRequest
 	: Term 'target' <dot> <name> 'name' "":="" Expression 'arg'  {{ }}
 	;
 RequestPart
-	: Identifier 
+	: Name 
 	| RequestWithArguments
 	;
 RequestWithArguments 
@@ -243,7 +243,7 @@ NonIdTerm
 	;
 Term
 	: NonIdTerm
-	| Identifier 
+	| Name 
 	;
 NonIdFactor
 	: NonIdTerm
@@ -269,7 +269,7 @@ SpecialTerm
 	| ""false"" 																									{{ Boolean }}
 	| ""outer"" 																									{{ Outer }}
 	;
-Identifier
+Name
 	: <name> 'id' 																								{{ }}
 	;
 Numeral
@@ -333,15 +333,15 @@ AliasClause
 
 
 TypeDeclaration
-	: ""type"" Identifier 'id' TypeParameters 'typeParameter' ""="" Type 'value' {{ }}
-	| ""type"" Identifier 'id' TypeParameters 'typeParameter'  ""="" InterfaceLiteral 'value' {{ }}
+	: ""type"" Name 'id' TypeParameters 'typeParameter' ""="" Type 'value' {{ }}
+	| ""type"" Name 'id' TypeParameters 'typeParameter'  ""="" InterfaceLiteral 'value' {{ }}
 	;
 TypeOption
 	: "":"" Type 'type' {{ Type }}
 	;
 TypeParameters
 	: 
-	| <openTP> Identifier 'param' ( "","" '_' Identifier 'param' ) * <closeTP> {{ }}
+	| <openTP> Name 'param' ( "","" '_' Name 'param' ) * <closeTP> {{ }}
 	;
 Type
 	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArg' ? TypeTerm 'arg') +  {{ }}
@@ -354,8 +354,8 @@ TypeTerm
 	: ""Unknown""									{{ }}
 	| ""interface"" InterfaceLiteral  'interface'		{{ }}
 	| ""type"" InterfaceLiteral 'interface' 				{{ }}	# for backward compatibility
-	| Identifier 'id' TypeArguments 'typeArg' ?		{{ }}
-	| TypeTerm <dot> Identifier 'id' TypeArguments 'typeArg' ?  {{ }}
+	| Name 'id' TypeArguments 'typeArg' ?		{{ }}
+	| TypeTerm <dot> Name 'id' TypeArguments 'typeArg' ?  {{ }}
 	| ""("" Type 'type' "")""								{{ }}
 	;
 Signature

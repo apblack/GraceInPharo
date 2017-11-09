@@ -4,7 +4,7 @@ removeGeneratedMethodsFrom: aClass
 		(p name matchesRegex:'generated.*') ifTrue: [ 
 			(p methods select: [ :selector | 
 				(selector matchesRegex: 
-					'reduceAction.*|startingStateFor.*|tokenActions|cacheId|scanForToken|scan[\dX]+' ) ]) do: [ :m |
+					'reduceAction.*|startingStateFor.*|tokenActions|cacheId|scanForToken|scan[\dX]+|reduceTable|symbolNames|symbolTypes|transitionTable|scannerClass|.*Id' ) ]) do: [ :m |
 						aClass removeSelector: m ]
 		]
 	]
