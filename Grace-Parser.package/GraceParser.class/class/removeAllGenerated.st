@@ -3,8 +3,6 @@ removeAllGenerated
 	"self removeAllGenerated"
 	
 	GraceRootNode allSubclassesDo: [ :c | c removeFromSystem ].
-	(Smalltalk globals at: #GraceRootNodeVisitor ifAbsent: [nil] ) ifNotNil: [ :grnv | 
-			grnv withAllSubclassesDo: [ :c | c removeFromSystem ]].
 	self removeGeneratedMethodsFrom: GraceRootNode.
 	self removeGeneratedMethodsFrom: (Smalltalk globals at: #GraceParser).
 	self removeGeneratedMethodsFrom: (Smalltalk globals at: #GraceParser) class.
