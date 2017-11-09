@@ -1,0 +1,1 @@
+Tests of the name resolution pass of the SmallGrace compiler.

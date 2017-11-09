@@ -55,6 +55,8 @@ default <comment>: // [^\r\n\x2028] * ;
 
 %start ArgumentList Block Declaration Expression MethodDeclaration Module Numeral ObjectItem Request Statement String Term Type ;
 
+%attributes Root (scope) ;		# adds the instance variable scope to GraceRootNode, and thus to all of its subclasses 
+
 #############
 # Statements #
 #############
@@ -218,7 +220,7 @@ BlockParameterList
 	: BlockParameter 'param' ( "","" BlockParameter 'param' ) *																{{ }}
 	;
 BlockParameter
-	:  <name> 'parameter' PatternOption 'pattern'  																		{{ }}
+	:  <name> 'id' PatternOption 'pattern'  																		{{ }}
 	| NonIdExpression 'pattern' 																								{{ }}
 	;
 PatternOption

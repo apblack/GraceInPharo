@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceScope",
+	"category" : "Grace-Parser",
+	"classinstvars" : [
+		"uniqueInstance"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceEmptyScope",
+	"type" : "normal"
+}

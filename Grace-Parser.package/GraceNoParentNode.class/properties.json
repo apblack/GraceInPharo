@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "SmaCCParseNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [
+		"uniqueInstance"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceNoParentNode",
+	"type" : "normal"
+}
