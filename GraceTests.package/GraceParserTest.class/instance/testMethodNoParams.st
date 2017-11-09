@@ -1,4 +1,4 @@
 tests-Declarations
 testMethodNoParams
-	self good: #Declaration as: #MethodDeclaration parse: 
+	self good: #MethodDeclaration parse: 
 		'method wombat -> Done { x }'

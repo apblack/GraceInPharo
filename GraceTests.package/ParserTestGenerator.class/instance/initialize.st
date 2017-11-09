@@ -2,7 +2,9 @@ initialization
 initialize
 	"initialize my instance variables"
 
-	| testDirectory |
+	| testDirectory sourceDirectory |
 	self createTestSubclassIfNecessary.
 	testDirectory := self class testDirectory.
-	inputFileRefs := testDirectory children select: [ :each | 't*_test.grace' match: each basename ].
+	testFiles := testDirectory children select: [ :each | 't*_test.grace' match: each basename ].
+	sourceDirectory := self class minigraceDirectory.
+	sourceFiles := sourceDirectory children select: [ :each | '*.grace' match: each basename ].

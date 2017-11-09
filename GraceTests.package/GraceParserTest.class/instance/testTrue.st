@@ -1,4 +1,4 @@
 tests-Expressions
 testTrue
-	self good: #Expression as: #SpecialTerm parse: 'true'.
+	self good: #Expression as: #Boolean parse: 'true'.
 	

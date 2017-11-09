@@ -523,7 +523,7 @@ def sequenceTest = object {
                 if (l == r) then {0}
                     elseif {l < r} then {1}
                     else {-1}
-                }
+            }
             assert (input) shouldBe (sequence [5, 3, 11, 7, 2])
             assert (output) shouldBe (sequence [11, 7, 5, 3, 2])
             assert (output.asString.startsWith (emptySequence.asString.first)) description

@@ -1,8 +1,10 @@
 manual cleanup
 removeGeneratedMethodsFrom: aClass
 	aClass organization protocols do: [  :p | 
-		(p name includesSubstring: 'generated') ifTrue: [ 
-			p methods do: [  :m |
-			aClass removeSelector: m ]
+		(p name matchesRegex:'generated.*') ifTrue: [ 
+			(p methods select: [ :selector | 
+				(selector matchesRegex: 
+					'reduceAction.*|startingStateFor.*|tokenActions|cacheId|scanForToken|scan[\dX]+' ) ]) do: [ :m |
+						aClass removeSelector: m ]
 		]
 	]

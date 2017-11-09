@@ -420,8 +420,7 @@ def aGraceLangTest = object {
                           def NAME = "inner"
                        }
                        def NAME = "ANON"
-                     }
-                ).inner
+                 } ).inner
               }
               def NAME = "ClassWithPrivate"
             }

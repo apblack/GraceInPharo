@@ -636,10 +636,9 @@ def aGraceLangTest = object {
                 out "OK; inside main block."
                 Exception.raise "OK"
                 out "Failed; exception did not terminate block."
-            } catch {
-                e : Exception ->
-                    out "OK."
-                    count := count + 1
+            } catch { e : Exception ->
+                out "OK."
+                count := count + 1
             } finally {
                 out "OK."
                 count := count + 2

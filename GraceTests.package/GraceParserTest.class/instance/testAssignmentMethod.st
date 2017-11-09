@@ -1,4 +1,4 @@
 tests-Declarations
 testAssignmentMethod
-	self good: #Declaration as: #MethodDeclaration parse: 
+	self good: #ObjectItem as: #MethodDeclaration parse: 
 		'method wombat := (new) -> Done { changed ; done }'

@@ -1,4 +1,4 @@
 tests-Declarations
 testUnaryOperation
-	self good: #Declaration as: #MethodDeclaration parse: 
+	self good: #MethodDeclaration parse: 
 		'method prefix ! -> Number { - self }'

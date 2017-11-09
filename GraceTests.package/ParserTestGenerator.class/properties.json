@@ -6,7 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"inputFileRefs"
+		"testFiles",
+		"sourceFiles"
 	],
 	"name" : "ParserTestGenerator",
 	"type" : "normal"
