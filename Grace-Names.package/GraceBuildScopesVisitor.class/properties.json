@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceRootNodeVisitor",
+	"category" : "Grace-Names",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceBuildScopesVisitor",
+	"type" : "normal"
+}

@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "OCAbstractVariable",
+	"category" : "Grace-Names",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"name",
+		"startPosition",
+		"stopPosition"
+	],
+	"name" : "GraceName",
+	"type" : "normal"
+}
