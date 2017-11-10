@@ -5,7 +5,9 @@ baseline: spec
 	spec for: #'common' do: [
 		spec
 			baseline: 'SmaCC' 
-			with: [ spec repository: 'https://github.com/apblack/SmaCC.git' ].
-		spec package: 'Grace-Parser' with: [ spec requires: 'SmaCC' ].
-		spec package: 'GraceTests' with: [ spec requires: 'Grace-Parser' ] 
+			with: [ spec repository: 'github://apblack/SmaCC:working' ].
+		spec package: 'Grace-Scope'.
+		spec package: 'Grace-Names' with: [ spec requires: {'Grace-Parser' . 'Grace-Scope'} ].
+		spec package: 'Grace-Parser' with: [ spec requires: {'SmaCC' . 'Grace-Scope'} ].
+		spec package: 'GraceTests' with: [ spec requires: {'Grace-Parser' . 'Grace-Names'} ] 
 	]
