@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceObjectScope",
+	"category" : "Grace-Scope",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceModuleScope",
+	"type" : "normal"
+}

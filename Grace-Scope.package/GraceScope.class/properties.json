@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "OCAbstractScope",
+	"category" : "Grace-Scope",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"names"
+	],
+	"name" : "GraceScope",
+	"type" : "normal"
+}
