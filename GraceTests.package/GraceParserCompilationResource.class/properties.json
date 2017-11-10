@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "TestResource",
+	"category" : "GraceTests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceParserCompilationResource",
+	"type" : "normal"
+}
