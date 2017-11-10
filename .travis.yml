@@ -1,14 +1,17 @@
 language: smalltalk
 sudo: false
+
 os:
   - linux
   - osx
-install:
-  - pip install --user benchupload
+
 smalltalk:
   - Pharo-7.0
-# bob-bench xUnit file analysis
-after_success:
-  - benchupload --dir=$SMALLTALK_CI_BUILD
-after_failure:
-  - benchupload --dir=$SMALLTALK_CI_BUILD
+  - Pharo-6.1
+
+env:
+  matrix:
+  - TYPE=Unit
+  
+script:
+  - "$SMALLTALK_CI_HOME/run.sh" ".smalltalk.${TYPE}.ston"
