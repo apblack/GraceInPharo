@@ -11,7 +11,7 @@ smalltalk:
 
 env:
   matrix:
-  - TYPE=Unit
-  
+    - CI_CONFIG=.smalltalk.Unit.ston
+
 script:
-  - "$SMALLTALK_CI_HOME/run.sh" ".smalltalk.${TYPE}.ston"
+  - travis_wait "$SMALLTALK_CI_HOME/run.sh" ${CI_CONFIG}
