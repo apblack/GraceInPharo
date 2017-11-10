@@ -4,7 +4,7 @@ isParserOutdated
 	
 	| graceParserClass objectTime sourceTime |
 	graceParserClass := Smalltalk globals at: #GraceParser ifAbsent: [ ^ true ].
-	(graceParserClass respondsTo: #cacheId) ifFalse: [ ^ true ].
+	(graceParserClass class includesSelector: #cacheId) ifFalse: [ ^ true ].
 	objectTime := DateAndTime fromString: (graceParserClass cacheId).
 	sourceTime := self dateAndTimeFromStamp: (GraceParser class >> #definitionComment) stamp.
 	^ objectTime < sourceTime

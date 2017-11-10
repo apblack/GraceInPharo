@@ -9,7 +9,7 @@ recompileParser
 		parserCompiler := SmaCCGrammarCompiler new.
 		parserCompiler
 				category: 'Grace-Parser';
-				buildDefinition: GraceParser definitionComment;
+				buildDefinition: self parserDefinition;
 				scannerClass: 'GraceScanner';
 				parserClass: 'GraceParser'.
 		aGrammar := parserCompiler grammar.
