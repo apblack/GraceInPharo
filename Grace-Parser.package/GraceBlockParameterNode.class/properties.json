@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "GraceParameterNode",
-	"category" : "Grace-Parser",
+	"category" : "Grace-Parser-NodeSubclasses",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
