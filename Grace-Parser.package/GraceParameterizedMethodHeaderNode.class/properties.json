@@ -7,8 +7,8 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"parts",
-		"parameterses",
-		"typeParameters"
+		"typeParameters",
+		"parameterLists"
 	],
 	"name" : "GraceParameterizedMethodHeaderNode",
 	"type" : "normal"

@@ -1,8 +1,8 @@
 generated-reduction actions
 reduceActionForSingleMethodParameter1: nodes
 	| result |
-	result := GraceParameterNode new.
+	result := GraceSingleMethodParameterNode new.
 	result leftParenToken: (nodes at: 1).
-	result addNode: (nodes at: 2) to: result parameters.
+	result parameter: (nodes at: 2).
 	result rightParenToken: (nodes at: 3).
 	^ result

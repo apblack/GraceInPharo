@@ -1,3 +1,3 @@
 generated
 compositeNodeVariables
-	^ #(#typeParameters #parameterses)
+	^ #(#typeParameters #parameterLists)

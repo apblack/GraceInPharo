@@ -152,7 +152,7 @@ reduceTable
 	#(175 2 #reduceActionForSignature1:) 
 	#(93 4 #reduceActionForTypeParameterList2:) 
 	#(168 2 #reduceActionFor__Sep_ObjectItem__2:) 
-	#(99 2 #reduceActionForParameter1:) 
+	#(99 2 #reduceActionForMethodParameter1:) 
 	#(94 3 #reduceActionForSingleMethodParameter1:) 
 	#(73 3 #reduceActionForAnnotationOption2:) 
 	#(78 2 #reduceActionFor__BlockParameterList__arrow__1:) 

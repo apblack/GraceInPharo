@@ -6,7 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"pattern"
+		"pattern",
+		"id"
 	],
 	"name" : "GraceBlockParameterNode",
 	"type" : "normal"

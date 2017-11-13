@@ -8,8 +8,9 @@
 	"instvars" : [
 		"name",
 		"startPosition",
-		"stopPosition"
+		"stopPosition",
+		"scanner"
 	],
-	"name" : "GraceName",
+	"name" : "GraceAbstractVariable",
 	"type" : "normal"
 }

@@ -1,3 +1,3 @@
 generated
 tokenVariables
-	^ #(#openTPToken #closeTPToken #leftParenToken #rightParenToken)
+	^ #(#openTPToken #closeTPToken)

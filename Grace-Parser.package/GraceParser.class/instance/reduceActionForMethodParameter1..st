@@ -1,7 +1,7 @@
 generated-reduction actions
-reduceActionForParameter1: nodes
+reduceActionForMethodParameter1: nodes
 	| result |
-	result := GraceParameterNode new.
+	result := GraceMethodParameterNode new.
 	result id: (nodes at: 1).
 	result type: (nodes at: 2).
 	^ result

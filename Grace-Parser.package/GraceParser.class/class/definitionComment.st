@@ -43,7 +43,7 @@ default <comment>: // [^\r\n\x2028] * ;
 
 
 %hierarchy Root (Declaration Parameters Expression Numeral String Statement Oneself Request ObjectConstructor) ;
-%hierarchy Declaration (MethodDeclaration Import Dialect VarDeclaration DefDeclaration ClassOrTraitDeclaration Parameters) ;
+%hierarchy Declaration (MethodDeclaration Import Dialect VarDeclaration DefDeclaration ClassDeclaration TraitDeclaration Parameter) ;
 %hierarchy Parameter (TypeParameter MethodParameter BlockParameter) ;
 %hierarchy Expression (Request Block Factor Term Identifier ObjectConstructor Numeral String Sequence Oneself Boolean) ;
 %hierarchy Numeral (DecimalNumeral BaseExponentNumeral BasedRadixNumeral) ;
@@ -62,11 +62,11 @@ default <comment>: // [^\r\n\x2028] * ;
 #############
 
 Module
-	: ObjectBody 'body' {{ }}
+	: ObjectBody 'body' 																							{{ }}
 	;
 Sep
-	: "";"" 										{{ }}
-	| <newline>  	{{ }}
+	: "";"" 																											{{ }}
+	| <newline>  																									{{ }}
 	;
 Statement
 	: Expression
@@ -80,23 +80,23 @@ Statement
 	| <error>
 	;
 Pragma
-	: ""#pragma"" <id> 'pragma'  {{ }}
+	: ""#pragma"" <id> 'pragma'  																					{{ }}
 	;
 Assignment
-	: Identifier 'lhs' "":="" Expression 'rhs' {{ }}
+	: Identifier 'lhs' "":="" Expression 'rhs' 																			{{ }}
 	| AssignmentRequest 
 	;
 Return
-	: ""return"" Expression 'value' ? {{ }}
+	: ""return"" Expression 'value' ? 																					{{ }}
 	;
 Import
-	: ""import"" StringLiteral 'resource' ""as"" Identifier 'id' AnnotationOption 'annotation' {{ }}
+	: ""import"" StringLiteral 'resource' ""as"" Identifier 'id' AnnotationOption 'annotation' 									{{ }}
 	;
 Dialect
-	: ""dialect"" StringLiteral 'resource' {{ }}
+	: ""dialect"" StringLiteral 'resource' 																				{{ }}
 	;
 EmptyStatement
-	:  {{ }}
+	:  																											{{ }}
 	;
 Declaration
 	: VarDeclaration
@@ -104,32 +104,32 @@ Declaration
 	| TypeDeclaration
 	;
 VarDeclaration
-	: ""var"" Identifier 'id' TypeOption 'type'   AnnotationOption  'annotation' ( "":="" Expression 'initializer' ) ?  {{  }}
+	: ""var"" Identifier 'id' TypeOption 'type'   AnnotationOption  'annotation' ( "":="" Expression 'initializer' ) ?  				{{  }}
 	;
 DefDeclaration
-	: ""def"" Identifier 'id' TypeOption 'type' AnnotationOption  'annotation' ""="" Expression 'initializer'  {{  }}
+	: ""def"" Identifier 'id' TypeOption 'type' AnnotationOption  'annotation' ""="" Expression 'initializer'  						{{  }}
 	;
 AnnotationOption
 	:
-	| ""is"" Annotation 'ann' ( "","" Annotation 'ann' ) *  {{ }}
+	| ""is"" Annotation 'ann' ( "","" Annotation 'ann' ) *  																	{{ }}
 	;
 Annotation
-	: ""public"" {{ }}
-	| ""confidential"" {{ }}
-	| ""override"" {{ }}
-	| ""readable"" {{ }}
-	| ""writable"" {{ }}
-	| ""override""  {{ }}
+	: ""public"" 																									{{ }}
+	| ""confidential"" 																								{{ }}
+	| ""override"" 																									{{ }}
+	| ""readable""																									{{ }}
+	| ""writable"" 																									{{ }}
+	| ""override""  																									{{ }}
 	;
 MethodDeclaration
 	: ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" BlockBody 'body' ""}"" {{ }}
 	;
 ClassOrTraitDeclaration
-	: ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" ObjectBody 'body' ""}"" {{ ClassDeclaration }}
-	| ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" ObjectBody 'body' ""}"" {{ TraitDeclaration }}
+	: ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" ObjectBody 'body' ""}"" 	{{ ClassDeclaration }}
+	| ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" ObjectBody 'body' ""}"" 	{{ TraitDeclaration }}
 	;
 ObjectConstructor
-	: ""object"" ""{"" ObjectBody 'body' ""}"" {{ }}
+	: ""object"" ""{"" ObjectBody 'body' ""}"" 																				{{ }}
 	;
 MethodHeader
 	: AssignmentMethodHeader
@@ -139,34 +139,33 @@ MethodHeader
 	| UnaryMethodHeader 
 	;
 AssignmentMethodHeader
-	: Identifier 'id' "":="" TypeParameterList 'typeParameter' SingleMethodParameter  'parameter' {{ }}
+	: Identifier 'id' "":="" TypeParameterList 'typeParameter' SingleMethodParameter  'parameter' 							{{ }}
 	;
 ParameterizedMethodHeader
-	: (<id> 'part' TypeParameterList 'typeParameter' MethodParameterList 'parameters' ) + {{ }}
+	: (<id> 'part' TypeParameterList 'typeParameter' MethodParameterList 'parameterList' ) + 							{{ }}
 	;
 ParameterlessMethodHeader
-	: <id> 'part' TypeParameterList 'typeParameter' {{ }}
+	: <id> 'part' TypeParameterList 'typeParameter' 																	{{ }}
 	;
 BinaryMethodHeader
-	: <operator> 'id' TypeParameterList 'typeParameter' SingleMethodParameter 'parameter' {{ }}
+	: <operator> 'id' TypeParameterList 'typeParameter' SingleMethodParameter 'parameter' 							{{ }}
 	;
 UnaryMethodHeader
-	: ""prefix"" <operator> TypeParameterList 'typeParameter' {{ }}
+	: ""prefix"" <operator> TypeParameterList 'typeParameter' 															{{ }}
 	;
 MethodParameterList
-	:  ""("" Parameter 'parameter' ("","" Parameter 'parameter' ) * "")"" 														{{ Parameter }}
+	:  ""("" MethodParameter 'parameter' ("","" MethodParameter 'parameter' ) * "")"" 										{{  }}
 	;
 SingleMethodParameter
-	:  ""("" Parameter 'parameter' "")"" 																				{{ Parameter }}
-	;
-Parameter
-	:  Identifier 'id' TypeOption 'type'																				{{ }}
+	:  ""("" MethodParameter 'parameter' "")"" 																			{{  }}
 	;
 ReturnTypeOption
 	: 
-	| <arrow> Type 'type' 	{{ Type }}
+	| <arrow> Type 'type' 																							{{ Type }}
 	;
-
+MethodParameter
+	: Identifier 'id' TypeOption 'type'																				{{ }}
+	;
 ################
 #        Requests       #
 ################
@@ -178,16 +177,16 @@ Request
 	| TargetedRequest
 	;
 SelfRequest
-	: <selfDot> RequestPart 'request' {{ }}
+	: <selfDot> RequestPart 'request' 																				{{ }}
 	;
 OuterRequest
-	: (<outerDot>) + RequestPart 'request' {{ }}
+	: (<outerDot>) + RequestPart 'request' 																			{{ }}
 	;
 TargetedRequest
-	: Term 'target' <dot> RequestPart 'request' {{ }}
+	: Term 'target' <dot> RequestPart 'request' 																		{{ }}
 	;
 AssignmentRequest
-	: Term 'target' <dot> <id> 'id' "":="" Expression 'arg'  {{ }}
+	: Term 'target' <dot> <id> 'id' "":="" Expression 'arg'  																{{ }}
 	;
 RequestPart
 	: Identifier 
@@ -195,8 +194,8 @@ RequestPart
 	;
 RequestWithArguments 
 	:  <id> 'IdentifierPart'  TypeArguments 'typeArg' ArgumentList  'argList' ( <id>  'IdentifierPart' ArgumentList 'argList' )*  	{{ }}		# Both type args and normal args
-	|  <id> 'IdentifierPart'  TypeArguments 'typeArg'  																	{{ }}																				# Just type args
-	|  <id> 'IdentifierPart'  ArgumentList  'argList' ( <id>  'IdentifierPart' ArgumentList 'argList' )*  {{ }}									# Just normal args
+	|  <id> 'IdentifierPart'  TypeArguments 'typeArg'  																	{{ }}		# Just type args
+	|  <id> 'IdentifierPart'  ArgumentList  'argList' ( <id>  'IdentifierPart' ArgumentList 'argList' )* 							{{ }}		# Just normal args
 	;
 ArgumentList
 	: DelimitedTerm 'arg' {{ }}
@@ -216,22 +215,22 @@ BinaryRequest
 Block
 	# this is written as two alternatives, rather than making the BlockParameterList optional,
 	# because the latter creates a shift-reduce conflict that SmaCC can't resolve.
-	: ""{"" (BlockParameterList  'parameters' <arrow> ) BlockBody  'body' ""}""  										{{ }}
-	| ""{"" BlockBody 'body'  ""}""  																					{{ }}
+	: ""{"" (BlockParameterList  'parameters' <arrow> ) BlockBody  'body' ""}""  											{{ }}
+	| ""{"" BlockBody 'body'  ""}""  																						{{ }}
 	;
 BlockParameterList
-	: BlockParameter 'parameter' ( "","" BlockParameter 'parameter' ) *												{{ }}
+	: BlockParameter 'parameter' ( "","" BlockParameter 'parameter' ) *													{{ }}
 	;
 BlockParameter
-	:  Identifier 'id' PatternOption 'pattern'  																		{{ }}
-	| NonIdExpression 'pattern' 																											{{ }}
+	:  Identifier 'id' PatternOption 'pattern'  																			{{ }}
+	| NonIdExpression 'pattern' 																					{{ }}
 	;
 PatternOption
 	:
 	| "":"" Expression  { ^ '2' }
 	;
 BlockBody
-	: Statement 'item' ( Sep '_' Statement  'item'  ) *  {{ }}
+	: Statement 'item' ( Sep '_' Statement  'item'  ) * 																	 {{ }}
 	;
 NonIdExpression
 	: BinaryRequest

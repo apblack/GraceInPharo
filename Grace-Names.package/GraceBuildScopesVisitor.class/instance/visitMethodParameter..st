@@ -1,6 +1,7 @@
 scope creation
 visitMethodParameter: aMethodParameter
-	aMethodParameter scope add: (GraceParameter fromParameter: aMethodParameter) 
+	self halt.
+	aMethodParameter scope add: (GraceParameter fromParseTreeNode: aMethodParameter) 
 									withName: aMethodParameter id name.
 	self visitChildren: aMethodParameter.
 	^ aMethodParameter

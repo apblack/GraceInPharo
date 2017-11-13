@@ -1,7 +1,7 @@
 generated
-parameter: aGraceParameterNode
+parameter: aGraceSingleMethodParameterNode
 	self parameter notNil
 		ifTrue: [ self parameter parent: nil ].
-	parameter := aGraceParameterNode.
+	parameter := aGraceSingleMethodParameterNode.
 	self parameter notNil
 		ifTrue: [ self parameter parent: self ]

@@ -1,3 +1,3 @@
 generated
 visitParameters: aParameters
-	^ self visitDeclaration: aParameters
+	^ self visitRoot: aParameters

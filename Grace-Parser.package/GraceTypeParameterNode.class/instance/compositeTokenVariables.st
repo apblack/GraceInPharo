@@ -1,3 +1,3 @@
 generated
 compositeTokenVariables
-	^ #(#_s #commaTokens)
+	^ #(#_s)

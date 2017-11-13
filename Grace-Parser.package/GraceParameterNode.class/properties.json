@@ -5,14 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"id",
-		"type",
-		"leftParenToken",
-		"parameters",
-		"commaTokens",
-		"rightParenToken"
-	],
+	"instvars" : [ ],
 	"name" : "GraceParameterNode",
 	"type" : "normal"
 }

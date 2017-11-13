@@ -5,7 +5,10 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"id",
+		"type"
+	],
 	"name" : "GraceMethodParameterNode",
 	"type" : "normal"
 }
