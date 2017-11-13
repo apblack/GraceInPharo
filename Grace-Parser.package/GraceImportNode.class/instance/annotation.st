@@ -1,0 +1,3 @@
+generated
+annotation
+	^ annotation

@@ -1,3 +1,3 @@
 printing
 printOn: aStream
-	aStream << 'def ' << name
+	aStream << 'def ' << self name

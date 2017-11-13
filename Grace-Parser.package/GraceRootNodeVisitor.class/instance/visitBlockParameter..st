@@ -1,3 +1,3 @@
 generated
 visitBlockParameter: aBlockParameter
-	^ self visitParameters: aBlockParameter
+	^ self visitParameter: aBlockParameter

@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceExpressionNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"decimalNumeralToken",
+		"baseExponentNumeralToken",
+		"basedRadixNumeralToken"
+	],
+	"name" : "GraceNumeralNode",
+	"type" : "normal"
+}

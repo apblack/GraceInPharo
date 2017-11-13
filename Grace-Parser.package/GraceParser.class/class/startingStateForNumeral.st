@@ -1,0 +1,3 @@
+generated
+startingStateForNumeral
+	^ 7

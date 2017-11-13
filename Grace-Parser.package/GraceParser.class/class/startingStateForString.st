@@ -1,0 +1,3 @@
+generated
+startingStateForString
+	^ 11

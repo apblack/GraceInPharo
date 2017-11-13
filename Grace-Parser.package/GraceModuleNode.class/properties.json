@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceObjectConstructorNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceModuleNode",
+	"type" : "normal"
+}

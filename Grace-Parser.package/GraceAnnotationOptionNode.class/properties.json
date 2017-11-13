@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceRootNode",
+	"category" : "Grace-Parser-NodeSubclasses",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"isToken",
+		"anns",
+		"commaTokens"
+	],
+	"name" : "GraceAnnotationOptionNode",
+	"type" : "normal"
+}

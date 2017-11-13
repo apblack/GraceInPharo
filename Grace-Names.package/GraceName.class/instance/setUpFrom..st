@@ -1,6 +1,6 @@
 instance initialization
 setUpFrom: aDeclarationNode
-	name := aDeclarationNode id stringName.
+	name := aDeclarationNode id name.
 	self assert: (name isKindOf: String).
 	startPosition := aDeclarationNode startPosition.
 	stopPosition := aDeclarationNode stopPosition.

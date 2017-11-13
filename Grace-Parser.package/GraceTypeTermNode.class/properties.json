@@ -1,0 +1,22 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceRootNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"unknownToken",
+		"interfaceToken",
+		"interface",
+		"typeToken",
+		"ids",
+		"typeArgs",
+		"dotTokens",
+		"leftParenToken",
+		"type",
+		"rightParenToken"
+	],
+	"name" : "GraceTypeTermNode",
+	"type" : "normal"
+}

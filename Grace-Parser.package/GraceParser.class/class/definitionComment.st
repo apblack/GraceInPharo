@@ -32,7 +32,7 @@ default <comment>: // [^\r\n\x2028] * ;
 <arrow>:  -> | → ;
 <dquote>:  [""] ;
 <ellipsis>: \.\.\. ;
-<operator>: [!\?@#%^&\|~=≠\+÷\-\*/\\><:\.\$\x22C5≤≥]+ ;   # or any other unicode mathematical operator symbol like \x22C5
+<operator>: [!!\?@#%^&\|~=≠\+÷\-\*/\\><:\.\$\x22C5≤≥]+ ;   # or any other unicode mathematical operator symbol like \x22C5
 <typeOperator>: [&|+\-];
 
 %left <typeOperator> ;
@@ -44,7 +44,7 @@ default <comment>: // [^\r\n\x2028] * ;
 
 %hierarchy Root (Declaration Parameters Expression Numeral String Statement Oneself Request ObjectConstructor) ;
 %hierarchy Declaration (MethodDeclaration Import Dialect VarDeclaration DefDeclaration ClassOrTraitDeclaration Parameters) ;
-%hierarchy Parameters (SingleMethodParameter MethodParameters BlockParameter TypeParameters) ;
+%hierarchy Parameter (TypeParameter MethodParameter BlockParameter) ;
 %hierarchy Expression (Request Block Factor Term Identifier ObjectConstructor Numeral String Sequence Oneself Boolean) ;
 %hierarchy Numeral (DecimalNumeral BaseExponentNumeral BasedRadixNumeral) ;
 %hierarchy String (StringLiteral StringConstructor) ;
@@ -104,10 +104,10 @@ Declaration
 	| TypeDeclaration
 	;
 VarDeclaration
-	: ""var"" Identifier 'id' (TypeOption 'type' )?  AnnotationOption  'annotation' ( "":="" Expression 'initializer' ) ?  {{  }}
+	: ""var"" Identifier 'id' TypeOption 'type'   AnnotationOption  'annotation' ( "":="" Expression 'initializer' ) ?  {{  }}
 	;
 DefDeclaration
-	: ""def"" Identifier 'id' (TypeOption 'type')?  AnnotationOption  'annotation' ""="" Expression 'initializer'  {{  }}
+	: ""def"" Identifier 'id' TypeOption 'type' AnnotationOption  'annotation' ""="" Expression 'initializer'  {{  }}
 	;
 AnnotationOption
 	:
@@ -139,28 +139,31 @@ MethodHeader
 	| UnaryMethodHeader 
 	;
 AssignmentMethodHeader
-	: Identifier 'id' "":="" TypeParameters 'typeParameter' SingleMethodParameter  'parameter' {{ }}
+	: Identifier 'id' "":="" TypeParameterList 'typeParameter' SingleMethodParameter  'parameter' {{ }}
 	;
 ParameterizedMethodHeader
-	: (<id> 'part' TypeParameters 'typeParameter' MethodParameters 'paramList' ) + {{ }}
+	: (<id> 'part' TypeParameterList 'typeParameter' MethodParameterList 'parameters' ) + {{ }}
 	;
 ParameterlessMethodHeader
-	: <id> 'part' TypeParameters 'typeParameter' {{ }}
+	: <id> 'part' TypeParameterList 'typeParameter' {{ }}
 	;
 BinaryMethodHeader
-	: <operator> 'id' TypeParameters 'typeParameter' SingleMethodParameter 'param' {{ }}
+	: <operator> 'id' TypeParameterList 'typeParameter' SingleMethodParameter 'parameter' {{ }}
 	;
 UnaryMethodHeader
-	: ""prefix"" <operator> TypeParameters 'typeParameter' {{ }}
+	: ""prefix"" <operator> TypeParameterList 'typeParameter' {{ }}
 	;
-MethodParameters 
-	:  ""("" Identifier 'id' TypeOption 'type' ? ("","" Identifier 'id' TypeOption 'type' ? ) * "")"" {{ }}
+MethodParameterList
+	:  ""("" Parameter 'parameter' ("","" Parameter 'parameter' ) * "")"" 														{{ Parameter }}
 	;
 SingleMethodParameter
-	:  ""("" Identifier 'id' TypeOption 'type' ? "")"" {{ }}
+	:  ""("" Parameter 'parameter' "")"" 																				{{ Parameter }}
+	;
+Parameter
+	:  Identifier 'id' TypeOption 'type'																				{{ }}
 	;
 ReturnTypeOption
-	: 						{{ Type }}	
+	: 
 	| <arrow> Type 'type' 	{{ Type }}
 	;
 
@@ -191,8 +194,8 @@ RequestPart
 	| RequestWithArguments
 	;
 RequestWithArguments 
-	:  <id> 'IdentifierPart'  TypeArguments 'typeArg' ArgumentList  'argList' ( <id>  'IdentifierPart' ArgumentList 'argList' )*  {{ }}		# Both type args and normal args
-	|  <id> 'IdentifierPart'  TypeArguments 'typeArg'  {{ }}																				# Just type args
+	:  <id> 'IdentifierPart'  TypeArguments 'typeArg' ArgumentList  'argList' ( <id>  'IdentifierPart' ArgumentList 'argList' )*  	{{ }}		# Both type args and normal args
+	|  <id> 'IdentifierPart'  TypeArguments 'typeArg'  																	{{ }}																				# Just type args
 	|  <id> 'IdentifierPart'  ArgumentList  'argList' ( <id>  'IdentifierPart' ArgumentList 'argList' )*  {{ }}									# Just normal args
 	;
 ArgumentList
@@ -213,15 +216,15 @@ BinaryRequest
 Block
 	# this is written as two alternatives, rather than making the BlockParameterList optional,
 	# because the latter creates a shift-reduce conflict that SmaCC can't resolve.
-	: ""{"" (BlockParameterList  'parameters' <arrow> ) BlockBody  'body' ""}""  {{ }}
-	| ""{"" BlockBody 'body'  ""}""  {{ }}
+	: ""{"" (BlockParameterList  'parameters' <arrow> ) BlockBody  'body' ""}""  										{{ }}
+	| ""{"" BlockBody 'body'  ""}""  																					{{ }}
 	;
 BlockParameterList
-	: BlockParameter 'param' ( "","" BlockParameter 'param' ) *																{{ }}
+	: BlockParameter 'parameter' ( "","" BlockParameter 'parameter' ) *												{{ }}
 	;
 BlockParameter
 	:  Identifier 'id' PatternOption 'pattern'  																		{{ }}
-	| NonIdExpression 'pattern' 																								{{ }}
+	| NonIdExpression 'pattern' 																											{{ }}
 	;
 PatternOption
 	:
@@ -269,14 +272,14 @@ SpecialTerm
 	: ""self""  																									{{ Self }}
 	| ""true"" 																									{{ Boolean }}
 	| ""false"" 																									{{ Boolean }}
-	| ""outer"" 																									{{ Outer }}
+	| ""outer"" 																								{{ Outer }}
 	;
 Identifier
 	: <id> 'id' 																								{{ }}
 	;
 Numeral
 	: <decimalNumeral> 																						{{  }}
-	| <baseExponentNumeral> 																					{{  }}
+	| <baseExponentNumeral> 																				{{  }}
 	| <basedRadixNumeral> 																					{{  }}
 	;
 SequenceConstructor
@@ -335,15 +338,19 @@ AliasClause
 
 
 TypeDeclaration
-	: ""type"" Identifier 'id' TypeParameters 'typeParameter' ""="" Type 'value' {{ }}
-	| ""type"" Identifier 'id' TypeParameters 'typeParameter'  ""="" InterfaceLiteral 'value' {{ }}
+	: ""type"" Identifier 'id' TypeParameterList 'TypeParameterList' ""="" Type 'value' {{ }}
+	| ""type"" Identifier 'id' TypeParameterList 'TypeParameterList'  ""="" InterfaceLiteral 'value' {{ }}
 	;
 TypeOption
-	: "":"" Type 'type' {{ Type }}
+	:
+	| "":"" Type 'type' {{ Type }}
 	;
-TypeParameters
+TypeParameterList
 	: 
-	| <openTP> Identifier 'param' ( "","" '_' Identifier 'param' ) * <closeTP> {{ }}
+	| <openTP> TypeParameter 'parameter' ( "","" '_' TypeParameter 'parameter' ) * <closeTP>   {{ TypeParameter }}
+	;
+TypeParameter
+	: Identifier 'parameter'  {{  }}
 	;
 Type
 	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArg' ? TypeTerm 'arg') +  {{ }}

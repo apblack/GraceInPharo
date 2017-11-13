@@ -1,0 +1,3 @@
+generated
+startingStateForObjectItem
+	^ 8

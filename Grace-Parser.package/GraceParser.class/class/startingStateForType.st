@@ -1,0 +1,3 @@
+generated
+startingStateForType
+	^ 13

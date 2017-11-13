@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceRootNode",
+	"category" : "Grace-Parser-NodeSubclasses",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"id",
+		"parameter",
+		"typeParameter"
+	],
+	"name" : "GraceBinaryMethodHeaderNode",
+	"type" : "normal"
+}

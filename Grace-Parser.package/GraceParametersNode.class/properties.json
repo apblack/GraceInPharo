@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceDeclarationNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceParametersNode",
+	"type" : "normal"
+}

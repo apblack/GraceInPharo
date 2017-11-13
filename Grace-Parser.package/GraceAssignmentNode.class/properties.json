@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceStatementNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"lhs",
+		"colonEqualToken",
+		"rhs"
+	],
+	"name" : "GraceAssignmentNode",
+	"type" : "normal"
+}

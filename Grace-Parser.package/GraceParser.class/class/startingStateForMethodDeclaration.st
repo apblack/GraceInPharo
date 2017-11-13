@@ -1,0 +1,3 @@
+generated
+startingStateForMethodDeclaration
+	^ 6

@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceParameterNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"openTPToken",
+		"_s",
+		"closeTPToken"
+	],
+	"name" : "GraceTypeParameterNode",
+	"type" : "normal"
+}

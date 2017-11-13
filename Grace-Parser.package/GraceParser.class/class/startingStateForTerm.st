@@ -1,0 +1,3 @@
+generated
+startingStateForTerm
+	^ 12

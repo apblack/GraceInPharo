@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceStatementNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"dialectToken",
+		"resource"
+	],
+	"name" : "GraceDialectNode",
+	"type" : "normal"
+}

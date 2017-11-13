@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceStringNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stringSegments",
+		"leftBraceTokens",
+		"interpolations",
+		"rightBraceTokens"
+	],
+	"name" : "GraceStringConstructorNode",
+	"type" : "normal"
+}

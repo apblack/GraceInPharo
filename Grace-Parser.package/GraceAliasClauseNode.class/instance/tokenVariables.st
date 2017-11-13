@@ -1,0 +1,3 @@
+generated
+tokenVariables
+	^ #(#aliasToken #equalToken)
