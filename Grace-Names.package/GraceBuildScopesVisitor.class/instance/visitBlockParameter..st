@@ -2,7 +2,9 @@ scope creation
 visitBlockParameter: blockParam
 
 	blockParam id ifNotNil: [ :id | 
-			blockParam scope add: (GraceParameter fromParseTreeNode: blockParam) withName: id name
+		id markAsDefinition.
+		self checkForShadowingDefinitionOf: blockParam.
+		blockParam scope add: (GraceParameter fromParseTreeNode: blockParam) withName: id name
 	].
 	self visitChildren: blockParam.
 	^ blockParam

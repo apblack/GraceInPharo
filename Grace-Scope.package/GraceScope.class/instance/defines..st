@@ -1,4 +1,5 @@
 testing
-defines: aString
-	self assert: (aString isKindOf: String).
-	^ names includesKey: aString
+defines: name
+	"Is name defined in this scope, or in one of the lexically surrounding scopes?"
+	self assert: (name isKindOf: String).
+	^ (names includesKey: name) or: [ outerScope defines: name ]

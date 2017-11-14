@@ -1,7 +1,9 @@
 scope creation
 visitMethodParameter: aMethodParameter
-	self halt.
+
+	self checkForShadowingDefinitionOf: aMethodParameter.
+	aMethodParameter id markAsDefinition.
 	aMethodParameter scope add: (GraceParameter fromParseTreeNode: aMethodParameter) 
-									withName: aMethodParameter id name.
+									withName: aMethodParameter declaredName.
 	self visitChildren: aMethodParameter.
 	^ aMethodParameter

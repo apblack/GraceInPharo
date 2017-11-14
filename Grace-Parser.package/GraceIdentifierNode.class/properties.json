@@ -6,7 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"id"
+		"id",
+		"isDefinition"
 	],
 	"name" : "GraceIdentifierNode",
 	"type" : "normal"

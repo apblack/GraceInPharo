@@ -6,6 +6,6 @@ bad: startSymbol parse: aString
 	| result startState |
 	startState := self parserUnderTest perform: (#startingStateFor , startSymbol) asSymbol.
 	result := self parserUnderTest parseStream: aString readStream startingAt: startState.
-	self should: [ GraceBuildScopesVisitor new acceptNode: result ] raise: GraceNamingError
-	
+	self should: [ GraceBuildScopesVisitor new acceptNode: result ] raise: GraceNamingError.
+	^ result
 	

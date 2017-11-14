@@ -1,0 +1,3 @@
+generated
+inTrait
+	^ inTrait

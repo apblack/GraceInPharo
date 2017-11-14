@@ -1,0 +1,3 @@
+testing
+markAsDefinition
+	isDefinition := true

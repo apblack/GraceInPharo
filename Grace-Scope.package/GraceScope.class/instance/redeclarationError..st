@@ -1,3 +1,3 @@
-as yet unclassified
+error reporting
 redeclarationError: aMessage
 	GraceNamingError signal: aMessage

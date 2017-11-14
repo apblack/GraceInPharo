@@ -6,9 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"IdentifierParts",
 		"typeArg",
-		"argLists"
+		"argLists",
+		"requestParts"
 	],
 	"name" : "GraceRequestWithArgumentsNode",
 	"type" : "normal"

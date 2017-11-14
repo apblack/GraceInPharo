@@ -1,0 +1,3 @@
+testing
+isApplication
+	^ isDefinition not

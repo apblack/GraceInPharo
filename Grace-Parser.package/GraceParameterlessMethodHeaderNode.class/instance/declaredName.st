@@ -1,0 +1,3 @@
+naming
+declaredName
+	^ part name

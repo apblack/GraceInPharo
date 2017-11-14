@@ -55,8 +55,9 @@ default <comment>: // [^\r\n\x2028] * ;
 
 %start ArgumentList Block Declaration Expression MethodDeclaration Module Numeral ObjectItem Request Statement String Term Type ;
 
-%attributes Root (scope) ;		# adds the instance variable scope to GraceRootNode, and thus to all of its subclasses 
-
+%attributes Root (scope) ;				# adds the instance variable scope to GraceRootNode, and thus to all of its subclasses 
+%attributes Identifier (isDefinition) ;
+%attributes ObjectBody (inTrait) ;
 #############
 # Statements #
 #############
@@ -193,19 +194,19 @@ RequestPart
 	| RequestWithArguments
 	;
 RequestWithArguments 
-	:  <id> 'IdentifierPart'  TypeArguments 'typeArg' ArgumentList  'argList' ( <id>  'IdentifierPart' ArgumentList 'argList' )*  	{{ }}		# Both type args and normal args
-	|  <id> 'IdentifierPart'  TypeArguments 'typeArg'  																	{{ }}		# Just type args
-	|  <id> 'IdentifierPart'  ArgumentList  'argList' ( <id>  'IdentifierPart' ArgumentList 'argList' )* 							{{ }}		# Just normal args
+	:  <id> 'requestPart'  TypeArguments 'typeArg' ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )*  		{{ }}		# Both type args and normal args
+	|  <id> 'requestPart'  TypeArguments 'typeArg'  																	{{ }}		# Just type args
+	|  <id> 'requestPart'  ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )* 								{{ }}		# Just normal args
 	;
 ArgumentList
 	: DelimitedTerm 'arg' {{ }}
-	| ""("" Expression 'arg' ("",""  Expression 'arg' ) + "")""  {{ }}
+	| ""("" Expression 'arg' ("",""  Expression 'arg' ) + "")""  																	{{ }}
 	;
 UnaryRequest
-	: <operator> 'op' TypeArguments 'typeArg' ? Term 'receiver' {{  }}
+	: <operator> 'op' TypeArguments 'typeArg' ? Term 'receiver' 														{{  }}
 	;
 BinaryRequest
-	: Factor 'receiver'  (<operator> 'op' TypeArguments 'typeArg' ? Factor 'arg')+  {{  }}
+	: Factor 'receiver'  (<operator> 'op' TypeArguments 'typeArg' ? Factor 'arg')+  										{{  }}
 	;
 
 #########################
@@ -304,7 +305,7 @@ UninterpretedString
 	;
 
 #######################
-#    Objects Constructors    #
+#    Object Constructors    #
 #######################
 
 ObjectBody
