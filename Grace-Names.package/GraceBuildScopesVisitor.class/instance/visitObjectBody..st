@@ -1,7 +1,15 @@
 scope creation
 visitObjectBody: anObjBody
 	
-	(anObjBody inTrait: anObjBody parent isTrait) ifTrue: [ 
-		 anObjBody checkLegalForTrait ].
+	| isInTrait |
+	isInTrait := anObjBody parent isTrait.
+	isInTrait ifTrue: [ 
+		anObjBody items do: [ :each |
+			each isLegalInTrait ifFalse: [
+				^ self traitConstructionError: each aKind , ' cannot appear in a trait'
+					node: each
+			]  
+		] 
+	].
 	self visitChildren: anObjBody.
 	^ anObjBody

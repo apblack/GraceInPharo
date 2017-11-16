@@ -6,8 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"items",
-		"_s",
 		"inTrait"
 	],
 	"name" : "GraceObjectBodyNode",

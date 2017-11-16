@@ -7,6 +7,6 @@ testMethodWith2Params
 
 print(testObj.a(3, 4))
 '.
-	def := result body items first.
+	def := result body first.
 	self assert: def isA: #DefDeclaration.
 	self assert: def initializer isA: #ObjectConstructor.

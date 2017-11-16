@@ -309,7 +309,8 @@ UninterpretedString
 #######################
 
 ObjectBody
-	: ObjectItem 'item' ( Sep '_' ObjectItem  'item'  ) *  					{{ }}		
+	: ObjectItem  																	{ OrderedCollection with: '1' }
+	| ObjectBody Sep ObjectItem  	 												{ '1' addLast: '3' ; yourself }		
 	;
 ObjectItem
 	: Statement
