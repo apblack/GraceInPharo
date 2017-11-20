@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "ComposableModel",
+	"category" : "Grace-IDE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"messages",
+		"saveButton",
+		"saveAsButton",
+		"runButton",
+		"sourceText",
+		"sourcePane"
+	],
+	"name" : "GraceEditor",
+	"type" : "normal"
+}
