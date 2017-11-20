@@ -1,4 +1,4 @@
-scope creation
+visit methods
 visitVarDeclaration: aVarDecl
 
 	aVarDecl	id markAsDefinition.

@@ -1,4 +1,4 @@
-scope creation
+visit methods
 visitObjectConstructor: anObjCons
 	| newScope |
 	newScope := GraceObjectScope new.

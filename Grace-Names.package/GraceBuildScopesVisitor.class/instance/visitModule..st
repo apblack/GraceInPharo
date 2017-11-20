@@ -1,4 +1,4 @@
-scope creation
+visit methods
 visitModule: aModule
 	| newScope |
 	newScope := GraceModuleScope new.

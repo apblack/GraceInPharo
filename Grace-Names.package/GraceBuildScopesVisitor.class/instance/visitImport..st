@@ -1,4 +1,4 @@
-scope creation
+visit methods
 visitImport: anImport
 	
 	anImport	id markAsDefinition.

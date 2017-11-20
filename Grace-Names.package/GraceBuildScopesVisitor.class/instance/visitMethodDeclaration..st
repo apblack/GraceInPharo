@@ -1,4 +1,4 @@
-scope creation
+visit methods
 visitMethodDeclaration: aMethodDec
 	| newScope |
 	

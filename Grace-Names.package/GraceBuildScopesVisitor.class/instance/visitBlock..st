@@ -1,4 +1,4 @@
-scope creation
+visit methods
 visitBlock: aBlock
 	| newScope |
 	newScope := GraceBlockScope new.

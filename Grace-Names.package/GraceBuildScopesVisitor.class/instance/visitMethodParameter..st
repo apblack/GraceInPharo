@@ -1,4 +1,4 @@
-scope creation
+visit methods
 visitMethodParameter: aMethodParameter
 
 	self checkForShadowingDefinitionOf: aMethodParameter.

@@ -1,4 +1,4 @@
-scope creation
+visit methods
 visitBlockParameter: blockParam
 
 	blockParam id ifNotNil: [ :id | 

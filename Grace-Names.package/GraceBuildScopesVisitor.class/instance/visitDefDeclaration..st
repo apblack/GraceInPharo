@@ -1,4 +1,4 @@
-scope creation
+visit methods
 visitDefDeclaration: aDefDecl
 
 	aDefDecl	id markAsDefinition.
