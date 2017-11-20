@@ -1,7 +1,7 @@
 generated
-typeParameter: aGraceTypeParameterNode
+typeParameter: aGraceTypeParameterListNode
 	self typeParameter notNil
 		ifTrue: [ self typeParameter parent: nil ].
-	typeParameter := aGraceTypeParameterNode.
+	typeParameter := aGraceTypeParameterListNode.
 	self typeParameter notNil
 		ifTrue: [ self typeParameter parent: self ]

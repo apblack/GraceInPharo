@@ -54,7 +54,7 @@ def rangeTest = object {
         }
         method testRangeTypeNotTypeWithWombat {
             def witness = range.from 1 to 6
-            deny (witness) hasType (Collection⟦Number⟧ & type { wombat })
+            deny (witness) hasType (Collection⟦Number⟧ & interface { wombat })
         }
         method testDotDotPreconditionUp1 {
             assert {4.5 .. 5} shouldRaise (RequestError)
@@ -307,7 +307,7 @@ def sequenceTest = object {
         }
         method testSequenceNotTypeWithWombat {
             def witness = sequence⟦Number⟧ [1,3]
-            deny (witness) hasType (Collection⟦Number⟧ & type { wombat })
+            deny (witness) hasType (Collection⟦Number⟧ & interface { wombat })
         }
         method testSequenceSize {
             assert(oneToFive.size) shouldBe 5
@@ -577,7 +577,7 @@ def listTest = object {
         }
         method testListTypeNotTypeWithWombat {
             def witness = list⟦Number⟧ [1, 2, 3, 4, 5, 6]
-            deny (witness) hasType (List⟦Number⟧ & type { wombat })
+            deny (witness) hasType (List⟦Number⟧ & interface { wombat })
         }
 
         method testListSize {
@@ -1307,7 +1307,7 @@ def dictionaryTest = object {
             assert (oneToFive) hasType (Dictionary⟦String,Number⟧)
         }
         method testDictionaryTypeNotTypeWithWombat {
-            deny (oneToFive) hasType (Dictionary⟦String,Number⟧ & type { wombat })
+            deny (oneToFive) hasType (Dictionary⟦String,Number⟧ & interface { wombat })
         }
 
         method testDictionarySize {

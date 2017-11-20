@@ -1,10 +1,20 @@
 generated
 scan38
 	self step.
-	currentCharacter == $U
-		ifTrue: [ ^ self scan39 ].
-	currentCharacter == $u
-		ifTrue: [ ^ self scan40 ].
-	('"\_lnrt{}' includes: currentCharacter)
-		ifTrue: [ ^ self scan37 ].
+	((currentCharacter between: $0 and: $9)
+		or: [ (currentCharacter between: $A and: $F)
+				or: [ currentCharacter between: $a and: $f ] ])
+		ifTrue: [ self step.
+			((currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $F)
+						or: [ currentCharacter between: $a and: $f ] ])
+				ifTrue: [ self step.
+					((currentCharacter between: $0 and: $9)
+						or: [ (currentCharacter between: $A and: $F)
+								or: [ currentCharacter between: $a and: $f ] ])
+						ifTrue: [ self step.
+							((currentCharacter between: $0 and: $9)
+								or: [ (currentCharacter between: $A and: $F)
+										or: [ currentCharacter between: $a and: $f ] ])
+								ifTrue: [ ^ self scan36 ] ] ] ].
 	^ self reportLastMatch

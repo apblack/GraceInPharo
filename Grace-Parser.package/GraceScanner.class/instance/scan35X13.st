@@ -1,13 +1,27 @@
 generated
 scan35X13
-	self recordMatch: #(43 48).
+	self recordMatch: #(44 50).
 	self step.
+	currentCharacter == $.
+		ifTrue: [ self recordMatch: #(44).
+			self step.
+			currentCharacter == $.
+				ifTrue: [ self recordMatch: #(39 44).
+					self step.
+					currentCharacter == $\
+						ifTrue: [ ^ self scan37 ].
+					((currentCharacter between: Character space and: $!)
+						or: [ (currentCharacter between: $# and: $[)
+								or: [ (currentCharacter between: $] and: $z)
+										or: [ currentCharacter >= $| ] ] ])
+						ifTrue: [ ^ self scan36 ].
+					^ self reportLastMatch ] ].
 	currentCharacter == $\
-		ifTrue: [ ^ self scan38 ].
-	(currentCharacter == Character lf
-		or: [ (currentCharacter between: Character cr and: $!)
-				or: [ (currentCharacter between: $# and: $[)
+		ifTrue: [ ^ self scan37 ].
+	((currentCharacter between: Character space and: $!)
+		or: [ (currentCharacter between: $# and: $-)
+				or: [ (currentCharacter between: $/ and: $[)
 						or: [ (currentCharacter between: $] and: $z)
 								or: [ currentCharacter >= $| ] ] ] ])
-		ifTrue: [ ^ self scan37 ].
+		ifTrue: [ ^ self scan36 ].
 	^ self reportLastMatch

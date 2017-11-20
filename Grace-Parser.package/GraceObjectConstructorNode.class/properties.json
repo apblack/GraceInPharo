@@ -8,8 +8,9 @@
 	"instvars" : [
 		"objectToken",
 		"leftBraceToken",
-		"body",
-		"rightBraceToken"
+		"rightBraceToken",
+		"items",
+		"_s"
 	],
 	"name" : "GraceObjectConstructorNode",
 	"type" : "normal"

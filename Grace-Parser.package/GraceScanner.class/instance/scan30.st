@@ -1,6 +1,6 @@
 generated
 scan30
-	self recordMatch: #(54).
+	self recordMatch: #(55).
 	self step.
 	currentCharacter == $r
 		ifTrue: [ ^ self scan31 ].
@@ -16,7 +16,7 @@ scan30
 												or: [ ('zµæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(54).
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

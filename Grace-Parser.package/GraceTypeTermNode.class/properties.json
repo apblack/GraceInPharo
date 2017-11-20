@@ -6,16 +6,10 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"unknownToken",
-		"interfaceToken",
-		"interface",
-		"typeToken",
-		"ids",
-		"typeArgs",
-		"dotTokens",
-		"leftParenToken",
-		"type",
-		"rightParenToken"
+		"id",
+		"typeArg",
+		"receiver",
+		"dotToken"
 	],
 	"name" : "GraceTypeTermNode",
 	"type" : "normal"

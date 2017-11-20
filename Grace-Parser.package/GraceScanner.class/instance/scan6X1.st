@@ -1,15 +1,15 @@
 generated
 scan6X1
-	self recordMatch: #(54).
+	self recordMatch: #(55).
 	self step.
 	currentCharacter == $i
-		ifTrue: [ self recordMatch: #(54).
+		ifTrue: [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $a
-				ifTrue: [ self recordMatch: #(54).
+				ifTrue: [ self recordMatch: #(55).
 					self step.
 					currentCharacter == $s
-						ifTrue: [ self recordMatch: #(32 54).
+						ifTrue: [ self recordMatch: #(33 55).
 							self step.
 							(currentCharacter == $'
 								or: [ (currentCharacter between: $0 and: $9)
@@ -19,7 +19,7 @@ scan6X1
 																or: [ ('µæ' includes: currentCharacter)
 																		or: [ currentCharacter =
 																				(Character value: 960) ] ] ] ] ] ])
-								ifTrue: [ [ self recordMatch: #(54).
+								ifTrue: [ [ self recordMatch: #(55).
 									self step.
 									currentCharacter == $'
 										or: [ (currentCharacter between: $0 and: $9)
@@ -39,7 +39,7 @@ scan6X1
 																or: [ ('µæ' includes: currentCharacter)
 																		or: [ currentCharacter =
 																				(Character value: 960) ] ] ] ] ] ] ])
-						ifTrue: [ [ self recordMatch: #(54).
+						ifTrue: [ [ self recordMatch: #(55).
 							self step.
 							currentCharacter == $'
 								or: [ (currentCharacter between: $0 and: $9)
@@ -58,7 +58,7 @@ scan6X1
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ])
-				ifTrue: [ [ self recordMatch: #(54).
+				ifTrue: [ [ self recordMatch: #(55).
 					self step.
 					currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -78,7 +78,7 @@ scan6X1
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(54).
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

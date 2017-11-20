@@ -1,12 +1,12 @@
 generated
 scan30X1
-	self recordMatch: #(54).
+	self recordMatch: #(55).
 	self step.
 	currentCharacter == $p
-		ifTrue: [ self recordMatch: #(54).
+		ifTrue: [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $e
-				ifTrue: [ self recordMatch: #(29 54).
+				ifTrue: [ self recordMatch: #(30 55).
 					self step.
 					(currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -16,7 +16,7 @@ scan30X1
 														or: [ ('µæ' includes: currentCharacter)
 																or: [ currentCharacter =
 																		(Character value: 960) ] ] ] ] ] ])
-						ifTrue: [ [ self recordMatch: #(54).
+						ifTrue: [ [ self recordMatch: #(55).
 							self step.
 							currentCharacter == $'
 								or: [ (currentCharacter between: $0 and: $9)
@@ -36,7 +36,7 @@ scan30X1
 														or: [ ('µæ' includes: currentCharacter)
 																or: [ currentCharacter =
 																		(Character value: 960) ] ] ] ] ] ] ])
-				ifTrue: [ [ self recordMatch: #(54).
+				ifTrue: [ [ self recordMatch: #(55).
 					self step.
 					currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -56,7 +56,7 @@ scan30X1
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(54).
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

@@ -2,7 +2,9 @@
 	"commentStamp" : "AndrewBlack 10/7/2017 12:05",
 	"super" : "SmaCCScanner",
 	"category" : "Grace-Parser",
-	"classinstvars" : [ ],
+	"classinstvars" : [
+		"symbolNames"
+	],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [

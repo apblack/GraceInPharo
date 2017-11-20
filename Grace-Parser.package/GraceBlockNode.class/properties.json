@@ -9,8 +9,9 @@
 		"leftBraceToken",
 		"parameters",
 		"arrowToken",
-		"body",
-		"rightBraceToken"
+		"rightBraceToken",
+		"items",
+		"_s"
 	],
 	"name" : "GraceBlockNode",
 	"type" : "normal"

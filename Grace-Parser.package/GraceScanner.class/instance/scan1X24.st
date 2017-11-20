@@ -1,14 +1,14 @@
 generated
 scan1X24
 	currentCharacter == $"
-		ifTrue: [ ^ self recordAndReportMatch: #(59) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(60) ].
 	currentCharacter == $#
 		ifTrue:
 			[ ^ self scan1X5 ].
 	currentCharacter == $(
-		ifTrue: [ ^ self recordAndReportMatch: #(34) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(35) ].
 	currentCharacter == $)
-		ifTrue: [ ^ self recordAndReportMatch: #(37) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(34) ].
 	currentCharacter == $,
 		ifTrue: [ ^ self recordAndReportMatch: #(5) ].
 	currentCharacter == $-

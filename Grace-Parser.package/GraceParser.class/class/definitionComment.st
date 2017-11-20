@@ -1,7 +1,7 @@
 generated
 definitionComment
 "%unicode ;
-%id <error> <id> <newline> ;
+%id <error> <id> <operator> <newline> ;
 
 ### State-specific token rules ###
 
@@ -9,31 +9,30 @@ definitionComment
 
 string <h> : [0-9a-fA-F] ;
 string <stringSegment> : ( \\[nt\{\}\""rl_\\] | \\u<h><h><h><h> | \\U<h><h><h><h><h><h> | \xA0 
-					| [^\""\{\\\x00-\x09\x0B\x0C] ) + ;  # \x0C\x0E–\x1F\x7F
+					| [^\""\{\\\x00-\x1F] ) + ; 
 uninterpString <uninterpretedString> : [^›]+ ;
 
 ### Lexical token rules  ###
 
-<whitespace>:  ( \x20 | \xA0 ) + ;
+default <whitespace>:  ( \x20 | \xA0 ) + ;
 default <comment>: // [^\r\n\x2028] * ;
-<newline>:  ( \r | \n |  \r\n  | \x2028 ) <whitespace> ? ;
-<error>: [\x00-\x09\x0b\x0c\x0e–\x1F\x7f] ;
-<dot>: \. ;
-<openTP>: ⟦ | \[\[ ;
-<closeTP>: ⟧ | \]\] ;
-<outer>: outer ;
-<outerDot>: <outer> <whitespace>? <dot> ;
-<self>: self ;
-<selfDot> : <self> <whitespace>? <dot> ;
-<id> :  [a-zA-Z_æπµ] [a-zA-Zæπµ0-9_'] *;				# and all the other non-ascii letters
-<decimalNumeral> :  [0-9]+ ( [.][0-9]+ )? ;
-<baseExponentNumeral> : <decimalNumeral> [eE][\+\-]?[0-9]+ ;
-<basedRadixNumeral>: [0-9]+x[0-9A-Za-z]+ ;
-<arrow>:  -> | → ;
-<dquote>:  [""] ;
-<ellipsis>: \.\.\. ;
-<operator>: [!!\?@#%^&\|~=≠\+÷\-\*/\\><:\.\$\x22C5≤≥]+ ;   # or any other unicode mathematical operator symbol like \x22C5
-<typeOperator>: [&|+\-];
+default <newline>:  ( \r | \n |  \r\n  | \x2028 ) <whitespace> ? ;
+default <error>: [\x00-\x09\x0b\x0c\x0e–\x1F\x7f] ;
+default string <dot>: \. ;
+default <openTP>: ⟦ | \[\[ ;
+default <closeTP>: ⟧ | \]\] ;
+default <outer>: outer ;
+default <outerDot>: <outer> <whitespace>? <dot> ;
+default <self>: self ;
+default <selfDot> : <self> <whitespace>? <dot> ;
+default <id> :  [a-zA-Z_æπµ] [a-zA-Zæπµ0-9_'] *;				# and all the other non-ascii letters
+default <decimalNumeral> :  [0-9]+ ( [.][0-9]+ )? ;
+default <baseExponentNumeral> : <decimalNumeral> [eE][\+\-]?[0-9]+ ;
+default <basedRadixNumeral>: [0-9]+x[0-9A-Za-z]+ ;
+default <arrow>:  -> | → ;
+default string <dquote>:  [""] ;
+default <operator>: [!!\?@#%^&\|~=≠\+÷\-\*/\\><:\.\$\x22C5≤≥]+ ;   # or any other unicode mathematical operator symbol like \x22C5
+default <typeOperator>: [&|+\-];
 
 %left <typeOperator> ;
 %prefix Grace ;
@@ -48,7 +47,7 @@ default <comment>: // [^\r\n\x2028] * ;
 %hierarchy Expression (Request Block Factor Term Identifier ObjectConstructor Numeral String Sequence Oneself Boolean) ;
 %hierarchy Numeral (DecimalNumeral BaseExponentNumeral BasedRadixNumeral) ;
 %hierarchy String (StringLiteral StringConstructor) ;
-%hierarchy Statement (Expression Pragma Declaration Assignment Return Import Dialect EmptyStatement) ;
+%hierarchy Statement (Expression Pragma Declaration Assignment Return Import Dialect ) ;
 %hierarchy Oneself (Self Outer) ;
 %hierarchy Request (RequestWithArguments SelfRequest OuterRequest TargetedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
 %hierarchy ObjectConstructor (Module) ;
@@ -57,27 +56,25 @@ default <comment>: // [^\r\n\x2028] * ;
 
 %attributes Root (scope) ;				# adds the instance variable scope to GraceRootNode, and thus to all of its subclasses 
 %attributes Identifier (isDefinition) ;
-%attributes ObjectBody (inTrait) ;
+
 #############
 # Statements #
 #############
 
 Module
-	: ObjectBody 'body' 																							{{ }}
+	: Ss '_' ? ( Pragma 'pragma' Ss '_'  ) *  (Dialect 'dialect' Ss '_' ) ?  (ObjectItem 'item' Ss '_' ) * ObjectItem 'item' ?	{{ }}
 	;
-Sep
+Ss
 	: "";"" 																											{{ }}
 	| <newline>  																									{{ }}
+	| Ss 'ss' ( "";"" | <newline> )																						{{ }}
 	;
 Statement
 	: Expression
-	| Pragma
 	| Declaration
 	| Assignment
 	| Return
 	| Import
-	| Dialect
-	| EmptyStatement
 	| <error>
 	;
 Pragma
@@ -95,9 +92,6 @@ Import
 	;
 Dialect
 	: ""dialect"" StringLiteral 'resource' 																				{{ }}
-	;
-EmptyStatement
-	:  																											{{ }}
 	;
 Declaration
 	: VarDeclaration
@@ -123,14 +117,15 @@ Annotation
 	| ""override""  																									{{ }}
 	;
 MethodDeclaration
-	: ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" BlockBody 'body' ""}"" {{ }}
+	: ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ? ""}"" {{ }}
 	;
 ClassOrTraitDeclaration
-	: ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" ObjectBody 'body' ""}"" 	{{ ClassDeclaration }}
-	| ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" ObjectBody 'body' ""}"" 	{{ TraitDeclaration }}
-	;
-ObjectConstructor
-	: ""object"" ""{"" ObjectBody 'body' ""}"" 																				{{ }}
+	: ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" 
+		( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ?
+	   ""}"" 																							{{ ClassDeclaration }}
+	| ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" 
+		( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ?
+	  ""}"" 																								{{ TraitDeclaration }}
 	;
 MethodHeader
 	: AssignmentMethodHeader
@@ -181,13 +176,15 @@ SelfRequest
 	: <selfDot> RequestPart 'request' 																				{{ }}
 	;
 OuterRequest
-	: (<outerDot>) + RequestPart 'request' 																			{{ }}
+	: <outerDot> + RequestPart 'request' 																			{{ }}
 	;
 TargetedRequest
 	: Term 'target' <dot> RequestPart 'request' 																		{{ }}
 	;
 AssignmentRequest
 	: Term 'target' <dot> <id> 'id' "":="" Expression 'arg'  																{{ }}
+	| <selfDot> <id> 'id' "":="" Expression 'arg'  																		{{ }}
+	| <outerDot> + <id> 'id' "":="" Expression 'arg'  																		{{ }}
 	;
 RequestPart
 	: Identifier 
@@ -216,8 +213,8 @@ BinaryRequest
 Block
 	# this is written as two alternatives, rather than making the BlockParameterList optional,
 	# because the latter creates a shift-reduce conflict that SmaCC can't resolve.
-	: ""{"" (BlockParameterList  'parameters' <arrow> ) BlockBody  'body' ""}""  											{{ }}
-	| ""{"" BlockBody 'body'  ""}""  																						{{ }}
+	: ""{"" Ss '_' ? BlockParameterList  'parameters' <arrow> Ss '_' ? (Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ?) ? ""}""  {{ }}
+	| ""{"" Ss '_' ? ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ?  ""}""  											{{ }}
 	;
 BlockParameterList
 	: BlockParameter 'parameter' ( "","" BlockParameter 'parameter' ) *													{{ }}
@@ -230,9 +227,6 @@ PatternOption
 	:
 	| "":"" Expression  { ^ '2' }
 	;
-BlockBody
-	: Statement 'item' ( Sep '_' Statement  'item'  ) * 																	 {{ }}
-	;
 NonIdExpression
 	: BinaryRequest
 	| NonIdFactor
@@ -243,8 +237,12 @@ Expression
 	;
 NonIdTerm
 	: DelimitedTerm
+	| Interface
 	| Request
-	| <ellipsis>
+	| Ellipsis
+	;
+Ellipsis
+	: ""...""
 	;
 Term
 	: NonIdTerm
@@ -308,9 +306,9 @@ UninterpretedString
 #    Object Constructors    #
 #######################
 
-ObjectBody
-	: ObjectItem  																	{ OrderedCollection with: '1' }
-	| ObjectBody Sep ObjectItem  	 												{ '1' addLast: '3' ; yourself }		
+ObjectConstructor
+	: ""object"" ""{"" Ss '_' ? ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * ""}"" 											{{ }}
+	| ""object"" ""{"" Ss '_' ? ""}""																					{{ }}
 	;
 ObjectItem
 	: Statement
@@ -339,8 +337,9 @@ AliasClause
 
 
 TypeDeclaration
-	: ""type"" Identifier 'id' TypeParameterList 'TypeParameterList' ""="" Type 'value' {{ }}
-	| ""type"" Identifier 'id' TypeParameterList 'TypeParameterList'  ""="" InterfaceLiteral 'value' {{ }}
+	: ""type"" Identifier 'id' TypeParameterList 'TypeParameterList' ""="" Type 'value' 							{{ }}
+	| ""type"" Identifier 'id' TypeParameterList 'TypeParameterList'  ""="" InterfaceLiteral 'value' 				{{ }}
+					# special case of bare interface literal without  reserved word
 	;
 TypeOption
 	:
@@ -348,34 +347,39 @@ TypeOption
 	;
 TypeParameterList
 	: 
-	| <openTP> TypeParameter 'parameter' ( "","" '_' TypeParameter 'parameter' ) * <closeTP>   {{ TypeParameter }}
+	| <openTP> TypeParameter 'parameter' ( "","" '_' TypeParameter 'parameter' ) * <closeTP>   				{{  }}
 	;
 TypeParameter
-	: Identifier 'parameter'  {{  }}
+	: Identifier 'id' 																					{{  }}
 	;
 Type
-	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArg' ? TypeTerm 'arg') +  {{ }}
+	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArg' ? TypeTerm 'arg') +  						{{ }}
 	| TypeTerm 'term'  {{ }}
 	;
 TypeArguments
-	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   {{ }}
+	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   											{{ }}
 	;
 TypeTerm
-	: ""Unknown""									{{ }}
-	| ""interface"" InterfaceLiteral  'interface'		{{ }}
-	| ""type"" InterfaceLiteral 'interface' 				{{ }}	# for backward compatibility
-	| Identifier 'id' TypeArguments 'typeArg' ?		{{ }}
-	| TypeTerm <dot> Identifier 'id' TypeArguments 'typeArg' ?  {{ }}
-	| ""("" Type 'type' "")""								{{ }}
+	:  UnknownType
+	|  Interface
+	| ""type"" InterfaceLiteral 'interface' 											{ '2' } 	# for backward compatibility
+	| Identifier 'id' TypeArguments 'typeArg' ?															{{ }}
+	| TypeTerm 'receiver' <dot> Identifier 'id' TypeArguments 'typeArg' ?  									{{ }}
+	| ""("" Type 'type' "")""																				{ '2' }
 	;
 Signature
-	: MethodHeader 'methIdentifier' ReturnTypeOption 'returnType'  {{ }}
+	: MethodHeader 'methIdentifier' ReturnTypeOption 'returnType'  										{{ }}
+	;
+Interface
+	:  ""interface"" InterfaceLiteral 'interface'																{ '2' }
 	;
 InterfaceLiteral
-	:  ""{"" Sep '_' ? ""}""														                  {{ Interface }}
-	|  ""{"" Sep '_' ? Signature 'method' ( Sep '_' Signature 'method' ) * Sep '_' ? ""}""		{{ Interface }}
+	:  ""{"" Ss '_' ? ""}""														                  						{{ Interface }}
+	|  ""{"" Ss '_' ? Signature 'method' ( Ss '_' Signature 'method' ) * Ss '_' ? ""}""								{{ Interface }}
 	; 
-
+UnknownType
+	: ""Unknown""																						{{ }}
+	;
 StartString: { self state: #string . ^ nil} ;
 StartUninterp: { self state: #uninterpString . ^ nil } ;
 RetDefault: { self state: #default . ^ nil } ;

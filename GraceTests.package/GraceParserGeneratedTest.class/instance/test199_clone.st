@@ -17,7 +17,7 @@ def wShallowCopy = wombat.shallowCopy
 
 print(wclone.pretty 0)
 
-def mappedClone = wclone.map { x, as -> x } ancestors(ast.ancestorChain.empty)
+def mappedClone = wclone.map { x, ans -> x } ancestors(ast.ancestorChain.empty)
 
 print(mappedClone.pretty 0)
 '

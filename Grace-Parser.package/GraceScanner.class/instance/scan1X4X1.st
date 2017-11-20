@@ -1,6 +1,6 @@
 generated
 scan1X4X1
-	self recordMatch: #(58 61).
+	self recordMatch: #(59 61).
 	self step.
 	(currentCharacter == $!
 		or: [ (currentCharacter between: $# and: $&)

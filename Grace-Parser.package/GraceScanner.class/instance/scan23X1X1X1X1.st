@@ -1,14 +1,14 @@
 generated
 scan23X1X1X1X1
-	self recordMatch: #(36 54).
+	self recordMatch: #(41 55).
 	self step.
 	currentCharacter == $.
-		ifTrue: [ ^ self recordAndReportMatch: #(52) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(53) ].
 	(currentCharacter == Character space
 		or: [ currentCharacter = (Character value: 160) ])
 		ifTrue: [ [ self step.
 			currentCharacter == $.
-				ifTrue: [ ^ self recordAndReportMatch: #(52) ].
+				ifTrue: [ ^ self recordAndReportMatch: #(53) ].
 			currentCharacter == Character space
 				or: [ currentCharacter = (Character value: 160) ] ] whileTrue.
 			^ self reportLastMatch ].
@@ -20,7 +20,7 @@ scan23X1X1X1X1
 										or: [ ('µæ' includes: currentCharacter)
 												or: [ currentCharacter =
 														(Character value: 960) ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(54).
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

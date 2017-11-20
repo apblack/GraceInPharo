@@ -11,9 +11,9 @@ scan1X22
 	currentCharacter == $w
 		ifTrue: [ ^ self scan32 ].
 	currentCharacter == ${
-		ifTrue: [ ^ self recordAndReportMatch: #(6) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(8) ].
 	currentCharacter == $}
-		ifTrue: [ ^ self recordAndReportMatch: #(20) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(7) ].
 	currentCharacter =
 		(Character value: 8249)
 		ifTrue: [ ^ self recordAndReportMatch: #(27) ].
@@ -22,11 +22,11 @@ scan1X22
 		ifTrue: [ ^ self recordAndReportMatch: #(24) ].
 	currentCharacter =
 		(Character value: 8594)
-		ifTrue: [ ^ self recordAndReportMatch: #(58) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(59) ].
 	currentCharacter =
 		(Character value: 10214)
-		ifTrue: [ ^ self recordAndReportMatch: #(50) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(51) ].
 	currentCharacter =
 		(Character value: 10215)
-		ifTrue: [ ^ self recordAndReportMatch: #(51) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(52) ].
 	^ self scan1X21

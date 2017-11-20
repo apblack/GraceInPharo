@@ -1,7 +1,7 @@
 generated
 scan1X18
-	self recordMatch: #(33).
+	self recordMatch: #(36).
 	self step.
 	currentCharacter == $[
-		ifTrue: [ ^ self recordAndReportMatch: #(50) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(51) ].
 	^ self reportLastMatch

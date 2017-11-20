@@ -1,6 +1,6 @@
 generated
 scan25
-	self recordMatch: #(54).
+	self recordMatch: #(55).
 	(self scanForString: 'rr')
 		ifTrue:
 			[ ^ self scan25X1 ].
@@ -12,7 +12,7 @@ scan25
 										or: [ (currentCharacter between: $s and: $z)
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter = (Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(54).
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

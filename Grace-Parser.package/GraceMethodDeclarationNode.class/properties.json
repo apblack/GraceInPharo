@@ -11,8 +11,9 @@
 		"returnType",
 		"annotation",
 		"leftBraceToken",
-		"body",
-		"rightBraceToken"
+		"rightBraceToken",
+		"items",
+		"_s"
 	],
 	"name" : "GraceMethodDeclarationNode",
 	"type" : "normal"

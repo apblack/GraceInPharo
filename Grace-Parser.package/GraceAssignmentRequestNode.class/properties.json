@@ -10,7 +10,9 @@
 		"dotToken",
 		"id",
 		"colonEqualToken",
-		"arg"
+		"arg",
+		"selfDotToken",
+		"outerDotTokens"
 	],
 	"name" : "GraceAssignmentRequestNode",
 	"type" : "normal"

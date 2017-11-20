@@ -1,23 +1,16 @@
 generated
 scan42X2
-	currentCharacter == $u
-		ifTrue: [ ^ self scan40 ].
-	('"_lnrt{}' includes: currentCharacter)
+	self recordMatch: #(44).
+	self step.
+	currentCharacter == $\
 		ifTrue: [ ^ self scan37 ].
-	(currentCharacter == $!
-		or: [ (currentCharacter between: $# and: $&)
-				or: [ (currentCharacter between: $* and: $+)
-						or: [ (currentCharacter between: $- and: $/)
-								or: [ currentCharacter == $:
-										or: [ (currentCharacter between: $< and: $@)
-												or: [ ('^|~÷' includes: currentCharacter)
-														or: [ currentCharacter =
-																(Character value: 8800)
-																or: [ (currentCharacter
-																		between: (Character value: 8804)
-																		and: (Character value: 8805))
-																		or: [ currentCharacter =
-																				(Character value: 8901) ] ] ] ] ] ] ] ] ])
+	currentCharacter == $e
 		ifTrue:
-			[ self scan42X1 ].
+			[ ^ self scan42X2X1 ].
+	((currentCharacter between: Character space and: $!)
+		or: [ (currentCharacter between: $# and: $[)
+				or: [ (currentCharacter between: $] and: $d)
+						or: [ (currentCharacter between: $f and: $z)
+								or: [ currentCharacter >= $| ] ] ] ])
+		ifTrue: [ ^ self scan36 ].
 	^ self reportLastMatch

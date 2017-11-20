@@ -5,12 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"openTPToken",
-		"_s",
-		"closeTPToken",
-		"parameters"
-	],
+	"instvars" : [ ],
 	"name" : "GraceTypeParameterNode",
 	"type" : "normal"
 }

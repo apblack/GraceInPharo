@@ -23,5 +23,5 @@ scan1X21
 								or: [ currentCharacter = (Character value: 127)
 										or: [ currentCharacter =
 												(Character value: 8211) ] ] ] ] ])
-		ifTrue: [ ^ self recordAndReportMatch: #(48) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(49) ].
 	^ self scan1X20

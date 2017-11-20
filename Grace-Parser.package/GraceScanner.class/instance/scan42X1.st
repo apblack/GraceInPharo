@@ -1,19 +1,16 @@
 generated
 scan42X1
-	[ self recordMatch: #(61).
+	self recordMatch: #(44).
 	self step.
-	currentCharacter == $!
-		or: [ (currentCharacter between: $# and: $&)
-				or: [ (currentCharacter between: $* and: $+)
-						or: [ (currentCharacter between: $- and: $/)
-								or: [ currentCharacter == $:
-										or: [ (currentCharacter between: $< and: $@)
-												or: [ ('\^|~÷' includes: currentCharacter)
-														or: [ currentCharacter =
-																(Character value: 8800)
-																or: [ (currentCharacter
-																		between: (Character value: 8804)
-																		and: (Character value: 8805))
-																		or: [ currentCharacter =
-																				(Character value: 8901) ] ] ] ] ] ] ] ] ] ]
-		whileTrue
+	currentCharacter == $\
+		ifTrue: [ ^ self scan37 ].
+	currentCharacter == $r
+		ifTrue:
+			[ ^ self scan42X1X1 ].
+	((currentCharacter between: Character space and: $!)
+		or: [ (currentCharacter between: $# and: $[)
+				or: [ (currentCharacter between: $] and: $q)
+						or: [ (currentCharacter between: $s and: $z)
+								or: [ currentCharacter >= $| ] ] ] ])
+		ifTrue: [ ^ self scan36 ].
+	^ self reportLastMatch

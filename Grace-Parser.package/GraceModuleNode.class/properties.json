@@ -5,7 +5,10 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"pragmas",
+		"dialect"
+	],
 	"name" : "GraceModuleNode",
 	"type" : "normal"
 }

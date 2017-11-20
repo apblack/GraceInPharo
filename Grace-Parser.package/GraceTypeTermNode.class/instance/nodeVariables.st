@@ -1,3 +1,3 @@
 generated
 nodeVariables
-	^ #(#interface #type)
+	^ #(#id #typeArg)

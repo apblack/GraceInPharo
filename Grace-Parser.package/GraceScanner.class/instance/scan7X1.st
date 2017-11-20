@@ -1,11 +1,11 @@
 generated
 scan7X1
-	self recordMatch: #(54).
+	self recordMatch: #(55).
 	self step.
 	currentCharacter == $a
-		ifTrue: [ self recordMatch: #(54).
+		ifTrue: [ self recordMatch: #(55).
 			(self scanForString: 'ss')
-				ifTrue: [ self recordMatch: #(22 54).
+				ifTrue: [ self recordMatch: #(17 55).
 					self step.
 					(currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -15,7 +15,7 @@ scan7X1
 														or: [ ('µæ' includes: currentCharacter)
 																or: [ currentCharacter =
 																		(Character value: 960) ] ] ] ] ] ])
-						ifTrue: [ [ self recordMatch: #(54).
+						ifTrue: [ [ self recordMatch: #(55).
 							self step.
 							currentCharacter == $'
 								or: [ (currentCharacter between: $0 and: $9)
@@ -34,7 +34,7 @@ scan7X1
 												or: [ (currentCharacter between: $t and: $z)
 														or: [ ('µæ' includes: currentCharacter)
 																or: [ currentCharacter = (Character value: 960) ] ] ] ] ] ] ])
-				ifTrue: [ [ self recordMatch: #(54).
+				ifTrue: [ [ self recordMatch: #(55).
 					self step.
 					currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -53,7 +53,7 @@ scan7X1
 										or: [ ('µæ' includes: currentCharacter)
 												or: [ currentCharacter =
 														(Character value: 960) ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(54).
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)
