@@ -10,7 +10,6 @@
 		"saveButton",
 		"saveAsButton",
 		"runButton",
-		"sourceText",
 		"sourcePane"
 	],
 	"name" : "GraceEditor",

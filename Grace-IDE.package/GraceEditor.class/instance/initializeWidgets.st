@@ -1,7 +1,7 @@
 initialization
 initializeWidgets
-	sourcePane := self newText
-		acceptBlock: [ :text | sourceText := text asString ].
+	sourcePane := (self instantiate: GraceSourcePresenter)
+		acceptBlock: [ :text | self compile: text asString ].
 	messages := self newText.
 	saveButton := self newButton
 		label: 'Save';

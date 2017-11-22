@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "TextPresenter",
+	"category" : "Grace-IDE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceSourcePresenter",
+	"type" : "normal"
+}
