@@ -1,13 +1,16 @@
 {
 	"commentStamp" : "",
-	"super" : "ComposableModel",
+	"super" : "ComposablePresenter",
 	"category" : "Grace-IDE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"sourcePane"
+		"fileTree",
+		"tabManager",
+		"messages",
+		"toolbar"
 	],
-	"name" : "GraceEditor",
+	"name" : "GraceIDE",
 	"type" : "normal"
 }

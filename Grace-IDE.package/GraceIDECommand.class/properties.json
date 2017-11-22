@@ -1,13 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "ComposableModel",
+	"super" : "Object",
 	"category" : "Grace-IDE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"sourcePane"
+		"ide"
 	],
-	"name" : "GraceEditor",
+	"name" : "GraceIDECommand",
 	"type" : "normal"
 }

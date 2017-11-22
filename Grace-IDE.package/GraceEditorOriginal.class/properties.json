@@ -6,8 +6,12 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
+		"messages",
+		"saveButton",
+		"saveAsButton",
+		"runButton",
 		"sourcePane"
 	],
-	"name" : "GraceEditor",
+	"name" : "GraceEditorOriginal",
 	"type" : "normal"
 }
