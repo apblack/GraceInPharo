@@ -2,5 +2,5 @@ initialization
 initializeWidgets
 	self initializeFileTree.
 	self initializeToolbar.
-	tabManager := self newTabManager.
+	tabManager := self instantiate: GraceFilesTabManager.
 	messages := self instantiate: GraceMessagePresenter
