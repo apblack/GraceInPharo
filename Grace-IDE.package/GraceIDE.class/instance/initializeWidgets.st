@@ -1,6 +1,6 @@
 initialization
 initializeWidgets
-	fileTree := self newTree.
-	toolbar := self instantiate: MenuPresenter.
+	self initializeFileTree.
+	self initializeToolbar.
 	tabManager := self newTabManager.
 	messages := self instantiate: GraceMessagePresenter
