@@ -1,3 +1,3 @@
 generated
 visitTargetedRequest: aTargetedRequest
-	^ self visitRequest: aTargetedRequest
+	^ self visitDottedRequest: aTargetedRequest

@@ -1,3 +1,3 @@
 generated
 visitOuterRequest: anOuterRequest
-	^ self visitRequest: anOuterRequest
+	^ self visitOneselfRequest: anOuterRequest

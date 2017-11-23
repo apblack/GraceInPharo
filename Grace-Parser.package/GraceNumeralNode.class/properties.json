@@ -5,11 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"decimalNumeralToken",
-		"baseExponentNumeralToken",
-		"basedRadixNumeralToken"
-	],
+	"instvars" : [ ],
 	"name" : "GraceNumeralNode",
 	"type" : "normal"
 }

@@ -1,3 +1,3 @@
-testing
+properties
 isLegalInTrait
 	^ true

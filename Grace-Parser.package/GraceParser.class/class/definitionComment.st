@@ -49,8 +49,11 @@ default <typeOperator>: [&|+\-];
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return Import Dialect ) ;
 %hierarchy Oneself (Self Outer) ;
-%hierarchy Request (RequestWithArguments SelfRequest OuterRequest TargetedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
+%hierarchy Request (RequestWithArguments DottedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
+%hierarchy OneselfRequest (SelfRequest OuterRequest) ;
+%hierarchy DottedRequest (OneselfRequest TargetedRequest) ;
 %hierarchy ObjectConstructor (Module) ;
+%hierarchy ReuseStatement (UseStatement InheritStatement) ;
 
 %start ArgumentList Block Declaration Expression MethodDeclaration Module Numeral ObjectItem Request Statement String Term Type ;
 
@@ -276,9 +279,9 @@ Identifier
 	: <id> 'id' 																								{{ }}
 	;
 Numeral
-	: <decimalNumeral> 																						{{  }}
-	| <baseExponentNumeral> 																				{{  }}
-	| <basedRadixNumeral> 																					{{  }}
+	: <decimalNumeral> 																						{{ DecimalNumeral }}
+	| <baseExponentNumeral> 																				{{ BaseExponentNumeral }}
+	| <basedRadixNumeral> 																					{{ BasedRadixNumeral }}
 	;
 SequenceConstructor
 	: ""["" ""]""	{{ }}
@@ -317,8 +320,8 @@ ObjectItem
 	| ClassOrTraitDeclaration
 	;
 ReuseStatement
-	: ""use"" Expression 'parent' (ReuseModifier 'modifier') * {{ }}
-	| ""inherit"" Expression 'parent' (ReuseModifier 'modifier') * {{ }}
+	: ""use"" Expression 'superExpr' (ReuseModifier 'modifier') * 													{{ UseStatement }}
+	| ""inherit"" Expression 'superExpr' (ReuseModifier 'modifier') * 													{{ InheritStatement }}
 	;
 ReuseModifier
 	: ExcludeClause

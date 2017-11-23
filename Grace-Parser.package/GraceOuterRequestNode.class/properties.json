@@ -1,13 +1,12 @@
 {
 	"commentStamp" : "",
-	"super" : "GraceRequestNode",
+	"super" : "GraceOneselfRequestNode",
 	"category" : "Grace-Parser-NodeSubclasses",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"outerDotTokens",
-		"request"
+		"outerDotTokens"
 	],
 	"name" : "GraceOuterRequestNode",
 	"type" : "normal"

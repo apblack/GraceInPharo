@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceReuseStatementNode",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"inheritToken"
+	],
+	"name" : "GraceInheritStatementNode",
+	"type" : "normal"
+}

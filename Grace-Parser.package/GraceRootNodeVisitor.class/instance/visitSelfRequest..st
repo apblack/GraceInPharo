@@ -1,3 +1,3 @@
 generated
 visitSelfRequest: aSelfRequest
-	^ self visitRequest: aSelfRequest
+	^ self visitOneselfRequest: aSelfRequest

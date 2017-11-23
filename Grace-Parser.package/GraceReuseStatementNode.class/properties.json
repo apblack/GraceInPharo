@@ -6,10 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"useToken",
-		"_parent",
 		"modifiers",
-		"inheritToken"
+		"superExpr"
 	],
 	"name" : "GraceReuseStatementNode",
 	"type" : "normal"

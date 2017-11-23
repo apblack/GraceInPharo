@@ -1,0 +1,3 @@
+generated
+visitInheritStatement: anInheritStatement
+	^ self visitReuseStatement: anInheritStatement
