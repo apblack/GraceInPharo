@@ -1,14 +1,15 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "JulienDelplanque 11/23/2017 19:48",
 	"super" : "ComposableModel",
 	"category" : "Grace-IDE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"sourcePane",
-		"file"
+		"tabsPresenter",
+		"filesToTabsDict",
+		"filesToEditorsDict"
 	],
-	"name" : "GraceEditor",
+	"name" : "GraceFilesTabManager",
 	"type" : "normal"
 }

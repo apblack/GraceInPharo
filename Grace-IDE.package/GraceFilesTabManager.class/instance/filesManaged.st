@@ -1,0 +1,3 @@
+api
+filesManaged
+	^ filesToEditorsDict keys
