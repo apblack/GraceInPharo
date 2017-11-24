@@ -8,5 +8,5 @@ execute
 		openModal.
 	file ifNil: [  ^ self  ].
 	ide fileTree roots: ((ide fileTree roots copyWith: file) sort: [ :a :b | a baseName >= b baseName]).
-	ide fileTree selectedItem: file
+	"ide fileTree selectedItem: file"
 

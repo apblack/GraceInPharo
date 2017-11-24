@@ -8,5 +8,5 @@ execute
 	file ifNil: [  ^ self  ].
 	ide previousDirectory: file.
 	ide fileTree roots: ((ide fileTree roots copyWith: file) sort: [ :a :b | a basename >= b basename]).
-	ide fileTree selectedItem: file
+	"ide fileTree selectedItem: file"
 	
