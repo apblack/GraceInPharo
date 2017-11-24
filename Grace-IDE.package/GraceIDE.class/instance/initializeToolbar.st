@@ -6,8 +6,13 @@ initializeToolbar
 			filegroup
 				addItem: [ :item | 
 					item
-						name: 'open file';
+						name: 'load file';
 						icon: (self iconNamed: #smallLeftFlush);
-						action: [GraceOpenFileCommand executeOn: self] ]
+						action: [GraceOpenFileCommand executeOn: self] ];
+				addItem: [ :item | 
+					item
+						name: 'load directory';
+						icon: (self iconNamed: #smallOpen);
+						action: [GraceOpenDirectoryCommand executeOn: self] ]
 					
 		]

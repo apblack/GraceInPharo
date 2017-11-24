@@ -9,7 +9,8 @@
 		"fileTree",
 		"tabManager",
 		"messages",
-		"toolbar"
+		"toolbar",
+		"previousDirectory"
 	],
 	"name" : "GraceIDE",
 	"type" : "normal"
