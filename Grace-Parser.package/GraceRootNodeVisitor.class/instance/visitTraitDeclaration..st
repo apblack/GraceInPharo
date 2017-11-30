@@ -1,3 +1,3 @@
 generated
 visitTraitDeclaration: aTraitDeclaration
-	^ self visitDeclaration: aTraitDeclaration
+	^ self visitGenerativeDeclaration: aTraitDeclaration

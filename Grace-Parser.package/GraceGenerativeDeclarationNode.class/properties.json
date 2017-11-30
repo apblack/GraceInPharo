@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceDeclarationNode",
+	"category" : "Grace-Parser-NodeSubclasses",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"header",
+		"returnType",
+		"annotation",
+		"leftBraceToken",
+		"items",
+		"_s",
+		"rightBraceToken"
+	],
+	"name" : "GraceGenerativeDeclarationNode",
+	"type" : "normal"
+}

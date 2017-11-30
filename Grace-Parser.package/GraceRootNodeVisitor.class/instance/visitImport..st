@@ -1,3 +1,3 @@
 generated
 visitImport: anImport
-	^ self visitStatement: anImport
+	^ self visitDeclaration: anImport

@@ -1,3 +1,3 @@
 generated
 visitDialect: aDialect
-	^ self visitStatement: aDialect
+	^ self visitDeclaration: aDialect

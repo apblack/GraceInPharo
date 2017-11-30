@@ -6,10 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"leftBraceToken",
-		"_s",
-		"rightBraceToken",
-		"methods"
+		"interfaceToken",
+		"interface",
+		"typeToken"
 	],
 	"name" : "GraceInterfaceNode",
 	"type" : "normal"

@@ -1,7 +1,7 @@
 generated-reduction actions
 reduceActionForInterface1: nodes
 	| result |
-	result := Array new: 2.
-	result at: 1 put: (nodes at: 1).
-	result at: 2 put: (nodes at: 2).
+	result := GraceInterfaceNode new.
+	result interfaceToken: (nodes at: 1).
+	result interface: (nodes at: 2).
 	^ result

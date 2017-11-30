@@ -1,0 +1,3 @@
+generated
+visitTypeOperatorExpression: aTypeOperatorExpression
+	^ self visitRoot: aTypeOperatorExpression

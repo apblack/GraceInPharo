@@ -1,3 +1,3 @@
 generated
 tokenVariables
-	^ #(#basedRadixNumeralToken #leftParenToken #rightParenToken)
+	^ #(#basedRadixNumeralToken)

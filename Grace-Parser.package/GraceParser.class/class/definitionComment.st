@@ -40,18 +40,19 @@ default <typeOperator>: [&|+\-];
 %root Root ;
 %annotate_tokens ;
 
-
-%hierarchy Root (Declaration Parameters Expression Numeral String Statement Oneself Request ObjectConstructor) ;
-%hierarchy Declaration (MethodDeclaration Import Dialect VarDeclaration DefDeclaration ClassDeclaration TraitDeclaration Parameter) ;
+%hierarchy Root (Statement) ;
+%hierarchy Declaration (GenerativeDeclaration Import Dialect VariableDeclaration Parameter) ;
+%hierarchy GenerativeDeclaration (MethodDeclaration ClassDeclaration TraitDeclaration) ; 
+%hierarchy VariableDeclaration (VarDeclaration DefDeclaration) ;
 %hierarchy Parameter (TypeParameter MethodParameter BlockParameter) ;
 %hierarchy Expression (Request Block Factor Term Identifier ObjectConstructor Numeral String Sequence Oneself Boolean) ;
 %hierarchy Numeral (DecimalNumeral BaseExponentNumeral BasedRadixNumeral) ;
 %hierarchy String (StringLiteral StringConstructor) ;
-%hierarchy Statement (Expression Pragma Declaration Assignment Return Import Dialect ) ;
+%hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
 %hierarchy Oneself (Self Outer) ;
 %hierarchy Request (RequestWithArguments DottedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
-%hierarchy OneselfRequest (SelfRequest OuterRequest) ;
 %hierarchy DottedRequest (OneselfRequest TargetedRequest) ;
+%hierarchy OneselfRequest (SelfRequest OuterRequest) ;
 %hierarchy ObjectConstructor (Module) ;
 %hierarchy ReuseStatement (UseStatement InheritStatement) ;
 
@@ -122,13 +123,15 @@ Annotation
 MethodDeclaration
 	: ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ? ""}"" {{ }}
 	;
-ClassOrTraitDeclaration
-	: ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" 
+ClassDeclaration
+	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" 
 		( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ?
-	   ""}"" 																							{{ ClassDeclaration }}
-	| ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" 
+	   ""}"" 																										{{  }}
+	;
+TraitDeclaration
+	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" 
 		( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ?
-	  ""}"" 																								{{ TraitDeclaration }}
+	  ""}"" 																											{{  }}
 	;
 MethodHeader
 	: AssignmentMethodHeader
@@ -160,7 +163,7 @@ SingleMethodParameter
 	;
 ReturnTypeOption
 	: 
-	| <arrow> Type 'type' 																							{{ Type }}
+	| <arrow> Type 'type' 																							{ '2' }
 	;
 MethodParameter
 	: Identifier 'id' TypeOption 'type'																				{{ }}
@@ -245,7 +248,7 @@ NonIdTerm
 	| Ellipsis
 	;
 Ellipsis
-	: ""...""
+	: ""...""																									{{ }}
 	;
 Term
 	: NonIdTerm
@@ -267,7 +270,7 @@ DelimitedTerm
 	| String
 	| SequenceConstructor
 	| SpecialTerm
-	| ""("" Expression 'expr' "")""  																					{{ Expression }}
+	| ""("" Expression 'expr' "")""  																					{ '2' }
 	;
 SpecialTerm
 	: ""self""  																									{{ Self }}
@@ -316,12 +319,16 @@ ObjectConstructor
 ObjectItem
 	: Statement
 	| MethodDeclaration
-	| ReuseStatement
-	| ClassOrTraitDeclaration
+	| ClassDeclaration
+	| TraitDeclaration
+	| UseStatement
+	| InheritStatement
 	;
-ReuseStatement
-	: ""use"" Expression 'superExpr' (ReuseModifier 'modifier') * 													{{ UseStatement }}
-	| ""inherit"" Expression 'superExpr' (ReuseModifier 'modifier') * 													{{ InheritStatement }}
+UseStatement
+	: ""use"" Expression 'superExpr' (ReuseModifier 'modifier') * 													{{  }}
+	;
+InheritStatement
+	: ""inherit"" Expression 'superExpr' (ReuseModifier 'modifier') * 													{{  }}
 	;
 ReuseModifier
 	: ExcludeClause
@@ -346,7 +353,7 @@ TypeDeclaration
 	;
 TypeOption
 	:
-	| "":"" Type 'type' {{ Type }}
+	| "":"" Type																						{ '2' }
 	;
 TypeParameterList
 	: 
@@ -356,8 +363,11 @@ TypeParameter
 	: Identifier 'id' 																					{{  }}
 	;
 Type
+	: TypeOperatorExpression	
+	| TypeTerm
+	;
+TypeOperatorExpression
 	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArg' ? TypeTerm 'arg') +  						{{ }}
-	| TypeTerm 'term'  {{ }}
 	;
 TypeArguments
 	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   											{{ }}
@@ -365,20 +375,20 @@ TypeArguments
 TypeTerm
 	:  UnknownType
 	|  Interface
-	| ""type"" InterfaceLiteral 'interface' 											{ '2' } 	# for backward compatibility
-	| Identifier 'id' TypeArguments 'typeArg' ?															{{ }}
-	| TypeTerm 'receiver' <dot> Identifier 'id' TypeArguments 'typeArg' ?  									{{ }}
-	| ""("" Type 'type' "")""																				{ '2' }
+	| Identifier 'id' TypeArguments 'typeArg' ?															{{  }}
+	| TypeTerm 'receiver' <dot> Identifier 'id' TypeArguments 'typeArg' ?  									{{  }}
+	| ""("" Type 'type' "")""																				{{  }}
 	;
 Signature
 	: MethodHeader 'methIdentifier' ReturnTypeOption 'returnType'  										{{ }}
 	;
 Interface
-	:  ""interface"" InterfaceLiteral 'interface'																{ '2' }
+	:  ""interface"" InterfaceLiteral 'interface'																{{ }}
+	| ""type"" InterfaceLiteral 'interface' 											{{ }} 	# for backward compatibility
 	;
 InterfaceLiteral
-	:  ""{"" Ss '_' ? ""}""														                  						{{ Interface }}
-	|  ""{"" Ss '_' ? Signature 'method' ( Ss '_' Signature 'method' ) * Ss '_' ? ""}""								{{ Interface }}
+	:  ""{"" Ss '_' ? ""}""														                  						{{ }}
+	|  ""{"" Ss '_' ? Signature 'method' ( Ss '_' Signature 'method' ) * Ss '_' ? ""}""								{{ }}
 	; 
 UnknownType
 	: ""Unknown""																						{{ }}

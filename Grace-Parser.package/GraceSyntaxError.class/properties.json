@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "SmaCCParserError",
+	"super" : "GraceCompilationError",
 	"category" : "Grace-Parser",
 	"classinstvars" : [ ],
 	"pools" : [ ],

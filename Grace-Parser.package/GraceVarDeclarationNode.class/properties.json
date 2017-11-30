@@ -1,17 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "GraceDeclarationNode",
+	"super" : "GraceVariableDeclarationNode",
 	"category" : "Grace-Parser-NodeSubclasses",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
 		"varToken",
-		"id",
-		"type",
-		"annotation",
-		"colonEqualToken",
-		"initializer"
+		"colonEqualToken"
 	],
 	"name" : "GraceVarDeclarationNode",
 	"type" : "normal"

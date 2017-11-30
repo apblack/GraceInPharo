@@ -1,3 +1,3 @@
 generated
 visitVarDeclaration: aVarDeclaration
-	^ self visitDeclaration: aVarDeclaration
+	^ self visitVariableDeclaration: aVarDeclaration

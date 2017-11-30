@@ -9,7 +9,10 @@
 		"id",
 		"typeArg",
 		"receiver",
-		"dotToken"
+		"dotToken",
+		"leftParenToken",
+		"type",
+		"rightParenToken"
 	],
 	"name" : "GraceTypeTermNode",
 	"type" : "normal"

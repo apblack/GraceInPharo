@@ -1,3 +1,3 @@
 generated
 visitDefDeclaration: aDefDeclaration
-	^ self visitDeclaration: aDefDeclaration
+	^ self visitVariableDeclaration: aDefDeclaration

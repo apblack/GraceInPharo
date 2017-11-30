@@ -1,0 +1,3 @@
+generated
+visitGenerativeDeclaration: aGenerativeDeclaration
+	^ self visitDeclaration: aGenerativeDeclaration

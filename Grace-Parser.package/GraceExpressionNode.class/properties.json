@@ -5,11 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"leftParenToken",
-		"expr",
-		"rightParenToken"
-	],
+	"instvars" : [ ],
 	"name" : "GraceExpressionNode",
 	"type" : "normal"
 }

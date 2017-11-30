@@ -1,3 +1,3 @@
 generated
 tokenVariables
-	^ #(#chars #openQuote #closeQuote #leftParenToken #rightParenToken)
+	^ #(#chars #openQuote #closeQuote)

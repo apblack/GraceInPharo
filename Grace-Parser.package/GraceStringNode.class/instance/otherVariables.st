@@ -1,3 +1,3 @@
 generated
 otherVariables
-	^ #(#_s #expr)
+	^ #(#_s)

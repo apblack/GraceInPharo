@@ -7,12 +7,7 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"arrowToken",
-		"type",
-		"colonToken",
-		"term",
-		"ops",
-		"typeArgs",
-		"args"
+		"type"
 	],
 	"name" : "GraceTypeNode",
 	"type" : "normal"

@@ -1,3 +1,3 @@
 generated
 tokenVariables
-	^ #(#dotToken #id #colonEqualToken #selfDotToken #leftParenToken #rightParenToken)
+	^ #(#dotToken #id #colonEqualToken #selfDotToken)

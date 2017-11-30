@@ -1,7 +1,7 @@
 generated-reduction actions
 reduceActionForInterfaceLiteral2: nodes
 	| result |
-	result := GraceInterfaceNode new.
+	result := GraceInterfaceLiteralNode new.
 	result leftBraceToken: (nodes at: 1).
 	result addNode: (nodes at: 2) to: result _s.
 	result addNode: (nodes at: 3) to: result methods.

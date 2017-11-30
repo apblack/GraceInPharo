@@ -1,3 +1,3 @@
 generated
 tokenVariables
-	^ #(#baseExponentNumeralToken #leftParenToken #rightParenToken)
+	^ #(#baseExponentNumeralToken)

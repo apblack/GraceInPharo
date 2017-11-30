@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceRootNode",
+	"category" : "Grace-Parser-NodeSubclasses",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"periodPeriodPeriodToken"
+	],
+	"name" : "GraceEllipsisNode",
+	"type" : "normal"
+}
