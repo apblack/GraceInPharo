@@ -1,4 +1,4 @@
 tests-Types
 testTypeId
-	self good: #Type as: #Type parse: 
+	self good: #Type as: #TypeTerm parse: 
 		'Collection'

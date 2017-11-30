@@ -1,4 +1,4 @@
 tests-Types
 testTypeWith2Args
-	self good: #Type as: #Type parse: 
+	self good: #Type as: #TypeTerm parse: 
 		'Map⟦String, Integer⟧'
