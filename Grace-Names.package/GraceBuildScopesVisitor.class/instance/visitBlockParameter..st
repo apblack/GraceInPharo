@@ -6,5 +6,4 @@ visitBlockParameter: blockParam
 		self checkForShadowingDefinitionOf: blockParam.
 		blockParam scope add: (GraceParameter fromParseTreeNode: blockParam) withName: id name
 	].
-	self visitChildren: blockParam.
-	^ blockParam
+	^ super visitBlockParameter: blockParam

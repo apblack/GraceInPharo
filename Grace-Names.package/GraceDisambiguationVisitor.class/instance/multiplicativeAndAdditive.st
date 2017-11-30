@@ -1,0 +1,3 @@
+constants
+multiplicativeAndAdditive
+	^ self class multiplicativeAndAdditive

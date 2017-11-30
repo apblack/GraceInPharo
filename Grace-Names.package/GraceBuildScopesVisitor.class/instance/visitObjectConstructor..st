@@ -1,8 +1,10 @@
 visit methods
 visitObjectConstructor: anObjCons
 	| newScope |
-	newScope := GraceObjectScope new.
-	newScope outerScope: anObjCons parent scope.
-	anObjCons scope: newScope.
-	self visitChildren: anObjCons.
-	^ anObjCons
+	anObjCons scope ifNil: [
+			"if the scope is not nil, it's already been set, e.g, by the visit method for Modules"	 
+			newScope := GraceObjectScope new.
+			self assert: anObjCons parent = ancestors first.
+			newScope outerScope: anObjCons parent scope.
+			anObjCons scope: newScope ].
+	^ super visitObjectConstructor: anObjCons

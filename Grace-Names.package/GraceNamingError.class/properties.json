@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "GraceSyntaxError",
+	"super" : "GraceCompilationError",
 	"category" : "Grace-Names",
 	"classinstvars" : [ ],
 	"pools" : [ ],

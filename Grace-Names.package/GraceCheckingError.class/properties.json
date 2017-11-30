@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "GraceAncestorsVisitor",
+	"super" : "GraceCompilationError",
 	"category" : "Grace-Names",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "GraceBuildScopesVisitor",
+	"name" : "GraceCheckingError",
 	"type" : "normal"
 }
