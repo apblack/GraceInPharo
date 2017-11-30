@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "AndrewBlack 11/27/2017 16:09",
+	"super" : "TreePresenter",
+	"category" : "Grace-IDE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceTreePresenter",
+	"type" : "normal"
+}

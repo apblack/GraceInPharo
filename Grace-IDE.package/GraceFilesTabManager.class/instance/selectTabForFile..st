@@ -1,3 +1,6 @@
 api
 selectTabForFile: aFileReference
-	(self tabForFile: aFileReference) selected: true
+	| tab |
+	tab := (self tabForFile: aFileReference).
+	tab selected: true.
+	^ tab

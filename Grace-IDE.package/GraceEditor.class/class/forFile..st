@@ -1,5 +1,5 @@
 instance creation
 forFile: aFileReference
 	^ self new
-		beForFile: aFileReference;
+		onFile: aFileReference;
 		yourself

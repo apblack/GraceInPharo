@@ -1,9 +1,15 @@
 initialization
 initializeFileTree
-	fileTree := self newTree.
+	fileTree := self instantiate: GraceTreePresenter.
 	fileTree
 		childrenBlock: [ :fileRef | 
-			fileRef isDirectory ifTrue: [ fileRef children ] ifFalse: [ #() ]  ];
-		displayBlock: [ :fileRef | fileRef basename ];
-		whenSelectedItemChanged: [ :fileRef |
-			fileRef ifNotNil: [ self tabManager selectOrCreateTabForFile: fileRef ] ]
+			fileRef isDirectory
+				ifTrue: [ fileRef children select: [ :each | each extension = 'grace' ] ]
+				ifFalse: [ #() ] ];
+		displayBlock: [ :fileRef | fileRef basenameWithoutExtension ];
+		whenSelectedItemChanged: [ :fileRef | 
+			| item | 
+			item := fileTree selectedItem.
+			fileRef ifNotNil: [self tabManager 
+													selectOrCreateTabForFile: fileRef 
+													tabSelectionAction: [ fileTree selectedItem: item. fileTree changed. ] ] ]

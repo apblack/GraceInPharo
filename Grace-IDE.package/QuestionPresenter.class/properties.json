@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "ComposablePresenter",
+	"category" : "Grace-IDE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"question",
+		"okButton",
+		"cancelButton",
+		"result"
+	],
+	"name" : "QuestionPresenter",
+	"type" : "normal"
+}

@@ -8,7 +8,9 @@
 	"instvars" : [
 		"tabsPresenter",
 		"filesToTabsDict",
-		"filesToEditorsDict"
+		"filesToEditorsDict",
+		"currentTab",
+		"currentEditor"
 	],
 	"name" : "GraceFilesTabManager",
 	"type" : "normal"

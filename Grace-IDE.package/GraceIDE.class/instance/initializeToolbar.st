@@ -15,4 +15,12 @@ initializeToolbar
 						icon: (self iconNamed: #smallOpen);
 						action: [GraceOpenDirectoryCommand executeOn: self] ]
 					
+		];
+		addGroup: [ : modulegroup |
+			modulegroup
+				addItem: [  :item |
+					item
+						name: 'run module';
+						icon: (self iconNamed: #glamorousPlay);
+						action: [GraceCompileCommand executeOn: self] ]
 		]
