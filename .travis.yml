@@ -3,7 +3,6 @@ sudo: false
 
 os:
   - linux
-  - osx
 
 smalltalk:
   - Pharo-7.0
@@ -14,4 +13,4 @@ env:
     - CI_CONFIG=.smalltalk.Unit.ston
 
 script:
-  - travis_wait 30 "$SMALLTALK_CI_HOME/run.sh" ${CI_CONFIG}
+  - travis_wait 10 "$SMALLTALK_CI_HOME/run.sh" ${CI_CONFIG}
