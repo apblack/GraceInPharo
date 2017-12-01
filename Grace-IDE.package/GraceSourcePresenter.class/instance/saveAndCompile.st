@@ -1,4 +1,4 @@
 keybindings
 saveAndCompile
-	self save.
+	self ide save.
 	^ self ide compile

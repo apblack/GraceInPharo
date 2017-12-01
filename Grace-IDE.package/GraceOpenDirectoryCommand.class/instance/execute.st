@@ -6,6 +6,7 @@ execute
 		title: 'choose a directory from which to import the .grace files' translated;
 		openModal.
 	file ifNil: [  ^ self  ].
+	file := file canonicalize.
 	ide previousDirectory: file.
-	ide fileTree addFile: file.
+	ide fileTree addDirectory: file.
 	ide fileTree selectFile: file

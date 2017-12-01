@@ -1,4 +1,5 @@
 testing
 containsFile: aFileReference 
-	self allItemsDo: [ :each | each = aFileReference ifTrue: [  ^ true ] ].
+
+	self allItemsDo: [ :each | 1halt. each = aFileReference ifTrue: [  ^ true ] ].
 	^ false

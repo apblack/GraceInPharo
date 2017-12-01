@@ -1,13 +1,13 @@
 {
-	"commentStamp" : "AndrewBlack 11/27/2017 16:09",
-	"super" : "TreePresenter",
+	"commentStamp" : "",
+	"super" : "Object",
 	"category" : "Grace-IDE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"workspace"
+		"fileRefs"
 	],
-	"name" : "GraceTreePresenter",
+	"name" : "GraceIDEWorkspace",
 	"type" : "normal"
 }

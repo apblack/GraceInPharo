@@ -8,8 +8,7 @@ initializeFileTree
 				ifFalse: [ #() ] ];
 		displayBlock: [ :fileRef | fileRef basenameWithoutExtension ];
 		whenSelectedItemChanged: [ :fileRef | 
-			| item | 
-			item := fileTree selectedItem.
-			fileRef ifNotNil: [self tabManager 
+			(fileRef isNotNil and: [ fileRef isDirectory not ])
+					ifTrue: [self tabManager 
 													selectOrCreateTabForFile: fileRef 
-													tabSelectionAction: [ fileTree selectedItem: item. fileTree changed. ] ] ]
+													tabSelectionAction: [ "fileTree selectedItem: item. fileTree changed." ] ] ]

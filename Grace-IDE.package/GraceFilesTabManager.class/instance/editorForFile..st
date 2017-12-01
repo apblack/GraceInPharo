@@ -1,3 +1,3 @@
 private
 editorForFile: aFileReference
-	filesToEditorsDict at: aFileReference
+	^ filesToEditorsDict at: aFileReference
