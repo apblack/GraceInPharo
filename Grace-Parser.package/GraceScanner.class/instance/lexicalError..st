@@ -4,5 +4,6 @@ lexicalError: message
 	
 	"Note that the tag field of the exception must be set before the exception is
 	signalled, because after it has been signaled, we won't be here anymore!"
-	self halt.
-	self lexicalError: message tag: self 
+	self 
+		lexicalError: message 
+		tag: (GraceRange from: previousMatch stopPosition + 1 to: self position in: self)

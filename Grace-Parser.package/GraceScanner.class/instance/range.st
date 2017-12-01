@@ -1,4 +1,4 @@
 accessing
 range
-	^ stream position to: stream position + outputStream size - 1
+	^ GraceRange from: stream position to: stream position + outputStream size - 1 in self
 	

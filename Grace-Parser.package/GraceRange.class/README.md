@@ -1,0 +1,1 @@
+I represent a range in the source code of a Grace program.  I contain a reference to the scanner that scanned the program, because it keeps track of the newlines in the source.  This permits the stant and end of the range to be displayed as line and column positions 

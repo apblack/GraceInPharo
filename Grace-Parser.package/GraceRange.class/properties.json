@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "AndrewBlack 12/1/2017 14:08",
+	"super" : "Interval",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"scanner"
+	],
+	"name" : "GraceRange",
+	"type" : "normal"
+}

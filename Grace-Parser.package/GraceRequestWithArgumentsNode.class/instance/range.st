@@ -1,3 +1,5 @@
 accessing
 range
-	^ Interval from: requestParts first range first to: argLists last last
+	| requestPartsFRange |
+	requestPartsFRange := requestParts first range.
+	^ GraceRange from: requestPartsFRange startPosition to: argLists last stopPosition in: requestPartsFRange scanner
