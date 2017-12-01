@@ -1,3 +1,3 @@
 accessing
 text: someText
-	textModel text: someText
+	textPresenter text: someText

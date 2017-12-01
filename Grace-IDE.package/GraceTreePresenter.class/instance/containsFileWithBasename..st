@@ -1,5 +1,5 @@
 testing
 containsFileWithBasename: aString 
-	self allItemsDo: [ :each | (each baseName = aString) ifTrue: [ ^ true ] ].
+	self allItemsDo: [ :each | (each content basename = aString) ifTrue: [ ^ true ] ].
 	^ false
 	

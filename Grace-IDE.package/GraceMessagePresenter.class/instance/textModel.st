@@ -1,3 +1,3 @@
 accessing
 textModel
-	^ textModel
+	^ textPresenter

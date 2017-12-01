@@ -10,7 +10,8 @@
 		"filesToTabsDict",
 		"filesToEditorsDict",
 		"currentTab",
-		"currentEditor"
+		"currentEditor",
+		"ide"
 	],
 	"name" : "GraceFilesTabManager",
 	"type" : "normal"

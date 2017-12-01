@@ -1,12 +1,12 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "AndrewBlack 12/1/2017 10:01",
 	"super" : "ComposablePresenter",
 	"category" : "Grace-IDE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"textModel"
+		"textPresenter"
 	],
 	"name" : "GraceMessagePresenter",
 	"type" : "normal"

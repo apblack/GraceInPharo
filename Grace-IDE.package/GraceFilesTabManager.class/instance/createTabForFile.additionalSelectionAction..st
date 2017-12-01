@@ -1,8 +1,9 @@
 api
 createTabForFile: aFileReference additionalSelectionAction: aBlock
 	| tab editor |
-	editor := (self instantiate: GraceEditor)
+	editor := (self instantiate: GraceSourcePresenter)
 		onFile: aFileReference;
+		ide: self ide;
 		yourself.
 	filesToEditorsDict at: aFileReference put: editor.
 	tab := self newTab.

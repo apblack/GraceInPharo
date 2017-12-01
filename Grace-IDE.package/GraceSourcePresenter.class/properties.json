@@ -5,7 +5,10 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"file",
+		"ide"
+	],
 	"name" : "GraceSourcePresenter",
 	"type" : "normal"
 }

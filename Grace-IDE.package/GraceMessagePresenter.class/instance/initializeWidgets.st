@@ -1,5 +1,5 @@
 initialization
 initializeWidgets
-	textModel := self newText
+	textPresenter := self newText
 		enabled: false;
 		yourself
