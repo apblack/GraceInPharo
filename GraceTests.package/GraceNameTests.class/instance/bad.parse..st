@@ -5,6 +5,10 @@ bad: startSymbol parse: aString
 	
 	| result |
 	result := super good: startSymbol as: startSymbol parse: aString.
-	self should: [ GraceBuildScopesVisitor new acceptNode: result ] raise: GraceNamingError.
+	self should: [ 
+		result := GraceBuildScopesVisitor new acceptNode: result.
+		result checkParentLinks.
+		result := GraceNameResolutionVisitor new acceptNode: result
+	] raise: GraceNamingError.
 	^ result
 	
