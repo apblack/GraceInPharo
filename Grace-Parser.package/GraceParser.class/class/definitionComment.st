@@ -39,6 +39,7 @@ default <typeOperator>: [&|+\-];
 %suffix Node ;
 %root Root ;
 %annotate_tokens ;
+%glr ;
 
 %hierarchy Root (Statement) ;
 %hierarchy Declaration (GenerativeDeclaration Import Dialect VariableDeclaration Parameter) ;

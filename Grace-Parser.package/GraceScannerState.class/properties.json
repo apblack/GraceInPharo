@@ -1,0 +1,20 @@
+{
+	"commentStamp" : "",
+	"super" : "SmaCCScannerState",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"braceChange",
+		"currentLineBraceDepth",
+		"indentOfLineBeingContinued",
+		"indentStack",
+		"maxIndentOfContinuation",
+		"previousMatch",
+		"priorLineBraceDepth",
+		"priorLineIndent"
+	],
+	"name" : "GraceScannerState",
+	"type" : "normal"
+}
