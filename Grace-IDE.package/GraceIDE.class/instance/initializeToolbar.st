@@ -20,7 +20,7 @@ initializeToolbar
 			modulegroup
 				addItem: [  :item |
 					item
-						name: 'run module';
+						name: 'save & run';
 						icon: (self iconNamed: #glamorousPlay);
 						action: [GraceCompileCommand executeOn: self] ]
 		]

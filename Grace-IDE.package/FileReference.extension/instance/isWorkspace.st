@@ -1,0 +1,3 @@
+*Grace-IDE
+isWorkspace
+	^ false
