@@ -6,6 +6,7 @@ good: startSymbol as: subKind parse: aString
 	| result startState |
 	startState := self parserUnderTest perform: (#startingStateFor , startSymbol) asSymbol.
 	result := self parserUnderTest parseStream: aString readStream startingAt: startState.
+	result checkParentLinks.
 	self assert: result isA: subKind.
 	^ result
 	
