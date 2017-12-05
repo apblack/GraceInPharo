@@ -1,3 +1,3 @@
 generated
 visitAssignmentMethodHeader: anAssignmentMethodHeader
-	^ self visitRoot: anAssignmentMethodHeader
+	^ self visitMethodHeader: anAssignmentMethodHeader

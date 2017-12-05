@@ -1,3 +1,3 @@
 generated
 visitParameterlessMethodHeader: aParameterlessMethodHeader
-	^ self visitRoot: aParameterlessMethodHeader
+	^ self visitMethodHeader: aParameterlessMethodHeader

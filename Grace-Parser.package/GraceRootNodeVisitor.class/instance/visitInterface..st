@@ -1,3 +1,3 @@
 generated
 visitInterface: anInterface
-	^ self visitRoot: anInterface
+	^ self visitType: anInterface

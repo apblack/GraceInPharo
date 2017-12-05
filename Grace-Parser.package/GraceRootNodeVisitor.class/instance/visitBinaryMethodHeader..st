@@ -1,3 +1,3 @@
 generated
 visitBinaryMethodHeader: aBinaryMethodHeader
-	^ self visitRoot: aBinaryMethodHeader
+	^ self visitMethodHeader: aBinaryMethodHeader

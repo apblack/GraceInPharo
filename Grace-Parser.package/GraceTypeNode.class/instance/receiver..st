@@ -1,7 +1,7 @@
 generated
-receiver: aGraceRootNode
+receiver: aGraceTypeNode
 	self receiver notNil
 		ifTrue: [ self receiver parent: nil ].
-	receiver := aGraceRootNode.
+	receiver := aGraceTypeNode.
 	self receiver notNil
 		ifTrue: [ self receiver parent: self ]

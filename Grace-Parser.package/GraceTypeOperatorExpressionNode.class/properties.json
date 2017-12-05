@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "GraceRootNode",
+	"super" : "GraceTypeNode",
 	"category" : "Grace-Parser-NodeSubclasses",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -8,7 +8,6 @@
 	"instvars" : [
 		"term",
 		"ops",
-		"typeArgs",
 		"args"
 	],
 	"name" : "GraceTypeOperatorExpressionNode",

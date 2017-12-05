@@ -1,3 +1,3 @@
 generated
 nodeVariables
-	^ #(#term)
+	^ #(#term #id #typeArg #receiver)

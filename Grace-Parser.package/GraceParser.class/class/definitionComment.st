@@ -45,7 +45,7 @@ default <typeOperator>: [&|+\-];
 %hierarchy GenerativeDeclaration (MethodDeclaration ClassDeclaration TraitDeclaration) ; 
 %hierarchy VariableDeclaration (VarDeclaration DefDeclaration) ;
 %hierarchy Parameter (TypeParameter MethodParameter BlockParameter) ;
-%hierarchy Expression (Request Block Factor Term Identifier ObjectConstructor Numeral String Sequence Oneself Boolean) ;
+%hierarchy Expression (Request Block Boolean Ellipsis Factor Term Identifier ObjectConstructor Numeral String Sequence Oneself Type) ;
 %hierarchy Numeral (DecimalNumeral BaseExponentNumeral BasedRadixNumeral) ;
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
@@ -55,7 +55,10 @@ default <typeOperator>: [&|+\-];
 %hierarchy OneselfRequest (SelfRequest OuterRequest) ;
 %hierarchy ObjectConstructor (Module) ;
 %hierarchy ReuseStatement (UseStatement InheritStatement) ;
-
+%hierarchy Type (Interface TypeOperatorExpression UnknownType) ;
+%hierarchy Interface (InterfaceLiteral) ;
+%hierarchy MethodHeader (AssignmentMethodHeader BinaryMethodHeader ParameterizedMethodHeader ParameterlessMethodHeader
+ UnaryMethodHeader) ;
 %start ArgumentList Block Declaration Expression MethodDeclaration Module Numeral ObjectItem Request Statement String Term Type ;
 
 %attributes Root (scope) ;				# adds the instance variable scope to GraceRootNode, and thus to all of its subclasses 
@@ -362,22 +365,19 @@ TypeParameterList
 TypeParameter
 	: Identifier 'id' 																					{{  }}
 	;
-Type
-	: TypeOperatorExpression	
-	| TypeTerm
-	;
 TypeOperatorExpression
-	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArg' ? TypeTerm 'arg') +  						{{ }}
+	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArg' ? Type 'arg') +  						{{ }}
 	;
 TypeArguments
 	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   											{{ }}
 	;
-TypeTerm
+Type
 	:  UnknownType
 	|  Interface
 	| Identifier 'id' TypeArguments 'typeArg' ?															{{  }}
-	| TypeTerm 'receiver' <dot> Identifier 'id' TypeArguments 'typeArg' ?  									{{  }}
-	| ""("" Type 'type' "")""																				{{  }}
+	| Type 'receiver' <dot> Identifier 'id' TypeArguments 'typeArg' ?  										{{  }}
+	| ""("" Type "")""																				{{  }}
+	| ""("" TypeOperatorExpression "")""																	{{  }}
 	;
 Signature
 	: MethodHeader 'methIdentifier' ReturnTypeOption 'returnType'  										{{ }}

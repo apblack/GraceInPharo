@@ -5,15 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"id",
-		"typeArg",
-		"receiver",
-		"dotToken",
-		"leftParenToken",
-		"type",
-		"rightParenToken"
-	],
-	"name" : "GraceTypeTermNode",
+	"instvars" : [ ],
+	"name" : "GraceMethodHeaderNode",
 	"type" : "normal"
 }

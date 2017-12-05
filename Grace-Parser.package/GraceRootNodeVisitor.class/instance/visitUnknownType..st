@@ -1,3 +1,3 @@
 generated
 visitUnknownType: anUnknownType
-	^ self visitRoot: anUnknownType
+	^ self visitType: anUnknownType

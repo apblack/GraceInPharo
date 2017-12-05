@@ -1,3 +1,3 @@
 generated
 visitUnaryMethodHeader: anUnaryMethodHeader
-	^ self visitRoot: anUnaryMethodHeader
+	^ self visitMethodHeader: anUnaryMethodHeader

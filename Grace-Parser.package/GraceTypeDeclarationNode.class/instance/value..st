@@ -1,7 +1,7 @@
 generated
-value: aGraceRootNode
+value: aGraceTypeNode
 	self value notNil
 		ifTrue: [ self value parent: nil ].
-	value := aGraceRootNode.
+	value := aGraceTypeNode.
 	self value notNil
 		ifTrue: [ self value parent: self ]

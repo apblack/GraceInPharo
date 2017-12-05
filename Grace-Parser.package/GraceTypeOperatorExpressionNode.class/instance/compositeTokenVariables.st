@@ -1,3 +1,3 @@
 generated
 compositeTokenVariables
-	^ #(#ops)
+	^ #(#ops #leftParenTokens #rightParenTokens)

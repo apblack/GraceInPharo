@@ -1,7 +1,7 @@
 generated
-returnType: aGraceRootNode
+returnType: aGraceTypeNode
 	self returnType notNil
 		ifTrue: [ self returnType parent: nil ].
-	returnType := aGraceRootNode.
+	returnType := aGraceTypeNode.
 	self returnType notNil
 		ifTrue: [ self returnType parent: self ]
