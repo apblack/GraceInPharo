@@ -1,3 +1,4 @@
 initialization
 initialize
-	names := Dictionary new
+	names := Dictionary new.
+	reusedNames := Dictionary new
