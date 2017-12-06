@@ -1,7 +1,7 @@
 generated
-newIdentifier: aGraceRootNode
+newIdentifier: aGraceMethodHeaderNode
 	self newIdentifier notNil
 		ifTrue: [ self newIdentifier parent: nil ].
-	newIdentifier := aGraceRootNode.
+	newIdentifier := aGraceMethodHeaderNode.
 	self newIdentifier notNil
 		ifTrue: [ self newIdentifier parent: self ]

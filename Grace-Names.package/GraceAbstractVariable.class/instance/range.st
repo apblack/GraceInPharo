@@ -1,3 +1,3 @@
 accessing
 range
-	^ GraceRange from: self startPosition to: self stopPosition
+	^ GraceRange from: self startPosition to: self stopPosition in: scanner

@@ -1,8 +1,4 @@
 visit methods
 visitBlock: aBlock
-	| newScope |
-	newScope := GraceBlockScope new.
-	self assert: aBlock parent = ancestors first.
-	newScope outerScope: aBlock parent scope.
-	aBlock scope: newScope.
+	self createScope: GraceBlockScope in: aBlock.
 	^ super visitBlock: aBlock

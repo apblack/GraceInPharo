@@ -1,7 +1,7 @@
 generated
-type: aGraceTypeNode
+type: aGraceTypeExpressionNode
 	self type notNil
 		ifTrue: [ self type parent: nil ].
-	type := aGraceTypeNode.
+	type := aGraceTypeExpressionNode.
 	self type notNil
 		ifTrue: [ self type parent: self ]

@@ -1,11 +1,7 @@
 visit methods
 visitMethodDeclaration: aMethodDec
-	| newScope |
 	
 	aMethodDec scope add: (GraceMethod fromParseTreeNode: aMethodDec) 
 									withName: aMethodDec declaredName.
-	newScope := GraceMethodScope new.
-	self assert: aMethodDec parent = ancestors first.
-	newScope outerScope: aMethodDec parent scope.
-	aMethodDec scope: newScope.
+	self createScope: GraceMethodScope in: aMethodDec.
 	^ super visitMethodDeclaration: aMethodDec

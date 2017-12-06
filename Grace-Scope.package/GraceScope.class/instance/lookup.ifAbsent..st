@@ -4,7 +4,6 @@ lookup: name ifAbsent: aBlock
 	or in one of the lexically surrounding scopes.  If its is not defined, return the value
 	of executing aBlock."
 	self assert: (name isKindOf: String).
-	^ names at: name ifAbsent: [ 
+	^ self lookupLocally: name ifAbsent: [ 
 			outerScope lookup: name ifAbsent: [
-				^ aBlock value ]
-	]
+				aBlock value ] ]

@@ -7,7 +7,6 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"interfaceToken",
-		"interface",
 		"typeToken"
 	],
 	"name" : "GraceInterfaceNode",

@@ -55,14 +55,14 @@ default <typeOperator>: [&|+\-];
 %hierarchy OneselfRequest (SelfRequest OuterRequest) ;
 %hierarchy ObjectConstructor (Module) ;
 %hierarchy ReuseStatement (UseStatement InheritStatement) ;
-%hierarchy Type (Interface TypeOperatorExpression UnknownType) ;
+%hierarchy Type (Interface TypeExpression UnknownType) ;
 %hierarchy Interface (InterfaceLiteral) ;
 %hierarchy MethodHeader (AssignmentMethodHeader BinaryMethodHeader ParameterizedMethodHeader ParameterlessMethodHeader
  UnaryMethodHeader) ;
 %start ArgumentList Block Declaration Expression MethodDeclaration Module Numeral ObjectItem Request Statement String Term Type ;
 
 %attributes Root (scope) ;				# adds the instance variable scope to GraceRootNode, and thus to all of its subclasses 
-%attributes Identifier (isDefinition) ;
+%attributes Identifier (isDefinition definingOccurence) ;
 
 #############
 # Statements #
@@ -350,13 +350,13 @@ AliasClause
 
 
 TypeDeclaration
-	: ""type"" Identifier 'id' TypeParameterList 'TypeParameterList' ""="" Type 'value' 							{{ }}
+	: ""type"" Identifier 'id' TypeParameterList 'TypeParameterList' ""="" TypeExpression 'value' 				{{ }}
 	| ""type"" Identifier 'id' TypeParameterList 'TypeParameterList'  ""="" InterfaceLiteral 'value' 				{{ }}
 					# special case of bare interface literal without  reserved word
 	;
 TypeOption
 	:
-	| "":"" Type																						{ '2' }
+	| "":"" TypeExpression																				{ '2' }
 	;
 TypeParameterList
 	: 
@@ -365,8 +365,8 @@ TypeParameterList
 TypeParameter
 	: Identifier 'id' 																					{{  }}
 	;
-TypeOperatorExpression
-	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArg' ? Type 'arg') +  						{{ }}
+TypeExpression
+	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArg' ? Type 'arg') *  								{{ }}
 	;
 TypeArguments
 	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   											{{ }}
@@ -376,19 +376,19 @@ Type
 	|  Interface
 	| Identifier 'id' TypeArguments 'typeArg' ?															{{  }}
 	| Type 'receiver' <dot> Identifier 'id' TypeArguments 'typeArg' ?  										{{  }}
-	| ""("" Type "")""																				{{  }}
-	| ""("" TypeOperatorExpression "")""																	{{  }}
+	| ""("" TypeExpression "")""																			{{  }}
 	;
 Signature
 	: MethodHeader 'methIdentifier' ReturnTypeOption 'returnType'  										{{ }}
 	;
 Interface
-	:  ""interface"" InterfaceLiteral 'interface'																{{ }}
-	| ""type"" InterfaceLiteral 'interface' 											{{ }} 	# for backward compatibility
+	:  ""interface"" InterfaceLiteral																		{{ }}
+	| ""type"" InterfaceLiteral																			{{ }} 	
+		# type is allowed for backward compatibility
 	;
 InterfaceLiteral
-	:  ""{"" Ss '_' ? ""}""														                  						{{ }}
-	|  ""{"" Ss '_' ? Signature 'method' ( Ss '_' Signature 'method' ) * Ss '_' ? ""}""								{{ }}
+	:  ""{"" Ss '_' ? ""}""																					{{ }}
+	|  ""{"" Ss '_' ? Signature 'method' ( Ss '_' Signature 'method' ) * Ss '_' ? ""}""								{{ }}	
 	; 
 UnknownType
 	: ""Unknown""																						{{ }}

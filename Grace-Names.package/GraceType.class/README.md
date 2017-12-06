@@ -1,0 +1,1 @@
+I describe the type name defined in a type declaration.

@@ -10,8 +10,8 @@
 		"typeArg",
 		"receiver",
 		"dotToken",
-		"leftParenTokens",
-		"rightParenTokens"
+		"leftParenToken",
+		"rightParenToken"
 	],
 	"name" : "GraceTypeNode",
 	"type" : "normal"

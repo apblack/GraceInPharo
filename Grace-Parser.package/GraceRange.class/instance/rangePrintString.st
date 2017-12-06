@@ -1,6 +1,6 @@
 line and column
 rangePrintString
-	"answers my range (start-stop) as a printable string"
+	"answers my range (start-stop) as a compact printable string"
 
 	| startLC stopLC |
 	startLC := self startLineAndCol.

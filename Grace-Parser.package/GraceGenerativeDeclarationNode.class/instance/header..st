@@ -1,7 +1,7 @@
 generated
-header: aGraceRootNode
+header: aGraceMethodHeaderNode
 	self header notNil
 		ifTrue: [ self header parent: nil ].
-	header := aGraceRootNode.
+	header := aGraceMethodHeaderNode.
 	self header notNil
 		ifTrue: [ self header parent: self ]

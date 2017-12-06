@@ -1,3 +1,3 @@
 generated
 tokenVariables
-	^ #(#leftBraceToken #rightBraceToken #interfaceToken #typeToken #dotToken)
+	^ #(#leftBraceToken #rightBraceToken #interfaceToken #typeToken #dotToken #leftParenToken #rightParenToken)

@@ -1,7 +1,7 @@
 generated-reduction actions
-reduceActionForTypeOperatorExpression1: nodes
+reduceActionForTypeExpression1: nodes
 	| result |
-	result := GraceTypeOperatorExpressionNode new.
+	result := GraceTypeExpressionNode new.
 	result term: (nodes at: 1).
 	result addTokens: ((nodes at: 2) at: 1) to: result ops.
 	result addNodes: ((nodes at: 2) at: 2) to: result typeArg.

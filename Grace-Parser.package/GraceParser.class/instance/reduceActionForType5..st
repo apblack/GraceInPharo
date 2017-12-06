@@ -2,6 +2,6 @@ generated-reduction actions
 reduceActionForType5: nodes
 	| result |
 	result := nodes at: 2.
-	result addFirstToken: (nodes at: 1) to: result leftParenTokens.
-	result addToken: (nodes at: 3) to: result rightParenTokens.
+	result leftParenToken: (nodes at: 1).
+	result rightParenToken: (nodes at: 3).
 	^ result

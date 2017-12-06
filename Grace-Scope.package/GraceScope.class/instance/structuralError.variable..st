@@ -1,5 +1,5 @@
-error-handling
-structuralError: aMessage node: aGraceAbstractVariable
+error reporting
+structuralError: aMessage variable: aGraceAbstractVariable
 	
 	^ GraceNamingError new 
 			message: aMessage;
