@@ -11,7 +11,8 @@
 		"filesToEditorsDict",
 		"currentTab",
 		"currentEditor",
-		"ide"
+		"ide",
+		"editingMorph"
 	],
 	"name" : "GraceFilesTabManager",
 	"type" : "normal"

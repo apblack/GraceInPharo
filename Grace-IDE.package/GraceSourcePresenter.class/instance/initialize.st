@@ -1,5 +1,9 @@
 initialization
 initialize
 	super initialize.
-	self bindKeyCombination: Character tab asKeyCombination toAction: [self spacesForTab].
-	self acceptBlock: [:text | self saveAndCompile].
+	newlineChars := GraceScanner newlineChars.
+	self autoAccept: true.
+	self acceptBlock: [: text | self syntaxHighlight: text ].
+	self whenBuiltDo: [ :ann | 
+		self initializeKeyBindings.
+		ann widget font: StandardFonts codeFont ].

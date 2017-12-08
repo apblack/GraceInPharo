@@ -1,10 +1,15 @@
 execute
 execute
-	| editor fileReference |
+	| editor fileReference backupFile |
 	editor := ide tabManager currentEditor.
 	fileReference := ide tabManager currentFile.
-	[ fileReference writeStreamDo: [ :s | s nextPutAll: editor pendingText asString ] ] forkAndWait
+	backupFile:= fileReference copyWithPath: fileReference path , 'bak'.
+	backupFile ensureDelete.
+	fileReference exists ifTrue: [fileReference copy moveTo: backupFile].
+ 
+	fileReference writeStreamDo: [ :s | s nextPutAll: editor pendingText asString ].
+	"[ fileReference writeStreamDo: [ :s | s nextPutAll: editor pendingText asString ] ]
 		on: Error
-		do: [ :ex | ^ UIManager default alert: ('Could not write file. ', ex messageText ) ].
-	editor accept
-				
+		do: [ :ex | UIManager default alert: ('Could not write file. ', ex messageText ).
+			         ^ self ]."
+	editor text: editor pendingText

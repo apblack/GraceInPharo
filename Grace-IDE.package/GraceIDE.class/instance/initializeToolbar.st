@@ -20,7 +20,13 @@ initializeToolbar
 			modulegroup
 				addItem: [  :item |
 					item
-						name: 'save & run';
+						name: 'run';
+						description: 'run the parser';
 						icon: (self iconNamed: #glamorousPlay);
-						action: [GraceCompileCommand executeOn: self] ]
+						action: [GraceCompileCommand executeOn: self] ];
+				addItem: [  :item |
+					item
+						name: 'save';
+						icon: (self iconNamed: #glamorousSave);
+						action: [ GraceSaveCommand executeOn: self ] ]
 		]

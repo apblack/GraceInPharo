@@ -12,6 +12,5 @@ initializeFileTree
 				fileTree menu: [ :aMenu | fileTree loadMenuFor: fileRef in: aMenu ].
 				fileRef isDirectory ifFalse: [
 					self tabManager 
-						selectOrCreateTabForFile: fileRef 
-						tabSelectionAction: [ "fileTree selectedItem: item. fileTree changed." ] ] ]
+						selectOrCreateTabForFile: fileRef ] ]
 		]

@@ -1,17 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "TextPresenter",
+	"super" : "Object",
 	"category" : "Grace-IDE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"file",
-		"ide",
-		"highlighter",
-		"newlineChars",
-		"editingMorph"
+		"regexToTextAttribute"
 	],
-	"name" : "GraceSourcePresenter",
+	"name" : "GraceRegexSyntaxHighlighter",
 	"type" : "normal"
 }

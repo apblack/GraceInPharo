@@ -1,4 +1,4 @@
-highlighting
+error highlighting
 errorHighlight: anInterval 
 	| text |
 	text := self pendingText asText.
@@ -6,4 +6,5 @@ errorHighlight: anInterval
 	text makeColor: Color orange darker from: anInterval first to: anInterval last.
 	self pendingText: text.
 	self setSelection: anInterval.
+	editingMorph ensureAndGetNewHighlightSegmentFrom: anInterval first to: anInterval last.
 	self changed: #text
