@@ -1,5 +1,5 @@
 accessing definitions
-allDefinitionsOf: aName 
+visibleDefinitionsOf: aName 
 	"answers a collection of GraceResolvedVariables describing the definitions of aName.  The collection 
 	is empty if there are no definitions. If aName is defined locally in this scope, then we allways
 	answer a singleton collection, ignoring inherited	 definitions and those in outer scopes; if this

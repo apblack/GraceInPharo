@@ -6,6 +6,6 @@ initialize
 	priorLineIndent := 0.
 	currentLineIndent := 0.
 	indentStack := OrderedCollection with: 0.  "the initial indent"
-	newlineChars := { Character cr. Character lf. Character codePoint: 16r2028 }. 
+	newlineChars := self class newlineChars. 
 		"all line break chars"
 		
