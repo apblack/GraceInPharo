@@ -4,7 +4,7 @@ createTabForFile: aFileReference
 	editor := self instantiate: GraceSourcePresenter.
 	editor onFile: aFileReference;
 		ide: self ide;
-		whenBuiltDo: [ :w | editor editingMorph: (self editingMorphInWidget: w widget). editor inspect ].
+		whenBuiltDo: [ :w | editor editingMorph: (self editingMorphInWidget: w widget) ].
 	filesToEditorsDict at: aFileReference put: editor.
 	tab := self newTab.
 	tab label: aFileReference basenameWithoutExtension;
