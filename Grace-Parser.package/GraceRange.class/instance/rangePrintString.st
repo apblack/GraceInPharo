@@ -1,4 +1,4 @@
-line and column
+printing
 rangePrintString
 	"answers my range (start-stop) as a compact printable string"
 

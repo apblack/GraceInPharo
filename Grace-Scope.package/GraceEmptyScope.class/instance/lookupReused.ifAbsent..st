@@ -1,3 +1,3 @@
 accessing definitions
-lookup: name ifAbsent: aBlock
+lookupReused: name ifAbsent: aBlock
 	^ aBlock value

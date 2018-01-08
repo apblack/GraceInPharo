@@ -1,4 +1,4 @@
-line and column
+printing
 rangeLongPrintString
 	"answers my range (start-stop) as an explanatory printable string"
 

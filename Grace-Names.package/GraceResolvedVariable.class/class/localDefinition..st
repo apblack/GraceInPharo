@@ -1,6 +1,7 @@
 instance creation
-localDefinition: aVariable atLevel: n
+localDefinition: aVariable
 	^ self new definition: aVariable;
 			isReused: false;
-			levelsUp: n;
+			levelsUp: 0;
+			objectsUp: 0;
 			yourself

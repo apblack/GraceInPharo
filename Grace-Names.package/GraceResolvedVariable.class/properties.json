@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "AndrewBlack 12/6/2017 17:39",
+	"commentStamp" : "AndrewBlack 1/7/2018 07:56",
 	"super" : "Object",
 	"category" : "Grace-Names",
 	"classinstvars" : [ ],
@@ -8,7 +8,8 @@
 	"instvars" : [
 		"levelsUp",
 		"definition",
-		"isReused"
+		"isReused",
+		"objectsUp"
 	],
 	"name" : "GraceResolvedVariable",
 	"type" : "normal"

@@ -1,6 +1,7 @@
 instance creation
-reusedDefinition: aVariable atLevel: n
+reusedDefinition: aVariable
 	^ self new definition: aVariable;
 			isReused: true;
-			levelsUp: n;
+			levelsUp: 0;
+			objectsUp: 0;
 			yourself

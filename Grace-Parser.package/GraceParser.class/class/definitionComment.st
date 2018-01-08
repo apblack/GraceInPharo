@@ -1,7 +1,7 @@
 generated
 definitionComment
 "%unicode ;
-%id <error> <id> <operator> <newline> ;
+%id <error> <id> <operator> <newline> <selfDot> <outerDot> ;
 
 ### State-specific token rules ###
 
@@ -166,7 +166,7 @@ SingleMethodParameter
 	;
 ReturnTypeOption
 	: 
-	| <arrow> Type 'type' 																							{ '2' }
+	| <arrow> TypeExpression 'type' 																							{ '2' }
 	;
 MethodParameter
 	: Identifier 'id' TypeOption 'type'																				{{ }}
