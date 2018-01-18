@@ -1,3 +1,3 @@
 naming
 declaredName
-	^ id value , '(_)'
+	^ operatorToken value , '(_)'
