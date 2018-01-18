@@ -1,4 +1,4 @@
-generated
+visit methods
 visitAssignment: anAssignment
 	
 	| lhs binding |
