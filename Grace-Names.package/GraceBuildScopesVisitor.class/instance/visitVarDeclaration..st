@@ -1,6 +1,11 @@
 visit methods
 visitVarDeclaration: aVarDecl
 
+	| theScope |
+	theScope := aVarDecl scope.
 	aVarDecl	id markAsDefinition.
-	aVarDecl scope add: (GraceVar fromParseTreeNode: aVarDecl) withName: aVarDecl id name.
+	theScope add: (GraceVar fromParseTreeNode: aVarDecl).
+	theScope
+			add: (GraceMethod fromParseTreeNode: aVarDecl) 
+			withName: aVarDecl declaredName , ':=(_)'.
 	^ super visitVarDeclaration: aVarDecl

@@ -1,0 +1,4 @@
+visit methods
+visitAssignmentMethodHeader: anAssignmentMethodHeader
+	anAssignmentMethodHeader id markAsDefinition.
+	^ super visitAssignmentMethodHeader: anAssignmentMethodHeader

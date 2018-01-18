@@ -3,6 +3,5 @@ visitMethodParameter: aMethodParameter
 
 	self checkForShadowingDefinitionOf: aMethodParameter.
 	aMethodParameter id markAsDefinition.
-	aMethodParameter scope add: (GraceParameter fromParseTreeNode: aMethodParameter) 
-									withName: aMethodParameter declaredName.
+	aMethodParameter scope add: (GraceParameter fromParseTreeNode: aMethodParameter).
 	^ super visitMethodParameter: aMethodParameter
