@@ -6,9 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"id",
 		"parameter",
-		"typeParameter"
+		"typeParameter",
+		"operatorToken"
 	],
 	"name" : "GraceBinaryMethodHeaderNode",
 	"type" : "normal"

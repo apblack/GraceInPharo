@@ -153,20 +153,20 @@ ParameterlessMethodHeader
 	: <id> 'part' TypeParameterList 'typeParameter' 																	{{ }}
 	;
 BinaryMethodHeader
-	: <operator> 'id' TypeParameterList 'typeParameter' SingleMethodParameter 'parameter' 							{{ }}
+	: <operator> 'operatorToken' TypeParameterList 'typeParameter' SingleMethodParameter 'parameter' 				{{ }}
 	;
 UnaryMethodHeader
-	: ""prefix"" <operator> TypeParameterList 'typeParameter' 															{{ }}
+	: ""prefix"" <operator> 'operatorToken' TypeParameterList 'typeParameter'											{{ }}
 	;
 MethodParameterList
-	:  ""("" MethodParameter 'parameter' ("","" MethodParameter 'parameter' ) * "")"" 										{{  }}
+	:  ""("" MethodParameter 'parameter' ("","" MethodParameter 'parameter' ) * "")"" 										{{ }}
 	;
 SingleMethodParameter
 	:  ""("" MethodParameter 'parameter' "")"" 																			{{  }}
 	;
 ReturnTypeOption
 	: 
-	| <arrow> TypeExpression 'type' 																							{ '2' }
+	| <arrow> TypeExpression 		 																				{ '2' }
 	;
 MethodParameter
 	: Identifier 'id' TypeOption 'type'																				{{ }}
@@ -205,7 +205,7 @@ RequestWithArguments
 	|  <id> 'requestPart'  ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )* 								{{ }}		# Just normal args
 	;
 ArgumentList
-	: DelimitedTerm 'arg' {{ }}
+	: DelimitedTerm 'arg' 																							{{ }}
 	| ""("" Expression 'arg' ("",""  Expression 'arg' ) + "")""  																	{{ }}
 	;
 UnaryRequest
