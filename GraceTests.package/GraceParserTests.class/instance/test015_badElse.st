@@ -1,5 +1,5 @@
-minigrace failing
-test015_badElse_fail
+tests-indentation
+test015_badElse
 	| result |
 	result := self good: #Module parse: 'print
   "hello"
@@ -13,7 +13,7 @@ else {
 '.
 	self assert: result isA: #Module.
 	self assert: result items size = 3.
-	result items do: [ :each | self assert: each isA: #RequestWithArguments ].
+	result items do: [ :each | self assert: each isA: #ReceiverlessRequest ].
 	self assert: result items first requestedName equals:'print(_)'.
 	self assert: result items second requestedName equals: 'if(_)then(_)'.
 	self assert: result items third requestedName equals: 'else(_)'

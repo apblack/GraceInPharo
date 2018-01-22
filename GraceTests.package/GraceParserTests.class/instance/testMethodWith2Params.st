@@ -1,4 +1,4 @@
-tests-Declarations
+tests-methods
 testMethodWith2Params
 	| result def sumHeader |
 	result := self good: #Module parse: 'def testObj = object {

@@ -4,11 +4,10 @@ bad: startSymbol parse: aString
 	name resolution should fail."
 	
 	| result |
-	result := super good: startSymbol as: startSymbol parse: aString.
 	self should: [ 
+		result := super good: startSymbol as: startSymbol parse: aString.
 		result := GraceBuildScopesVisitor new acceptNode: result.
 		result checkParentLinks.
-		result := GraceNameResolutionVisitor new acceptNode: result
-	] raise: GraceNamingError.
+	] raise: GraceCompilationError.
 	^ result
 	

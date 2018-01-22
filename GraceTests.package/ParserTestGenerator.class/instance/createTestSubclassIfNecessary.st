@@ -1,8 +1,8 @@
 initialization
 createTestSubclassIfNecessary
 
-	(Smalltalk globals includesKey: #GraceParserGeneratedTest) ifFalse: [ 
-		 GraceParserTest subclass: #GraceParserGeneratedTest
+	(Smalltalk globals includesKey: #GraceParserGeneratedTests) ifFalse: [ 
+		 GraceParserTests subclass: #GraceParserGeneratedTests
 				instanceVariableNames: ''
 				classVariableNames: ''
 				package: 'GraceTests'].

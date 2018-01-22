@@ -5,5 +5,5 @@ bad: startSymbol parse: aString
 	| result startState |
 	startState := self parserUnderTest perform: (#startingStateFor , startSymbol) asSymbol.
 	self should: [ result := self parserUnderTest parseStream: aString readStream startingAt: startState ] 
-		raise: SmaCCParserError.
+		raise: GraceCompilationError.
 	

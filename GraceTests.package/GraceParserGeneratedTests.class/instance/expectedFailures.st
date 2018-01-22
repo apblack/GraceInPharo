@@ -1,0 +1,3 @@
+expected failures
+expectedFailures
+    ^ #(#test010_classParamDefClash_fail test011_classParamMethodClash_fail #test013_badIfThenLayout_fail #test014_badElseif_fail #test015_badElse #test023_precedence_fail #test050_underscore_fail #test052_shadowimport_fail #test053_constreassign_fail #test055_shadowtop_fail #test056_shadowmeth_fail #test066_shadowblock_fail #test069_shadowparam_fail #test070_duplicateDef_fail #test071_duplicateMethod_fail #test072_duplicateTopLevel_fail #test127_inheritsFromDef_fail #test160_requireTypes_fail #test167_ambiguousName_fail #test193_traitConflict_fail #test195_traitWithRequest_fail)

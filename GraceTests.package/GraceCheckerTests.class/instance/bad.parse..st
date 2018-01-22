@@ -4,8 +4,9 @@ bad: startSymbol parse: aString
 	but the ambiguity resolution should fail."
 	
 	| result |
-	result := super good: startSymbol as: startSymbol parse: aString.
-	self should: [ result := GraceCheckingVisitor new acceptNode: result ] 
-			raise: GraceCheckingError.
+	self should: [ 
+		result := super good: startSymbol as: startSymbol parse: aString.
+		result := GraceCheckingVisitor new acceptNode: result
+	] raise: GraceCompilationError.
 	^ result
 	

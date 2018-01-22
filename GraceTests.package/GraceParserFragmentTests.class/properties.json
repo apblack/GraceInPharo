@@ -1,11 +1,11 @@
 {
-	"commentStamp" : "",
-	"super" : "GraceParserTest",
+	"commentStamp" : "AndrewBlack 1/18/2018 13:57",
+	"super" : "GraceParserTests",
 	"category" : "GraceTests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "GraceParserGeneratedTest",
+	"name" : "GraceParserFragmentTests",
 	"type" : "normal"
 }

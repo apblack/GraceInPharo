@@ -1,4 +1,4 @@
-tests-Comments
+tests-comments
 testEndOfLineComment
 	| module blockItems |
 	module := self good: #Module as: #Module parse: 'def x = 1     // this defines x

@@ -7,6 +7,5 @@ good: startSymbol as: subKind parse: aString
 	result := super good: startSymbol as: subKind parse: aString.
 	result := GraceBuildScopesVisitor new acceptNode: result.
 	result checkParentLinks.
-	result := GraceNameResolutionVisitor new acceptNode: result.
 	^ result
 	

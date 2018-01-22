@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "AndrewBlack 11/9/2017 15:22",
-	"super" : "GraceParserTest",
+	"super" : "GraceParserGeneratedTests",
 	"category" : "GraceTests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
