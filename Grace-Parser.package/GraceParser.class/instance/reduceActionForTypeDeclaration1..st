@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionForTypeDeclaration2: nodes
+reduceActionForTypeDeclaration1: nodes
 	| result |
 	result := GraceTypeDeclarationNode new.
 	result typeToken: (nodes at: 1).

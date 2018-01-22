@@ -1,0 +1,1 @@
+I represent a writer method implicitly declared by a var declaration

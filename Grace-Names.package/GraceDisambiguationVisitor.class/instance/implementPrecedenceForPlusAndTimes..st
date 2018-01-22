@@ -21,7 +21,12 @@ implementPrecedenceForPlusAndTimes: binaryRequest
 		operands addLast: newNode.
 		ix <= binaryRequest ops size 
 	] whileTrue.
-	self assert: operands size = 1.
-	newNode tellChildrenAboutTheirParent.
+	self assert: operands size = (operators size + 1).
+	operands size > 1 ifTrue: [
+		newNode := GraceBinaryRequestNode new.
+		newNode receiver: operands first.
+		newNode addNodes: operands copyWithoutFirst to: newNode args.
+		newNode addTokens: operators to: newNode ops ].
+	newNode fixParentPointers.
 	binaryRequest replaceWith: newNode.
 	^ newNode

@@ -5,7 +5,8 @@ visitVarDeclaration: aVarDecl
 	theScope := aVarDecl scope.
 	aVarDecl	id markAsDefinition.
 	theScope add: (GraceVar fromParseTreeNode: aVarDecl).
-	theScope
-			add: (GraceMethod fromParseTreeNode: aVarDecl) 
-			withName: aVarDecl declaredName , ':=(_)'.
+	theScope 
+		"we do this for all scopes, not just object scopes, so that lookup is uniform"
+		add: (GraceImplicitMethod fromParseTreeNode: aVarDecl) 
+		withName: aVarDecl declaredName , ':=(_)'.
 	^ super visitVarDeclaration: aVarDecl

@@ -1,0 +1,1 @@
+This CheckingVisitor should be run after the DisambiguationVisitor, so that all receverless requests have been replaced by requests with definite targets.

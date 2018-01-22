@@ -1,7 +1,7 @@
 generated
-request: aGraceExpressionNode
+request: aGraceRequestNode
 	self request notNil
 		ifTrue: [ self request parent: nil ].
-	request := aGraceExpressionNode.
+	request := aGraceRequestNode.
 	self request notNil
 		ifTrue: [ self request parent: self ]

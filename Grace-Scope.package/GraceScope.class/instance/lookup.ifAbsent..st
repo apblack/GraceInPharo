@@ -5,5 +5,5 @@ lookup: name ifAbsent: aBlock
 	of executing aBlock."
 	self assert: (name isKindOf: String).
 	^ self lookupLocallyOrReused: name ifAbsent: [ 
-			outerScope lookupLocallyOrReused: name ifAbsent: [
+			outerScope lookup: name ifAbsent: [
 				aBlock value ] ]

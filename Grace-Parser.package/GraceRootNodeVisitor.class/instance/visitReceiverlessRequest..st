@@ -1,0 +1,3 @@
+generated
+visitReceiverlessRequest: aReceiverlessRequest
+	^ self visitRequest: aReceiverlessRequest

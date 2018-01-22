@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "AndrewBlack 1/22/2018 09:53",
+	"super" : "GraceAbstractVariable",
+	"category" : "Grace-Names",
+	"classinstvars" : [
+		"isModule",
+		"isDialect"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"isModule",
+		"isDialect"
+	],
+	"name" : "GracePseudovariable",
+	"type" : "normal"
+}

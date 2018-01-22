@@ -1,3 +1,0 @@
-naming
-requestedName
-	^ request requestedName

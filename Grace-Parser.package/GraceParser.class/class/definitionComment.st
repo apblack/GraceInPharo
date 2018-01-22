@@ -41,7 +41,7 @@ default <typeOperator>: [&|+\-];
 %annotate_tokens ;
 
 %hierarchy Root (Statement) ;
-%hierarchy Declaration (GenerativeDeclaration Import Dialect VariableDeclaration Parameter) ;
+%hierarchy Declaration (GenerativeDeclaration Import Dialect VariableDeclaration Parameter TypeDeclaration) ;
 %hierarchy GenerativeDeclaration (MethodDeclaration ClassDeclaration TraitDeclaration) ; 
 %hierarchy VariableDeclaration (VarDeclaration DefDeclaration) ;
 %hierarchy Parameter (TypeParameter MethodParameter BlockParameter) ;
@@ -50,7 +50,7 @@ default <typeOperator>: [&|+\-];
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
 %hierarchy Oneself (Self Outer) ;
-%hierarchy Request (RequestWithArguments DottedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
+%hierarchy Request (ReceiverlessRequest RequestWithoutArguments DottedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
 %hierarchy DottedRequest (OneselfRequest TargetedRequest) ;
 %hierarchy OneselfRequest (SelfRequest OuterRequest) ;
 %hierarchy ObjectConstructor (Module) ;
@@ -176,10 +176,14 @@ MethodParameter
 ################
 
 Request
-	: RequestWithArguments 
+	: ReceiverlessRequest 
 	| SelfRequest
 	| OuterRequest
 	| TargetedRequest
+	;
+ReceiverlessRequest
+	: RequestWithArguments 'request'																				{{ }}
+#      the case of a receiverless request without arguments is covered by ""Identifier""
 	;
 SelfRequest
 	: <selfDot> RequestPart 'request' 																				{{ }}
@@ -196,8 +200,11 @@ AssignmentRequest
 	| <outerDot> + <id> 'id' "":="" Expression 'arg'  																		{{ }}
 	;
 RequestPart
-	: Identifier 
+	: RequestWithoutArguments 
 	| RequestWithArguments
+	;
+RequestWithoutArguments
+	: <id> 'requestPart'																							{{ }}
 	;
 RequestWithArguments 
 	:  <id> 'requestPart'  TypeArguments 'typeArg' ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )*  		{{ }}		# Both type args and normal args
