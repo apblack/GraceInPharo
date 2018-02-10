@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "HCheckerRootNode",
+	"category" : "Grace-HValidator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"percenthierarchyToken",
+		"leftParenToken",
+		"rightParenToken",
+		"semicolonToken",
+		"subNodes",
+		"superNode"
+	],
+	"name" : "HCheckerHierarchyDeclNode",
+	"type" : "normal"
+}

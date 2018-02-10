@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "HCheckerRootNodeVisitor",
+	"category" : "Grace-HValidator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"violations"
+	],
+	"name" : "ValidatorVisitor",
+	"type" : "normal"
+}

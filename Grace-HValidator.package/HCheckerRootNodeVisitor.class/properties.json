@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SmaCCParseNodeVisitor",
+	"category" : "Grace-HValidator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "HCheckerRootNodeVisitor",
+	"type" : "normal"
+}
