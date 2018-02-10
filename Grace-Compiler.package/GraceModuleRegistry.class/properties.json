@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "AndrewBlack 1/25/2018 22:49",
+	"super" : "Object",
+	"category" : "Grace-Compiler",
+	"classinstvars" : [
+		"uniqueInstance"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"modules"
+	],
+	"name" : "GraceModuleRegistry",
+	"type" : "normal"
+}
