@@ -7,8 +7,8 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"parameter",
-		"typeParameter",
-		"operatorToken"
+		"operatorToken",
+		"typeParameters"
 	],
 	"name" : "GraceBinaryMethodHeaderNode",
 	"type" : "normal"

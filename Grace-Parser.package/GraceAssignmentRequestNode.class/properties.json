@@ -6,13 +6,13 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"target",
 		"dotToken",
 		"id",
 		"colonEqualToken",
 		"arg",
 		"selfDotToken",
-		"outerDotTokens"
+		"outerDotTokens",
+		"receiver"
 	],
 	"name" : "GraceAssignmentRequestNode",
 	"type" : "normal"

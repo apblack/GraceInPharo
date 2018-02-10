@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "AndrewBlack 1/22/2018 13:08",
 	"super" : "OCAbstractScope",
 	"category" : "Grace-Scope",
 	"classinstvars" : [ ],
@@ -7,7 +7,8 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"names",
-		"reusedNames"
+		"reusedNames",
+		"statusOfReusedNames"
 	],
 	"name" : "GraceScope",
 	"type" : "normal"

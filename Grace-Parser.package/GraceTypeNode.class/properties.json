@@ -8,10 +8,10 @@
 	"instvars" : [
 		"id",
 		"typeArg",
-		"receiver",
 		"dotToken",
 		"leftParenToken",
-		"rightParenToken"
+		"rightParenToken",
+		"receiver"
 	],
 	"name" : "GraceTypeNode",
 	"type" : "normal"

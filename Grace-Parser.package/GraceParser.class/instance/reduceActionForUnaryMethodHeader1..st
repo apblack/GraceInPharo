@@ -4,5 +4,5 @@ reduceActionForUnaryMethodHeader1: nodes
 	result := GraceUnaryMethodHeaderNode new.
 	result prefixToken: (nodes at: 1).
 	result operatorToken: (nodes at: 2).
-	result typeParameter: (nodes at: 3).
+	result typeParameters: (nodes at: 3).
 	^ result

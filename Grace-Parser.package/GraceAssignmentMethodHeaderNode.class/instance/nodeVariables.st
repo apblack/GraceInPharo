@@ -1,3 +1,3 @@
 generated
 nodeVariables
-	^ #(#id #typeParameter #parameter)
+	^ #(#id #typeParameters #parameter)

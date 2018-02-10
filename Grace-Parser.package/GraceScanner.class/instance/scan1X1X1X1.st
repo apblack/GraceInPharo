@@ -1,6 +1,6 @@
 generated
 scan1X1X1X1
-	self recordMatch: #(55).
+	self recordMatch: #(56).
 	self step.
 	currentCharacter == $f
 		ifTrue:
@@ -14,7 +14,7 @@ scan1X1X1X1
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(55).
+		ifTrue: [ [ self recordMatch: #(56).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

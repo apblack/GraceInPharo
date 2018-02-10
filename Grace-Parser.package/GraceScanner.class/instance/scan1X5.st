@@ -1,6 +1,6 @@
 generated
 scan1X5
-	self recordMatch: #(61).
+	self recordMatch: #(62).
 	self step.
 	currentCharacter == $p
 		ifTrue:

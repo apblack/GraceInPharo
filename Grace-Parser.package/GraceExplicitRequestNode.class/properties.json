@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "AndrewBlack 1/31/2018 09:20",
+	"super" : "GraceDottedRequestNode",
+	"category" : "Grace-Parser-NodeSubclasses",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"dotToken",
+		"receiver"
+	],
+	"name" : "GraceExplicitRequestNode",
+	"type" : "normal"
+}

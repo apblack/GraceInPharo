@@ -1,0 +1,1 @@
+I represent a self request.  I'm created by the parser when a request has an explicit "self"<dot>; I'm created by the disambiguation visitor when an implicit request is resolved as a self request.

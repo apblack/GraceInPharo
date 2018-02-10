@@ -1,0 +1,3 @@
+pseudo request
+receiver
+	^ self

@@ -1,3 +1,3 @@
 generated
 nodeVariables
-	^ #(#newIdentifier #oldIdentifier)
+	^ #(#newMethod #oldMethod)

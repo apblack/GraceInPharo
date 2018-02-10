@@ -50,12 +50,12 @@ default <typeOperator>: [&|+\-];
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
 %hierarchy Oneself (Self Outer) ;
-%hierarchy Request (ReceiverlessRequest RequestWithoutArguments DottedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
-%hierarchy DottedRequest (OneselfRequest TargetedRequest) ;
+%hierarchy Request (ImplicitRequest RequestWithoutArguments DottedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
+%hierarchy DottedRequest (OneselfRequest ExplicitRequest) ;
 %hierarchy OneselfRequest (SelfRequest OuterRequest) ;
 %hierarchy ObjectConstructor (Module) ;
 %hierarchy ReuseStatement (UseStatement InheritStatement) ;
-%hierarchy Type (Interface TypeExpression UnknownType) ;
+%hierarchy Type (Interface TypeExpression UnknownType SelfType) ;
 %hierarchy Interface (InterfaceLiteral) ;
 %hierarchy MethodHeader (AssignmentMethodHeader BinaryMethodHeader ParameterizedMethodHeader ParameterlessMethodHeader
  UnaryMethodHeader) ;
@@ -63,6 +63,8 @@ default <typeOperator>: [&|+\-];
 
 %attributes Root (scope) ;				# adds the instance variable scope to GraceRootNode, and thus to all of its subclasses 
 %attributes Identifier (isDefinition definingOccurence) ;
+%attributes Module (sourceString compilationTime name) ;
+%attributes ObjectConstructor (declaredName) ;
 
 #############
 # Statements #
@@ -144,19 +146,19 @@ MethodHeader
 	| UnaryMethodHeader 
 	;
 AssignmentMethodHeader
-	: Identifier 'id' "":="" TypeParameterList 'typeParameter' SingleMethodParameter  'parameter' 							{{ }}
+	: Identifier 'id' "":="" TypeParameterList 'typeParameters' SingleMethodParameter  'parameter' 							{{ }}
 	;
 ParameterizedMethodHeader
-	: (<id> 'part' TypeParameterList 'typeParameter' MethodParameterList 'parameterList' ) + 							{{ }}
+	: (<id> 'part' TypeParameterList 'typeParameters' MethodParameterList 'parameterList' ) + 							{{ }}
 	;
 ParameterlessMethodHeader
-	: <id> 'part' TypeParameterList 'typeParameter' 																	{{ }}
+	: <id> 'part' TypeParameterList 'typeParameters' 																	{{ }}
 	;
 BinaryMethodHeader
-	: <operator> 'operatorToken' TypeParameterList 'typeParameter' SingleMethodParameter 'parameter' 				{{ }}
+	: <operator> 'operatorToken' TypeParameterList 'typeParameters' SingleMethodParameter 'parameter' 				{{ }}
 	;
 UnaryMethodHeader
-	: ""prefix"" <operator> 'operatorToken' TypeParameterList 'typeParameter'											{{ }}
+	: ""prefix"" <operator> 'operatorToken' TypeParameterList 'typeParameters'											{{ }}
 	;
 MethodParameterList
 	:  ""("" MethodParameter 'parameter' ("","" MethodParameter 'parameter' ) * "")"" 										{{ }}
@@ -176,14 +178,14 @@ MethodParameter
 ################
 
 Request
-	: ReceiverlessRequest 
+	: ImplicitRequest 
 	| SelfRequest
 	| OuterRequest
-	| TargetedRequest
+	| ExplicitRequest
 	;
-ReceiverlessRequest
+ImplicitRequest
 	: RequestWithArguments 'request'																				{{ }}
-#      the case of a receiverless request without arguments is covered by ""Identifier""
+#      the case of an implicit request without arguments is covered by ""Identifier""
 	;
 SelfRequest
 	: <selfDot> RequestPart 'request' 																				{{ }}
@@ -191,11 +193,11 @@ SelfRequest
 OuterRequest
 	: <outerDot> + RequestPart 'request' 																			{{ }}
 	;
-TargetedRequest
-	: Term 'target' <dot> RequestPart 'request' 																		{{ }}
+ExplicitRequest
+	: Term 'receiver' <dot> RequestPart 'request' 																	{{ }}
 	;
 AssignmentRequest
-	: Term 'target' <dot> <id> 'id' "":="" Expression 'arg'  																{{ }}
+	: Term 'receiver' <dot> <id> 'id' "":="" Expression 'arg'  																{{ }}
 	| <selfDot> <id> 'id' "":="" Expression 'arg'  																		{{ }}
 	| <outerDot> + <id> 'id' "":="" Expression 'arg'  																		{{ }}
 	;
@@ -345,20 +347,27 @@ ReuseModifier
 	| AliasClause
 	;
 ExcludeClause
-	: ""exclude"" MethodHeader 'method' {{ }}
+	: ""exclude"" MethodHeader 'method' 																		{{ }}
 	;
 AliasClause
-	: ""alias"" MethodHeader 'newIdentifier' ""="" MethodHeader 'oldIdentifier' {{ }}
+	: ""alias"" MethodHeader 'newMethod' ""="" MethodHeader 'oldMethod' 											{{ }}
 	;
 	
 #######################
 #                 Types                     #	
 #######################
 
-
+Type
+	:  UnknownType
+	| SelfType
+	|  Interface
+	| Identifier 'id' TypeArguments 'typeArg' ?															{{  }}
+	| Type 'receiver' <dot> Identifier 'id' TypeArguments 'typeArg' ?  										{{  }}
+	| ""("" TypeExpression "")""																			{{  }}
+	;
 TypeDeclaration
-	: ""type"" Identifier 'id' TypeParameterList 'TypeParameterList' ""="" TypeExpression 'value' 				{{ }}
-	| ""type"" Identifier 'id' TypeParameterList 'TypeParameterList'  ""="" InterfaceLiteral 'value' 				{{ }}
+	: ""type"" Identifier 'id' TypeParameterList 'typeParameters' ""="" TypeExpression 'value' 					{{ }}
+	| ""type"" Identifier 'id' TypeParameterList 'typeParameters'  ""="" InterfaceLiteral 'value' 					{{ }}
 					# special case of bare interface literal without  reserved word
 	;
 TypeOption
@@ -378,13 +387,6 @@ TypeExpression
 TypeArguments
 	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   											{{ }}
 	;
-Type
-	:  UnknownType
-	|  Interface
-	| Identifier 'id' TypeArguments 'typeArg' ?															{{  }}
-	| Type 'receiver' <dot> Identifier 'id' TypeArguments 'typeArg' ?  										{{  }}
-	| ""("" TypeExpression "")""																			{{  }}
-	;
 Signature
 	: MethodHeader 'methIdentifier' ReturnTypeOption 'returnType'  										{{ }}
 	;
@@ -399,6 +401,9 @@ InterfaceLiteral
 	; 
 UnknownType
 	: ""Unknown""																						{{ }}
+	;
+SelfType
+	: ""SelfType""																						{{ }}
 	;
 StartString: { self state: #string . ^ nil} ;
 StartUninterp: { self state: #uninterpString . ^ nil } ;

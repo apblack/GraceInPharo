@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "GraceDottedRequestNode",
-	"category" : "Grace-Parser-NodeSubclasses",
+	"category" : "Grace-Parser",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

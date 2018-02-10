@@ -1,5 +1,26 @@
 generated
 scan18
-	self recordMatch: #(55).
+	self recordMatch: #(56).
 	self step.
-	^ self scan18X5
+	currentCharacter == $a
+		ifTrue:
+			[ ^ self scan18X1 ].
+	(currentCharacter == $'
+		or: [ (currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ currentCharacter == $_
+								or: [ (currentCharacter between: $b and: $z)
+										or: [ ('µæ' includes: currentCharacter)
+												or: [ currentCharacter =
+														(Character value: 960) ] ] ] ] ] ])
+		ifTrue: [ [ self recordMatch: #(56).
+			self step.
+			currentCharacter == $'
+				or: [ (currentCharacter between: $0 and: $9)
+						or: [ (currentCharacter between: $A and: $Z)
+								or: [ currentCharacter == $_
+										or: [ (currentCharacter between: $a and: $z)
+												or: [ ('µæ' includes: currentCharacter)
+														or: [ currentCharacter =
+																(Character value: 960) ] ] ] ] ] ] ] whileTrue ].
+	^ self reportLastMatch

@@ -1,3 +1,3 @@
 generated
 nodeVariables
-	^ #(#target #arg)
+	^ #(#receiver #arg)

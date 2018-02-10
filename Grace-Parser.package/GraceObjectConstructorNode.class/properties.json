@@ -10,7 +10,8 @@
 		"leftBraceToken",
 		"rightBraceToken",
 		"items",
-		"_s"
+		"_s",
+		"declaredName"
 	],
 	"name" : "GraceObjectConstructorNode",
 	"type" : "normal"

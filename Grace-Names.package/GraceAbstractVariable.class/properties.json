@@ -1,15 +1,14 @@
 {
-	"commentStamp" : "AndrewBlack 1/22/2018 09:58",
-	"super" : "OCAbstractVariable",
+	"commentStamp" : "AndrewBlack 1/30/2018 21:31",
+	"super" : "Object",
 	"category" : "Grace-Names",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
 		"name",
-		"startPosition",
-		"stopPosition",
-		"scanner"
+		"definingNode",
+		"attributeScope"
 	],
 	"name" : "GraceAbstractVariable",
 	"type" : "normal"

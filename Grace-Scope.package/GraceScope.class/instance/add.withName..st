@@ -1,10 +1,9 @@
-adding
+adding local
 add: aVariable withName: aName
 	| priorDeclaration |
 	self assert: (aName isKindOf: String).
 	self assert: (aVariable isKindOf: GraceAbstractVariable).
-	priorDeclaration := names at: aName ifAbsent: [ 
-		aVariable scope: self.
+	priorDeclaration := names at: aName ifAbsent: [
 		names at: aName put: aVariable.
 		^ aVariable ].
 	^ self redeclarationError: 

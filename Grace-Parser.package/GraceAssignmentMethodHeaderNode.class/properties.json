@@ -9,7 +9,7 @@
 		"id",
 		"colonEqualToken",
 		"parameter",
-		"typeParameter"
+		"typeParameters"
 	],
 	"name" : "GraceAssignmentMethodHeaderNode",
 	"type" : "normal"

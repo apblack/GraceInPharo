@@ -1,7 +1,9 @@
 generated-reduction actions
 reduceActionForType5: nodes
 	| result |
-	result := nodes at: 2.
-	result leftParenToken: (nodes at: 1).
-	result rightParenToken: (nodes at: 3).
+	result := GraceTypeNode new.
+	result receiver: (nodes at: 1).
+	result dotToken: (nodes at: 2).
+	result id: (nodes at: 3).
+	result typeArg: (nodes at: 4).
 	^ result

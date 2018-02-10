@@ -1,12 +1,12 @@
 generated
 scan1X10
-	self recordMatch: #(55).
+	self recordMatch: #(56).
 	self step.
 	currentCharacter == $a
-		ifTrue: [ self recordMatch: #(55).
+		ifTrue: [ self recordMatch: #(56).
 			self step.
 			currentCharacter == $r
-				ifTrue: [ self recordMatch: #(19 55).
+				ifTrue: [ self recordMatch: #(19 56).
 					self step.
 					(currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -16,7 +16,7 @@ scan1X10
 														or: [ ('µæ' includes: currentCharacter)
 																or: [ currentCharacter =
 																		(Character value: 960) ] ] ] ] ] ])
-						ifTrue: [ [ self recordMatch: #(55).
+						ifTrue: [ [ self recordMatch: #(56).
 							self step.
 							currentCharacter == $'
 								or: [ (currentCharacter between: $0 and: $9)
@@ -36,7 +36,7 @@ scan1X10
 														or: [ ('µæ' includes: currentCharacter)
 																or: [ currentCharacter =
 																		(Character value: 960) ] ] ] ] ] ] ])
-				ifTrue: [ [ self recordMatch: #(55).
+				ifTrue: [ [ self recordMatch: #(56).
 					self step.
 					currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -55,7 +55,7 @@ scan1X10
 										or: [ ('µæ' includes: currentCharacter)
 												or: [ currentCharacter =
 														(Character value: 960) ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(55).
+		ifTrue: [ [ self recordMatch: #(56).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

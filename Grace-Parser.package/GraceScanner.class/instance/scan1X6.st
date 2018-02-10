@@ -1,9 +1,9 @@
 generated
 scan1X6
-	self recordMatch: #(50 61).
+	self recordMatch: #(51 62).
 	self step.
 	currentCharacter == $.
-		ifTrue: [ self recordMatch: #(61).
+		ifTrue: [ self recordMatch: #(62).
 			self step.
 			currentCharacter == $.
 				ifTrue:

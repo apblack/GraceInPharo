@@ -1,0 +1,3 @@
+accessing definitions
+reusedNamesAndValuesDo: aBlock
+	reusedNames keysAndValuesDo: aBlock

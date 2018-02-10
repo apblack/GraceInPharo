@@ -7,26 +7,26 @@ scan1X23
 		ifTrue:
 			[ ^ self scan1X17 ].
 	currentCharacter == $a
-		ifTrue: [ ^ self scan6 ].
+		ifTrue: [ ^ self scan9 ].
 	currentCharacter == $c
-		ifTrue: [ ^ self scan7 ].
+		ifTrue: [ ^ self scan10 ].
 	currentCharacter == $d
-		ifTrue: [ ^ self scan14 ].
+		ifTrue: [ ^ self scan17 ].
 	currentCharacter == $e
-		ifTrue: [ ^ self scan16 ].
+		ifTrue: [ ^ self scan19 ].
 	currentCharacter == $f
 		ifTrue:
 			[ ^ self scan1X2 ].
 	currentCharacter == $i
-		ifTrue: [ ^ self scan18 ].
+		ifTrue: [ ^ self scan21 ].
 	currentCharacter == $m
-		ifTrue: [ ^ self scan22 ].
+		ifTrue: [ ^ self scan25 ].
 	currentCharacter == $o
-		ifTrue: [ ^ self scan23 ].
-	currentCharacter == $p
 		ifTrue: [ ^ self scan26 ].
+	currentCharacter == $p
+		ifTrue: [ ^ self scan29 ].
 	currentCharacter == $r
-		ifTrue: [ ^ self scan27 ].
+		ifTrue: [ ^ self scan30 ].
 	currentCharacter == $s
 		ifTrue:
 			[ ^ self scan1X1 ].

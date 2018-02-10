@@ -1,3 +1,3 @@
 accessing
 stopPosition
-	^ stopPosition
+	^ definingNode stopPosition

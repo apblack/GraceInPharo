@@ -8,7 +8,7 @@
 	"instvars" : [
 		"prefixToken",
 		"operatorToken",
-		"typeParameter"
+		"typeParameters"
 	],
 	"name" : "GraceUnaryMethodHeaderNode",
 	"type" : "normal"

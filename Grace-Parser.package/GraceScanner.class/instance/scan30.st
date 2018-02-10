@@ -1,22 +1,19 @@
 generated
 scan30
-	self recordMatch: #(55).
+	self recordMatch: #(56).
 	self step.
-	currentCharacter == $r
+	currentCharacter == $e
 		ifTrue: [ ^ self scan31 ].
-	currentCharacter == $y
-		ifTrue:
-			[ ^ self scan30X1 ].
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $q)
-										or: [ (currentCharacter between: $s and: $x)
-												or: [ ('zµæ' includes: currentCharacter)
+								or: [ (currentCharacter between: $a and: $d)
+										or: [ (currentCharacter between: $f and: $z)
+												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(55).
+		ifTrue: [ [ self recordMatch: #(56).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

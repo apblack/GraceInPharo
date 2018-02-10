@@ -5,4 +5,5 @@ createScope: ScopeClass in: aNode
 	newScope 
 		outerScope: aNode parent scope;
 		node: aNode.
-	aNode scope: newScope
+	aNode scope: newScope.
+	^ newScope

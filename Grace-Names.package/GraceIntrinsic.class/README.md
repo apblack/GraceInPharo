@@ -1,0 +1,1 @@
+Represents an intrinsic declaration, that is, a declaration that is built-in to the implementation and not defined by Grace code.  Hence, there is  no source code position.

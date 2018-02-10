@@ -8,9 +8,9 @@
 	"instvars" : [
 		"typeToken",
 		"id",
-		"TypeParameterList",
 		"equalToken",
-		"value"
+		"value",
+		"typeParameters"
 	],
 	"name" : "GraceTypeDeclarationNode",
 	"type" : "normal"

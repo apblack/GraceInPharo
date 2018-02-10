@@ -1,6 +1,6 @@
 generated
 scan2
-	self recordMatch: #(61).
+	self recordMatch: #(62).
 	self step.
 	currentCharacter == $/
 		ifTrue:
@@ -19,7 +19,7 @@ scan2
 																		and: (Character value: 8805))
 																		or: [ currentCharacter =
 																				(Character value: 8901) ] ] ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(61).
+		ifTrue: [ [ self recordMatch: #(62).
 			self step.
 			currentCharacter == $!
 				or: [ (currentCharacter between: $# and: $&)

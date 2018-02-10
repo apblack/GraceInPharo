@@ -7,9 +7,9 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"aliasToken",
-		"newIdentifier",
 		"equalToken",
-		"oldIdentifier"
+		"newMethod",
+		"oldMethod"
 	],
 	"name" : "GraceAliasClauseNode",
 	"type" : "normal"
