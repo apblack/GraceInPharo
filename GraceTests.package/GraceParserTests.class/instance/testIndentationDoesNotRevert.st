@@ -1,4 +1,4 @@
-tests-indentation
+tests - indentation
 testIndentationDoesNotRevert
 	"This layout appears in test150.
 	The newline after the return might cause the whole object  to be treated as a continuation line.

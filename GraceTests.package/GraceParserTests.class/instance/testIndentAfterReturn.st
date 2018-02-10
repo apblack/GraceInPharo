@@ -1,4 +1,4 @@
-tests-indentation
+tests - indentation
 testIndentAfterReturn
 	"This layout is based on code from test002.
 	The indent after the return might cause the whole object  to be treated as a continuation line.

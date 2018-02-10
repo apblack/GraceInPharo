@@ -1,4 +1,4 @@
-tests-indentation
+tests - indentation
 testBlockInIfCondition
 	"A continued line starts a block.  This is motivated by formatting from ast.grace, around line 1066"
 

@@ -1,4 +1,4 @@
-tests-indentation
+tests - indentation
 testTwoBlocksOpenedOnSameLine
 	"This layout appears in test165.
 	I'm not clear if this is good or bad."

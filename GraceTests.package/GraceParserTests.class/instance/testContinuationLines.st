@@ -1,4 +1,4 @@
-tests-indentation
+tests - indentation
 testContinuationLines
 	self good: #Module parse: 'print( "this is"
     ++  "a print string"
