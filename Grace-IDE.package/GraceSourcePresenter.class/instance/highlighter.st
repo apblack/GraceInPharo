@@ -9,6 +9,7 @@ highlighter
 		highlighter := GraceRegexSyntaxHighlighter new 
 								addRegex: regex
 								withAttribute: (TextColor color: (Color r: 0.82 g: 0 b: 8.5)).
-		commentRegex := String streamContents: [  :s | s << '//[^' << Character lf << ']*' ].
+		commentRegex := String streamContents: [ :s | 
+			s << '//[^' << Character lf << Character cr << ']*' ].
 		highlighter addRegex: commentRegex withAttributes: { TextColor gray . TextEmphasis italic } ] value
 	
