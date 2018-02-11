@@ -1,4 +1,4 @@
-as yet unclassified
+checks
 checkNodeHierarchy
 	| grammar hierarchyDirectives resultTree reports |
 	grammar := (GraceParser class >> #definitionComment) sourceCode readStream.

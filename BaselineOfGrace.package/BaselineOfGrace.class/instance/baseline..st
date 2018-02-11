@@ -12,9 +12,11 @@ baseline: spec
 		spec package: 'Grace-Scope'.
 		spec package: 'Grace-Names' with: [ spec requires: {'Grace-Parser' . 'Grace-Scope'} ].
 		spec package: 'Grace-Parser' with: [ spec requires: {'SmaCC' . 'Grace-Scope'} ].
+		spec package: 'Grace-HValidator' with: [ spec requires: {'SmaCC' } ].
 		spec package: 'Grace-IDE' with: [ 
 			spec requires: {'FileDialog' . 'Grace-Compiler'} ].
 		spec package: 'Grace-Compiler' with: [ 
 			spec requires: {'Grace-Parser' . 'Grace-Names'} ].
-		spec package: 'GraceTests' with: [ spec requires: {'Grace-Parser' . 'Grace-Names'} ] 
+		spec package: 'GraceTests' with: [ 
+			spec requires: {'Grace-Parser' . 'Grace-Names' . 'Grace-HValidator'} ] 
 	]
