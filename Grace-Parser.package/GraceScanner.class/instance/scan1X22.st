@@ -23,10 +23,8 @@ scan1X22
 	currentCharacter =
 		(Character value: 8594)
 		ifTrue: [ ^ self recordAndReportMatch: #(60) ].
-	currentCharacter =
-		(Character value: 10214)
-		ifTrue: [ ^ self recordAndReportMatch: #(52) ].
-	currentCharacter =
-		(Character value: 10215)
+	currentCharacter isCloseOxfordBracket
 		ifTrue: [ ^ self recordAndReportMatch: #(53) ].
+	currentCharacter isOpenOxfordBracket
+		ifTrue: [ ^ self recordAndReportMatch: #(52) ].
 	^ self scan1X21

@@ -1,4 +1,4 @@
 testing
 canBeOverridden
 	"Can this definition be overridden?"
-	^ self scope isReusable
+	^ self attributeScope isReusable and: [ self definingNode outerScope isReusable ]

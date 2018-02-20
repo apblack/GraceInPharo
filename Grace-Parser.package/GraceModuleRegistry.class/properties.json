@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "AndrewBlack 1/25/2018 22:49",
 	"super" : "Object",
-	"category" : "Grace-Compiler",
+	"category" : "Grace-Parser",
 	"classinstvars" : [
 		"uniqueInstance"
 	],

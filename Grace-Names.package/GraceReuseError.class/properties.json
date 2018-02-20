@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceCompilationError",
+	"category" : "Grace-Names-Errors",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceReuseError",
+	"type" : "normal"
+}

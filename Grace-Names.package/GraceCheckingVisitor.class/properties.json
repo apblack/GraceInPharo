@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "AndrewBlack 1/22/2018 11:33",
-	"super" : "GraceRootNodeVisitor",
-	"category" : "Grace-Names",
+	"super" : "GraceNameResolutionVisitor",
+	"category" : "Grace-Names-Visitors",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

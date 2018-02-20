@@ -9,5 +9,5 @@ checkForShadowingDefinitionOf: aDeclarationNode
 				aDeclarationNode declaredName.
 				aDeclarationNode kind.
 				priorDeclaration kind.
-				priorDeclaration lineRangePrintString } )
+				priorDeclaration rangeLongPrintString } )
 		node: aDeclarationNode

@@ -1,3 +1,3 @@
-as yet unclassified
+instance creation
 fromParseTreeNode: aGraceParseTreeNode
 	^ self new setUpFrom: aGraceParseTreeNode

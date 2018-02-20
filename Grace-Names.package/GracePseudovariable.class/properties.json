@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "AndrewBlack 1/27/2018 09:00",
 	"super" : "GraceAbstractVariable",
-	"category" : "Grace-Names",
+	"category" : "Grace-Names-Variables",
 	"classinstvars" : [
 		"isModule",
 		"isDialect"

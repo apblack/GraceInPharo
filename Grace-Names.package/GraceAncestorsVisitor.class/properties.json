@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
-	"super" : "GraceRootNodeVisitor",
-	"category" : "Grace-Names",
+	"super" : "GraceNameResolutionVisitor",
+	"category" : "Grace-Names-Visitors",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

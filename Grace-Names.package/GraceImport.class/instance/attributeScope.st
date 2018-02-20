@@ -1,4 +1,4 @@
 accessing
 attributeScope
 	^ attributeScope ifNil: [
-		attributeScope := (GraceModuleRegistry at: definingNode resource) scope ]
+		attributeScope := GraceModuleRegistry attributeScopeOf: definingNode resourceValue ]

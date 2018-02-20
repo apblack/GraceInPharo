@@ -1,0 +1,3 @@
+accessing
+resourceValue
+	^ resource value

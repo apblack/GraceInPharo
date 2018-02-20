@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "AndrewBlack 1/22/2018 09:49",
 	"super" : "GraceMethod",
-	"category" : "Grace-Names",
+	"category" : "Grace-Names-Variables",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

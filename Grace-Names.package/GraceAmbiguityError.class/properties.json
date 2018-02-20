@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "GraceCompilationError",
-	"category" : "Grace-Names",
+	"category" : "Grace-Names-Errors",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

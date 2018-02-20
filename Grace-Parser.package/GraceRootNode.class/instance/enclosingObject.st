@@ -1,4 +1,4 @@
-as yet unclassified
+accessing
 enclosingObject
 	| node |
 	node := self.

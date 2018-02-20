@@ -6,9 +6,14 @@ visitReuseStatement: aReuseStatement
 	superExpr := aReuseStatement superExpr.
 	superExprOrigin := superExpr receiver definingOccurence.
 	superExprOrigin canBeOverridden ifTrue: [ 
-		self checkerError: superExpr receiver printString ,' can''t be used as the receiver of a reuse expression, because it is possible to override it' 
+		self reuseError: 
+				('{1} can''t be used as the superExpression in {2} statement, because it can be overridden' 
+				format: {superExpr description . 
+						 	aReuseStatement isInheritStatement 
+								ifTrue: ['an inherit'] 
+								ifFalse: ['a use']} )
 			  node: superExpr ].
 	superExprOrigin isAssignable ifTrue: [ 
-		self checkerError: superExpr receiver printString ,' can''t be used as the receiver of a reuse expression, because it is a variable' 
+		self reuseError: superExpr receiver printString ,' can''t be used as the receiver of a reuse expression, because it is a variable' 
 			  node: superExpr ].
 	self flag: 'other cases to exclude?'

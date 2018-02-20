@@ -1,3 +1,3 @@
 printing
 description
-	^ 'a request'
+	^ 'a request of ', self requestedName
