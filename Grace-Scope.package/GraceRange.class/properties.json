@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "AndrewBlack 12/1/2017 14:08",
 	"super" : "Interval",
-	"category" : "Grace-Parser",
+	"category" : "Grace-Scope",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

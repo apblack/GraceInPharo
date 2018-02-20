@@ -1,30 +1,31 @@
 generated
 scan1X22
-	currentCharacter == $t
-		ifTrue: [ ^ self scan33 ].
-	currentCharacter == $u
+	currentCharacter == $=
 		ifTrue:
-			[ ^ self scan1X7 ].
-	currentCharacter == $v
+			[ ^ self scan1X9 ].
+	currentCharacter == $S
+		ifTrue: [ ^ self scan4 ].
+	currentCharacter == $U
+		ifTrue: [ ^ self scan7 ].
+	currentCharacter == $[
 		ifTrue:
-			[ ^ self scan1X10 ].
-	currentCharacter == $w
-		ifTrue: [ ^ self scan35 ].
-	currentCharacter == ${
-		ifTrue: [ ^ self recordAndReportMatch: #(8) ].
-	currentCharacter == $}
-		ifTrue: [ ^ self recordAndReportMatch: #(7) ].
-	currentCharacter =
-		(Character value: 8249)
-		ifTrue: [ ^ self recordAndReportMatch: #(32) ].
-	currentCharacter =
-		(Character value: 8250)
-		ifTrue: [ ^ self recordAndReportMatch: #(28) ].
-	currentCharacter =
-		(Character value: 8594)
-		ifTrue: [ ^ self recordAndReportMatch: #(60) ].
-	currentCharacter isCloseOxfordBracket
-		ifTrue: [ ^ self recordAndReportMatch: #(53) ].
-	currentCharacter isOpenOxfordBracket
-		ifTrue: [ ^ self recordAndReportMatch: #(52) ].
+			[ ^ self scan1X18 ].
+	currentCharacter == $]
+		ifTrue:
+			[ ^ self scan1X17 ].
+	currentCharacter == $a
+		ifTrue: [ ^ self scan9 ].
+	currentCharacter == $c
+		ifTrue: [ ^ self scan10 ].
+	currentCharacter == $d
+		ifTrue: [ ^ self scan17 ].
+	currentCharacter == $e
+		ifTrue: [ ^ self scan19 ].
+	currentCharacter == $f
+		ifTrue:
+			[ ^ self scan1X2 ].
+	currentCharacter == $i
+		ifTrue: [ ^ self scan21 ].
+	currentCharacter == $m
+		ifTrue: [ ^ self scan25 ].
 	^ self scan1X21

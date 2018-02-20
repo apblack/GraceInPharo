@@ -1,27 +1,29 @@
 generated
 scan1X21
-	(currentCharacter between: $0 and: $9)
+	currentCharacter == $o
+		ifTrue: [ ^ self scan26 ].
+	currentCharacter == $p
+		ifTrue: [ ^ self scan29 ].
+	currentCharacter == $r
+		ifTrue: [ ^ self scan30 ].
+	currentCharacter == $s
 		ifTrue:
-			[ ^ self scan1X12 ].
-	(currentCharacter == Character lf
-		or: [ currentCharacter =
-				(Character value: 8232) ])
+			[ ^ self scan1X1 ].
+	currentCharacter == $t
+		ifTrue: [ ^ self scan33 ].
+	currentCharacter == $u
 		ifTrue:
-			[ ^ self scan1X16 ].
-	(currentCharacter == Character space
-		or: [ currentCharacter = (Character value: 160) ])
+			[ ^ self scan1X7 ].
+	currentCharacter == $v
 		ifTrue:
-			[ ^ self scan1X15 ].
-	('&+|' includes: currentCharacter)
-		ifTrue:
-			[ ^ self scan1X8 ].
-	(currentCharacter <= Character tab
-		or: [ (currentCharacter between: Character pageUp and: Character newPage)
-				or: [ currentCharacter =
-						(Character value: 14)
-						or: [ currentCharacter == Character arrowDown
-								or: [ currentCharacter = (Character value: 127)
-										or: [ currentCharacter =
-												(Character value: 8211) ] ] ] ] ])
-		ifTrue: [ ^ self recordAndReportMatch: #(50) ].
+			[ ^ self scan1X10 ].
+	currentCharacter == $w
+		ifTrue: [ ^ self scan35 ].
+	currentCharacter == ${
+		ifTrue: [ ^ self recordAndReportMatch: #(8) ].
+	currentCharacter == $}
+		ifTrue: [ ^ self recordAndReportMatch: #(7) ].
+	currentCharacter =
+		(Character value: 8249)
+		ifTrue: [ ^ self recordAndReportMatch: #(32) ].
 	^ self scan1X20

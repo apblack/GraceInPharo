@@ -1,17 +1,27 @@
 generated
 scan1X20
-	(currentCharacter == $!
-		or: [ (currentCharacter between: $$ and: $%)
-				or: [ ('*<' includes: currentCharacter)
-						or: [ (currentCharacter between: $> and: $@)
-								or: [ ('\^~÷' includes: currentCharacter)
-										or: [ currentCharacter =
-												(Character value: 8800)
-												or: [ (currentCharacter
-														between: (Character value: 8804)
-														and: (Character value: 8805))
-														or: [ currentCharacter =
-																(Character value: 8901) ] ] ] ] ] ] ])
+	currentCharacter =
+		(Character value: 8250)
+		ifTrue: [ ^ self recordAndReportMatch: #(28) ].
+	currentCharacter =
+		(Character value: 8594)
+		ifTrue: [ ^ self recordAndReportMatch: #(60) ].
+	currentCharacter isCloseOxfordBracket
+		ifTrue: [ ^ self recordAndReportMatch: #(53) ].
+	currentCharacter isOpenOxfordBracket
+		ifTrue: [ ^ self recordAndReportMatch: #(52) ].
+	(currentCharacter between: $0 and: $9)
 		ifTrue:
-			[ ^ self scan1X11 ].
+			[ ^ self scan1X12 ].
+	(currentCharacter isLineSeparator
+		or: [ currentCharacter == Character lf ])
+		ifTrue:
+			[ ^ self scan1X16 ].
+	(currentCharacter == Character space
+		or: [ currentCharacter = (Character value: 160) ])
+		ifTrue:
+			[ ^ self scan1X15 ].
+	('&+|' includes: currentCharacter)
+		ifTrue:
+			[ ^ self scan1X8 ].
 	^ self scan1X19
