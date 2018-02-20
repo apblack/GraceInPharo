@@ -1,4 +1,4 @@
-tests
+constants
 testDirectory
 	"a file Reference to the directory containing the tests to be imported."
 

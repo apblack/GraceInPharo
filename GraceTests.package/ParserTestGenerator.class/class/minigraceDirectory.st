@@ -1,4 +1,4 @@
-tests
+constants
 minigraceDirectory
 	"a file Reference to the directory containing the minigrace source."
 
