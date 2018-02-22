@@ -1,5 +1,10 @@
 error handling
 badExclusion: anExcludeNode
-	^ self reuseError: 'can''t exclude ' , anExcludeNode declaredName , 
-                    ' because it is not present in the object being reused'
+	
+	| superDescription |
+	superDescription := anExcludeNode parent isInheritStatement 
+		ifTrue: [ 'the inherited object' ] 
+		ifFalse: [ 'the used trait' ].
+	^ self reuseError: 'can''t exclude ' , anExcludeNode method declaredName , 
+                    ' because it is not present in ' , superDescription
 			 node: anExcludeNode 

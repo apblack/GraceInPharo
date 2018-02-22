@@ -1,11 +1,13 @@
 scope building
 gatherUsedNames: node
-	"this method is based on the algorithm used by gathreReusedNames; node is an Object or Class"
-	| reuseNodes objScope parentScope |
-	reuseNodes := node items select: [ :each | each isReuseStatement ].
-	objScope := node scope.
-	reuseNodes do: [ :each |
-		parentScope := each superExpr objectScopeInScope: objScope.
-		objScope addLocalAndReusedFrom: parentScope.
-		each modifiers do: [ :modifier | modifier applyTo: objScope for: self ].
-	]
+	"node represents a class, objectConstructor, or module; 
+	add to node's scope the names obtained from its 'use' statements"
+	
+	| useNodes modifiedTraits |
+	useNodes := node items select: [ :each | each isUseStatement ].
+	useNodes do: [ :useNode | GraceDisambiguationVisitor new acceptNode: useNode]. 
+		"this rewrites `use x` to `use outer.x`, etc., as appropriate"
+
+	modifiedTraits := useNodes collect: [ :useNode |
+		self applyModifiersOf: useNode ].
+	node scope addLocalAndReusedFrom: (self combineTraits: modifiedTraits)

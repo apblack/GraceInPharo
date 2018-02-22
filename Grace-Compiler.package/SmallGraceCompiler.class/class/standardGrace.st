@@ -531,8 +531,21 @@ type Iterator⟦T⟧ = type {
     next -> T
 }
 
+method if (cond) then (trueAction) {
+    cond.ifTrue (trueAction)
+}
+
 method if (cond) then (trueAction) else (falseAction) {
     cond.ifTrue (trueAction) ifFalse (falseAction)
+}
+
+method if (cond1) then (trueAction1) 
+        elseif (cond2) then (trueAction2) 
+        else (fallbackAction) {
+    if (cond1) then (trueAction1) else {
+        if (cond2) then (trueAction2) 
+            else (fallbackAction)
+    }
 }
 
 method match (subject) case (case1) {

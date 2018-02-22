@@ -1,3 +1,3 @@
 generated
-definingOccurence
+definingOccurrence
 	^ definingOccurence

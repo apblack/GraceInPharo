@@ -1,3 +1,3 @@
 *grace-names
-definingOccurence
+definingOccurrence
 	^ GraceMethod fromParseTreeNode: self

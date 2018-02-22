@@ -4,7 +4,7 @@ visitReuseStatement: aReuseStatement
 	super visitReuseStatement: aReuseStatement.
 	    "do this first, so that the reuse statement is rewritten"
 	superExpr := aReuseStatement superExpr.
-	superExprOrigin := superExpr receiver definingOccurence.
+	superExprOrigin := superExpr receiver definingOccurrence.
 	superExprOrigin canBeOverridden ifTrue: [ 
 		self reuseError: 
 				('{1} can''t be used as the superExpression in {2} statement, because it can be overridden' 

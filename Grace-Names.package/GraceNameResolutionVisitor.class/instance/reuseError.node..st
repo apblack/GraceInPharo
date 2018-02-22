@@ -1,3 +1,3 @@
 error handling
 reuseError: aMessage node: aNode
-	GraceNamingError signal: aMessage withTag: aNode
+	GraceReuseError signal: aMessage withTag: aNode

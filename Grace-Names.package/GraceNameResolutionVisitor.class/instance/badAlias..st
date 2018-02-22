@@ -1,5 +1,14 @@
 error handling
 badAlias: anAliasNode
-	| old |
+	| old new superDescription |
 	old := anAliasNode oldMethod declaredName.
-	self reuseError: 'can''t define an alias for `' , old , '` because it is not present in the inherited object' node: anAliasNode
+	new := anAliasNode newMethod declaredName.
+	superDescription := anAliasNode parent isInheritStatement 
+		ifTrue: [ 'the inherited object' ] 
+		ifFalse: [ 'the used trait' ].
+	self reuseError: 
+				'can''t define `' , new , 
+				'` as an alias for `' , old , 
+				'` because `' , old , 
+				'` is not present in ' , superDescription
+		  node: anAliasNode

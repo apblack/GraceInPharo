@@ -1,0 +1,3 @@
+enumeration
+localAndReusedNamesAndValuesDo: aBlock
+	^ self

@@ -7,6 +7,7 @@ bad: startSymbol parse: aString
 	self should: [ 
 		result := super good: startSymbol as: startSymbol parse: aString.
 		result := GraceBuildScopesVisitor new acceptNode: result.
+		result := GraceReuseVisitor new acceptNode: result.
 		result checkParentLinks.
 	] raise: GraceCompilationError.
 	^ result

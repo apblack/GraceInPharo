@@ -1,0 +1,3 @@
+generated
+definingOccurrence
+	^ self enclosingObject

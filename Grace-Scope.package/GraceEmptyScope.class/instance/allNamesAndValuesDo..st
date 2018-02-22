@@ -1,0 +1,3 @@
+enumeration
+allNamesAndValuesDo: aBlock
+	^ self

@@ -1,11 +1,13 @@
 {
 	"commentStamp" : "AndrewBlack 1/22/2018 13:08",
-	"super" : "OCAbstractScope",
+	"super" : "Object",
 	"category" : "Grace-Scope",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
+		"outerScope",
+		"node",
 		"names",
 		"reusedNames",
 		"statusOfReusedNames"

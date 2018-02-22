@@ -1,3 +1,3 @@
 testing
-isTrait
+startsWithSelf
 	^ true

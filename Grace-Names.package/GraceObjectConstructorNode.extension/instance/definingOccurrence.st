@@ -1,4 +1,4 @@
 *grace-names
-definingOccurence
+definingOccurrence
 	"answers a variable object that represents me"
 	^ GracePseudovariable fromParseTreeNode: self

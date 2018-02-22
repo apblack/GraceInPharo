@@ -1,5 +1,5 @@
 adding & removing reused
-addLocalAndReusedFrom: superScope
+addLocalAndReusedFrom: anotherScope
 
-	superScope localAndReusedNamesAndValuesDo: [ :nm :def | 
+	anotherScope localAndReusedNamesAndValuesDo: [ :nm :def | 
 		self addReused: def withName: nm ]

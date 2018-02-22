@@ -1,5 +1,5 @@
 enumeration - private
-localAndReusedNamesAndValuesDo: aBlock filteringOut: closerDefinitions
+allNamesAndValuesDo: aBlock filteringOut: closerDefinitions
 	names keysAndValuesDo: [ :name :def | 
 		(closerDefinitions includes: name) ifFalse: [
 			aBlock value: name value: def.
@@ -11,4 +11,5 @@ localAndReusedNamesAndValuesDo: aBlock filteringOut: closerDefinitions
 			aBlock value: name value: def.
 			closerDefinitions add: name 
 		]
-	]
+	].
+	outerScope allNamesAndValuesDo: aBlock filteringOut: closerDefinitions

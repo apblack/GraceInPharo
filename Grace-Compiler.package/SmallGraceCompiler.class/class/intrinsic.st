@@ -3,9 +3,8 @@ intrinsic
 	^ 'dialect "none"
 
 trait graceObject { 
-    method :: (v) { binding.key(self) value(v) }
-    method == (other) { self.isMe(other) }
-    method ≠ (other) { (self == other).not }
+    method asString { ... }
+    method asDebugString { ... }
 }
 
 type Object = interface {
