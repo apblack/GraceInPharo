@@ -9,7 +9,7 @@ gatherInheritedNames: node
 	inhNodes 
 		ifEmpty: [ 
 			inhNode := nil.
-			superScope := node defaultInheritedScope.
+			superScope := self defaultInheritedScopeFor: node.
 			objScope addLocalAndReusedFrom: superScope ]
 		ifNotEmpty: [ 
 			inhNode := inhNodes first.

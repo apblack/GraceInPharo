@@ -5,7 +5,7 @@ import "parser" as parser
 import "ast" as ast
 import "util" as util
 
-def input = list [
+def input = [
     "type Person = type \{",
     "  age -> Number",
     "  name -> String",

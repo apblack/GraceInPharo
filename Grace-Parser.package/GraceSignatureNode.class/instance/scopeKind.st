@@ -1,0 +1,3 @@
+scope creation
+scopeKind
+	^ GraceMethodScope

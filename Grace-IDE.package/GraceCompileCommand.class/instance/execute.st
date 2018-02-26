@@ -2,10 +2,10 @@ execute
 execute
 
 	| sourceString |
-	sourceString := ide tabManager currentSourceCode.
+	sourceString := ide tabManager currentSourceCode asString.
 	ide messages text: ''.
-	[ SmallGraceCompiler compileModule: sourceString named: ide tabManager currentTabName ]
+	[ GraceCompiler compileModule: sourceString named: ide tabManager currentTabName ]
 		on: GraceCompilationError 
 	  	do: [ :ex |
-			self displayError: ex description at: ex tag range.
+			self displayError: ex description at: ex tag.
 			ex return: false ]

@@ -1,3 +1,3 @@
 generated
 nodeVariables
-	^ #(#methIdentifier #returnType)
+	^ #(#header #returnType)

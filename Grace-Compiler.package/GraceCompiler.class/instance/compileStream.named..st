@@ -2,7 +2,7 @@ compiling
 compileStream: aStream named: aName
 	| parseTree treeWithScopes resolved checked theSource |
 	theSource := aStream contents.
-	parseTree := GraceParser parseStream: aStream.
+	parseTree := GraceParser parseStream: aStream named: aName.
 	self assert: [ parseTree isKindOf: GraceModuleNode ].
 	parseTree name: aName; compilationTime: DateAndTime now; sourceString: theSource.
 	treeWithScopes := GraceBuildScopesVisitor new acceptNode: parseTree.

@@ -1,3 +1,0 @@
-generated
-definingOccurrence
-	^ self enclosingObject

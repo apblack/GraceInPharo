@@ -15,6 +15,7 @@
 		"indentStack",
 		"maxIndentOfContinuation",
 		"newlineChars",
+		"parser",
 		"previousMatch",
 		"priorLineBraceDepth",
 		"priorLineIndent",

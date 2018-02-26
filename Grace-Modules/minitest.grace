@@ -1,4 +1,5 @@
-dialect "none"import "gUnit" as gu
+dialect "none"
+import "gUnit" as gu
 import "standardGraceClass" as stdGraceClass
 inherit stdGraceClass.generator
 

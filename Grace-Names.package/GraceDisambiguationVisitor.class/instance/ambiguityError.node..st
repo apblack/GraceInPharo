@@ -1,8 +1,8 @@
 error handling
-ambiguityError: defs node: aGraceIdentifier
+ambiguityError: defs node: aNode
 	| msg |
 	msg := WriteStream on: String new.
-	msg << 'The name ' << aGraceIdentifier name << ' is ambiguous; it might refer to '.
+	msg << 'The name ' << aNode requestedName << ' is ambiguous; it might refer to '.
 	(defs size = 2) ifTrue: [ 
 		msg << 'either the '.
 		defs do: [ :var | 
@@ -12,6 +12,6 @@ ambiguityError: defs node: aGraceIdentifier
 			separatedBy: [  msg << ' or the ' ]
 	] ifFalse: [  ].
 	^ GraceAmbiguityError new
-		tag: aGraceIdentifier;
+		tag: aNode;
 		messageText: msg contents;
 		signal

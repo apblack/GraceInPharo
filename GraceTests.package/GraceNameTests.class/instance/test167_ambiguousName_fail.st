@@ -13,7 +13,7 @@ def o = object {
     method countOneAssertion { print "o''s assert" }
     method d { "this is d" }
 
-    assert( 1 == 1 )
+    assert( 1 == 1 )    // this is ambiguous
 }
 
 print(b)

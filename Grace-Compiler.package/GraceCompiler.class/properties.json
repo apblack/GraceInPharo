@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "SmallGraceCompiler",
+	"name" : "GraceCompiler",
 	"type" : "normal"
 }

@@ -6,8 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"methIdentifier",
-		"returnType"
+		"returnType",
+		"header"
 	],
 	"name" : "GraceSignatureNode",
 	"type" : "normal"

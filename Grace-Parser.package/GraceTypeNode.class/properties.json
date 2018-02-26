@@ -11,7 +11,8 @@
 		"dotToken",
 		"leftParenToken",
 		"rightParenToken",
-		"receiver"
+		"receiver",
+		"request"
 	],
 	"name" : "GraceTypeNode",
 	"type" : "normal"

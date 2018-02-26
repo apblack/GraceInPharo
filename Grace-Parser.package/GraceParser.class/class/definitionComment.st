@@ -362,7 +362,7 @@ Type
 	| SelfType
 	|  Interface
 	| Identifier 'id' TypeArguments 'typeArg' ?															{{  }}
-	| Type 'receiver' <dot> Identifier 'id' TypeArguments 'typeArg' ?  										{{  }}
+	| Type 'receiver' <dot> RequestWithoutArguments 'request' TypeArguments 'typeArg' ?  					{{  }}
 	| ""("" TypeExpression "")""																			{{  }}
 	;
 TypeDeclaration
@@ -388,7 +388,7 @@ TypeArguments
 	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   											{{ }}
 	;
 Signature
-	: MethodHeader 'methIdentifier' ReturnTypeOption 'returnType'  										{{ }}
+	: MethodHeader 'header' ReturnTypeOption 'returnType'  											{{ }}
 	;
 Interface
 	:  ""interface"" InterfaceLiteral																		{{ }}

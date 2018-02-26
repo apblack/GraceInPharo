@@ -1,4 +1,5 @@
-import "mirrors" as mirrorimport "collections" as collections
+import "mirrors" as mirror
+import "collections" as collections
 
 type Assertion = { 
     assert(bb:Boolean) description(str:String) -> Done
@@ -153,7 +154,7 @@ class assertion {
                 failBecause "{value.asDebugString} has type {Undesired}"
         } case { _ -> 
                 countOneAssertion 
-        }
+            }
     }
 }
 

@@ -9,4 +9,5 @@ initialize
 	sourceDirectory := self class minigraceDirectory.
 	sourceFiles := sourceDirectory children select: [ :each | '*.grace' match: each basename ].
 	dialectsDirectory := self class dialectsDirectory.
-	dialectFiles := { dialectsDirectory / 'intrinsic.grace' . dialectsDirectory / 'standardGrace.grace'}
+	dialectFiles := #('intrinsic' 'standardGrace' 'gUnit' 'minitest') collect: [ :each |
+		dialectsDirectory / (each , '.grace') ].
