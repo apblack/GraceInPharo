@@ -1,9 +1,14 @@
 dialect "none"
+import "intrinsic" as intrinsic
+import "collections" as collections
 
-class standardGraceClass {
-    trait graceObject {
-        method asString { ... }
-        method asDebugString { ... }
+class generator {
+    trait graceObject { use intrinsic.graceObject }
+
+    trait identityEquality {        method isMe(other) { required } 
+        method :: (v) { binding.key(self) value(v) }
+        method == (other) { isMe(other) }
+        method ≠ (other) { (self == other).not }
     }
 
     type Object = interface {
@@ -11,12 +16,24 @@ class standardGraceClass {
         asDebugString -> String
     }
 
-    type Type = interface {
-    }
-
     type Done = interface {
         asString -> String
         asDebugString -> String
+    }
+
+    type Type = Unknown
+
+    type Pattern = {
+        & (other:Pattern) -> Pattern
+        | (other:Pattern) -> Pattern
+        matches(value:Object) -> Boolean
+    }
+
+    type ExceptionKind = Pattern & interface {
+        refine (description:String) -> ExceptionKind
+        parent -> ExceptionKind
+        raise (message:String) -> Done
+        raise (message:String) with (argument:Object) -> Done
     }
 
     type EqualityObject = Object & interface {
@@ -24,122 +41,6 @@ class standardGraceClass {
         ==(_:Object) -> Boolean
         ≠(_:Object) -> Boolean
         hash -> Number
-    }
-
-    type Number = interface {
-
-        + (other: Number) -> Number
-        //  sum of self and other
-
-        - (other: Number) -> Number
-        //  difference of self and other
-
-        * (other: Number) -> Number
-        //  product of self and other
-
-        / (other: Number) -> Number
-        //  quotient of self divided by other (in general, a fraction).
-
-        % (other: Number) -> Number
-        //  remainder r after integer division of self by other: 0 ≤ r < self;  see also ÷
-
-        ÷ (other: Number) -> Number
-        // quotient q of self after integer division by other: self = (other * q) + r, where r = self % other
-
-        .. (last: Number) -> Sequence
-        //  the Sequence of numbers from self to last
-
-        < (other: Number) -> Boolean
-        //  true iff self is less than other
-
-        <= (other: Number) -> Boolean
-        //  true iff self is less than or equal to other
-
-        > (other: Number) -> Boolean
-        //  true iff self is greater than other
-
-        >= (other: Number) -> Boolean
-        //  true iff self is greater than or equal to other
-
-        prefix- -> Number
-        // negation of self
-
-        compare (other:Number) -> Number
-        // a three-way comparison: -1 if (self < other), 0 if (self == other), and +1 if (self > other).
-        // This is useful when writing a comparison function for sortBy
-
-        inBase (base:Number) -> String
-        // a string representing self as a base number (e.g., 5.inBase 2 = "101")
-
-        asString -> String
-        // returns a string representing self rounded to six decimal places
-
-        asDebugString -> String
-        // returns a string representing self with all available precision
-
-        asStringDecimals(d) -> String
-        // returns a string representing self with exactly d decimal digits
-
-        isInteger -> Boolean
-        // true if number is an integer, i.e., a whole number with no fractional part
-
-        truncated -> Number
-        // number obtained by throwing away self's fractional part
-
-        rounded -> Number
-        // whole number closest to self
-
-        floor -> Number
-        // largest whole number less than or equal to self
-
-        ceiling -> Number
-        // smallest number greater than or equal to self
-
-        abs -> Number
-        // the absolute value of self
-        
-        sgn -> Number
-        // the signum function: 0 when self == 0, 
-        // -1 when self < 0, and +1 when self > 0
-
-        isNaN -> Boolean
-        // true if this Number is not a number, i.e., if it is NaN
-
-        isEven -> Boolean
-        // true if this number is even
-
-        isOdd -> Boolean
-        // true if this number is odd
-        
-        sin -> Number
-        // trigonometric sine (self in radians)
-
-        cos -> Number
-        // cosine (self in radians)
-
-        tan -> Number
-        // tangent (self in radians)
-
-        asin -> Number
-        // arcsine of self (result in radians)
-
-        acos -> Number
-        // arccosine of self (result in radians)
-
-        atan -> Number
-        // arctangent of self (result in radians)
-
-        lg -> Number
-        // log base 2 of self
-
-        ln -> Number
-        // the natural log of self 
-
-        exp -> Number
-        // e raised to the power of self
-
-        log10 (n: Number) -> Number
-        // log base 10 of n
     }
 
     type String = interface {
@@ -312,6 +213,122 @@ class standardGraceClass {
         // but without surrounding quotes.
     }
 
+    type Number = interface {
+
+        + (other: Number) -> Number
+        //  sum of self and other
+
+        - (other: Number) -> Number
+        //  difference of self and other
+
+        * (other: Number) -> Number
+        //  product of self and other
+
+        / (other: Number) -> Number
+        //  quotient of self divided by other (in general, a fraction).
+
+        % (other: Number) -> Number
+        //  remainder r after integer division of self by other: 0 ≤ r < self;  see also ÷
+
+        ÷ (other: Number) -> Number
+        // quotient q of self after integer division by other: self = (other * q) + r, where r = self % other
+
+        .. (last: Number) -> Sequence
+        //  the Sequence of numbers from self to last
+
+        < (other: Number) -> Boolean
+        //  true iff self is less than other
+
+        <= (other: Number) -> Boolean
+        //  true iff self is less than or equal to other
+
+        > (other: Number) -> Boolean
+        //  true iff self is greater than other
+
+        >= (other: Number) -> Boolean
+        //  true iff self is greater than or equal to other
+
+        prefix- -> Number
+        // negation of self
+
+        compare (other:Number) -> Number
+        // a three-way comparison: -1 if (self < other), 0 if (self == other), and +1 if (self > other).
+        // This is useful when writing a comparison function for sortBy
+
+        inBase (base:Number) -> String
+        // a string representing self as a base number (e.g., 5.inBase 2 = "101")
+
+        asString -> String
+        // returns a string representing self rounded to six decimal places
+
+        asDebugString -> String
+        // returns a string representing self with all available precision
+
+        asStringDecimals(d) -> String
+        // returns a string representing self with exactly d decimal digits
+
+        isInteger -> Boolean
+        // true if number is an integer, i.e., a whole number with no fractional part
+
+        truncated -> Number
+        // number obtained by throwing away self's fractional part
+
+        rounded -> Number
+        // whole number closest to self
+
+        floor -> Number
+        // largest whole number less than or equal to self
+
+        ceiling -> Number
+        // smallest number greater than or equal to self
+
+        abs -> Number
+        // the absolute value of self
+        
+        sgn -> Number
+        // the signum function: 0 when self == 0, 
+        // -1 when self < 0, and +1 when self > 0
+
+        isNaN -> Boolean
+        // true if this Number is not a number, i.e., if it is NaN
+
+        isEven -> Boolean
+        // true if this number is even
+
+        isOdd -> Boolean
+        // true if this number is odd
+        
+        sin -> Number
+        // trigonometric sine (self in radians)
+
+        cos -> Number
+        // cosine (self in radians)
+
+        tan -> Number
+        // tangent (self in radians)
+
+        asin -> Number
+        // arcsine of self (result in radians)
+
+        acos -> Number
+        // arccosine of self (result in radians)
+
+        atan -> Number
+        // arctangent of self (result in radians)
+
+        lg -> Number
+        // log base 2 of self
+
+        ln -> Number
+        // the natural log of self 
+
+        exp -> Number
+        // e raised to the power of self
+
+        log10 (n: Number) -> Number
+        // log base 10 of n
+    }
+
     type Function0⟦ResultT⟧  = interface {
         apply -> ResultT     // Function with no arguments and a result of type ResultT
         //  matches -> Boolean   // answers true
@@ -364,16 +381,12 @@ class standardGraceClass {
         || (other: Boolean | Predicate0) -> Boolean
         // returns true when either self or other (or both) are true
     }
+
     type Binding⟦K,T⟧ = {
         key -> K
         value -> T
         hash -> Number
         ==(other) -> Boolean
-    }
-
-
-    method if (cond) then (trueBlock) else (falseBlock) {
-        cond.ifTrue (trueBlock) ifFalse (falseBlock)
     }
 
     def binding is public = object {
@@ -385,9 +398,9 @@ class standardGraceClass {
             method asString { "{k}::{v}" }
             method hash { (k.hash * 1021) + v.hash }
             method == (other) {
-                if (other.matches(Binding)) then {
+                if (Binding.match(other)) then { 
                     (k == other.key) && (v == other.value) 
-                } else {
+                } else { 
                     false 
                 }
             }
@@ -473,7 +486,6 @@ class standardGraceClass {
         removeAll(vs: Collection⟦T⟧) ifAbsent(action:Function0⟦Unknown⟧)
         pop -> T
         ++(o: List⟦T⟧) -> List⟦T⟧
-        addAll(l: Collection⟦T⟧) -> List⟦T⟧
         copy -> List⟦T⟧
         sort -> List⟦T⟧
         sortBy(sortBlock:Function2⟦T,T,Number⟧) -> List⟦T⟧
@@ -533,9 +545,132 @@ class standardGraceClass {
         next -> T
     }
 
-    method while (condition) do (action) { ... }
-    method Exception { ... }
-    method print { ... }
-    method primitiveArray(size) { ... }
-    method try (tryBlock:Function0) catch (exBlock:Function1) finally (finBlock:Function0) { ... }
+    method if (cond) then (action) {
+        cond.ifTrue (action)
+    }
+
+    method if (cond) then (trueAction) else (falseAction) {
+        cond.ifTrue (trueAction) ifFalse (falseAction)
+    }    method if (cond1) then (action1) elseif (cond2) then (action2) {
+        if (cond1) then (action1) else {
+            if (cond2) then (action2) 
+                else {}
+        }
+    }      
+    method if (cond1) then (action1) 
+            elseif (cond2) then (action2) 
+            else (fallbackAction) {
+        if (cond1) then (action1) else {
+            if (cond2) then (action2) 
+                else (fallbackAction)
+        }
+    }    method if(cond1) then (action1) elseif(cond2) then (action2)            elseif (cond3) then (action3) {
+        if (cond1) then (action1) elseif (cond2) then (action2) else {            if (cond3) then (action3)        }    }
+
+    method if (cond1) then (action1) 
+            elseif (cond2) then (action2) 
+            elseif (cond3) then (action3) 
+            else (fallbackAction) {
+        if (cond1) then (action1) elseif (cond2) then (action2) else {
+            if (cond3) then (action3) else (fallbackAction)
+        }
+    }
+
+    method if (cond1) then (action1) 
+            elseif (cond2) then (action2) 
+            elseif (cond3) then (action3)
+            elseif (cond4) then (action4)
+            else (fallbackAction) {
+        if (cond1) then (action1) elseif (cond2) then (action2) 
+              elseif (cond3) then (action3) else {
+            if (cond4) then (action4) else (fallbackAction)
+        }
+    }
+
+    method match (subject) case (case1) {
+        if (case1.matches(subject)) then {
+            case1.apply(subject)
+        } else {
+            ProgrammingError.raise "non-exhaustive match"
+        }
+    }
+
+    method match (subject) case (case1) case (case2) {
+        if (case1.matches(subject)) then {
+            case1.apply(subject)
+        } else {
+            match (subject) case (case2)
+        }
+    }    method match (subject) case (case1) case (case2) case (case3) {
+        if (case1.matches(subject)) then {
+            case1.apply(subject)
+        } else {
+            match (subject) case (case2) case (case3)
+        }
+    }    method match (subject) case (case1) case (case2) case (case3)             case (case4) {
+        if (case1.matches(subject)) then {
+            case1.apply(subject)
+        } else {
+            match (subject) case (case2) case (case3) case (case4)
+        }
+    }
+    method match (subject) case (case1) case (case2) case (case3)             case (case4) case (case5) {
+        if (case1.matches(subject)) then {
+            case1.apply(subject)
+        } else {
+            match (subject) case (case2) case (case3)                 case (case4) case (case5)
+        }
+    }
+    method try (aBlock:Procedure0) catch (catchBlock1:Function1) {
+        intrinsic.try (aBlock) catch (catchBlock1) finally { }
+    }
+
+    method try (aBlock:Procedure0) 
+            catch (catchBlock1:Function1) 
+            catch (catchBlock2:Function1) {
+        intrinsic.try (aBlock) catch {ex ->
+            match (ex) case (catchBlock1) case(catchBlock2)
+        } finally { }
+    }
+
+    method try (aBlock:Procedure0) 
+            finally (finallyBlock1:Function0) {
+        intrinsic.try (aBlock) catch {(false) ->      
+        } finally { finallyBlock1 }
+    }
+
+    method while(cond) do(block) { 
+        intrinsic.while(cond) do(block)
+    }
+
+    method for(collection) do(block) {
+        collection.do(block)
+    }
+
+    method abstract {
+        SubobjectResponsibility.raise "abstract method not overriden by subobject"
+    }
+
+    method required {
+        SubobjectResponsibility.raise "required method not overriden by subobject"
+    }
+
+    method min(a, b) {
+        if (a < b) then {a} else {b}
+    }
+
+    method max(a, b) {
+        if (a > b) then {a} else {b}
+    }
+
+    def Exception is public = intrinsic.Excpeption
+    def ProgrammingError is public = Exception.refine "ProgrammingError"
+    def SubobjectResponsibility is public = ProgrammingError.refine "SubobjectResponsibility"    def NoSuchMethod is public = ProgrammingError.refine "NoSuchMethod"
+
+    method print (string) { intrinsic.print (string) }
+
+    method dictionary { collections.dicitonary } 
+    method set { collections.set }
+    method list { collections.list }
+    method sequence { collections.sequence }    method valueOf (nullaryBlock) {        nullaryBlock.apply    }    class basicPattern {        method &(o) {            andPattern(self, o)        }        method |(o) {            orPattern(self, o)        }    }    class orPattern(p1, p2) {        use basicPattern        method matches(o) { p1.match(o) || { p2.match(o) }        }    }    class andPattern(p1, p2) {        inherit basicPattern        method matches(o) { p1.matches(o) && { p2.matches(o) } }       }    def singleton = object {        class new {            inherit basicPattern            use identityEquality            method matches(other) {                self == other            }            method ==(other) { self.isMe(other) }        }        class named(printString) {            use new            method asString { printString }        }    }
 }

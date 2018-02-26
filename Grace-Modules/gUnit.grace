@@ -1,11 +1,4 @@
-#pragma ExtendedLineups
-// GUnit.grace
-// GUnit project
-//
-// Created by Andrew Black on 6/26/12.
-
-
-import "mirrors" as mirror
+import "mirrors" as mirrorimport "collections" as collections
 
 type Assertion = { 
     assert(bb:Boolean) description(str:String) -> Done
@@ -15,8 +8,8 @@ type Assertion = {
     assert(s1:Object) shouldBe(s2:Object) -> Done
     assert(s1:Object) shouldntBe(s2:Object) -> Done
     assert(n1:Number) shouldEqual(n2:Number) within(epsilon:Number) -> Done
-    assert(b:Block) shouldRaise(desireed:ExceptionKind) -> Done
-    assert(b:Block) shouldntRaise(undesired:ExceptionKind) -> Done
+    assert(b:Procedure0) shouldRaise(desired:ExceptionKind) -> Done
+    assert(b:Procedure0) shouldntRaise(undesired:ExceptionKind) -> Done
     assert(s:Object) hasType(t:Type) -> Done
     failBecause(Message:String) -> Done
 }
@@ -145,10 +138,9 @@ class assertion {
     }
     method protocolOf(value) notCoveredBy (Q:Type) -> String is confidential {
         var s := ""
-        def vMethods = set(mirror.reflect(value).methodNames)
-        def qMethods = set(Q.methodNames)
-        def missing = set((vMethods -- qMethods).filter{m ->
-            (! m.endsWith "()object") && (m != "outer")})
+        def vMethods = mirror.reflect(value).methodNames >> set
+        def qMethods = Q.methodNames >> set
+        def missing = vMethods -- qMethods
         if (missing.isEmpty.not) then {
             s := "{Q.asDebugString} is missing "
             missing.do { each -> s := s ++ each } 
@@ -157,13 +149,11 @@ class assertion {
         return s
     }
     method deny(value) hasType (Undesired:Type) {
-        match (value)
-            case { _:Undesired ->
+        match (value) case { _:Undesired ->
                 failBecause "{value.asDebugString} has type {Undesired}"
-            }
-            case { _ -> 
+        } case { _ -> 
                 countOneAssertion 
-            }
+        }
     }
 }
 
@@ -214,7 +204,7 @@ class testCaseNamed(name') -> TestCase {
     
     method runTest {
         def methodImage = mirror.reflect(self).getMethod(name)
-        methodImage.requestWithArgs(emptySequence)
+        methodImage.requestWithArgs(sequence.empty)
     }
 
     method printBackTrace(exceptionPacket) limitedTo(testName) {
@@ -258,8 +248,8 @@ class testCaseNamed(name') -> TestCase {
 
 
 class testResult {
-    var failSet := emptySet
-    var errorSet := emptySet
+    var failSet := set.empty
+    var errorSet := set.empty
     var runCount := 0
     var currentCountOfAssertions := 0
 
@@ -296,13 +286,13 @@ class testResult {
         var output := summary
         if (numberOfFailures > 0) then {
             output := output ++ "\nFailures:"
-            for (list(failSet).sort) do { each ->
+            for (failSet.sort >> list) do { each ->
                 output := output ++ "\n    " ++ each
             }
         }
         if (numberOfErrors > 0) then {
             output := output ++ "\nErrors:"
-            for (list(errorSet).sort) do { each ->
+            for (errorSet.sort >> list) do { each ->
                 output := output ++ "\n    " ++ each
             }
         }
@@ -314,11 +304,11 @@ class testResult {
     }
     
     method errors {
-        list(errorSet).sort
+        errorSet.sort >> list
     }
     
     method erroredTestNames {
-        list(errorSet.map{each -> each.name}).sort
+        errorSet.map{each -> each.name}.sort >> list
     }
     
     method numberOfFailures {
@@ -326,11 +316,11 @@ class testResult {
     }
     
     method failures {
-        list(failSet).sort
+        failSet.sort >> list
     }
     
     method failedTestNames {
-        list(failSet.map{each -> each.name}).sort
+        failSet.map{each -> each.name}.sort >> list
     }
     
     method numberRun {
@@ -357,7 +347,7 @@ def testSuite is public = object {
         use collections.enumerable
         var name is public := ""
         def tests = [ ]
-        def testNames = emptySet
+        def testNames = set.empty
         var errorsToBeRerun := true
 
         method doNotRerunErrors { errorsToBeRerun := false }

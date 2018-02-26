@@ -1,11 +1,11 @@
-import "gUnit" as gu
+dialect "none"import "gUnit" as gu
+import "standardGraceClass" as stdGraceClass
+inherit stdGraceClass.generator
 
-inherit prelude.methods
+def MinitestError = ProgrammingError.refine "MinitestError"
 
-def MinitestError = prelude.ProgrammingError.refine "MinitestError"
-
-def nullSuite = prelude.Singleton.named "nullSuite"
-def nullBlock = prelude.Singleton.named "nullBlock"
+def nullSuite = singleton.named "nullSuite"
+def nullBlock = singleton.named "nullBlock"
 
 var currentTestSuiteForDialect := nullSuite
 var currentSetupBlockForTesting := nullBlock
@@ -59,11 +59,11 @@ method assert(n1:Number) shouldEqual (n2:Number) within (epsilon:Number) {
     mtAssertion.assert(n1) shouldEqual (n2) within (epsilon)
 }
 
-method assert(b:Block) shouldRaise (desired:prelude.ExceptionKind) {
+method assert(b:Procedure0) shouldRaise (desired:ExceptionKind) {
     mtAssertion.assert(b) shouldRaise (desired)
 }
 
-method assert(b:Block) shouldntRaise (undesired:prelude.ExceptionKind) {
+method assert(b:Procedure0) shouldntRaise (undesired:ExceptionKind) {
     mtAssertion.assert(b) shouldntRaise (undesired)
 }
 
@@ -83,7 +83,7 @@ method failBecause(reason) {
     mtAssertion.assert(false) description(reason)
 }
 
-method testSuiteNamed (name:String) with (block:Block) {
+method testSuiteNamed (name:String) with (block:Procedure0) {
     if (nullSuite ≠ currentTestSuiteForDialect) then {
         MinitestError.raise "a testSuite cannot be created inside a testSuite"
     }
@@ -101,11 +101,11 @@ method testSuiteNamed (name:String) with (block:Block) {
 method doNotRerunErrors { errorsToBeRerun := false }
 method doRerunErrors { errorsToBeRerun := true }
 
-method testSuite (block:Block) {
+method testSuite (block:Procedure0) {
     testSuiteNamed "" with (block)
 }
 
-method test(name:String) by(block:Block) {
+method test(name:String) by(block:Procedure0) {
     if (nullSuite == currentTestSuiteForDialect) then {
         MinitestError.raise "a test can be created only within a testSuite"
     }
