@@ -7,7 +7,6 @@ expectedFailures
 #test043_innerTypeDecl
 #test044_uninitialized
 #test054_selfAfterInherit
-#test106_equality
 #test122_matchingblockmulti
 #test150_collection
 #test151_math

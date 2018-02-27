@@ -1,41 +1,10 @@
 dialect "none"
 import "intrinsic" as intrinsic
-def ProgrammingError = intrinsic.Exception.refine "ProgrammingError"type Number = intrinsic.Numbertype Done = intrinsic.Donetype Boolean = intrinsic.Booleantype Object = intrinsic.Objecttype String = intrinsic.Stringmethod if (cond) then (trueAction) {    cond.ifTrue (trueAction)}method if (cond) then (trueAction) else (falseAction) {    cond.ifTrue (trueAction) ifFalse (falseAction)}method while (condition) do (action) { intrinsic.while (condition) do (action) }def BoundsError is public = ProgrammingError.refine "BoundsError"
-def IteratorExhausted is public = ProgrammingError.refine "IteratorExhausted"
-def SubobjectResponsibility is public = ProgrammingError.refine "SubobjectResponsibility"
-def NoSuchObject is public = ProgrammingError.refine "NoSuchObject"
-def RequestError is public = ProgrammingError.refine "RequestError"
-def ConcurrentModification is public = ProgrammingError.refine "ConcurrentModification"
-def SizeUnknown is public = intrinsic.Exception.refine "SizeUnknown"
+import "basicTypesTrait" as basicTypesTrait
 
-method required is confidential {
-    SubobjectResponsibility.raise "required method not overriden by subobject"
-}
+use basicTypesTrait.t
 
-
-type Function0⟦ResultT⟧  = type {
-    apply -> ResultT     // Function with no arguments and a result of type ResultT
-    //  matches -> Boolean   // answers true
-}
-type Function1⟦ArgT1, ResultT⟧ = type {
-    apply(a1:ArgT1) -> ResultT    // Function with argument a1 of type ArgT1, and a result of type ResultT
-    //  matches(a1:Object) -> Boolean   // answers true if a1 <: ArgT1
-}
-type Function2⟦ArgT1, ArgT2, ResultT⟧ = type {
-    apply(a1:ArgT1, a2:ArgT2) -> ResultT
-    // Function with arguments of types ArgT1 and ArgT2, and a result of type ResultT
-    //  matches(a1:Object, a2:Object) -> Boolean
-        // answers true if a1 <: ArgT1 and a2 <: ArgT2
-}
-type Procedure0 = Function0⟦Done⟧
-    // Function with no arguments and no result
-type Procedure1⟦ArgT1⟧ = Function1⟦ArgT1, Done⟧
-    // Function with 1 argument of type ArgT1, and no result
-type Procedure2⟦ArgT1, ArgT2⟧ = Function1⟦ArgT1, ArgT2, Done⟧
-    // Function with 2 argument of types ArgT1, and ArgT2, and no result
-type Predicate1⟦ArgT1⟧ = Function1⟦ArgT1, Boolean⟧
-    // Function with 1 argument of type ArgT1, returning Boolean
-
+def ProgrammingError = intrinsic.Exception.refine "ProgrammingError"
 
 type Collection⟦T⟧ = Object & type {
     iterator -> Iterator⟦T⟧
@@ -116,7 +85,6 @@ type List⟦T⟧ = Sequence⟦T⟧ & type {
     removeAll(vs: Collection⟦T⟧) ifAbsent(action:Function0⟦Unknown⟧)
     pop -> T
     ++(o: List⟦T⟧) -> List⟦T⟧
-    addAll(l: Collection⟦T⟧) -> List⟦T⟧
     copy -> List⟦T⟧
     sort -> List⟦T⟧
     sortBy(sortBlock:Function2⟦T,T,Number⟧) -> List⟦T⟧
@@ -175,6 +143,51 @@ type Iterator⟦T⟧ = type {
     hasNext -> Boolean
     next -> T
 }
+
+method if (cond) then (trueAction) {
+    cond.ifTrue (trueAction)
+}
+
+method if (cond) then (trueAction) else (falseAction) {
+    cond.ifTrue (trueAction) ifFalse (falseAction)
+}
+
+method while (condition) do (action) { intrinsic.while (condition) do (action) }
+
+def BoundsError is public = ProgrammingError.refine "BoundsError"
+def IteratorExhausted is public = ProgrammingError.refine "IteratorExhausted"
+def SubobjectResponsibility is public = ProgrammingError.refine "SubobjectResponsibility"
+def NoSuchObject is public = ProgrammingError.refine "NoSuchObject"
+def RequestError is public = ProgrammingError.refine "RequestError"
+def ConcurrentModification is public = ProgrammingError.refine "ConcurrentModification"
+def SizeUnknown is public = intrinsic.Exception.refine "SizeUnknown"
+
+method required is confidential {
+    SubobjectResponsibility.raise "required method not overriden by subobject"
+}
+
+type Function0⟦ResultT⟧  = type {
+    apply -> ResultT     // Function with no arguments and a result of type ResultT
+    //  matches -> Boolean   // answers true
+}
+type Function1⟦ArgT1, ResultT⟧ = type {
+    apply(a1:ArgT1) -> ResultT    // Function with argument a1 of type ArgT1, and a result of type ResultT
+    //  matches(a1:Object) -> Boolean   // answers true if a1 <: ArgT1
+}
+type Function2⟦ArgT1, ArgT2, ResultT⟧ = type {
+    apply(a1:ArgT1, a2:ArgT2) -> ResultT
+    // Function with arguments of types ArgT1 and ArgT2, and a result of type ResultT
+    //  matches(a1:Object, a2:Object) -> Boolean
+        // answers true if a1 <: ArgT1 and a2 <: ArgT2
+}
+type Procedure0 = Function0⟦Done⟧
+    // Function with no arguments and no result
+type Procedure1⟦ArgT1⟧ = Function1⟦ArgT1, Done⟧
+    // Function with 1 argument of type ArgT1, and no result
+type Procedure2⟦ArgT1, ArgT2⟧ = Function1⟦ArgT1, ArgT2, Done⟧
+    // Function with 2 argument of types ArgT1, and ArgT2, and no result
+type Predicate1⟦ArgT1⟧ = Function1⟦ArgT1, Boolean⟧
+    // Function with 1 argument of type ArgT1, returning Boolean
 
 class lazySequenceOver⟦T,R⟧ (source: Collection⟦T⟧)
         mappedBy (function:Function1⟦T, R⟧) -> Enumerable⟦R⟧ is confidential {
@@ -443,8 +456,10 @@ def emptySequence is confidential = object {
     method contains(element) { false }
     method do(block1) { intrinsic.done }
     method ==(other) {
-        if (Collection.matches(other)) then {             other.isEmpty
-        } else {            false
+        if (Collection.matches(other)) then { 
+            other.isEmpty
+        } else {
+            false
         }
     }
     class iterator {
@@ -582,7 +597,8 @@ class sequence⟦T⟧ {
             method sorted {
                 sequence.withAll(list.withAll(self).sortBy { l, r ->
                     if (l == r) then {0} else {
-                        if {l < r} then {-1} else {1}                    }
+                        if {l < r} then {-1} else {1}
+                    }
                 })
             }
             method sortedBy(sortBlock:Function2){
@@ -880,7 +896,8 @@ class list⟦T⟧ {
             method sort {
                 sortBy { l, r ->
                     if (l == r) then {0} else {
-                        if {l < r} then {-1} else {1}                    }
+                        if {l < r} then {-1} else {1}
+                    }
                 }
             }
             method sortedBy(sortBlock:Function2) {
@@ -1208,13 +1225,6 @@ class set⟦T⟧ {
     }
 }
 
-type Binding⟦K,T⟧ = {
-    key -> K
-    value -> T
-    hash -> Number
-    ==(other) -> Boolean
-}
-
 def binding is public = object {
     method asString { "the binding class" }
 
@@ -1225,9 +1235,11 @@ def binding is public = object {
         method hashcode { (k.hashcode * 1021) + v.hashcode }
         method hash { (k.hash * 1021) + v.hash }
         method == (other) {
-            if (intrinsic.Binding.matches(other)) then {
+            if (Binding.matches(other)) then {
                 (k == other.key) && (v == other.value)
-            } else {                 false            }
+            } else { 
+                false
+            }
         }
     }
 }
@@ -1736,7 +1748,8 @@ class range {
         object {
             use indexable⟦Number⟧
             if (Number.matches(lower).not) then {
-                RequestError.raise ("lower bound {lower}" ++                    " in range.from({lower})to({upper}) is not an integer")
+                RequestError.raise ("lower bound {lower}" ++
+                    " in range.from({lower})to({upper}) is not an integer")
             }
             def start = lower.truncated
             if (start != lower) then {

@@ -5,7 +5,7 @@ definitionComment
 
 ### State-specific token rules ###
 
-%states string uninterpString;
+%states string uninterpString ;
 
 string <h> : [0-9a-fA-F] ;
 string <stringSegment> : ( \\[nt\{\}\""rl_\\] | \\u<h><h><h><h> | \\U<h><h><h><h><h><h> | \xA0 

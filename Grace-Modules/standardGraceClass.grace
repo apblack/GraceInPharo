@@ -5,10 +5,12 @@ import "collections" as collections
 class generator {
     trait graceObject { use intrinsic.graceObject }
 
-    trait identityEquality {        method isMe(other) { required } 
+    trait identityEquality {
+        method isMe(other) { required } 
         method :: (v) { binding.key(self) value(v) }
         method == (other) { isMe(other) }
         method ≠ (other) { (self == other).not }
+        method hash { self.identityHash }
     }
 
     type Object = interface {
@@ -380,6 +382,8 @@ class generator {
 
         || (other: Boolean | Predicate0) -> Boolean
         // returns true when either self or other (or both) are true
+
+        ifTrue⟦T⟧ (trueBlock:Procedure0⟦T⟧) ifFalse (falseBlock:Procedure0⟦T⟧) -> T
     }
 
     type Binding⟦K,T⟧ = {
@@ -551,12 +555,16 @@ class generator {
 
     method if (cond) then (trueAction) else (falseAction) {
         cond.ifTrue (trueAction) ifFalse (falseAction)
-    }    method if (cond1) then (action1) elseif (cond2) then (action2) {
+    }
+
+
+    method if (cond1) then (action1) elseif (cond2) then (action2) {
         if (cond1) then (action1) else {
             if (cond2) then (action2) 
                 else {}
         }
-    }      
+    }
+      
     method if (cond1) then (action1) 
             elseif (cond2) then (action2) 
             else (fallbackAction) {
@@ -564,8 +572,14 @@ class generator {
             if (cond2) then (action2) 
                 else (fallbackAction)
         }
-    }    method if(cond1) then (action1) elseif(cond2) then (action2)            elseif (cond3) then (action3) {
-        if (cond1) then (action1) elseif (cond2) then (action2) else {            if (cond3) then (action3)        }    }
+    }
+
+    method if(cond1) then (action1) elseif(cond2) then (action2)
+            elseif (cond3) then (action3) {
+        if (cond1) then (action1) elseif (cond2) then (action2) else {
+            if (cond3) then (action3)
+        }
+    }
 
     method if (cond1) then (action1) 
             elseif (cond2) then (action2) 
@@ -601,24 +615,33 @@ class generator {
         } else {
             match (subject) case (case2)
         }
-    }    method match (subject) case (case1) case (case2) case (case3) {
+    }
+
+    method match (subject) case (case1) case (case2) case (case3) {
         if (case1.matches(subject)) then {
             case1.apply(subject)
         } else {
             match (subject) case (case2) case (case3)
         }
-    }    method match (subject) case (case1) case (case2) case (case3)             case (case4) {
+    }
+
+
+    method match (subject) case (case1) case (case2) case (case3) 
+            case (case4) {
         if (case1.matches(subject)) then {
             case1.apply(subject)
         } else {
             match (subject) case (case2) case (case3) case (case4)
         }
     }
-    method match (subject) case (case1) case (case2) case (case3)             case (case4) case (case5) {
+
+    method match (subject) case (case1) case (case2) case (case3) 
+            case (case4) case (case5) {
         if (case1.matches(subject)) then {
             case1.apply(subject)
         } else {
-            match (subject) case (case2) case (case3)                 case (case4) case (case5)
+            match (subject) case (case2) case (case3) 
+                case (case4) case (case5)
         }
     }
     method try (aBlock:Procedure0) catch (catchBlock1:Function1) {
@@ -643,6 +666,32 @@ class generator {
         intrinsic.while(cond) do(block)
     }
 
+    method do(action) while(condition) {
+        while {
+            action.apply
+            condition.apply
+        } do { }
+    }
+
+    method repeat(n) times(action) {
+        var ix := n
+        while {ix > 0} do {
+            ix := ix - 1
+            action.apply
+        }
+    }
+
+    method for (cs) and (ds) do (action) -> Done {
+        def dIter = ds.iterator
+        cs.do { c-> 
+            if (dIter.hasNext) then {
+                action.apply(c, dIter.next)
+            } else {
+                return
+            }
+        }
+    }
+
     method for(collection) do(block) {
         collection.do(block)
     }
@@ -663,14 +712,54 @@ class generator {
         if (a > b) then {a} else {b}
     }
 
-    def Exception is public = intrinsic.Excpeption
+    def Exception is public = intrinsic.Exception
     def ProgrammingError is public = Exception.refine "ProgrammingError"
-    def SubobjectResponsibility is public = ProgrammingError.refine "SubobjectResponsibility"    def NoSuchMethod is public = ProgrammingError.refine "NoSuchMethod"
+    def SubobjectResponsibility is public = ProgrammingError.refine "SubobjectResponsibility"
+    def NoSuchMethod is public = ProgrammingError.refine "NoSuchMethod"
 
     method print (string) { intrinsic.print (string) }
 
     method dictionary { collections.dicitonary } 
     method set { collections.set }
     method list { collections.list }
-    method sequence { collections.sequence }    method valueOf (nullaryBlock) {        nullaryBlock.apply    }    class basicPattern {        method &(o) {            andPattern(self, o)        }        method |(o) {            orPattern(self, o)        }    }    class orPattern(p1, p2) {        use basicPattern        method matches(o) { p1.match(o) || { p2.match(o) }        }    }    class andPattern(p1, p2) {        inherit basicPattern        method matches(o) { p1.matches(o) && { p2.matches(o) } }       }    def singleton = object {        class new {            inherit basicPattern            use identityEquality            method matches(other) {                self == other            }            method ==(other) { self.isMe(other) }        }        class named(printString) {            use new            method asString { printString }        }    }
+    method sequence { collections.sequence }
+
+    method valueOf (nullaryBlock) {
+        nullaryBlock.apply
+    }
+
+    class basicPattern {
+        method &(o) {
+            andPattern(self, o)
+        }
+        method |(o) {
+            orPattern(self, o)
+        }
+    }
+
+    class orPattern(p1, p2) {
+        use basicPattern
+        method matches(o) { p1.match(o) || { p2.match(o) }
+        }
+    }
+
+    class andPattern(p1, p2) {
+        inherit basicPattern
+        method matches(o) { p1.matches(o) && { p2.matches(o) } }   
+    }
+
+    def singleton = object {
+        class new {
+            inherit basicPattern
+            use identityEquality
+            method matches(other) {
+                self == other
+            }
+            method ==(other) { self.isMe(other) }
+        }
+        class named(printString) {
+            use new
+            method asString { printString }
+        }
+    }
 }
