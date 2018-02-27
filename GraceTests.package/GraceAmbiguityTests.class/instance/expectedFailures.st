@@ -8,6 +8,7 @@ expectedFailures
 #test044_uninitialized
 #test054_selfAfterInherit
 #test122_matchingblockmulti
+#test127_inheritsFromDef_fail
 #test150_collection
 #test151_math
 #test153_primitiveArray
@@ -30,6 +31,7 @@ expectedFailures
 #test192_collectionWithAndWithoutVarargs
 #test194_traitConflictResolved
 #test195_traitWithRequest_fail
+#test199_clone
 #test200_typeErrorMessage
 #test202_numberMethods
 #test203_earlyReturnWithTypeCheck

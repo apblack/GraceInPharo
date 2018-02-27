@@ -5,7 +5,7 @@ import "parser" as parser
 import "util" as util
 import "xmodule" as xmodule
 
-def input = list [
+def input = [
     "var x: Number is writable := 100",
     "def xx: Number is readable = 3",
     "method m(y: Number) -> Done \{",
@@ -25,7 +25,7 @@ def input = list [
     "\} & type \{",
     "    m5(x:Z) -> Z",
     "\}"
-]
+] >> list
 
 
 util.lines.addAll(input)

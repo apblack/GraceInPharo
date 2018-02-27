@@ -402,7 +402,10 @@ trait t {
         addAll(xs: Collection⟦T⟧) -> SelfType
     }
 
-    type Iterator⟦T⟧ = type {        hasNext -> Boolean        next -> T    }
+    type Iterator⟦T⟧ = type {
+        hasNext -> Boolean
+        next -> T
+    }
 
     type Enumerable⟦T⟧ = Collection⟦T⟧ & type {
         values -> Collection⟦T⟧
