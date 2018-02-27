@@ -139,11 +139,6 @@ type Dictionary⟦K,T⟧ = Collection⟦T⟧ & type {
     asDictionary -> Dictionary⟦K, T⟧
 }
 
-type Iterator⟦T⟧ = type {
-    hasNext -> Boolean
-    next -> T
-}
-
 method if (cond) then (trueAction) {
     cond.ifTrue (trueAction)
 }
