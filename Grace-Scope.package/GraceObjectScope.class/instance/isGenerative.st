@@ -1,4 +1,4 @@
 testing
 isGenerative
-	self halt.
-	^ self outerScope definingNode isGenerative 
+	self node isGraceClass ifTrue: [ ^ true ].
+	^ self outerScope node isMethod

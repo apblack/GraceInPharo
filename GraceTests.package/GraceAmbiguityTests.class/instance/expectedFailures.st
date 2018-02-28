@@ -8,7 +8,6 @@ expectedFailures
 #test044_uninitialized
 #test054_selfAfterInherit
 #test122_matchingblockmulti
-#test127_inheritsFromDef_fail
 #test150_collection
 #test151_math
 #test153_primitiveArray

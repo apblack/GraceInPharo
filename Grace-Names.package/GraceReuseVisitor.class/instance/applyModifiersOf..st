@@ -5,6 +5,8 @@ applyModifiersOf: aGraceReuseStatement
 
 	| result exclusions reusedScope aliases excludedNames |
 	reusedScope := self reusedScope: aGraceReuseStatement.
+	reusedScope isGenerative ifFalse: [ 
+		^ GraceReuseError notGenerative: aGraceReuseStatement ].
 	result := GraceObjectScope new.
 	result node: aGraceReuseStatement.
 	exclusions := aGraceReuseStatement modifiers

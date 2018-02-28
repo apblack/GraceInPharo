@@ -728,7 +728,7 @@ class generator {
         nullaryBlock.apply
     }
 
-    class basicPattern {
+    trait basicPattern {
         method &(o) {
             andPattern(self, o)
         }
@@ -737,29 +737,28 @@ class generator {
         }
     }
 
-    class orPattern(p1, p2) {
+    trait orPattern(p1, p2) {
         use basicPattern
         method matches(o) { p1.match(o) || { p2.match(o) }
         }
     }
 
-    class andPattern(p1, p2) {
-        inherit basicPattern
+    trait andPattern(p1, p2) {
+        inherit generator.basicPattern
         method matches(o) { p1.matches(o) && { p2.matches(o) } }   
     }
 
-    def singleton = object {
-        class new {
-            inherit basicPattern
-            use identityEquality
-            method matches(other) {
-                self == other
-            }
-            method ==(other) { self.isMe(other) }
+    trait singleton {
+        use basicPattern
+        use identityEquality
+        method matches(other) {
+            self == other
         }
-        class named(printString) {
-            use new
-            method asString { printString }
-        }
+        method ==(other) { self.isMe(other) }
+    }
+
+    trait singletonNamed(printString) {
+        use generator.new
+        method asString { printString }
     }
 }

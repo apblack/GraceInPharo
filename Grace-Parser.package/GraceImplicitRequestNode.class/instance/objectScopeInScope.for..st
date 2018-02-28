@@ -1,3 +1,3 @@
 accessing inner scopes
-objectScopeInScope: aScope 
+objectScopeInScope: aScope for: aNode
 	^ self error: 'this implicit request node should have been replaced by an explicit request node'

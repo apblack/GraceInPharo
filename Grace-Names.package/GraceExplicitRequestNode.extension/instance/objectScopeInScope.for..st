@@ -1,8 +1,8 @@
 *grace-names
-objectScopeInScope: aScope 
+objectScopeInScope: aScope for: aNode
 	| rcvr |
 	rcvr := aScope lookup: self receiverName ifAbsent: [ 
 		^ GraceNamingError signal: 'I''m sorry, I don''t know what ' , self receiver name , ' means' 
-							    withTag: self ].
-	^ self request objectScopeInScope: rcvr attributeScope
+							    withTag: aNode ].
+	^ self request objectScopeInScope: rcvr attributeScope for: aNode
 		
