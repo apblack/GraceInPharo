@@ -738,19 +738,19 @@ class generator {
     }
 
     trait orPattern(p1, p2) {
-        use basicPattern
+        use generator.basicPattern
         method matches(o) { p1.match(o) || { p2.match(o) }
         }
     }
 
     trait andPattern(p1, p2) {
-        inherit generator.basicPattern
+        use generator.basicPattern
         method matches(o) { p1.matches(o) && { p2.matches(o) } }   
     }
 
     trait singleton {
-        use basicPattern
-        use identityEquality
+        use generator.basicPattern
+        use generator.identityEquality
         method matches(other) {
             self == other
         }
@@ -758,7 +758,7 @@ class generator {
     }
 
     trait singletonNamed(printString) {
-        use generator.new
+        use generator.singleton
         method asString { printString }
     }
 }
