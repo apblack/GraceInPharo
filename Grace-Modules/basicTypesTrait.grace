@@ -71,6 +71,9 @@ trait t {
         >= (other: Number) -> Boolean
         //  true iff self is greater than or equal to other
 
+        @ (other: Number) -> Point
+        //  answers a 2D-point (x, y) with x = self, and y = other
+
         prefix- -> Number
         // negation of self
 
@@ -322,6 +325,57 @@ trait t {
         // but without surrounding quotes.
     }
 
+    type Point =  {
+
+        x -> Number
+        // the x-coordinates of self
+
+        y -> Number
+        // the y-coordinate of self
+
+        == (other:Object) -> Boolean
+        // true if other is a Point with the same x and y coordinates as self.
+
+        + (other:Point|Number) -> Point
+        // if other is a Point, returns the Point that is the vector sum of self
+        // and other, i.e. (self.x+other.x) @ (self.y+other.y).  If other is a Number,
+        // returns the point (self.x+other) @ (self.y+other)
+
+        - (other:Point|Number) -> Point
+        // if other is a Point, returns the Point that is the vector difference of
+        // self and other, i.e. (self.x-other.x) @ (self.y-other.y). If other is a
+        // Number, returns the point (self.x-other) @ (self.y-other)
+
+
+        prefix- -> Point
+        // the negation of self
+        
+        * (factor:Number) -> Point
+        // this point scaled by factor, i.e. (self.x*factor) @ (self.y*factor)
+        
+        / (factor:Number) -> Point
+        // this point scaled by 1/factor, i.e. (self.x/factor) @ (self.y/factor)
+
+        length -> Number
+        // distance from self to the origin
+
+        distanceTo(other:Point) -> Number
+        // distance from self to other
+
+        dot (other:Point) -> Number
+        ⋅ (other:Point) -> Number
+        // dot product of self and other
+
+        norm -> Point
+        // the unit vector (vecor of length 1) in same direction as self
+
+        hash -> Number
+        // the hash of self
+    }
+
+    // FunctionX types are what used to be called BlockX types; X is the number of
+    // arguments that must be supplied.
+
     type Function0⟦ResultT⟧  = interface {
         apply -> ResultT     // Function with no arguments and a result of type ResultT
         //  matches -> Boolean   // answers true
@@ -342,7 +396,7 @@ trait t {
             // answers true if a1 <: ArgT1 and a2 <: ArgT2 and a3 :< ArgT3
     }
 
-    // Procedures are fuctions that have no result
+    // Procedures are functions that have no (interesting) result
 
     type Procedure0 = Function0⟦Done⟧
         // Function with no arguments and no result
@@ -398,8 +452,8 @@ trait t {
     }
 
     type Expandable⟦T⟧ = Collection⟦T⟧ & type {
-        add(x: T) -> SelfType
-        addAll(xs: Collection⟦T⟧) -> SelfType
+        add(x: T) -> Self
+        addAll(xs: Collection⟦T⟧) -> Self
     }
 
     type Iterator⟦T⟧ = type {
@@ -411,8 +465,8 @@ trait t {
         values -> Collection⟦T⟧
         keysAndValuesDo(action:Procedure2⟦Number,T⟧) -> Done
         into(existing: Expandable⟦Unknown⟧) -> Collection⟦Unknown⟧
-        sortedBy(comparison:Function2⟦T,T,Number⟧) -> SelfType
-        sorted -> SelfType
+        sortedBy(comparison:Function2⟦T,T,Number⟧) -> Self
+        sorted -> Self
     }
 
     type Sequence⟦T⟧ = Enumerable⟦T⟧ & type {
@@ -428,6 +482,6 @@ trait t {
         indexOf⟦W⟧(elem:T)ifAbsent(action:Function0⟦W⟧) -> Number | W
         indexOf(elem:T) -> Number
         contains(elem:T) -> Boolean
-        reversed -> Sequence⟦T⟧
+        reversed -> Self
     }
 }

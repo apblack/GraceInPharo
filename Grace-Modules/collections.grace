@@ -4,78 +4,14 @@ import "basicTypesTrait" as basicTypesTrait
 
 use basicTypesTrait.t
 
-def ProgrammingError = intrinsic.Exception.refine "ProgrammingError"
-
-type Collection⟦T⟧ = Object & type {
-    iterator -> Iterator⟦T⟧
-        // the iterator on which I am based
-    isEmpty -> Boolean
-        // true if I have no elements
-    size -> Number
-        // my size (the number of elements that I contain);
-        // may raise SizeUnknown.
-    sizeIfUnknown(action: Function0⟦Number⟧)
-        // my size; if not known, then the result of applying action
-    == (other) -> Boolean
-        // other and self have the same size, and contain the same elements.
-    first -> T
-        // my first element; raises BoundsError if I have none.
-    do(body: Procedure1⟦T⟧) -> Done
-        // an internal iterator; applies body to each of my elements
-    do(body:Procedure1⟦T⟧) separatedBy(separator:Procedure0) -> Done
-        // an internal iterator; applies body to each of my elements, and applies separator in between
-    ++(other: Collection⟦T⟧) -> Collection⟦T⟧
-        // returns a new Collection over the concatenation of self and other
-    fold(binaryFunction:Function2⟦T, T, T⟧) startingWith(initial:T) -> T
-        // the left-associative fold of binaryFunction over self, starting with initial
-    map⟦U⟧(function:Function1⟦T, U⟧) -> Collection⟦U⟧
-        // returns a new iterator that yields my elements mapped by function
-    filter(condition:Predicate1⟦T⟧) -> Collection⟦T⟧
-        // returns a new iterator that yields those of my elements for which condition holds
-    >>(target: Collection⟦T⟧) -> Collection⟦T⟧
-        // returns the reverse concatentation target ++ self; used for writing pipelines
-}
-
-type Expandable⟦T⟧ = Collection⟦T⟧ & type {
-    add(x: T) -> SelfType
-    addAll(xs: Collection⟦T⟧) -> SelfType
-}
-
-type Iterable⟦T⟧ = Collection⟦T⟧    // for backward compatibility
-
-type Enumerable⟦T⟧ = Collection⟦T⟧ & type {
-    values -> Collection⟦T⟧
-    asDictionary -> Dictionary⟦Number,T⟧
-    keysAndValuesDo(action:Function2⟦Number,T,Object⟧) -> Done
-    into(existing: Expandable⟦Unknown⟧) -> Collection⟦Unknown⟧
-    sortedBy(comparison:Function2⟦T,T,Number⟧) -> SelfType
-    sorted -> SelfType
-}
-
-type Sequence⟦T⟧ = Enumerable⟦T⟧ & type {
-    size -> Number
-    at(n:Number) -> T
-    indices -> Sequence⟦Number⟧
-    keys -> Sequence⟦Number⟧
-    second -> T
-    third -> T
-    fourth -> T
-    fifth -> T
-    last -> T
-    indexOf⟦W⟧(elem:T)ifAbsent(action:Function0⟦W⟧) -> Number | W
-    indexOf(elem:T) -> Number
-    contains(elem:T) -> Boolean
-    reversed -> Sequence⟦T⟧
-}
-
 type List⟦T⟧ = Sequence⟦T⟧ & type {
-    add(x: T) -> List⟦T⟧
-    addAll(xs: Collection⟦T⟧) -> List⟦T⟧
-    addFirst(x: T) -> List⟦T⟧
-    addAllFirst(xs: Collection⟦T⟧) -> List⟦T⟧
-    addLast(x: T) -> List⟦T⟧    // same as add
-    at(ix:Number) put(v:T) -> List⟦T⟧
-    clear -> List⟦T⟧
+    add(x: T) -> Self
+    addAll(xs: Collection⟦T⟧) -> Self
+    addFirst(x: T) -> Self
+    addAllFirst(xs: Collection⟦T⟧) -> Self
+    addLast(x: T) -> Self    // same as add
+    at(ix:Number) put(v:T) -> Self
+    clear -> Self
     removeFirst -> T
     removeAt(n: Number) -> T
     removeLast -> T
@@ -84,18 +20,18 @@ type List⟦T⟧ = Sequence⟦T⟧ & type {
     removeAll(vs: Collection⟦T⟧)
     removeAll(vs: Collection⟦T⟧) ifAbsent(action:Function0⟦Unknown⟧)
     pop -> T
-    ++(o: List⟦T⟧) -> List⟦T⟧
-    copy -> List⟦T⟧
-    sort -> List⟦T⟧
-    sortBy(sortBlock:Function2⟦T,T,Number⟧) -> List⟦T⟧
-    reverse -> List⟦T⟧
-    reversed -> List⟦T⟧
+    ++(o: Collection⟦T⟧) -> Self
+    copy -> Self
+    sort -> Self
+    sortBy(sortBlock:Function2⟦T,T,Number⟧) -> Self
+    reverse -> Self
+    reversed -> Self
 }
 
 type Set⟦T⟧ = Collection⟦T⟧ & type {
     size -> Number
-    add(x:T) -> SelfType
-    addAll(elements: Collection⟦T⟧) -> SelfType
+    add(x:T) -> Self
+    addAll(elements: Collection⟦T⟧) -> Self
     remove(x: T) -> Set⟦T⟧
     remove(x: T) ifAbsent(block: Procedure0) -> Set⟦T⟧
     clear -> Set⟦T⟧
@@ -136,7 +72,6 @@ type Dictionary⟦K,T⟧ = Collection⟦T⟧ & type {
     copy -> Dictionary⟦K,T⟧
     ++ (other:Dictionary⟦K, T⟧) -> Dictionary⟦K, T⟧
     -- (other:Dictionary⟦K, T⟧) -> Dictionary⟦K, T⟧
-    asDictionary -> Dictionary⟦K, T⟧
 }
 
 method if (cond) then (trueAction) {
@@ -149,6 +84,8 @@ method if (cond) then (trueAction) else (falseAction) {
 
 method while (condition) do (action) { intrinsic.while (condition) do (action) }
 
+
+def ProgrammingError = intrinsic.Exception.refine "ProgrammingError"
 def BoundsError is public = ProgrammingError.refine "BoundsError"
 def IteratorExhausted is public = ProgrammingError.refine "IteratorExhausted"
 def SubobjectResponsibility is public = ProgrammingError.refine "SubobjectResponsibility"
@@ -160,29 +97,6 @@ def SizeUnknown is public = intrinsic.Exception.refine "SizeUnknown"
 method required is confidential {
     SubobjectResponsibility.raise "required method not overriden by subobject"
 }
-
-type Function0⟦ResultT⟧  = type {
-    apply -> ResultT     // Function with no arguments and a result of type ResultT
-    //  matches -> Boolean   // answers true
-}
-type Function1⟦ArgT1, ResultT⟧ = type {
-    apply(a1:ArgT1) -> ResultT    // Function with argument a1 of type ArgT1, and a result of type ResultT
-    //  matches(a1:Object) -> Boolean   // answers true if a1 <: ArgT1
-}
-type Function2⟦ArgT1, ArgT2, ResultT⟧ = type {
-    apply(a1:ArgT1, a2:ArgT2) -> ResultT
-    // Function with arguments of types ArgT1 and ArgT2, and a result of type ResultT
-    //  matches(a1:Object, a2:Object) -> Boolean
-        // answers true if a1 <: ArgT1 and a2 <: ArgT2
-}
-type Procedure0 = Function0⟦Done⟧
-    // Function with no arguments and no result
-type Procedure1⟦ArgT1⟧ = Function1⟦ArgT1, Done⟧
-    // Function with 1 argument of type ArgT1, and no result
-type Procedure2⟦ArgT1, ArgT2⟧ = Function1⟦ArgT1, ArgT2, Done⟧
-    // Function with 2 argument of types ArgT1, and ArgT2, and no result
-type Predicate1⟦ArgT1⟧ = Function1⟦ArgT1, Boolean⟧
-    // Function with 1 argument of type ArgT1, returning Boolean
 
 class lazySequenceOver⟦T,R⟧ (source: Collection⟦T⟧)
         mappedBy (function:Function1⟦T, R⟧) -> Enumerable⟦R⟧ is confidential {
@@ -328,13 +242,6 @@ trait collection⟦T⟧ {
 trait enumerable⟦T⟧ {
     use collection⟦T⟧
     method iterator { required }
-    method asDictionary {
-        def result = dictionary.empty
-        keysAndValuesDo { k, v ->
-            result.at(k) put(v)
-        }
-        return result
-    }
     method into(existing: Expandable⟦T⟧) -> Collection⟦T⟧ {
         def selfIterator = self.iterator
         while {selfIterator.hasNext} do {
@@ -416,13 +323,6 @@ trait indexable⟦T⟧ {
         }
         action.apply
     }
-    method asDictionary {
-        def result = dictionary.empty
-        keysAndValuesDo { k, v ->
-            result.at(k) put(v)
-        }
-        return result
-    }
     method into(existing: Expandable⟦T⟧) -> Collection⟦T⟧ {
         def selfIterator = self.iterator
         while {selfIterator.hasNext} do {
@@ -475,6 +375,9 @@ class sequence⟦T⟧ {
         emptySequence
     }
 
+    method ++ (arg: Collection⟦T⟧) {
+        withAll(arg)
+    }
     method withAll(arg: Collection⟦T⟧) {
         var sizeCertain := true
         // size might be uncertain if arg is a lazy collection.
@@ -1609,10 +1512,6 @@ class dictionary⟦K,T⟧ {
                 newCopy.at(k)put(v)
             }
             newCopy
-        }
-
-        method asDictionary {
-            self
         }
 
         method ++ (other:Collection⟦T⟧) {

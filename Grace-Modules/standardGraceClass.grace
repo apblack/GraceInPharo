@@ -1,8 +1,11 @@
 dialect "none"
 import "intrinsic" as intrinsic
 import "collections" as collections
+import "basicTypesTrait" as basicTypes
 
 class generator {
+    use basicTypes.t
+
     trait graceObject { use intrinsic.graceObject }
 
     trait identityEquality {
@@ -442,19 +445,18 @@ class generator {
     }
 
     type Expandable⟦T⟧ = Collection⟦T⟧ & type {
-        add(x: T) -> SelfType
-        addAll(xs: Collection⟦T⟧) -> SelfType
+        add(x: T) -> Self
+        addAll(xs: Collection⟦T⟧) -> Self
     }
 
     type Iterable⟦T⟧ = Collection⟦T⟧    // for backward compatibility
 
     type Enumerable⟦T⟧ = Collection⟦T⟧ & type {
         values -> Collection⟦T⟧
-        asDictionary -> Dictionary⟦Number,T⟧
         keysAndValuesDo(action:Function2⟦Number,T,Object⟧) -> Done
         into(existing: Expandable⟦Unknown⟧) -> Collection⟦Unknown⟧
-        sortedBy(comparison:Function2⟦T,T,Number⟧) -> SelfType
-        sorted -> SelfType
+        sortedBy(comparison:Function2⟦T,T,Number⟧) -> Self
+        sorted -> Self
     }
 
     type Sequence⟦T⟧ = Enumerable⟦T⟧ & type {
@@ -499,22 +501,22 @@ class generator {
 
     type Set⟦T⟧ = Collection⟦T⟧ & type {
         size -> Number
-        add(x:T) -> SelfType
-        addAll(elements: Collection⟦T⟧) -> SelfType
-        remove(x: T) -> Set⟦T⟧
-        remove(x: T) ifAbsent(block: Procedure0) -> Set⟦T⟧
-        clear -> Set⟦T⟧
+        add(x:T) -> Self
+        addAll(elements: Collection⟦T⟧) -> Self
+        remove(x: T) -> Self
+        remove(x: T) ifAbsent(block: Procedure0) -> Self
+        clear -> Self
         includes(booleanBlock: Predicate1⟦T⟧) -> Boolean
         find(booleanBlock: Predicate1⟦T⟧) ifNone(notFoundBlock: Function0⟦T⟧) -> T
-        copy -> Set⟦T⟧
+        copy -> Self
         contains(elem:T) -> Boolean
-        ** (other:Set⟦T⟧) -> Set⟦T⟧
-        -- (other:Set⟦T⟧) -> Set⟦T⟧
-        ++ (other:Set⟦T⟧) -> Set⟦T⟧
-        isSubset(s2: Set⟦T⟧) -> Boolean
+        ** (other:Set⟦T⟧) -> Self
+        -- (other:Set⟦T⟧) -> Self
+        ++ (other:Set⟦T⟧) -> Self
+        isSubset(s2: Collection⟦T⟧) -> Boolean
         isSuperset(s2: Collection⟦T⟧) -> Boolean
-        removeAll(elems: Collection⟦T⟧)
-        removeAll(elems: Collection⟦T⟧)ifAbsent(action:Procedure0) -> Set⟦T⟧
+        removeAll(elems: Collection⟦T⟧) -> Self
+        removeAll(elems: Collection⟦T⟧) ifAbsent(action:Procedure0) -> Self
         into(existing: Expandable⟦Unknown⟧) -> Collection⟦Unknown⟧
     }
 
@@ -524,13 +526,13 @@ class generator {
         containsValue(v:T) -> Boolean
         contains(elem:T) -> Boolean
         at(key:K)ifAbsent(action:Function0⟦Unknown⟧) -> Unknown
-        at(key:K)put(value:T) -> Dictionary⟦K,T⟧
+        at(key:K)put(value:T) -> Self
         at(k:K) -> T
-        removeAllKeys(keys: Collection⟦K⟧) -> Dictionary⟦K,T⟧
-        removeKey(key:K) -> Dictionary⟦K,T⟧
-        removeAllValues(removals: Collection⟦T⟧) -> Dictionary⟦K,T⟧
-        removeValue(v:T) -> Dictionary⟦K,T⟧
-        clear -> Dictionary⟦K,T⟧
+        removeAllKeys(keys: Collection⟦K⟧) -> Self
+        removeKey(key:K) -> Self
+        removeAllValues(removals: Collection⟦T⟧) -> Self
+        removeValue(v:T) -> Self
+        clear -> Self
         keys -> Enumerable⟦K⟧
         values -> Enumerable⟦T⟧
         bindings -> Enumerable⟦Binding⟦K,T⟧⟧
@@ -538,10 +540,9 @@ class generator {
         keysDo(action:Procedure1⟦K⟧) -> Done
         valuesDo(action:Procedure1⟦T⟧) -> Done
         == (other:Object) -> Boolean
-        copy -> Dictionary⟦K,T⟧
-        ++ (other:Dictionary⟦K, T⟧) -> Dictionary⟦K, T⟧
-        -- (other:Dictionary⟦K, T⟧) -> Dictionary⟦K, T⟧
-        asDictionary -> Dictionary⟦K, T⟧
+        copy -> Self
+        ++ (other:Dictionary⟦K, T⟧) -> Self
+        -- (other:Dictionary⟦K, T⟧) -> Self
     }
 
     type Iterator⟦T⟧ = type {
@@ -644,8 +645,58 @@ class generator {
                 case (case4) case (case5)
         }
     }
+
+    method match (subject) case (case1) case (case2) case (case3) 
+            case (case4) case (case5) case (case6) {
+        if (case1.matches(subject)) then {
+            case1.apply(subject)
+        } else {
+            match (subject) case (case2) case (case3) 
+                case (case4) case (case5) case (case6)
+        }
+    }
+
+    method match (subject) case (case1) case (case2) case (case3) 
+            case (case4) case (case5) case (case6) case (case7) {
+        if (case1.matches(subject)) then {
+            case1.apply(subject)
+        } else {
+            match (subject) case (case2) case (case3) 
+                case (case4) case (case5) case (case6) case (case7)
+        }
+    }
+
+    method match (subject) case (case1) case (case2) case (case3) 
+            case (case4) case (case5) case (case6) case (case7)
+            case (case8) {
+        if (case1.matches(subject)) then {
+            case1.apply(subject)
+        } else {
+            match (subject) case (case2) case (case3) 
+                case (case4) case (case5) case (case6) case (case7)
+                case (case8)
+        }
+    }
+
+    method match (subject) case (case1) case (case2) case (case3)
+            case (case4) case (case5) case (case6) case (case7)
+            case (case8) case (case9) {
+        if (case1.matches(subject)) then {
+            case1.apply(subject)
+        } else {
+            match (subject) case (case2) case (case3) 
+                case (case4) case (case5) case (case6) case (case7)
+                case (case8) case (case9)
+        }
+    }
+
     method try (aBlock:Procedure0) catch (catchBlock1:Function1) {
         intrinsic.try (aBlock) catch (catchBlock1) finally { }
+    }
+
+    method try (aBlock:Procedure0) catch (catchBlock1:Function1)
+            finally (finallyBlock:Function0) {
+        intrinsic.try (aBlock) catch (catchBlock1) finally (finallyBlock)
     }
 
     method try (aBlock:Procedure0) 
@@ -713,16 +764,19 @@ class generator {
     }
 
     def Exception is public = intrinsic.Exception
-    def ProgrammingError is public = Exception.refine "ProgrammingError"
+    def ProgrammingError is public = intrinsic.ProgrammingError
+    def UninitializedVariable is public = intrinsic.UninitializedVariable
     def SubobjectResponsibility is public = ProgrammingError.refine "SubobjectResponsibility"
     def NoSuchMethod is public = ProgrammingError.refine "NoSuchMethod"
 
+    def done = intrinsic.done
+
     method print (string) { intrinsic.print (string) }
 
-    method dictionary { collections.dicitonary } 
-    method set { collections.set }
-    method list { collections.list }
-    method sequence { collections.sequence }
+    method sequence⟦T⟧ { collections.sequence⟦T⟧ }
+    method list⟦T⟧ { collections.list⟦T⟧ }
+    method set⟦T⟧ { collections.set⟦T⟧ }
+    method dictionary⟦K,V⟧ { collections.dictionary⟦K,V⟧ }
 
     method valueOf (nullaryBlock) {
         nullaryBlock.apply
@@ -761,4 +815,5 @@ class generator {
         use generator.singleton
         method asString { printString }
     }
+
 }

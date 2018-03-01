@@ -19,7 +19,7 @@ applyModifiersOf: aGraceReuseStatement
 		collect: [ :each | each method declaredName ].
 	reusedScope
 		localAndReusedNamesAndValuesDo: [ :nm :val | 
-			((excludedNames includes: nm) or: [ val definingNode isGraceObject ])
+			((excludedNames includes: nm) or: [ val definingNode isFrom_graceObject ])
 				ifFalse: [ result add: val withName: nm ] ].
 	aliases := aGraceReuseStatement modifiers
 		select: [ :each | each isAliasClause ].

@@ -2,11 +2,11 @@ generated
 scan22X1X1X1
 	self recordMatch: #(56).
 	self step.
-	currentCharacter == $i
+	currentCharacter == $o
 		ifTrue: [ self recordMatch: #(56).
 			self step.
-			currentCharacter == $t
-				ifTrue: [ self recordMatch: #(26 56).
+			currentCharacter == $d
+				ifTrue: [ self recordMatch: #(11 56).
 					self step.
 					(currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -31,8 +31,8 @@ scan22X1X1X1
 				or: [ (currentCharacter between: $0 and: $9)
 						or: [ (currentCharacter between: $A and: $Z)
 								or: [ currentCharacter == $_
-										or: [ (currentCharacter between: $a and: $s)
-												or: [ (currentCharacter between: $u and: $z)
+										or: [ (currentCharacter between: $a and: $c)
+												or: [ (currentCharacter between: $e and: $z)
 														or: [ ('µæ' includes: currentCharacter)
 																or: [ currentCharacter =
 																		(Character value: 960) ] ] ] ] ] ] ])
@@ -51,8 +51,8 @@ scan22X1X1X1
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $h)
-										or: [ (currentCharacter between: $j and: $z)
+								or: [ (currentCharacter between: $a and: $n)
+										or: [ (currentCharacter between: $p and: $z)
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ] ])

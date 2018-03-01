@@ -2,17 +2,17 @@ generated
 scan15
 	self recordMatch: #(56).
 	self step.
-	currentCharacter == $e
-		ifTrue: [ ^ self scan16 ].
+	currentCharacter == $a
+		ifTrue:
+			[ ^ self scan15X1 ].
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $d)
-										or: [ (currentCharacter between: $f and: $z)
-												or: [ ('µæ' includes: currentCharacter)
-														or: [ currentCharacter =
-																(Character value: 960) ] ] ] ] ] ] ])
+								or: [ (currentCharacter between: $b and: $z)
+										or: [ ('µæ' includes: currentCharacter)
+												or: [ currentCharacter =
+														(Character value: 960) ] ] ] ] ] ])
 		ifTrue: [ [ self recordMatch: #(56).
 			self step.
 			currentCharacter == $'

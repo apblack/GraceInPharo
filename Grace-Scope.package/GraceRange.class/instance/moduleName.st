@@ -1,3 +1,3 @@
 accessing
 moduleName
-	^ scanner moduleName
+	^ (scanner ifNil: [^ nil]) moduleName

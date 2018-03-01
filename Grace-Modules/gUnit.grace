@@ -153,7 +153,9 @@ class assertion {
         match (value) case { _:Undesired ->
             failBecause "{value.asDebugString} has type {Undesired}"
         } case { _ -> 
-            countOneAssertion        }    }
+            countOneAssertion
+        }
+    }
 }
 
 class testCaseNamed(name') -> TestCase {

@@ -1,29 +1,27 @@
 generated
 scan1X21
-	currentCharacter == $o
-		ifTrue: [ ^ self scan26 ].
-	currentCharacter == $p
-		ifTrue: [ ^ self scan29 ].
-	currentCharacter == $r
-		ifTrue: [ ^ self scan30 ].
-	currentCharacter == $s
-		ifTrue:
-			[ ^ self scan1X1 ].
-	currentCharacter == $t
-		ifTrue: [ ^ self scan33 ].
-	currentCharacter == $u
-		ifTrue:
-			[ ^ self scan1X7 ].
-	currentCharacter == $v
-		ifTrue:
-			[ ^ self scan1X10 ].
-	currentCharacter == $w
-		ifTrue: [ ^ self scan35 ].
-	currentCharacter == ${
-		ifTrue: [ ^ self recordAndReportMatch: #(8) ].
-	currentCharacter == $}
-		ifTrue: [ ^ self recordAndReportMatch: #(7) ].
 	currentCharacter =
-		(Character value: 8249)
-		ifTrue: [ ^ self recordAndReportMatch: #(32) ].
+		(Character value: 8250)
+		ifTrue: [ ^ self recordAndReportMatch: #(28) ].
+	currentCharacter =
+		(Character value: 8594)
+		ifTrue: [ ^ self recordAndReportMatch: #(60) ].
+	currentCharacter isOpenOxfordBracket
+		ifTrue: [ ^ self recordAndReportMatch: #(52) ].
+	currentCharacter isCloseOxfordBracket
+		ifTrue: [ ^ self recordAndReportMatch: #(53) ].
+	(currentCharacter between: $0 and: $9)
+		ifTrue:
+			[ ^ self scan1X13 ].
+	(currentCharacter isLineSeparator
+		or: [ currentCharacter == Character lf ])
+		ifTrue:
+			[ ^ self scan1X17 ].
+	(currentCharacter == Character space
+		or: [ currentCharacter = (Character value: 160) ])
+		ifTrue:
+			[ ^ self scan1X16 ].
+	('&+|' includes: currentCharacter)
+		ifTrue:
+			[ ^ self scan1X9 ].
 	^ self scan1X20

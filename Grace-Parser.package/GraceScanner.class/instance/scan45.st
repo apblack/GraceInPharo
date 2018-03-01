@@ -3,30 +3,13 @@ scan45
 	self recordMatch: #(45).
 	self step.
 	currentCharacter == $\
-		ifTrue: [ ^ self scan40 ].
-	currentCharacter == $h
-		ifTrue:
-			[ ^ self scan45X2 ].
-	currentCharacter == $t
-		ifTrue: [ self recordMatch: #(45).
-			self step.
-			currentCharacter == $\
-				ifTrue: [ ^ self scan40 ].
-			currentCharacter == $e
-				ifTrue:
-					[ ^ self scan45X1 ].
-			((currentCharacter between: Character space and: $!)
-				or: [ (currentCharacter between: $# and: $[)
-						or: [ (currentCharacter between: $] and: $d)
-								or: [ (currentCharacter between: $f and: $z)
-										or: [ currentCharacter >= $| ] ] ] ])
-				ifTrue: [ ^ self scan39 ].
-			^ self reportLastMatch ].
+		ifTrue: [ ^ self scan37 ].
+	currentCharacter == $e
+		ifTrue: [ ^ self scan46 ].
 	((currentCharacter between: Character space and: $!)
 		or: [ (currentCharacter between: $# and: $[)
-				or: [ (currentCharacter between: $] and: $g)
-						or: [ (currentCharacter between: $i and: $s)
-								or: [ (currentCharacter between: $u and: $z)
-										or: [ currentCharacter >= $| ] ] ] ] ])
-		ifTrue: [ ^ self scan39 ].
+				or: [ (currentCharacter between: $] and: $d)
+						or: [ (currentCharacter between: $f and: $z)
+								or: [ currentCharacter >= $| ] ] ] ])
+		ifTrue: [ ^ self scan36 ].
 	^ self reportLastMatch

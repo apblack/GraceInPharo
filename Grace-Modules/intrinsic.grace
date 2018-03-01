@@ -21,3 +21,5 @@ method while (cond) do (block) { ... }
 method Exception { ... }
 method print { ... }
 
+def UninitializedVariable = Exception.refine "UninitializedVariable"
+

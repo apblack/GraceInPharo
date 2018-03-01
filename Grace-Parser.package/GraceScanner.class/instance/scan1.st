@@ -3,7 +3,7 @@ scan1
 	self step.
 	currentCharacter == Character cr
 		ifTrue:
-			[ ^ self scan1X14 ].
+			[ ^ self scan1X15 ].
 	currentCharacter == $"
 		ifTrue: [ ^ self recordAndReportMatch: #(61) ].
 	currentCharacter == $#
@@ -28,4 +28,4 @@ scan1
 			[ ^ self scan1X3 ].
 	currentCharacter == $;
 		ifTrue: [ ^ self recordAndReportMatch: #(16) ].
-	^ self scan1X22
+	^ self scan1X23

@@ -403,7 +403,7 @@ UnknownType
 	: ""Unknown""																						{{ }}
 	;
 SelfType
-	: ""SelfType""																						{{ }}
+	: ""Self""																							{{ }}
 	;
 StartString: { self state: #string . ^ nil} ;
 StartUninterp: { self state: #uninterpString . ^ nil } ;

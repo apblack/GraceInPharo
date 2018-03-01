@@ -2,15 +2,15 @@ generated
 scan22X1X1
 	self recordMatch: #(56).
 	self step.
-	currentCharacter == $r
+	currentCharacter == $h
 		ifTrue:
 			[ ^ self scan22X1X1X1 ].
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $q)
-										or: [ (currentCharacter between: $s and: $z)
+								or: [ (currentCharacter between: $a and: $g)
+										or: [ (currentCharacter between: $i and: $z)
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ] ])
