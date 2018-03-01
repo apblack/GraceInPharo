@@ -2,6 +2,7 @@ execute
 execute
 
 	| sourceString |
+	GraceSaveCommand executeOn: ide.
 	sourceString := ide tabManager currentSourceCode asString.
 	ide messages text: ''.
 	[ GraceCompiler compileModule: sourceString named: ide tabManager currentTabName ]
