@@ -1,6 +1,8 @@
 minigrace good
 test153_primitiveArray
-	self good: #Module parse: 'def a = primitiveArray.new(4)
+	self good: #Module parse: 'import "itrinsic" as intrinsic
+
+def a = intrinsic.primitiveArray.new(4)
 print(a)
 print(a.asDebugString)
 a.at 2 put 1

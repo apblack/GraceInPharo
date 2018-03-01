@@ -2,6 +2,7 @@ minigrace good
 test155_primitiveList
 	self good: #Module parse: '#pragma ExtendedLineups
 import "gUnit" as gU
+import "collections" as collections
 
 def primitiveListTest = object {
     class forMethod(m) {
@@ -31,26 +32,26 @@ def primitiveListTest = object {
         }
 
         method testListEqualityEmpty {
-            assert(empty == emptyList) description "empty list ≠ itself!"
-            assert(empty == emptySequence) description "empty list ≠ empty sequence"
+            assert(empty == list.empty) description "empty list ≠ itself!"
+            assert(empty == sequence.empty) description "empty list ≠ empty sequence"
         }
 
         method testListInequalityEmpty {
-            deny(empty == list [1])
-            assert(empty != list [1])
+            deny(empty == list.with 1)
+            assert(empty != list.with 1)
             deny(empty == 3)
             deny(empty == evens)
         }
 
         method testListInequalityFive {
-            deny(oneToFive == list [1, 2, 3, 4, 6])
-            assert(oneToFive != list [1, 2, 3, 4, 6])
+            deny(oneToFive == list.withAll [1, 2, 3, 4, 6])
+            assert(oneToFive != list.withAll [1, 2, 3, 4, 6])
         }
 
         method testListEqualityFive {
-            def isEqual = (oneToFive == list [1, 2, 3, 4, 5])
+            def isEqual = (oneToFive == list.withAll [1, 2, 3, 4, 5])
             assert(isEqual)
-            deny(oneToFive != list [1, 2, 3, 4, 5])
+            deny(oneToFive != list.withAll [1, 2, 3, 4, 5])
         }
         method testListClear {
             var toClear := [1, 2, 3]
@@ -126,7 +127,7 @@ def primitiveListTest = object {
         method assign21at2 { oneToFive.at 2 put 21 }
 
         method testListAtPutExtend {
-            assert (empty.at 1 put 99) shouldBe (list [99])
+            assert (empty.at 1 put 99) shouldBe (list.with 99)
             oneToFive.at 6 put 6
             assert (oneToFive.at 6) shouldBe 6
             oneToFive.at 7 put 7
@@ -167,11 +168,11 @@ def primitiveListTest = object {
         }
         method testListRemoveValue {
             def l = [3, 5, 7]
-            assert (l) shouldBe (list [3, 5, 7])
+            assert (l) shouldBe (list.withAll [3, 5, 7])
             l.remove 3
-            assert (l) shouldBe (list [5, 7])
+            assert (l) shouldBe (list.withAll [5, 7])
             l.remove 5.remove 7
-            assert (l) shouldBe (list [ ])
+            assert (l) shouldBe (list.withAll [ ])
         }
         method testListChaining {
             oneToFive.at(1)put(11).at(2)put(12).at(3)put(13)
@@ -240,7 +241,7 @@ def primitiveListTest = object {
             def lst = oneToFive ++ evens
             def siz = oneToFive.size + evens.size
             assert (lst.indices) shouldBe (1..siz)
-            assert (lst.indices) shouldBe (sequence(lst.keys))
+            assert (lst.indices) shouldBe (sequence.withAll(lst.keys))
         }
 
         method testListFold {
@@ -264,20 +265,20 @@ def primitiveListTest = object {
 
         method testListDoSeparatedBySingleton {
             var s := "nothing"
-            list [1].do { each -> assert(each)shouldBe(1) }
+            list.with 1.do { each -> assert(each)shouldBe(1) }
                 separatedBy { s := "kilroy" }
             assert (s) shouldBe ("nothing")
         }
 
         method testListKeysAndValuesDo {
-            def accum = emptyDictionary
+            def accum = dictionary.empty
             var n := 1
             evens.keysAndValuesDo { k, v ->
                 accum.at(k)put(v)
                 assert (accum.size) shouldBe (n)
                 n := n + 1
             }
-            assert(accum) shouldBe (dictionary [1::2, 2::4, 3::6, 4::8])
+            assert(accum) shouldBe (dictionary.withAll [1::2, 2::4, 3::6, 4::8])
         }
 
         method testListAsStringNonEmpty {
@@ -289,7 +290,7 @@ def primitiveListTest = object {
         }
 
         method testListMapEmpty {
-            assert (empty.map{x -> x * x}.into(emptyList)) shouldBe (emptyList)
+            assert (empty.map{x -> x * x}.into(list.empty)) shouldBe (list.empty)
         }
 
         method testListMapEvensIntoCollection {
@@ -300,13 +301,13 @@ def primitiveListTest = object {
         }
 
         method testListMapEvensIntoList {
-            def result = evens.map{x -> x + 1}.into(emptyList)
-            assert(result) shouldBe (list [3, 5, 7, 9])
+            def result = evens.map{x -> x + 1}.into(list.empty)
+            assert(result) shouldBe (list.withAll [3, 5, 7, 9])
             assert(result) hasType (List)
         }
 
         method testListMapEvensInto {
-            assert(evens.map{x -> x + 10}.into(list(evens)))
+            assert(evens.map{x -> x + 10}.into(list.withAll(evens)))
                 shouldBe [2, 4, 6, 8, 12, 14, 16, 18]
         }
 
@@ -319,12 +320,12 @@ def primitiveListTest = object {
         }
 
         method testListFilterOdd {
-            assert(oneToFive.filter{x -> (x % 2) == 1}.into(emptyList))
+            assert(oneToFive.filter{x -> (x % 2) == 1}.into(list.empty))
                 shouldBe [1, 3, 5]
         }
 
         method testListMapAndFilter {
-            assert(oneToFive.map{x -> x + 10}.filter{x -> (x % 2) == 1}.into(emptyList))
+            assert(oneToFive.map{x -> x + 10}.filter{x -> (x % 2) == 1}.into(list.empty))
                 shouldBe [11, 13, 15]
         }
 
@@ -340,23 +341,23 @@ def primitiveListTest = object {
                 description "empty iterator has an element"
         }
         method testListIteratorNonEmpty {
-            def accum = emptySet
+            def accum = set.empty
             def iter = oneToFive.iterator
             while { iter.hasNext } do { accum.add(iter.next) }
-            assert (accum) shouldBe (set [1, 2, 3, 4, 5])
+            assert (accum) shouldBe (set.withAll [1, 2, 3, 4, 5])
         }
         method testListIteratorToSetDuplicates {
-            def accum = emptySet
+            def accum = set.empty
             def iter = [1, 1, 2, 2, 4].iterator
             while { iter.hasNext } do { accum.add(iter.next) }
-            assert (accum) shouldBe (set [1, 2, 4])
+            assert (accum) shouldBe (set.withAll [1, 2, 4])
         }
         method testCollectionConcat {
             def result = evens ++ oneToFive
             assert (result) shouldBe [2, 4, 6, 8, 1, 2, 3, 4, 5]
         }
         method testListConcat {
-            def result = evens ++ list(oneToFive)
+            def result = evens ++ list.withAll(oneToFive)
             assert (result) shouldBe [2, 4, 6, 8, 1, 2, 3, 4, 5]
         }
         method testListIteratorRaisesExhausted {
@@ -364,7 +365,7 @@ def primitiveListTest = object {
             assert (iter.next) shouldBe 1
             assert (iter.next) shouldBe 2
             assert (iter.next) shouldBe 3
-            assert {iter.next} shouldRaise (IteratorExhausted)
+            assert {iter.next} shouldRaise (collections.IteratorExhausted)
         }
     }
 }

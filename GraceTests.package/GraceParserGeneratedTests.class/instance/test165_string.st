@@ -423,10 +423,10 @@ def stringTest = object {
         }
         method testMap {
             assert(vowels.map { ch -> ch.ord })
-                shouldBe (sequence [97, 101, 105, 111, 117, 121])
+                shouldBe ([97, 101, 105, 111, 117, 121])
 
             assert(concatLetters.map { ch -> ch.ord })
-                shouldBe (sequence [97, 98, 99, 100, 101, 102])
+                shouldBe ([97, 98, 99, 100, 101, 102])
         }
         method testFilter {
             assert(vowels.filter { ch -> ch < "j" }) shouldBe "aei"
