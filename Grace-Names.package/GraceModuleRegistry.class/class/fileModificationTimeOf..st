@@ -1,3 +1,3 @@
 file system
-modificationTimeOf: aModuleName
+fileModificationTimeOf: aModuleName
 	^ (self locateSourceFor: aModuleName) modificationTime 

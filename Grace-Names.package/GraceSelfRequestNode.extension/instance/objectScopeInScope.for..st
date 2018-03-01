@@ -1,4 +1,4 @@
-accessing inner scopes
+*grace-names
 objectScopeInScope: aScope for: aNode
 	self enclosingObject isModule ifFalse: [ 
 		^ GraceReuseError 

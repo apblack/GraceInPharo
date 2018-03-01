@@ -1,4 +1,4 @@
-accessing inner scopes
+*grace-names
 objectScopeInScope: aScope for: aNode
 	| receiverScope |
 	receiverScope := aScope.

@@ -1,4 +1,4 @@
-accessing inner scopes
+*grace-names
 attributeScope
 	| resultExpr |
 	resultExpr := self items last.

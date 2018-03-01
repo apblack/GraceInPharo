@@ -8,7 +8,8 @@ ambiguityError: defs node: aNode
 		defs do: [ :var | 
 				msg << var reuseString.
 				msg << var definition kind << ' declared on '.
-				msg << var definition rangeLongPrintString ] 
+				msg << var definition lineRangePrintString << ' of '.
+				msg << var moduleName ] 
 			separatedBy: [  msg << ' or the ' ]
 	] ifFalse: [  ].
 	^ GraceAmbiguityError new

@@ -1,3 +1,3 @@
 accessing
 attributeScopeOf: aModule
-	^ (self uniqueInstance at: aModule ifAbsent: [self tryToCompile: aModule]) scope
+	^ (self uniqueInstance lookup: aModule ifAbsent: [self tryToCompile: aModule]) scope

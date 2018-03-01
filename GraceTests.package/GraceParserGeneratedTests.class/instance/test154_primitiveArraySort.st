@@ -1,6 +1,8 @@
 minigrace good
 test154_primitiveArraySort
-	self good: #Module parse: 'def a = primitiveArray.new(6)
+	self good: #Module parse: 'import "intrinsic" as intrinsic
+
+def a = intrinsic.primitiveArray.new(6)
 a.at 0 put 17
 a.at 1 put 20
 a.at 2 put 10
@@ -13,14 +15,14 @@ a.sortInitial 4 by {l, r ->
 }
 print(a)
 
-def b = primitiveArray.new(0)
+def b = intrinsic.primitiveArray.new(0)
 print(b)
 b.sortInitial 0 by {l, r ->
     if (l == r) then {0} elseif {l < r} then {-1} else {1}
 }
 print(b)
 
-def c = primitiveArray.new(9)
+def c = intrinsic.primitiveArray.new(9)
 c.at 0 put "a"
 c.at 1 put "w"
 c.at 2 put "q"

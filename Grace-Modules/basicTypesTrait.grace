@@ -327,11 +327,9 @@ trait t {
 
     type Point =  {
 
-        x -> Number
-        // the x-coordinates of self
+        x -> Number  // the x-coordinates of self
 
-        y -> Number
-        // the y-coordinate of self
+        y -> Number  // the y-coordinate of self
 
         == (other:Object) -> Boolean
         // true if other is a Point with the same x and y coordinates as self.

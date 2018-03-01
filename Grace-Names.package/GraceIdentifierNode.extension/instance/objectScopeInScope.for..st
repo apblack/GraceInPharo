@@ -1,4 +1,4 @@
-accessing inner scopes
+*grace-names
 objectScopeInScope: aGraceObjectScope for: aNode
 	self definingOccurence canBeOrginOfSuperExpression ifFalse: [
 		^ GraceReuseError 

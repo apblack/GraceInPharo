@@ -765,11 +765,13 @@ class generator {
 
     def Exception is public = intrinsic.Exception
     def ProgrammingError is public = intrinsic.ProgrammingError
+    def TypeError is public = intrinsic.TypeError
     def UninitializedVariable is public = intrinsic.UninitializedVariable
     def SubobjectResponsibility is public = ProgrammingError.refine "SubobjectResponsibility"
     def NoSuchMethod is public = ProgrammingError.refine "NoSuchMethod"
 
     def done = intrinsic.done
+    def π = 3.1415926535897932
 
     method print (string) { intrinsic.print (string) }
 

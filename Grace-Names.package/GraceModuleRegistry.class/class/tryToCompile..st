@@ -1,8 +1,8 @@
 compiling modules
-tryToCompile: aModule
+tryToCompile: aModuleName
 
 	| compiler source |
 	compiler := Smalltalk globals at: #GraceCompiler 
 						ifAbsent: [^ GraceCompilationError signal: 'compiler not found' ].
-	source := self locateSourceFor: aModule.
-	^ compiler compileModule: source readStream named: aModule
+	source := self locateSourceFor: aModuleName.
+	^ compiler compileModule: source readStream named: aModuleName

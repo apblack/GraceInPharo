@@ -10,8 +10,8 @@ testSuite {
         assert {hook} shouldRaise (SubobjectResponsibility)
     }
     
-    def v1 = Singleton.new
-    def v2 = Singleton.new
+    def v1 = singleton
+    def v2 = singleton
     
     test "singleton equals itself" by {
         assert (v1 == v1) description "singleton ≠ itself!"
@@ -29,8 +29,8 @@ testSuite {
         deny (v1.match(v2)) description "singleton matches other!"
     }
 
-    def n1 = Singleton.named "n1"
-    def n2 = Singleton.named "n2"
+    def n1 = singletonNamed "n1"
+    def n2 = singletonNamed "n2"
     
     test "named singleton equals itself" by {
         assert (n1 == n1) description "singleton ≠ itself!"
@@ -58,16 +58,16 @@ testSuite {
     
     test "Do-While once" by {
         var v := 4
-        def accum = emptyList
+        def accum = list.empty
         do { accum.addLast(v) ; v := v - 1 } while { false }
-        assert (accum) shouldBe (list [4])
+        assert (accum) shouldBe (list.with 4)
     }   
 
     test "Do-While many" by {
         var v := 4
-        def accum = emptyList
-        do { accum.addLast(v) ; v := v - 1 } while { accum.size < 4}
-        assert (accum) shouldBe (list [4, 3, 2, 1])
+        def accum = list.empty
+        do { accum.addLast(v) ; v := v - 1 } while { accum.size < 4 }
+        assert (accum) shouldBe ([4, 3, 2, 1] >> list)
     }
 
 }

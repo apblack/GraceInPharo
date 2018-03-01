@@ -7,7 +7,7 @@ trait graceObject {
     method identityHash is confidential { ... }
 }
 
-def done = object {
+def done is public = object {
     method asString { "done" }
     method asDebugString { asString }
 }
@@ -21,5 +21,13 @@ method while (cond) do (block) { ... }
 method Exception { ... }
 method print { ... }
 
-def UninitializedVariable = Exception.refine "UninitializedVariable"
+
+def ProgrammingError is public = Exception.refine "ProgrammingError"
+def UninitializedVariable is public = ProgrammingError.refine "UninitializedVariable"
+
+def TypeError is public = ProgrammingError.refine "TypeError"
+
+def RequestError is public = ProgrammingError.refine "RequestError"
+
+def NoSuchMethod is public = ProgrammingError.refine "NoSuchMethod"
 

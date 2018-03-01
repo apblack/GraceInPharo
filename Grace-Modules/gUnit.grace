@@ -1,4 +1,4 @@
-import "mirrors" as mirror
+import "mirror" as mirror
 import "collections" as collections
 
 type Assertion = { 
