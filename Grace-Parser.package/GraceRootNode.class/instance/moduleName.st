@@ -1,3 +1,3 @@
 module access
 moduleName
-	^ self enclosingModuleNode name
+	^ self enclosingModuleNode name ifNil: [ 'un-named' ]

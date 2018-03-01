@@ -768,7 +768,12 @@ class generator {
     def TypeError is public = intrinsic.TypeError
     def UninitializedVariable is public = intrinsic.UninitializedVariable
     def SubobjectResponsibility is public = ProgrammingError.refine "SubobjectResponsibility"
-    def NoSuchMethod is public = ProgrammingError.refine "NoSuchMethod"
+    def NoSuchMethod is public = intrinsic.NoSuchMethod
+
+    def RequestError is public = intrinsic.RequestError
+
+    def NoSuchObject is public = collections.NoSuchObject
+    def BoundsError is public = collections.BoundsError
 
     def done = intrinsic.done
     def π = 3.1415926535897932
@@ -779,6 +784,7 @@ class generator {
     method list⟦T⟧ { collections.list⟦T⟧ }
     method set⟦T⟧ { collections.set⟦T⟧ }
     method dictionary⟦K,V⟧ { collections.dictionary⟦K,V⟧ }
+    method range { collections.range }
 
     method valueOf (nullaryBlock) {
         nullaryBlock.apply

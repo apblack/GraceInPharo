@@ -1,5 +1,5 @@
 dialect "none"
-import "standardGraceClass" as stdClass
+import "standardGraceClass" as standard
 
-use stdClass.generator
+use standard.generator
 

@@ -1,7 +1,8 @@
 minigrace good
 test150_collection
 	self good: #Module parse: 'import "gUnit" as gU
-
+import "collections" as collections
+def ConcurrentModification = collections.ConcurrentModification
 def bindingTest = object {
     class forMethod(m) {
         inherit gU.testCaseNamed(m)
@@ -114,15 +115,15 @@ def rangeTest = object {
             deny (rangeUp.contains "foo") description "{rangeUp} contains \"foo\""
         }
         method testRangeElementsUp {
-            def elements = emptyList
+            def elements = list.empty
             for (rangeUp) do {each -> elements.add(each)}
-            assert (elements) shouldBe (list [3, 4, 5, 6])
-            assert (list.withAll(rangeUp)) shouldBe (list [3, 4, 5, 6])
+            assert (elements) shouldBe (list.withAll [3, 4, 5, 6])
+            assert (list.withAll(rangeUp)) shouldBe (list.withAll [3, 4, 5, 6])
         }
         method testRangeElementsUpWithFold {
             def elements = rangeUp.fold {acc, each -> acc.add(each)}
-                startingWith (emptyList)
-            assert (elements) shouldBe (list [3, 4, 5, 6])
+                startingWith (list.empty)
+            assert (elements) shouldBe (list.withAll [3, 4, 5, 6])
         }
         method testRangeUpFold {
             def sum = rangeUp.fold {acc, each -> acc + each} startingWith 0
@@ -142,34 +143,34 @@ def rangeTest = object {
         }
 
         method testRangeElementsDown {
-            def elements = emptyList
+            def elements = list.empty
             for (rangeDown) do {each -> elements.add(each)}
-            assert (elements) shouldBe (list [10, 9, 8, 7])
+            assert (elements) shouldBe (list.withAll [10, 9, 8, 7])
         }
         method testRangeElementsEmptyUp {
-            def elements = emptyList
+            def elements = list.empty
             for (emptyUp) do {each -> elements.add(each)}
-            assert (elements) shouldBe (emptyList)
+            assert (elements) shouldBe (list.empty)
         }
         method testRangeElementsEmptyDown {
-            def elements = emptyList
+            def elements = list.empty
             for (emptyDown) do {each -> elements.add(each)}
-            assert (elements) shouldBe (emptyList)
+            assert (elements) shouldBe (list.empty)
         }
         method testRangeElementsSingletonUp {
-            def elements = emptyList
+            def elements = list.empty
             for (singleUp) do {each -> elements.add(each)}
-            assert (elements) shouldBe (list [4])
+            assert (elements) shouldBe (list.withAll [4])
         }
         method testRangeElementsSingletonDown {
-            def elements = emptyList
+            def elements = list.empty
             for (singleDown) do {each -> elements.add(each)}
-            assert (elements) shouldBe (list [7])
+            assert (elements) shouldBe (list.withAll [7])
         }
         method testRangeElementsDoUp {
-            def elements = emptyList
+            def elements = list.empty
             (rangeUp).do {each -> elements.add(each)}
-            assert (elements) shouldBe (list [3, 4, 5, 6])
+            assert (elements) shouldBe (list.withAll [3, 4, 5, 6])
         }
         method testRangeKeysAndValues {
             var s := ""
@@ -182,9 +183,9 @@ def rangeTest = object {
             assert (s) shouldBe ""
         }
         method testRangeElementsDoDown {
-            def elements = emptyList
+            def elements = list.empty
             (rangeDown).do {each -> elements.add(each)}
-            assert (elements) shouldBe (list [10, 9, 8, 7])
+            assert (elements) shouldBe (list.withAll [10, 9, 8, 7])
         }
         method testRangeKeysAndValuesDown {
             var s := ""
@@ -204,10 +205,10 @@ def rangeTest = object {
             def rangeFilteredIterator = rangeFiltered.iterator
             assert(rangeFilteredIterator) hasType (Iterator)
             deny(rangeFilteredIterator.hasNext) description "empty rangeFilteredIterator hasNext!"
-            assert{rangeFilteredIterator.next} shouldRaise (IteratorExhausted)
+            assert{rangeFilteredIterator.next} shouldRaise (collections.IteratorExhausted)
         }
         method testRangeFilterEmptyList {
-            assert (rangeUp.filter{each -> each > 10}.into (emptyList)) shouldBe (emptyList)
+            assert (rangeUp.filter{each -> each > 10}.into (list.empty)) shouldBe (list.empty)
         }
         method testRangeFilterEmpty {
             assert (rangeUp.filter{each -> each > 10}.isEmpty)
@@ -217,9 +218,9 @@ def rangeTest = object {
             assert (rangeDown.reversed) shouldBe (range.from(7)to(10))
         }
         method testRangeEqualityWithList {
-            assert(rangeDown == list [10,9,8,7])
-                description "range.from 10 downTo 7 ≠ list [10, 9, 8 ,7]"
-            assert(emptyUp == emptyList)
+            assert(rangeDown == list.withAll [10,9,8,7])
+                description "range.from 10 downTo 7 ≠ list.withAll [10, 9, 8 ,7]"
+            assert(emptyUp == list.empty)
                 description "The empty range was not equal to the empty list"
         }
         method testRangeInequalityWithNumber {
@@ -254,11 +255,11 @@ def rangeTest = object {
         }
         method testRangeUpAsDictionary {
             assert(rangeUp.asDictionary) shouldBe
-                (dictionary [1::3, 2::4, 3::5, 4::6])
+                (dictionary.withAll [1::3, 2::4, 3::5, 4::6])
         }
         method testRangeDownAsDictionary {
             assert(rangeDown.asDictionary) shouldBe
-                (dictionary [1::10, 2::9, 3::8, 4::7])
+                (dictionary.withAll [1::10, 2::9, 3::8, 4::7])
         }
     }
 }
@@ -272,41 +273,41 @@ def sequenceTest = object {
         var empty
 
         method setup {
-            oneToFive := sequence [1, 2, 3, 4, 5]
-            evens := sequence [2, 4, 6, 8]
-            empty := emptySequence
+            oneToFive := sequence.withAll [1, 2, 3, 4, 5]
+            evens := sequence.withAll [2, 4, 6, 8]
+            empty := sequence.empty
         }
 
         method testSequenceTypeCollection {
-            def witness = sequence⟦Number⟧ [1,3]
+            def witness = sequence⟦Number⟧.withAll [1,3]
             assert (witness) hasType (Collection⟦Number⟧)
         }
         method testSequenceTypeSequence {
-            def witness = sequence⟦Number⟧ [1,3]
+            def witness = sequence⟦Number⟧.withAll [1,3]
             assert (witness) hasType (Sequence⟦Number⟧)
         }
         method testSequenceTypeEnumerable {
-            def witness = sequence⟦Number⟧ [1,3]
+            def witness = sequence⟦Number⟧.withAll [1,3]
             assert (witness) hasType (Enumerable⟦Number⟧)
         }
         method testEmptySequenceTypeCollection {
-            def witness = emptySequence
+            def witness = sequence.empty
             assert (witness) hasType (Collection)
         }
         method testEmptySequenceTypeSequence {
-            def witness = emptySequence
+            def witness = sequence.empty
             assert (witness) hasType (Sequence)
         }
         method testEmptySequenceTypeEnumerable {
-            def witness = emptySequence
+            def witness = sequence.empty
             assert (witness) hasType (Enumerable)
         }
         method testFilteredSequenceTypeEnumerable {
-            def witness = sequence⟦Number⟧ [1,3].filter{x -> true}
+            def witness = sequence⟦Number⟧.withAll [1,3].filter{x -> true}
             assert (witness) hasType (Enumerable⟦Number⟧)
         }
         method testSequenceNotTypeWithWombat {
-            def witness = sequence⟦Number⟧ [1,3]
+            def witness = sequence⟦Number⟧.withAll [1,3]
             deny (witness) hasType (Collection⟦Number⟧ & interface { wombat })
         }
         method testSequenceSize {
@@ -316,31 +317,31 @@ def sequenceTest = object {
         }
 
         method testSequenceEmptyDo {
-            empty.do {each -> failBecause "emptySequence.do did with {each}"}
+            empty.do {each -> failBecause "sequence.empty.do did with {each}"}
             assert(true)
         }
 
         method testSequenceEqualityEmpty {
-            assert(empty == emptySequence) description "empty sequence ≠ itself!"
-            assert(empty == emptyList) description "empty sequence ≠ empty list"
+            assert(empty == sequence.empty) description "empty sequence ≠ itself!"
+            assert(empty == list.empty) description "empty sequence ≠ empty list"
         }
 
         method testSequenceInequalityEmpty {
-            deny(empty == sequence [1])
-            assert(empty != sequence [1])
+            deny(empty == sequence.with 1)
+            assert(empty != sequence.with 1)
             deny(empty == 3)
             deny(empty == evens)
         }
 
         method testSequenceInequalityFive {
-            deny(oneToFive == sequence [1, 2, 3, 4, 6])
-            assert(oneToFive != sequence [1, 2, 3, 4, 6])
+            deny(oneToFive == sequence.withAll [1, 2, 3, 4, 6])
+            assert(oneToFive != sequence.withAll [1, 2, 3, 4, 6])
         }
 
         method testSequenceEqualityFive {
-            def isEqual = (oneToFive == sequence [1, 2, 3, 4, 5])
+            def isEqual = (oneToFive == sequence.withAll [1, 2, 3, 4, 5])
             assert(isEqual)
-            deny(oneToFive != sequence [1, 2, 3, 4, 5])
+            deny(oneToFive != sequence.withAll [1, 2, 3, 4, 5])
         }
 
         method testSequenceOneToFiveDo {
@@ -389,8 +390,8 @@ def sequenceTest = object {
         }
 
         method testSequenceConcatWithNonEmpty {
-            assert(oneToFive ++ evens) shouldBe(sequence [1, 2, 3, 4, 5, 2, 4, 6, 8])
-            assert(evens ++ oneToFive) shouldBe(sequence [2, 4, 6, 8, 1, 2, 3, 4, 5])
+            assert(oneToFive ++ evens) shouldBe(sequence.withAll [1, 2, 3, 4, 5, 2, 4, 6, 8])
+            assert(evens ++ oneToFive) shouldBe(sequence.withAll [2, 4, 6, 8, 1, 2, 3, 4, 5])
         }
 
         method testSequenceIndicesAndKeys {
@@ -421,28 +422,28 @@ def sequenceTest = object {
 
         method testSequenceDoSeparatedBySingleton {
             var s := "nothing"
-            sequence [1].do { each -> assert(each)shouldBe(1) }
+            sequence.withAll [1].do { each -> assert(each)shouldBe(1) }
                 separatedBy { s := "kilroy" }
             assert (s) shouldBe ("nothing")
         }
 
         method testSequenceKeysAndValuesDo {
-            def accum = emptyDictionary
+            def accum = dictionary.empty
             var n := 1
             evens.keysAndValuesDo { k, v ->
                 accum.at(k)put(v)
                 assert (accum.size) shouldBe (n)
                 n := n + 1
             }
-            assert(accum) shouldBe (dictionary [1::2, 2::4, 3::6, 4::8])
+            assert(accum) shouldBe (dictionary.withAll [1::2, 2::4, 3::6, 4::8])
         }
 
         method testSequenceReversedOneToFive {
-            assert (oneToFive.reversed) shouldBe (sequence [5, 4, 3, 2, 1])
+            assert (oneToFive.reversed) shouldBe (sequence.withAll [5, 4, 3, 2, 1])
         }
 
         method testSequenceReversedEvens {
-            assert (evens.reversed) shouldBe (sequence [8, 6, 4, 2])
+            assert (evens.reversed) shouldBe (sequence.withAll [8, 6, 4, 2])
             assert (evens.reversed.reversed) shouldBe (evens)
         }
 
@@ -459,16 +460,16 @@ def sequenceTest = object {
         }
 
         method testSequenceMapEmpty {
-            assert (empty.map{x -> x * x}.into (emptyList)) shouldBe (emptyList)
+            assert (empty.map{x -> x * x}.into (list.empty)) shouldBe (list.empty)
         }
 
         method testSequenceMapEvens {
-            assert(evens.map{x -> x + 1}.into (emptyList)) shouldBe (list [3, 5, 7, 9])
+            assert(evens.map{x -> x + 1}.into (list.empty)) shouldBe (list.withAll [3, 5, 7, 9])
         }
 
         method testSequenceMapEvensInto {
-            assert(evens.map{x -> x + 10}.into(list (evens)))
-                shouldBe (list [2, 4, 6, 8, 12, 14, 16, 18])
+            assert(evens.map{x -> x + 10}.into(list.withAll (evens)))
+                shouldBe (list.withAll [2, 4, 6, 8, 12, 14, 16, 18])
         }
 
         method testSequenceFilterNone {
@@ -480,17 +481,17 @@ def sequenceTest = object {
         }
 
         method testSequenceFilterOdd {
-            assert(oneToFive.filter{x -> (x % 2) == 1}.into (emptyList))
-                shouldBe (list [1, 3, 5])
+            assert(oneToFive.filter{x -> (x % 2) == 1}.into (list.empty))
+                shouldBe (list.withAll [1, 3, 5])
         }
 
         method testSequenceMapAndFilter {
-            assert(oneToFive.map{x -> x + 10}.filter{x -> (x % 2) == 1}.into (emptyList))
-                shouldBe (list [11, 13, 15])
+            assert(oneToFive.map{x -> x + 10}.filter{x -> (x % 2) == 1}.into (list.empty))
+                shouldBe (list.withAll [11, 13, 15])
         }
         method testSequenceToSetDuplicates {
-            def theSet = set(sequence [1,1,2,2,4])
-            assert (theSet) shouldBe (set [1, 2, 4])
+            def theSet = set.withAll(sequence.withAll [1,1,2,2,4])
+            assert (theSet) shouldBe (set.withAll [1, 2, 4])
             assert (theSet) hasType (Set)
         }
         method testSequenceIteratorEmpty {
@@ -498,53 +499,53 @@ def sequenceTest = object {
                 description "empty iterator has an element"
         }
         method testSequenceIteratorNonEmpty {
-            def accum = emptySet
+            def accum = set.empty
             def iter = oneToFive.iterator
             while {iter.hasNext} do { accum.add(iter.next) }
-            assert (accum) shouldBe (set [1, 2, 3, 4, 5])
+            assert (accum) shouldBe (set.withAll [1, 2, 3, 4, 5])
         }
         method testSequenceIteratorToSetDuplicates {
-            def accum = emptySet
-            def iter = sequence [1, 1, 2, 2, 4].iterator
+            def accum = set.empty
+            def iter = sequence.withAll [1, 1, 2, 2, 4].iterator
             while {iter.hasNext} do { accum.add(iter.next) }
-            assert (accum) shouldBe (set [1, 2, 4])
+            assert (accum) shouldBe (set.withAll [1, 2, 4])
         }
         method testSequenceSorted {
-            def input = sequence [5, 3, 11, 7, 2]
+            def input = sequence.withAll [5, 3, 11, 7, 2]
             def output = input.sorted
-            assert (output) shouldBe (sequence [2, 3, 5, 7, 11])
-            assert (output.asString.startsWith (emptySequence.asString.first)) description
+            assert (output) shouldBe (sequence.withAll [2, 3, 5, 7, 11])
+            assert (output.asString.startsWith (sequence.empty.asString.first)) description
                 ".sorted does not look like a sequence"
             assert (output) hasType (Sequence)
         }
         method testSequenceSortedBy {
-            def input = sequence [5, 3, 11, 7, 2]
+            def input = sequence.withAll [5, 3, 11, 7, 2]
             def output = input.sortedBy {l, r ->
                 if (l == r) then {0}
                     elseif {l < r} then {1}
                     else {-1}
             }
-            assert (input) shouldBe (sequence [5, 3, 11, 7, 2])
-            assert (output) shouldBe (sequence [11, 7, 5, 3, 2])
-            assert (output.asString.startsWith (emptySequence.asString.first)) description
+            assert (input) shouldBe (sequence.withAll [5, 3, 11, 7, 2])
+            assert (output) shouldBe (sequence.withAll [11, 7, 5, 3, 2])
+            assert (output.asString.startsWith (sequence.empty.asString.first)) description
                 "sorted does not look like a sequence"
             assert (output) hasType (Sequence)
         }
         method testSequenceAsDictionary {
             assert(evens.asDictionary) shouldBe
-                (dictionary [1::2, 2::4, 3::6, 4::8])
+                (dictionary.withAll [1::2, 2::4, 3::6, 4::8])
         }
         method testSequenceLazyConcat {
             def s1 = oneToFive.filter{x -> (x % 2) == 1}
             def s2 = evens.filter{x -> true}
-            assert(s1 ++ s2) shouldBe (sequence [1, 3, 5, 2, 4, 6, 8])
+            assert(s1 ++ s2) shouldBe (sequence.withAll [1, 3, 5, 2, 4, 6, 8])
         }
         method testSequenceExplicitLazyConcat {
-            def oneToFour = sequence (collections.lazyConcatenation([1,2], [3,4]))
+            def oneToFour = sequence.withAll (collections.lazyConcatenation([1,2], [3,4]))
             assert (oneToFour) shouldBe (1..4)
         }
         method testSequenceMultipleConcat {
-            def oneToTwelve = sequence ((1..2) ++ (3..4) ++ (5..8) ++ (9..12))
+            def oneToTwelve = sequence.withAll ((1..2) ++ (3..4) ++ (5..8) ++ (9..12))
             assert (oneToTwelve) shouldBe (1..12)
         }
     }
@@ -559,24 +560,24 @@ def listTest = object {
         var empty
 
         method setup {
-            oneToFive := list [1, 2, 3, 4, 5]
-            evens := list [2, 4, 6, 8]
-            empty := emptyList
+            oneToFive := list.withAll [1, 2, 3, 4, 5]
+            evens := list.withAll [2, 4, 6, 8]
+            empty := list.empty
         }
         method testListTypeCollection {
-            def witness = list⟦Number⟧ [1, 2, 3, 4, 5, 6]
+            def witness = list⟦Number⟧.withAll [1, 2, 3, 4, 5, 6]
             assert (witness) hasType (Collection⟦Number⟧)
         }
         method testListTypeList {
-            def witness = list⟦Number⟧ [1, 2, 3, 4, 5, 6]
+            def witness = list⟦Number⟧.withAll [1, 2, 3, 4, 5, 6]
             assert (witness) hasType (List⟦Number⟧)
         }
         method testListTypeSequence {
-            def witness = list⟦Number⟧ [1, 2, 3, 4, 5, 6]
+            def witness = list⟦Number⟧.withAll [1, 2, 3, 4, 5, 6]
             assert (witness) hasType (Sequence⟦Number⟧)
         }
         method testListTypeNotTypeWithWombat {
-            def witness = list⟦Number⟧ [1, 2, 3, 4, 5, 6]
+            def witness = list⟦Number⟧.withAll [1, 2, 3, 4, 5, 6]
             deny (witness) hasType (List⟦Number⟧ & interface { wombat })
         }
 
@@ -587,31 +588,31 @@ def listTest = object {
         }
 
         method testListEmptyDo {
-            empty.do {each -> failBecause "emptyList.do did with {each}"}
+            empty.do {each -> failBecause "list.empty.do did with {each}"}
             assert(true)
         }
 
         method testListEqualityEmpty {
-            assert(empty == emptyList) description "empty list ≠ itself!"
-            assert(empty == emptySequence) description "empty list ≠ empty sequence"
+            assert(empty == list.empty) description "empty list ≠ itself!"
+            assert(empty == sequence.empty) description "empty list ≠ empty sequence"
         }
 
         method testListInequalityEmpty {
-            deny(empty == list [1])
-            assert(empty != list [1])
+            deny(empty == list.withAll [1])
+            assert(empty != list.withAll [1])
             deny(empty == 3)
             deny(empty == evens)
         }
 
         method testListInequalityFive {
-            deny(oneToFive == list [1, 2, 3, 4, 6])
-            assert(oneToFive != list [1, 2, 3, 4, 6])
+            deny(oneToFive == list.withAll [1, 2, 3, 4, 6])
+            assert(oneToFive != list.withAll [1, 2, 3, 4, 6])
         }
 
         method testListEqualityFive {
-            def isEqual = (oneToFive == list [1, 2, 3, 4, 5])
+            def isEqual = (oneToFive == list.withAll [1, 2, 3, 4, 5])
             assert(isEqual)
-            deny(oneToFive != list [1, 2, 3, 4, 5])
+            deny(oneToFive != list.withAll [1, 2, 3, 4, 5])
         }
 
         method testListOneToFiveDo {
@@ -667,7 +668,7 @@ def listTest = object {
         }
 
         method testListAtPutExtend {
-            assert (empty.at 1 put 99) shouldBe (list [99])
+            assert (empty.at 1 put 99) shouldBe (list.withAll [99])
             oneToFive.at(6) put 6
             assert (oneToFive.at 6) shouldBe 6
             oneToFive.at(7) put 7
@@ -676,26 +677,26 @@ def listTest = object {
         }
 
         method testListRemovePresent {
-            assert (oneToFive.remove(3)) shouldBe (list [1, 2, 4, 5])
-            assert (oneToFive) shouldBe (list [1, 2, 4, 5])
+            assert (oneToFive.remove(3)) shouldBe (list.withAll [1, 2, 4, 5])
+            assert (oneToFive) shouldBe (list.withAll [1, 2, 4, 5])
         }
         method testListRemoveMultiplePresent {
-            assert (oneToFive.remove 1 .remove 4 .remove 5) shouldBe (list [2, 3])
-            assert (oneToFive) shouldBe (list [2, 3])
+            assert (oneToFive.remove 1 .remove 4 .remove 5) shouldBe (list.withAll [2, 3])
+            assert (oneToFive) shouldBe (list.withAll [2, 3])
         }
         method testListRemoveAbsentException {
             assert {oneToFive.remove 7} shouldRaise (NoSuchObject)
         }
         method testListRemoveLast {
             assert (oneToFive.removeLast) shouldBe 5
-            assert (oneToFive) shouldBe (list [1, 2, 3, 4])
+            assert (oneToFive) shouldBe (list.withAll [1, 2, 3, 4])
         }
         method testListRemoveLastEmpty {
             assert {empty.removeLast} shouldRaise (BoundsError)
         }
         method testListPop {
             assert (oneToFive.pop) shouldBe 5
-            assert (oneToFive) shouldBe (list [1, 2, 3, 4])
+            assert (oneToFive) shouldBe (list.withAll [1, 2, 3, 4])
         }
         method testListPopEmpty {
             assert {empty.pop} shouldRaise (BoundsError)
@@ -705,7 +706,7 @@ def listTest = object {
             assert (oneToFive.remove 9 ifAbsent {
                 absent := true
                 oneToFive
-            }) shouldBe (list [1, 2, 3, 4, 5])
+            }) shouldBe (list.withAll [1, 2, 3, 4, 5])
             assert (absent) description "9 was found in list 1..5"
         }
         method testListIndexOfPresent {
@@ -717,41 +718,41 @@ def listTest = object {
             assert (evens.indexOf 5 ifAbsent {"missing"}) shouldBe "missing"
         }
         method testListAddLast {
-            assert (empty.addLast(9)) shouldBe (list [9])
-            assert (evens.addLast(10)) shouldBe (list [2, 4, 6, 8, 10])
+            assert (empty.addLast(9)) shouldBe (list.withAll [9])
+            assert (evens.addLast(10)) shouldBe (list.withAll [2, 4, 6, 8, 10])
         }
         method testAddAll {
             evens.addAll(oneToFive)
-            assert (evens) shouldBe (list [2, 4, 6, 8, 1, 2, 3, 4, 5])
+            assert (evens) shouldBe (list.withAll [2, 4, 6, 8, 1, 2, 3, 4, 5])
         }
         method testListAdd {
-            assert (empty.add(9)) shouldBe (list [9])
-            assert (evens.add(10)) shouldBe (list [2, 4, 6, 8, 10])
+            assert (empty.add(9)) shouldBe (list.withAll [9])
+            assert (evens.add(10)) shouldBe (list.withAll [2, 4, 6, 8, 10])
         }
         method testListRemoveAtEmpty {
             assert {empty.removeAt(1)} shouldRaise (BoundsError)
         }
         method testListRemoveAt1 {
             assert (evens.removeAt(1)) shouldBe (2)
-            assert (evens) shouldBe (list [4, 6, 8])
+            assert (evens) shouldBe (list.withAll [4, 6, 8])
         }
         method testListRemoveAt2 {
             assert (evens.removeAt(2)) shouldBe (4)
-            assert (evens) shouldBe (list [2, 6, 8])
+            assert (evens) shouldBe (list.withAll [2, 6, 8])
         }
         method testListRemoveAt3 {
             assert (evens.removeAt(3)) shouldBe (6)
-            assert (evens) shouldBe (list [2, 4, 8])
+            assert (evens) shouldBe (list.withAll [2, 4, 8])
         }
         method testListRemoveAt4 {
             assert (evens.removeAt(4)) shouldBe (8)
-            assert (evens) shouldBe (list [2, 4, 6])
+            assert (evens) shouldBe (list.withAll [2, 4, 6])
         }
         method testListRemoveAt5 {
             assert {evens.removeAt(5)} shouldRaise (BoundsError)
         }
         method testListAddFirst {
-            assert (evens.addFirst(0)) shouldBe (list [0, 2, 4, 6, 8])
+            assert (evens.addFirst(0)) shouldBe (list.withAll [0, 2, 4, 6, 8])
             assert (evens.size) shouldBe (5)
             assert (evens.first) shouldBe (0)
             assert (evens.second) shouldBe (2)
@@ -760,7 +761,7 @@ def listTest = object {
             def removed = oneToFive.removeFirst
             assert (removed) shouldBe (1)
             assert (oneToFive.size) shouldBe (4)
-            assert (oneToFive) shouldBe (list [2, 3, 4, 5])
+            assert (oneToFive) shouldBe (list.withAll [2, 3, 4, 5])
         }
         method testListChaining {
             oneToFive.at(1)put(11).at(2)put(12).at(3)put(13)
@@ -775,19 +776,19 @@ def listTest = object {
             evens.push(16)
             evens.push(18)
             evens.push(20)
-            assert (evens) shouldBe (list [2, 4, 6, 8, 10, 12, 14, 16, 18, 20])
+            assert (evens) shouldBe (list.withAll [2, 4, 6, 8, 10, 12, 14, 16, 18, 20])
         }
 
         method testListReversedOneToFive {
             def ofr = oneToFive.reversed
-            assert (ofr) shouldBe (list [5, 4, 3, 2, 1])
-            assert (oneToFive) shouldBe (list [1, 2, 3, 4, 5])
+            assert (ofr) shouldBe (list.withAll [5, 4, 3, 2, 1])
+            assert (oneToFive) shouldBe (list.withAll [1, 2, 3, 4, 5])
         }
 
         method testListReversedEvens {
             def er = evens.reversed
-            assert (er) shouldBe (list [8, 6, 4, 2])
-            assert (evens) shouldBe (list [2, 4, 6, 8])
+            assert (er) shouldBe (list.withAll [8, 6, 4, 2])
+            assert (evens) shouldBe (list.withAll [2, 4, 6, 8])
             assert (er.reversed) shouldBe (evens)
         }
 
@@ -797,17 +798,17 @@ def listTest = object {
 
         method testListReverseOneToFive {
             def ofr = oneToFive.reverse
-            assert (ofr) shouldBe (list [5, 4, 3, 2, 1])
-            assert (oneToFive == list [5, 4, 3, 2, 1]) description "reverse does not return self"
+            assert (ofr) shouldBe (list.withAll [5, 4, 3, 2, 1])
+            assert (oneToFive == list.withAll [5, 4, 3, 2, 1]) description "reverse does not return self"
             oneToFive.reverse
-            assert (oneToFive) shouldBe (list [1, 2, 3, 4, 5])
+            assert (oneToFive) shouldBe (list.withAll [1, 2, 3, 4, 5])
         }
 
         method testListReverseEvens {
             def er = evens.reverse
-            assert (er) shouldBe (list [8, 6, 4, 2])
+            assert (er) shouldBe (list.withAll [8, 6, 4, 2])
             assert (evens == er) description "reverse does not return self"
-            assert (er.reversed) shouldBe (list [2, 4, 6, 8])
+            assert (er.reversed) shouldBe (list.withAll [2, 4, 6, 8])
         }
 
         method testListReverseEmpty {
@@ -821,15 +822,15 @@ def listTest = object {
         }
 
         method testListConcatWithNonEmpty {
-            assert(oneToFive ++ evens) shouldBe(list [1, 2, 3, 4, 5, 2, 4, 6, 8])
-            assert(evens ++ oneToFive) shouldBe(list [2, 4, 6, 8, 1, 2, 3, 4, 5])
+            assert(oneToFive ++ evens) shouldBe(list.withAll [1, 2, 3, 4, 5, 2, 4, 6, 8])
+            assert(evens ++ oneToFive) shouldBe(list.withAll [2, 4, 6, 8, 1, 2, 3, 4, 5])
         }
 
         method testListIndicesAndKeys {
             def lst = oneToFive ++ evens
             def siz = oneToFive.size + evens.size
             assert (lst.indices) shouldBe (1..siz)
-            assert (lst.indices) shouldBe (sequence(lst.keys))
+            assert (lst.indices) shouldBe (sequence.withAll(lst.keys))
         }
 
         method testListFold {
@@ -853,20 +854,20 @@ def listTest = object {
 
         method testListDoSeparatedBySingleton {
             var s := "nothing"
-            list [1].do { each -> assert(each)shouldBe(1) }
+            list.withAll [1].do { each -> assert(each)shouldBe(1) }
                 separatedBy { s := "kilroy" }
             assert (s) shouldBe ("nothing")
         }
 
         method testListKeysAndValuesDo {
-            def accum = emptyDictionary
+            def accum = dictionary.empty
             var n := 1
             evens.keysAndValuesDo { k, v ->
                 accum.at(k)put(v)
                 assert (accum.size) shouldBe (n)
                 n := n + 1
             }
-            assert(accum) shouldBe (dictionary [1::2, 2::4, 3::6, 4::8])
+            assert(accum) shouldBe (dictionary.withAll [1::2, 2::4, 3::6, 4::8])
         }
 
         method testListAsStringNonEmpty {
@@ -878,16 +879,16 @@ def listTest = object {
         }
 
         method testListMapEmpty {
-            assert (empty.map{x -> x * x}.into (emptyList)) shouldBe (emptyList)
+            assert (empty.map{x -> x * x}.into (list.empty)) shouldBe (list.empty)
         }
 
         method testListMapEvens {
-            assert(evens.map{x -> x + 1}.into (emptyList)) shouldBe (list [3, 5, 7, 9])
+            assert(evens.map{x -> x + 1}.into (list.empty)) shouldBe (list.withAll [3, 5, 7, 9])
         }
 
         method testListMapEvensInto {
-            assert(evens.map{x -> x + 10}.into(list(evens)))
-                shouldBe (list [2, 4, 6, 8, 12, 14, 16, 18])
+            assert(evens.map{x -> x + 10}.into(list.withAll(evens)))
+                shouldBe (list.withAll [2, 4, 6, 8, 12, 14, 16, 18])
         }
 
         method testListFilterNone {
@@ -899,13 +900,13 @@ def listTest = object {
         }
 
         method testListFilterOdd {
-            assert(oneToFive.filter{x -> (x % 2) == 1}.into (emptyList))
-                shouldBe (list [1, 3, 5])
+            assert(oneToFive.filter{x -> (x % 2) == 1}.into (list.empty))
+                shouldBe (list.withAll [1, 3, 5])
         }
 
         method testListMapAndFilter {
-            assert(oneToFive.map{x -> x + 10}.filter{x -> (x % 2) == 1}.into (emptyList))
-                shouldBe (list [11, 13, 15])
+            assert(oneToFive.map{x -> x + 10}.filter{x -> (x % 2) == 1}.into (list.empty))
+                shouldBe (list.withAll [11, 13, 15])
         }
 
         method testListCopy {
@@ -913,28 +914,28 @@ def listTest = object {
             evens.removeFirst
             evens.removeFirst
             assert (evens.size) shouldBe 2
-            assert (evensCopy) shouldBe (list [2, 4, 6, 8])
+            assert (evensCopy) shouldBe (list.withAll [2, 4, 6, 8])
             assert (evensCopy.second) shouldBe 4
         }
 
         method testListToSequence1to5 {
-            assert (sequence(oneToFive)) shouldBe (sequence [1, 2, 3, 4, 5])
+            assert (sequence.withAll(oneToFive)) shouldBe (sequence.withAll [1, 2, 3, 4, 5])
         }
 
         method testListToSequenceEmpty {
-            assert (sequence(empty)) shouldBe (emptySequence)
+            assert (sequence.withAll(empty)) shouldBe (sequence.empty)
         }
 
         method testListToSet1to5 {
-            assert (set(oneToFive)) shouldBe (set [1, 2, 3, 4, 5])
+            assert (set.withAll(oneToFive)) shouldBe (set.withAll [1, 2, 3, 4, 5])
         }
 
         method testListToSetEmpty {
-            assert (set(empty)) shouldBe (emptySet)
+            assert (set.withAll(empty)) shouldBe (set.empty)
         }
         method testListToSetDuplicates {
-            def theSet = set(list [1,1,2,2,4])
-            assert (theSet) shouldBe (set [1, 2, 4])
+            def theSet = set.withAll(list.withAll [1,1,2,2,4])
+            assert (theSet) shouldBe (set.withAll [1, 2, 4])
             assert (theSet) hasType (Set)
         }
         method testListIteratorEmpty {
@@ -942,44 +943,44 @@ def listTest = object {
                 description "empty iterator has an element"
         }
         method testListIteratorNonEmpty {
-            def accum = emptySet
+            def accum = set.empty
             def iter = oneToFive.iterator
             while { iter.hasNext } do { accum.add(iter.next) }
-            assert (accum) shouldBe (set [1, 2, 3, 4, 5])
+            assert (accum) shouldBe (set.withAll [1, 2, 3, 4, 5])
         }
         method testListIteratorToSetDuplicates {
-            def accum = emptySet
-            def iter = list [1, 1, 2, 2, 4].iterator
+            def accum = set.empty
+            def iter = list.withAll [1, 1, 2, 2, 4].iterator
             while { iter.hasNext } do { accum.add(iter.next) }
-            assert (accum) shouldBe (set [1, 2, 4])
+            assert (accum) shouldBe (set.withAll [1, 2, 4])
         }
         method testListSort {
-            def input = list [7, 6, 4, 1]
-            def output = list [1, 4, 6, 7]
+            def input = list.withAll [7, 6, 4, 1]
+            def output = list.withAll [1, 4, 6, 7]
             assert (input.sort) shouldBe (output)
             assert (input) shouldBe (output)
         }
         method testListSortBlock {
-            def input = list [6, 7, 4, 1]
-            def output = list [7, 6, 4, 1]
+            def input = list.withAll [6, 7, 4, 1]
+            def output = list.withAll [7, 6, 4, 1]
             assert (input.sortBy{a, b -> b - a}) shouldBe (output)
             assert (input) shouldBe (output)
         }
         method testListSorted {
-            def input = list [7, 6, 4, 1]
-            def output = list [1, 4, 6, 7]
+            def input = list.withAll [7, 6, 4, 1]
+            def output = list.withAll [1, 4, 6, 7]
             assert (input.sorted) shouldBe (output)
-            assert (input) shouldBe (list [7, 6, 4, 1])
+            assert (input) shouldBe (list.withAll [7, 6, 4, 1])
         }
         method testListSortedBlock {
-            def input = list [6, 7, 4, 1]
-            def output = list [7, 6, 4, 1]
+            def input = list.withAll [6, 7, 4, 1]
+            def output = list.withAll [7, 6, 4, 1]
             assert (input.sortedBy{a, b -> b-a}) shouldBe (output)
-            assert (input) shouldBe (list [6, 7, 4, 1])
+            assert (input) shouldBe (list.withAll [6, 7, 4, 1])
         }
         method testListAsDictionary {
             assert(evens.asDictionary) shouldBe
-                (dictionary [1::2, 2::4, 3::6, 4::8])
+                (dictionary.withAll [1::2, 2::4, 3::6, 4::8])
         }
         method testListFailFastDoRemove {
           assert {
@@ -1025,8 +1026,8 @@ def listTest = object {
           assert {iter4.next} shouldRaise (ConcurrentModification)
         }
         method testListClear {
-            var toClear := list [1, 2, 3]
-            assert (toClear.clear) shouldBe (emptyList)
+            var toClear := list.withAll [1, 2, 3]
+            assert (toClear.clear) shouldBe (list.empty)
         }
     }
 }
@@ -1040,21 +1041,21 @@ def setTest = object {
         var empty
 
         method setup {
-            oneToFive := set [1, 2, 3, 4, 5]
-            evens := set [2, 4, 6, 8]
-            empty := set [ ]
+            oneToFive := set.withAll [1, 2, 3, 4, 5]
+            evens := set.withAll [2, 4, 6, 8]
+            empty := set.withAll [ ]
         }
         
         method testSetTypeCollection {
-            def witness = set⟦Number⟧ [1, 2, 3, 4, 5, 6]
+            def witness = set⟦Number⟧.withAll [1, 2, 3, 4, 5, 6]
             assert (witness) hasType (Collection⟦Number⟧)
         }
         method testSetTypeSet {
-            def witness = set⟦Number⟧ [1, 2, 3, 4, 5, 6]
+            def witness = set⟦Number⟧.withAll [1, 2, 3, 4, 5, 6]
             assert (witness) hasType (Set⟦Number⟧)
         }
         method testSetTypeNotSequence {
-            def witness = set⟦Number⟧ [1, 2, 3, 4, 5, 6]
+            def witness = set⟦Number⟧.withAll [1, 2, 3, 4, 5, 6]
             deny (witness) hasType (Sequence⟦Number⟧)
         }
 
@@ -1065,35 +1066,35 @@ def setTest = object {
         }
 
         method testSetEmptyDo {
-            empty.do {each -> failBecause "emptySet.do did with {each}"}
+            empty.do {each -> failBecause "set.empty.do did with {each}"}
             assert(true)
         }
 
         method testSetEqualityEmpty {
-            assert(empty == emptySet)
-            deny (empty != emptySet)
+            assert(empty == set.empty)
+            deny (empty != set.empty)
         }
 
         method testSetInequalityEmpty {
-            deny(empty == set [1])
-            assert(empty != set [1])
+            deny(empty == set.withAll [1])
+            assert(empty != set.withAll [1])
             deny(empty == 3)
             deny(empty == evens)
         }
 
         method testSetInequalityFive {
-            deny(oneToFive == set [1, 2, 3, 4, 6])
-            assert(oneToFive != set [1, 2, 3, 4, 6])
+            deny(oneToFive == set.withAll [1, 2, 3, 4, 6])
+            assert(oneToFive != set.withAll [1, 2, 3, 4, 6])
         }
 
         method testSetEqualityFive {
-            def isEqual = (oneToFive == set [1, 2, 3, 4, 5])
+            def isEqual = (oneToFive == set.withAll [1, 2, 3, 4, 5])
             assert(isEqual)
-            deny(oneToFive != set [1, 2, 3, 4, 5])
+            deny(oneToFive != set.withAll [1, 2, 3, 4, 5])
         }
 
         method testSetOneToFiveDo {
-            def accum = emptySet
+            def accum = set.empty
             var n := 1
             oneToFive.do { each ->
                 accum.add(each)
@@ -1104,30 +1105,30 @@ def setTest = object {
         }
 
         method testSetAdd {
-            assert (empty.add(9)) shouldBe (set [9])
-            assert (evens.add(10)) shouldBe (set [2, 4, 6, 8, 10])
+            assert (empty.add(9)) shouldBe (set.withAll [9])
+            assert (evens.add(10)) shouldBe (set.withAll [2, 4, 6, 8, 10])
         }
 
         method testSetRemove2 {
-            assert (evens.remove(2)) shouldBe (set [4, 6, 8])
-            assert (evens) shouldBe (set [4, 6, 8])
+            assert (evens.remove(2)) shouldBe (set.withAll [4, 6, 8])
+            assert (evens) shouldBe (set.withAll [4, 6, 8])
         }
         method testSetRemove4 {
-            assert (evens.remove(4)) shouldBe (set [2, 6, 8])
-            assert (evens) shouldBe (set [2, 6, 8])
+            assert (evens.remove(4)) shouldBe (set.withAll [2, 6, 8])
+            assert (evens) shouldBe (set.withAll [2, 6, 8])
         }
         method testSetRemove6 {
-            assert (evens.remove(6)) shouldBe (set [2, 4, 8])
-            assert (evens) shouldBe (set [2, 4, 8])
+            assert (evens.remove(6)) shouldBe (set.withAll [2, 4, 8])
+            assert (evens) shouldBe (set.withAll [2, 4, 8])
         }
         method testSetRemove8 {
-            assert (evens.remove(8)) shouldBe (set [2, 4, 6])
-            assert (evens) shouldBe (set [2, 4, 6])
+            assert (evens.remove(8)) shouldBe (set.withAll [2, 4, 6])
+            assert (evens) shouldBe (set.withAll [2, 4, 6])
         }
         method testSetRemoveMultiple {
-            assert (evens.remove 4 .remove 6 .remove 8) shouldBe (set [2])
+            assert (evens.remove 4 .remove 6 .remove 8) shouldBe (set.withAll [2])
             assert (evens.size) shouldBe 1
-            assert (evens) shouldBe (set [2])
+            assert (evens) shouldBe (set.withAll [2])
         }
         method testSetRemove5 {
             assert {evens.remove(5)} shouldRaise (NoSuchObject)
@@ -1135,14 +1136,14 @@ def setTest = object {
 
         method testSetChaining {
             oneToFive.add(11).add(12).add(13)
-            assert (oneToFive) shouldBe (set [1, 2, 3, 4, 5, 11, 12, 13])
+            assert (oneToFive) shouldBe (set.withAll [1, 2, 3, 4, 5, 11, 12, 13])
         }
         method testSetPushAndExpand {
             evens.add 10
             evens.add 12
             evens.add 14
             evens.add 16 .add 18 .add 20
-            assert (evens) shouldBe (set [2, 4, 6, 8, 10, 12, 14, 16, 18, 20])
+            assert (evens) shouldBe (set.withAll [2, 4, 6, 8, 10, 12, 14, 16, 18, 20])
         }
         method testEmptyIterator {
             deny (empty.iterator.hasNext) description "the empty iterator has an element"
@@ -1151,7 +1152,7 @@ def setTest = object {
             def ei = evens.iterator
             assert (evens.size == 4) description "evens.size = {evens.size}, should be 4"
             assert (ei.hasNext) description "the evens iterator has no elements"
-            def copySet = set [ei.next, ei.next, ei.next, ei.next]
+            def copySet = set.withAll [ei.next, ei.next, ei.next, ei.next]
             deny (ei.hasNext) description "the evens iterator has more than 4 elements"
             assert (copySet) shouldBe (evens)
         }
@@ -1178,7 +1179,7 @@ def setTest = object {
 
         method testSetDoSeparatedBySingleton {
             var s := "nothing"
-            set [1].do { each -> assert(each)shouldBe(1) }
+            set.withAll [1].do { each -> assert(each)shouldBe(1) }
                 separatedBy { s := "kilroy" }
             assert (s) shouldBe ("nothing")
         }
@@ -1194,16 +1195,16 @@ def setTest = object {
         }
 
         method testSetMapEmpty {
-            assert (empty.map{x -> x * x}.into (emptySet)) shouldBe (emptySet)
+            assert (empty.map{x -> x * x}.into (set.empty)) shouldBe (set.empty)
         }
 
         method testSetMapEvens {
-            assert(evens.map{x -> x + 1}.into (emptySet)) shouldBe (set [3, 5, 7, 9])
+            assert(evens.map{x -> x + 1}.into (set.empty)) shouldBe (set.withAll [3, 5, 7, 9])
         }
 
         method testSetMapEvensInto {
-            assert(evens.map{x -> x + 10}.into(set(evens)))
-                shouldBe (set [2, 4, 6, 8, 12, 14, 16, 18])
+            assert(evens.map{x -> x + 10}.into(set.withAll(evens)))
+                shouldBe (set.withAll [2, 4, 6, 8, 12, 14, 16, 18])
         }
 
         method testSetFilterNone {
@@ -1217,30 +1218,30 @@ def setTest = object {
         }
 
         method testSetFilterOdd {
-            assert(oneToFive.filter{x -> (x % 2) == 1}.into (emptySet))
-                shouldBe (set [1, 3, 5])
+            assert(oneToFive.filter{x -> (x % 2) == 1}.into (set.empty))
+                shouldBe (set.withAll [1, 3, 5])
         }
 
         method testSetMapAndFilter {
-            assert(oneToFive.map{x -> x + 10}.filter{x -> (x % 2) == 1}.into (emptySet))
-                shouldBe (set [11, 13, 15])
+            assert(oneToFive.map{x -> x + 10}.filter{x -> (x % 2) == 1}.into (set.empty))
+                shouldBe (set.withAll [11, 13, 15])
         }
 
         method testSetCopy {
             def evensCopy = evens.copy
             evens.remove 2 .remove 4
             assert (evens.size) shouldBe 2
-            assert (evens) shouldBe (set [6, 8])
-            assert (evensCopy) shouldBe (set [2, 4, 6, 8])
+            assert (evens) shouldBe (set.withAll [6, 8])
+            assert (evensCopy) shouldBe (set.withAll [2, 4, 6, 8])
         }
         method testSetUnion {
-            assert (oneToFive ++ evens) shouldBe (set [1, 2, 3, 4, 5, 6, 8])
+            assert (oneToFive ++ evens) shouldBe (set.withAll [1, 2, 3, 4, 5, 6, 8])
         }
         method testSetDifference {
-            assert (oneToFive -- evens) shouldBe (set [1, 3, 5])
+            assert (oneToFive -- evens) shouldBe (set.withAll [1, 3, 5])
         }
         method testSetIntersection {
-            assert (oneToFive ** evens) shouldBe (set [2, 4])
+            assert (oneToFive ** evens) shouldBe (set.withAll [2, 4])
         }
         method testSetFailFastIteratorAdd {
             def iter = oneToFive.iterator
@@ -1280,8 +1281,8 @@ def setTest = object {
           } shouldRaise (ConcurrentModification)
         }
         method testSetClear {
-            var toClear := set [1, 2, 3]
-            assert (toClear.clear) shouldBe (emptySet)
+            var toClear := set.withAll [1, 2, 3]
+            assert (toClear.clear) shouldBe (set.empty)
         }
     }
 }
@@ -1295,10 +1296,10 @@ def dictionaryTest = object {
         var empty
 
         method setup {
-            oneToFive := dictionary ["one"::1, "two"::2, "three"::3,
+            oneToFive := dictionary.withAll ["one"::1, "two"::2, "three"::3,
                 "four"::4, "five"::5]
-            evens := dictionary ["two"::2, "four"::4, "six"::6, "eight"::8]
-            empty := emptyDictionary
+            evens := dictionary.withAll ["two"::2, "four"::4, "six"::6, "eight"::8]
+            empty := dictionary.empty
         }
         method testDictionaryTypeCollection {
             assert (oneToFive) hasType (Collection⟦Binding⟦String,Number⟧⟧)
@@ -1335,7 +1336,7 @@ def dictionaryTest = object {
         }
 
         method testAsString {
-            def dict2 = dictionary ["one"::1, "two"::2]
+            def dict2 = dictionary.withAll ["one"::1, "two"::2]
             def dStr = dict2.asString
             assert((dStr == "dict⟬one::1, two::2⟭") || {dStr == "dict⟬two::2, one::1⟭"})
                 description "\"{dStr}\" should be \"dict⟬one::1, two::2⟭\""
@@ -1346,18 +1347,18 @@ def dictionaryTest = object {
         }
 
         method testDictionaryEmptyDo {
-            empty.do {each -> failBecause "emptySet.do did with {each}"}
+            empty.do {each -> failBecause "set.empty.do did with {each}"}
             assert (true)   // so that there is always an assert
         }
 
         method testDictionaryEqualityEmpty {
-            assert(empty == emptyDictionary)
-            deny(empty != emptyDictionary)
+            assert(empty == dictionary.empty)
+            deny(empty != dictionary.empty)
         }
         method testDictionaryInequalityEmpty {
-            deny(empty == dictionary ["one"::1])
+            deny(empty == dictionary.withAll ["one"::1])
                 description "empty dictionary equals dictionary with \"one\"::1"
-            assert(empty != dictionary ["two"::2])
+            assert(empty != dictionary.withAll ["two"::2])
                 description "empty dictionary equals dictionary with \"two\"::2"
             deny(empty == 3)
             deny(empty == evens)
@@ -1369,11 +1370,11 @@ def dictionaryTest = object {
             assert(oneToFive != evens)
         }
         method testDictionaryEqualityFive {
-            assert(oneToFive == dictionary ["one"::1, "two"::2, "three"::3,
+            assert(oneToFive == dictionary.withAll ["one"::1, "two"::2, "three"::3,
                 "four"::4, "five"::5])
         }
         method testDictionaryKeysAndValuesDo {
-            def accum = emptyDictionary
+            def accum = dictionary.empty
             var n := 1
             oneToFive.keysAndValuesDo { k, v ->
                 accum.at(k)put(v)
@@ -1390,19 +1391,19 @@ def dictionaryTest = object {
             def ei = evens.bindings.iterator
             assert (evens.size == 4) description "evens doesn''t contain 4 elements!"
             assert (ei.hasNext) description "the evens iterator has no elements"
-            def copyDict = dictionary [ei.next, ei.next, ei.next, ei.next]
+            def copyDict = dictionary.withAll [ei.next, ei.next, ei.next, ei.next]
             deny (ei.hasNext) description "the evens iterator has more than 4 elements"
             assert (copyDict) shouldBe (evens)
         }
         method testDictionaryAdd {
             assert (empty.at "nine" put(9))
-                shouldBe (dictionary ["nine"::9])
-            assert (evens.at "ten" put(10).values.into (emptySet))
-                shouldBe (set [2, 4, 6, 8, 10])
+                shouldBe (dictionary.withAll ["nine"::9])
+            assert (evens.at "ten" put(10).values.into (set.empty))
+                shouldBe (set.withAll [2, 4, 6, 8, 10])
         }
         method testDictionaryRemoveKeyTwo {
-            assert (evens.removeKey "two".values.into (emptySet)) shouldBe (set [4, 6, 8])
-            assert (evens.values.into (emptySet)) shouldBe (set [4, 6, 8])
+            assert (evens.removeKey "two".values.into (set.empty)) shouldBe (set.withAll [4, 6, 8])
+            assert (evens.values.into (set.empty)) shouldBe (set.withAll [4, 6, 8])
         }
         method testDictionaryRemoveValue4 {
             assert (evens.size == 4) description "evens doesn''t contain 4 elements"
@@ -1414,13 +1415,13 @@ def dictionaryTest = object {
             assert (evens.containsKey "six") description "Can''t find key \"six\""
             assert (evens.containsKey "eight") description "Can''t find key \"eight\""
             deny (evens.containsKey "four") description "Found key \"four\""
-            assert (evens.removeValue 4 ifAbsent { }.values.into (emptySet)) shouldBe (set [2, 6, 8])
-            assert (evens.values.into (emptySet)) shouldBe (set [2, 6, 8])
-            assert (evens.keys.into (emptySet)) shouldBe (set ["two", "six", "eight"])
+            assert (evens.removeValue 4 ifAbsent { }.values.into (set.empty)) shouldBe (set.withAll [2, 6, 8])
+            assert (evens.values.into (set.empty)) shouldBe (set.withAll [2, 6, 8])
+            assert (evens.keys.into (set.empty)) shouldBe (set.withAll ["two", "six", "eight"])
         }
         method testDictionaryRemoveMultiple {
             evens.removeValue 4 .removeValue 6 .removeValue 8
-            assert (evens) shouldBe (emptyDictionary.at "two" put 2)
+            assert (evens) shouldBe (dictionary.empty.at "two" put 2)
         }
         method testDictionaryRemove5 {
             assert {evens.removeKey 5} shouldRaise (NoSuchObject)
@@ -1430,7 +1431,7 @@ def dictionaryTest = object {
         }
         method testDictionaryChaining {
             oneToFive.at "eleven" put(11).at "twelve" put(12).at "thirteen" put(13)
-            assert (oneToFive.values.into (emptySet)) shouldBe (set [1, 2, 3, 4, 5, 11, 12, 13])
+            assert (oneToFive.values.into (set.empty)) shouldBe (set.withAll [1, 2, 3, 4, 5, 11, 12, 13])
         }
         method testDictionaryPushAndExpand {
             evens.removeKey "two"
@@ -1442,8 +1443,8 @@ def dictionaryTest = object {
             evens.at "sixteen" put(16)
             evens.at "eighteen" put(18)
             evens.at "twenty" put(20)
-            assert (evens.values.into (emptySet))
-                shouldBe (set [8, 10, 12, 14, 16, 18, 20])
+            assert (evens.values.into (set.empty))
+                shouldBe (set.withAll [8, 10, 12, 14, 16, 18, 20])
         }
 
         method testDictionaryFold {
@@ -1469,7 +1470,7 @@ def dictionaryTest = object {
 
         method testDictionaryDoSeparatedBySingleton {
             var s := "nothing"
-            set [1].do { each -> assert(each)shouldBe(1) }
+            set.withAll [1].do { each -> assert(each)shouldBe(1) }
                 separatedBy { s := "kilroy" }
             assert (s) shouldBe ("nothing")
         }
@@ -1487,16 +1488,16 @@ def dictionaryTest = object {
         }
 
         method testDictionaryMapEmpty {
-            assert (empty.map{x -> x * x}.into (emptySet)) shouldBe (emptySet)
+            assert (empty.map{x -> x * x}.into (set.empty)) shouldBe (set.empty)
         }
 
         method testDictionaryMapEvens {
-            assert(evens.map{x -> x + 1}.into (emptySet)) shouldBe (set [3, 5, 7, 9])
+            assert(evens.map{x -> x + 1}.into (set.empty)) shouldBe (set.withAll [3, 5, 7, 9])
         }
 
         method testDictionaryMapEvensInto {
-            assert(evens.map{x -> x + 10}.into(set(evens)))
-                shouldBe (set [2, 4, 6, 8, 12, 14, 16, 18])
+            assert(evens.map{x -> x + 10}.into(set.withAll(evens)))
+                shouldBe (set.withAll [2, 4, 6, 8, 12, 14, 16, 18])
         }
 
         method testDictionaryFilterNone {
@@ -1508,25 +1509,25 @@ def dictionaryTest = object {
         }
 
         method testDictionaryFilterOdd {
-            assert(oneToFive.filter{x -> (x % 2) == 1}.into (emptySet))
-                shouldBe (set [1, 3, 5])
+            assert(oneToFive.filter{x -> (x % 2) == 1}.into (set.empty))
+                shouldBe (set.withAll [1, 3, 5])
         }
 
         method testDictionaryMapAndFilter {
-            assert(set(oneToFive.map{x -> x + 10}.filter{x -> (x % 2) == 1}))
-                shouldBe (set [11, 13, 15])
+            assert(set.withAll(oneToFive.map{x -> x + 10}.filter{x -> (x % 2) == 1}))
+                shouldBe (set.withAll [11, 13, 15])
         }
         method testDictionaryBindings {
-            assert(oneToFive.bindings.into (emptySet)) shouldBe (
-                set ["one"::1, "two"::2, "three"::3, "four"::4, "five"::5])
+            assert(oneToFive.bindings.into (set.empty)) shouldBe (
+                set.withAll ["one"::1, "two"::2, "three"::3, "four"::4, "five"::5])
         }
         method testDictionaryKeys {
-            assert(oneToFive.keys.into (emptySet)) shouldBe (
-                set ["one", "two", "three", "four", "five"] )
+            assert(oneToFive.keys.into (set.empty)) shouldBe (
+                set.withAll ["one", "two", "three", "four", "five"] )
         }
         method testDictionaryValues {
-            assert(oneToFive.values.into (emptySet)) shouldBe (
-                set [1, 2, 3, 4, 5] )
+            assert(oneToFive.values.into (set.empty)) shouldBe (
+                set.withAll [1, 2, 3, 4, 5] )
         }
 
         method testDictionaryCopy {
@@ -1535,7 +1536,7 @@ def dictionaryTest = object {
             evens.removeValue(4)
             assert (evens.size) shouldBe 2
             assert (evensCopy) shouldBe
-                (dictionary ["two"::2, "four"::4, "six"::6, "eight"::8])
+                (dictionary.withAll ["two"::2, "four"::4, "six"::6, "eight"::8])
         }
 
         method testDictionaryAsDictionary {
@@ -1545,30 +1546,30 @@ def dictionaryTest = object {
         method testDictionaryValuesEmpty {
             def vs = empty.values
             assert(vs.isEmpty)
-            assert(vs) shouldBe (emptySequence)
+            assert(vs) shouldBe (sequence.empty)
         }
         method testDictionaryKeysEmpty {
-            assert(empty.keys) shouldBe (emptySequence)
+            assert(empty.keys) shouldBe (sequence.empty)
         }
         method testDictionaryValuesSingle {
-            assert(dictionary ["one"::1].values) shouldBe
-                (sequence [1])
+            assert(dictionary.withAll ["one"::1].values) shouldBe
+                (sequence.withAll [1])
         }
         method testDictionaryKeysSingle {
-            assert(dictionary ["one"::1].keys) shouldBe
-                (sequence ["one"])
+            assert(dictionary.withAll ["one"::1].keys) shouldBe
+                (sequence.withAll ["one"])
         }
         method testDictionaryBindingsEvens {
-            assert(set(evens.bindings)) shouldBe
-                (set ["two"::2, "four"::4, "six"::6, "eight"::8])
+            assert(set.withAll(evens.bindings)) shouldBe
+                (set.withAll ["two"::2, "four"::4, "six"::6, "eight"::8])
         }
         method testDictionarySortedOnValues {
             assert(evens.bindings.sortedBy{b1, b2 -> b1.value.compare(b2.value)})
-                shouldBe (sequence ["two"::2, "four"::4, "six"::6, "eight"::8])
+                shouldBe (sequence.withAll ["two"::2, "four"::4, "six"::6, "eight"::8])
         }
         method testDictionarySortedOnKeys {
             assert(evens.bindings.sortedBy{b1, b2 -> b1.key.compare(b2.key)})
-                shouldBe (sequence ["eight"::8, "four"::4, "six"::6, "two"::2])
+                shouldBe (sequence.withAll ["eight"::8, "four"::4, "six"::6, "two"::2])
         }
         method testDictionaryFailFastValuesDoRemoveKey {
             assert {
@@ -1659,8 +1660,8 @@ def dictionaryTest = object {
             assert {iter4.next} shouldRaise (ConcurrentModification)
         }
         method testDictionaryClear {
-            var toClear := dictionary [1::2, 2::4, 3::6]
-            assert (toClear.clear) shouldBe (emptyDictionary)
+            var toClear := dictionary.withAll [1::2, 2::4, 3::6]
+            assert (toClear.clear) shouldBe (dictionary.empty)
         }
     }
 }
@@ -1683,7 +1684,7 @@ def lazyEnumTest = object {
             assert (oneToFive) shouldBe (1..5)
         }
         method testLazyEqualityEmpty {
-            assert (empty) shouldBe (emptySequence)
+            assert (empty) shouldBe (sequence.empty)
         }
         method testLazyFailFast {
             def o25List = list.withAll(oneToFive)
@@ -1716,5 +1717,6 @@ dictTests.runAndPrintResults
 
 def lazyEnumTests = gU.testSuite.fromTestMethodsIn(lazyEnumTest)
 lazyEnumTests.runAndPrintResults
+
 
 '
