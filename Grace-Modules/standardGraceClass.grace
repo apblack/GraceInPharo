@@ -765,6 +765,7 @@ class generator {
 
     def Exception is public = intrinsic.Exception
     def ProgrammingError is public = intrinsic.ProgrammingError
+    def EnvironmentException is public = intrinsic.EnvironmentException
     def TypeError is public = intrinsic.TypeError
     def UninitializedVariable is public = intrinsic.UninitializedVariable
     def SubobjectResponsibility is public = ProgrammingError.refine "SubobjectResponsibility"

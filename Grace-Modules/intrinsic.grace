@@ -23,6 +23,7 @@ method print { ... }
 
 
 def ProgrammingError is public = Exception.refine "ProgrammingError"
+def EnvironmentException is public = Exception.refine "EnvironmentException"
 def UninitializedVariable is public = ProgrammingError.refine "UninitializedVariable"
 
 def TypeError is public = ProgrammingError.refine "TypeError"
