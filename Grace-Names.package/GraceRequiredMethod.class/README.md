@@ -1,0 +1,1 @@
+A required method is one that has no body, but serves as a marker that the programmer should provide a real method.   Required methods never override real methods, even if the required method comes from a trait and the real method comes from a superobject.

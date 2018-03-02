@@ -1,0 +1,1 @@
+This error is generated when the compiler cannot resolve an implicit request, either because there is no method with the requested name, or when there are two, one reused and the other in the lexical scope.
