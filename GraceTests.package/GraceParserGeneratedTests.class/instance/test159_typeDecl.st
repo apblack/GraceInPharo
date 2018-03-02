@@ -12,7 +12,7 @@ type ABC = A & B & C
 type ABC'' = A | B | C
 
 method showType(T) {
-    print "{T} has methods {list(T.methodNames).sort}"
+    print "{T} has methods {list.withAll(T.methodNames).sort}"
 }
 
 showType(A)
@@ -21,7 +21,7 @@ showType(A'')
 showType(B'')
 showType(AB)
 
-def seq = sequence [2, 3, 4]
+def seq = sequence.withAll [2, 3, 4]
 match (seq)
     case { l:List -> print "{l} is a list — but shouldn''t be!" }
     case { s:Sequence -> print "{s} is a sequence" }
@@ -30,7 +30,7 @@ match (seq)
 def sm = m.reflect(seq).methodNames
 print "The following list methods are not in sequence:"
 def missing = List.methodNames -- sm
-list(missing).sort.do {
+list.withAll(missing).sort.do {
     each -> print "    {each}"
 }
 '

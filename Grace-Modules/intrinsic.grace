@@ -20,15 +20,13 @@ method while (cond) do (block) { ... }
 
 method Exception { ... }
 method print { ... }
+method native (language) code (instructions) { ... }
 
 
 def ProgrammingError is public = Exception.refine "ProgrammingError"
 def EnvironmentException is public = Exception.refine "EnvironmentException"
 def UninitializedVariable is public = ProgrammingError.refine "UninitializedVariable"
-
 def TypeError is public = ProgrammingError.refine "TypeError"
-
 def RequestError is public = ProgrammingError.refine "RequestError"
-
 def NoSuchMethod is public = ProgrammingError.refine "NoSuchMethod"
 

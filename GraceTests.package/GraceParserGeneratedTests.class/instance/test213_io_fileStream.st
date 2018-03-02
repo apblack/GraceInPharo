@@ -3,7 +3,9 @@ test213_io_fileStream
 	self good: #Module parse: 'dialect "minispec"
 import "date" as date
 import "io" as io
+import "collections" as collections
 
+def IteratorExhausted = collections.IteratorExhausted
 
 def longFile = io.open("io-specify-data.txt", "w")
 longFile.write "This is test data\n"

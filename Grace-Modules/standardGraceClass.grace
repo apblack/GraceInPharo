@@ -778,6 +778,8 @@ class generator {
 
     def done = intrinsic.done
     def π = 3.1415926535897932
+    def infinity = 1/0
+
 
     method print (string) { intrinsic.print (string) }
 

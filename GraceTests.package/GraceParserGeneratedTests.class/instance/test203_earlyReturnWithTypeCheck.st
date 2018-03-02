@@ -1,6 +1,6 @@
 minigrace good
 test203_earlyReturnWithTypeCheck
-	self good: #Module parse: 'var l: List⟦Number⟧ := list [1, 3]
+	self good: #Module parse: 'var l: List⟦Number⟧ := list.withAll [1, 3]
 
 // The point of this test is to see if doing a type-check on the method
 // argument xs disrupts the early-return logic.   The global variable

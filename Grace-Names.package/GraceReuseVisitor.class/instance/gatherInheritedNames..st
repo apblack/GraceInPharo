@@ -13,8 +13,8 @@ gatherInheritedNames: node
 			objScope addLocalAndReusedFrom: superScope ]
 		ifNotEmpty: [ 
 			inhNode := inhNodes first.
-			GraceDisambiguationVisitor new acceptNode: inhNode.
-			modifiedSuper := self applyModifiersOf: inhNode.
+			self disambiguateSuperExpressionIn: inhNode.
+			modifiedSuper := self applyInheritanceModifiersOf: inhNode.
 			objScope addLocalAndReusedFrom: modifiedSuper]
 
 	

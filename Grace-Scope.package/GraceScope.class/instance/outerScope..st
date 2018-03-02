@@ -1,3 +1,4 @@
 accessing
-outerScope: anObject
-	outerScope := anObject
+outerScope: aScope
+	outerScope := aScope.
+	^ self

@@ -3,6 +3,7 @@ test182_inheritsExternal
 	self good: #Module parse: 'dialect "minitest"
 import "mirrors" as mirror
 import "stringMap" as stringMap
+import "standardGraceClass" as standard
 
 method hook { abstract }
 
@@ -29,22 +30,22 @@ class stringSet {
 }
 
 class newPrelude {
-    inherit prelude.methods
+    inherit standard.generator
     
     method compareProtocols {
         def mSelf = mirror.reflect(self).methodNames --
-                    self.set ["hook", "compareProtocols", "doIt(_)"]
-        def mPrelude = mirror.reflect(_prelude).methodNames
+                    self.set.withAll ["hook", "compareProtocols", "doIt(_)"]
+        def mPrelude = mirror.reflect(standard.generator).methodNames
         if (mPrelude == mSelf) then {
             true
         } else {
             def preludeExtras = mPrelude -- mSelf
             def selfExtras = mSelf -- mPrelude
             if (preludeExtras.isEmpty.not) then {
-                print "prelude contains additional methods {self.list(preludeExtras).sort}\n"
+                print "prelude contains additional methods {self.list.withAll(preludeExtras).sort}\n"
             }
             if (selfExtras.isEmpty.not) then {
-                print "newPrelude contains additional methods {self.list(selfExtras).sort}\n"
+                print "newPrelude contains additional methods {self.list.withAll(selfExtras).sort}\n"
             }
             false
         }

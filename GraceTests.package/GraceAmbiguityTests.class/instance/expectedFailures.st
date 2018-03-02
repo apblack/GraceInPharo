@@ -1,3 +1,3 @@
 expected failures
 expectedFailures
-	^#(test195_traitWithRequest_fail)
+	^#(test195_traitWithRequest_fail test199_clone test212_cloningModule)
