@@ -7,6 +7,7 @@ applyInheritanceModifiersOf: anInheritStatement
 	reusedScope := self reusedScope: anInheritStatement.
 	reusedScope isGenerative
 		ifFalse: [ ^ GraceReuseError notGenerative: anInheritStatement ].
+	(GraceGatherer for: reusedScope node) collectReusedNames.
 	result := GraceObjectScope new node: anInheritStatement.
 	excludedNames := self namesFrom: reusedScope excludedBy: anInheritStatement.
 	self addInheritedNamesFrom: reusedScope to: result excluding: excludedNames.
