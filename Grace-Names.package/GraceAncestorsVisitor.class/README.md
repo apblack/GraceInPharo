@@ -1,0 +1,1 @@
+This (abstract) visitor records the route back to the root node of the parse tree, on the stack `ancestors`.  It's useful if there are no up-links in the tree.  When used as a superclass for other visitors, these vistors have access to the ancestors stack.

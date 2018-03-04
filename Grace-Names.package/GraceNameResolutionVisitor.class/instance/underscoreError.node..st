@@ -1,8 +1,4 @@
 error handling
 underscoreError: aMessage node: aGraceParseNode 
 	
-	^ GraceNamingError new 
-			tag: aGraceParseNode;
-			messageText: aMessage;
-			signal
-			
+	^ GraceNamingError signal: aMessage withTag: aGraceParseNode

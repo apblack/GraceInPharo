@@ -1,0 +1,1 @@
+I am the superclass of the various kinds of request.

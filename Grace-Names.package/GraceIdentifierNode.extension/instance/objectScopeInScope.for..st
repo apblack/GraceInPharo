@@ -1,7 +1,5 @@
-*grace-names
+*Grace-Names
 objectScopeInScope: aGraceObjectScope for: aNode
-	self definingOccurence canBeOrginOfSuperExpression ifFalse: [
-		^ GraceReuseError 
-				signal: 'Sorry, you can''t inherit through ', self declaredName
-				withTag: aNode ].
-	^ self definingOccurence attributeScope
+	"an identifier may be the first (and only) part of an expressiojn, but it can't occur further down a request path"
+	^ self error: 'malformed parse tree'
+	

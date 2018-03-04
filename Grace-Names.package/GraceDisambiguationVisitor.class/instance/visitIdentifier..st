@@ -2,5 +2,5 @@ visit methods
 visitIdentifier: anIdentifier
 	anIdentifier isApplication
 		ifTrue:
-			[ self rewriteIdentifier: anIdentifier ].
+			[ GraceNodeRewriter rewriteIdentifier: anIdentifier ].
 	^ super visitIdentifier: anIdentifier

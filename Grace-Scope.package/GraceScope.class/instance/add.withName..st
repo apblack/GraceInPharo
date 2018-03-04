@@ -1,8 +1,7 @@
 adding local
 add: aVariable withName: aName
 	| priorDeclaration |
-	self assert: (aName isKindOf: String).
-	self assert: (aVariable isKindOf: (Smalltalk globals at: #GraceAbstractVariable)).
+
 	priorDeclaration := names at: aName ifAbsent: [
 		names at: aName put: aVariable.
 		^ aVariable ].

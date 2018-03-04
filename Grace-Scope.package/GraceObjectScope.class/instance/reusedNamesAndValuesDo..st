@@ -1,0 +1,3 @@
+enumeration
+reusedNamesAndValuesDo: aBlock
+	reusedNames keysAndValuesDo: aBlock

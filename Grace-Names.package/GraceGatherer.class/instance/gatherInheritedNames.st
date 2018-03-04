@@ -1,5 +1,5 @@
-scope building
-gatherInheritedNames: node
+name gathering
+gatherInheritedNames
 	"node represents a class, objectConstructor, or module; 
 	add to node's scope the names obtained from its 'inherit' statements"
 	| inhNodes objScope superScope inhNode modifiedSuper |
@@ -9,7 +9,7 @@ gatherInheritedNames: node
 	inhNodes 
 		ifEmpty: [ 
 			inhNode := nil.
-			superScope := self defaultInheritedScopeFor: node.
+			superScope := self defaultInheritedScope.
 			objScope addLocalAndReusedFrom: superScope ]
 		ifNotEmpty: [ 
 			inhNode := inhNodes first.

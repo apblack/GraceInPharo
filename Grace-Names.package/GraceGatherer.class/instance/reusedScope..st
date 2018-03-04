@@ -5,4 +5,4 @@ reusedScope: aGraceReuseStatement
 	expr := aGraceReuseStatement superExpr.
 	expr startsWithSelf
 		ifTrue: [ self selfReuseError: aGraceReuseStatement ].
-	^ expr objectScopeInScope: aGraceReuseStatement scope for: aGraceReuseStatement
+	^ expr objectScopeFor: aGraceReuseStatement

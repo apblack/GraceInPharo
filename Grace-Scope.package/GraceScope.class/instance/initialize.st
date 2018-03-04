@@ -1,5 +1,3 @@
 initialization
 initialize
-	names := Dictionary new.
-	reusedNames := Dictionary new.
-	statusOfReusedNames := #undiscovered
+	names := Dictionary new

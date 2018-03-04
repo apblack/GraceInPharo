@@ -8,9 +8,7 @@
 	"instvars" : [
 		"outerScope",
 		"node",
-		"names",
-		"reusedNames",
-		"statusOfReusedNames"
+		"names"
 	],
 	"name" : "GraceScope",
 	"type" : "normal"

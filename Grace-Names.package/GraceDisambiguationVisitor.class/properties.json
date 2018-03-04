@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "AndrewBlack 3/3/2018 22:49",
 	"super" : "GraceNameResolutionVisitor",
 	"category" : "Grace-Names-Visitors",
 	"classinstvars" : [

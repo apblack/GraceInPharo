@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "AndrewBlack 1/25/2018 22:49",
 	"super" : "Object",
-	"category" : "Grace-Names",
+	"category" : "Grace-Names-Utility",
 	"classinstvars" : [
 		"uniqueInstance"
 	],

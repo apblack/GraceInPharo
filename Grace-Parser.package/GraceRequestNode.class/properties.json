@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "AndrewBlack 3/4/2018 11:32",
 	"super" : "GraceExpressionNode",
 	"category" : "Grace-Parser-NodeSubclasses",
 	"classinstvars" : [ ],

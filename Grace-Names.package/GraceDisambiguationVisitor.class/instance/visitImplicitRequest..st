@@ -1,4 +1,4 @@
 visit methods
 visitImplicitRequest: anImplicitNode
-	self rewriteImplicitRequest: anImplicitNode.
+	GraceNodeRewriter rewriteImplicitRequest: anImplicitNode.
 	^ super visitImplicitRequest: anImplicitNode

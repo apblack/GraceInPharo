@@ -5,7 +5,10 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"reusedNames",
+		"statusOfReusedNames"
+	],
 	"name" : "GraceObjectScope",
 	"type" : "normal"
 }

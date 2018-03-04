@@ -6,7 +6,7 @@ allNamesAndValuesDo: aBlock filteringOut: closerDefinitions
 			closerDefinitions add: name 
 		]
 	].
-	reusedNames keysAndValuesDo: [ :name :def | 
+	self reusedNames keysAndValuesDo: [ :name :def | 
 		(closerDefinitions includes: name) ifFalse: [
 			aBlock value: name value: def.
 			closerDefinitions add: name 

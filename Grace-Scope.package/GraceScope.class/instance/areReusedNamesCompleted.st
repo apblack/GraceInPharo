@@ -1,3 +1,4 @@
 testing
 areReusedNamesCompleted
-	^ statusOfReusedNames = #completed
+	"Overriden in GraceObjectScope"
+	^ true

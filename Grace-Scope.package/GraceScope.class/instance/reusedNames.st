@@ -1,0 +1,3 @@
+accessing
+reusedNames
+	^ Dictionary new

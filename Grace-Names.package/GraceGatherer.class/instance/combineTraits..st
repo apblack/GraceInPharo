@@ -1,5 +1,5 @@
 scope building
-combineTraits: traitScopes into: nodeScope
+combineTraits: traitScopes
 	| tempScope |
 	tempScope := GraceObjectScope new.
 	traitScopes

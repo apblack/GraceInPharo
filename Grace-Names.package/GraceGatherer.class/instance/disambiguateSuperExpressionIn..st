@@ -3,6 +3,6 @@ disambiguateSuperExpressionIn: useNode
 	| superExpr |
 	superExpr := useNode superExpr.
 	superExpr isImplicitRequest
-		ifTrue: [ ^ self rewriteImplicitRequest: superExpr ].
+		ifTrue: [ ^ GraceNodeRewriter rewriteImplicitRequest: superExpr ].
 	superExpr isIdentifier
-		ifTrue: [ ^ self rewriteIdentifier: superExpr ]
+		ifTrue: [ ^ GraceNodeRewriter rewriteIdentifier: superExpr ]

@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "AndrewBlack 3/3/2018 22:45",
+	"super" : "Object",
+	"category" : "Grace-Names-Utility",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"node",
+		"nodeScope"
+	],
+	"name" : "GraceGatherer",
+	"type" : "normal"
+}

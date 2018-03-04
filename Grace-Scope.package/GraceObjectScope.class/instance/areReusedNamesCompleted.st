@@ -1,0 +1,3 @@
+testing
+areReusedNamesCompleted
+	^ statusOfReusedNames = #completed
