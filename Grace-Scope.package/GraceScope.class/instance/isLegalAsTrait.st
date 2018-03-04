@@ -1,0 +1,3 @@
+testing
+isLegalAsTrait
+	^ false

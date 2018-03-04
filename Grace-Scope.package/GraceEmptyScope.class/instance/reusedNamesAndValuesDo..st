@@ -1,3 +1,0 @@
-enumeration
-reusedNamesAndValuesDo: aBlock
-	^ self
