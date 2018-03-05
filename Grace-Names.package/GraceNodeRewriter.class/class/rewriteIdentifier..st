@@ -1,7 +1,7 @@
 request rewriting
 rewriteIdentifier: anIdentifier
 	| defs |
-	defs := anIdentifier scope visibleDefinitionsOf: anIdentifier name.
+	defs := GraceResolvedVariable definitionsOf: anIdentifier name visibleIn: anIdentifier scope.
 	defs isEmpty
 		ifTrue: [ self undeclaredIdentifier: anIdentifier ].
 	defs size = 1

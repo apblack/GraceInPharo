@@ -2,8 +2,8 @@ request rewriting
 rewriteImplicitRequest: anImplictRequest
 	| defs theRequest |
 	theRequest := anImplictRequest request.
-	defs := anImplictRequest scope
-		visibleDefinitionsOf: theRequest requestedName.
+	defs := GraceResolvedVariable 
+					definitionsOf: theRequest requestedName visibleIn: anImplictRequest scope.
 	defs isEmpty
 		ifTrue: [ self undeclaredIdentifier: theRequest ].
 	defs size = 1
