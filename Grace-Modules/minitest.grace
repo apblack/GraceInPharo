@@ -1,7 +1,7 @@
 dialect "none"
 import "gUnit" as gu
 import "standardGraceClass" as stdGraceClass
-use stdGraceClass.generator
+inherit stdGraceClass.generator
 
 def MinitestError = ProgrammingError.refine "MinitestError"
 
