@@ -540,7 +540,9 @@ class list⟦T⟧ {
             var mods is readable := 0
             var sizeCertain := true
             // size might be uncertain if a is a lazy collection.
-            def initialSize = a.sizeIfUnknown{ sizeCertain := false ; 4 } * 2 + 1
+            def initialSize = a.sizeIfUnknown{
+                sizeCertain := false
+                4 } * 2 + 1
             var inner := intrinsic.primitiveArray.new(initialSize)
             var size is readable := 0
             if (sizeCertain) then {

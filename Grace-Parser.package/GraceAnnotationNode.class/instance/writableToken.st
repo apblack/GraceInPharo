@@ -1,3 +1,0 @@
-generated
-writableToken
-	^ writableToken

@@ -1,6 +1,6 @@
 tests-Requests
 test2IndentedBlocks
-	self good: #Request as: #RequestWithArguments parse: 'one { 
+	self good: #Request as: #ImplicitRequest parse: 'one { 
     block1
 } two {
     block2

@@ -10,7 +10,7 @@
 import "intrinsic" as intrinsic
 
 def unused = object {
-    inherit singletonNamed "unused"
+    inherit singleton "unused"
     def key is public = self
 }
 

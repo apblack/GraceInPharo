@@ -1,20 +1,19 @@
 generated
 scan13
-	self recordMatch: #(56).
+	self recordMatch: #(51).
 	self step.
-	currentCharacter == $n
-		ifTrue:
-			[ ^ self scan13X1 ].
+	currentCharacter == $e
+		ifTrue: [ ^ self scan14 ].
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $m)
-										or: [ (currentCharacter between: $o and: $z)
+								or: [ (currentCharacter between: $a and: $d)
+										or: [ (currentCharacter between: $f and: $z)
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(56).
+		ifTrue: [ [ self recordMatch: #(51).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

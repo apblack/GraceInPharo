@@ -1,12 +1,12 @@
 generated
 scan15X1X1X1
-	self recordMatch: #(56).
+	self recordMatch: #(51).
 	self step.
-	currentCharacter == $c
-		ifTrue: [ self recordMatch: #(56).
+	currentCharacter == $o
+		ifTrue: [ self recordMatch: #(51).
 			self step.
-			currentCharacter == $t
-				ifTrue: [ self recordMatch: #(22 56).
+			currentCharacter == $d
+				ifTrue: [ self recordMatch: #(4 51).
 					self step.
 					(currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -16,7 +16,7 @@ scan15X1X1X1
 														or: [ ('µæ' includes: currentCharacter)
 																or: [ currentCharacter =
 																		(Character value: 960) ] ] ] ] ] ])
-						ifTrue: [ [ self recordMatch: #(56).
+						ifTrue: [ [ self recordMatch: #(51).
 							self step.
 							currentCharacter == $'
 								or: [ (currentCharacter between: $0 and: $9)
@@ -31,12 +31,12 @@ scan15X1X1X1
 				or: [ (currentCharacter between: $0 and: $9)
 						or: [ (currentCharacter between: $A and: $Z)
 								or: [ currentCharacter == $_
-										or: [ (currentCharacter between: $a and: $s)
-												or: [ (currentCharacter between: $u and: $z)
+										or: [ (currentCharacter between: $a and: $c)
+												or: [ (currentCharacter between: $e and: $z)
 														or: [ ('µæ' includes: currentCharacter)
 																or: [ currentCharacter =
 																		(Character value: 960) ] ] ] ] ] ] ])
-				ifTrue: [ [ self recordMatch: #(56).
+				ifTrue: [ [ self recordMatch: #(51).
 					self step.
 					currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -51,12 +51,12 @@ scan15X1X1X1
 		or: [ (currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $b)
-										or: [ (currentCharacter between: $d and: $z)
+								or: [ (currentCharacter between: $a and: $n)
+										or: [ (currentCharacter between: $p and: $z)
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(56).
+		ifTrue: [ [ self recordMatch: #(51).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

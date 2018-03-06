@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "AndrewBlack 3/3/2018 00:16",
-	"super" : "TestCase",
+	"super" : "GraceTests",
 	"category" : "GraceTests",
 	"classinstvars" : [ ],
 	"pools" : [ ],

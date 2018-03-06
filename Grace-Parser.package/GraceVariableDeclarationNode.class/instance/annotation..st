@@ -1,7 +1,7 @@
 generated
-annotation: aGraceAnnotationOptionNode
+annotation: aGraceAnnotationNode
 	self annotation notNil
 		ifTrue: [ self annotation parent: nil ].
-	annotation := aGraceAnnotationOptionNode.
+	annotation := aGraceAnnotationNode.
 	self annotation notNil
 		ifTrue: [ self annotation parent: self ]

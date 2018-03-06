@@ -1,92 +1,48 @@
 generated
 scan25X1
-	self recordMatch: #(56).
+	self recordMatch: #(40).
 	self step.
-	currentCharacter == $i
-		ifTrue: [ self recordMatch: #(56).
+	currentCharacter == $\
+		ifTrue: [ ^ self scan23 ].
+	currentCharacter == $o
+		ifTrue: [ self recordMatch: #(40).
 			self step.
-			currentCharacter == $d
-				ifTrue: [ self recordMatch: #(56).
+			currentCharacter == $\
+				ifTrue: [ ^ self scan23 ].
+			currentCharacter == $r
+				ifTrue: [ self recordMatch: #(40).
 					self step.
-					currentCharacter == $e
-						ifTrue: [ self recordMatch: #(3 56).
+					currentCharacter == $\
+						ifTrue: [ ^ self scan23 ].
+					currentCharacter == $t
+						ifTrue: [ self recordMatch: #(14 40).
 							self step.
-							(currentCharacter == $'
-								or: [ (currentCharacter between: $0 and: $9)
-										or: [ (currentCharacter between: $A and: $Z)
-												or: [ currentCharacter == $_
-														or: [ (currentCharacter between: $a and: $z)
-																or: [ ('µæ' includes: currentCharacter)
-																		or: [ currentCharacter =
-																				(Character value: 960) ] ] ] ] ] ])
-								ifTrue: [ [ self recordMatch: #(56).
-									self step.
-									currentCharacter == $'
-										or: [ (currentCharacter between: $0 and: $9)
-												or: [ (currentCharacter between: $A and: $Z)
-														or: [ currentCharacter == $_
-																or: [ (currentCharacter between: $a and: $z)
-																		or: [ ('µæ' includes: currentCharacter)
-																				or: [ currentCharacter =
-																						(Character value: 960) ] ] ] ] ] ] ] whileTrue ].
+							currentCharacter == $\
+								ifTrue: [ ^ self scan23 ].
+							((currentCharacter between: Character space and: $!)
+								or: [ (currentCharacter between: $# and: $[)
+										or: [ (currentCharacter between: $] and: $z)
+												or: [ currentCharacter >= $| ] ] ])
+								ifTrue: [ ^ self scan22 ].
 							^ self reportLastMatch ].
-					(currentCharacter == $'
-						or: [ (currentCharacter between: $0 and: $9)
-								or: [ (currentCharacter between: $A and: $Z)
-										or: [ currentCharacter == $_
-												or: [ (currentCharacter between: $a and: $d)
-														or: [ (currentCharacter between: $f and: $z)
-																or: [ ('µæ' includes: currentCharacter)
-																		or: [ currentCharacter =
-																				(Character value: 960) ] ] ] ] ] ] ])
-						ifTrue: [ [ self recordMatch: #(56).
-							self step.
-							currentCharacter == $'
-								or: [ (currentCharacter between: $0 and: $9)
-										or: [ (currentCharacter between: $A and: $Z)
-												or: [ currentCharacter == $_
-														or: [ (currentCharacter between: $a and: $z)
-																or: [ ('µæ' includes: currentCharacter)
-																		or: [ currentCharacter =
-																				(Character value: 960) ] ] ] ] ] ] ] whileTrue ].
+					((currentCharacter between: Character space and: $!)
+						or: [ (currentCharacter between: $# and: $[)
+								or: [ (currentCharacter between: $] and: $s)
+										or: [ (currentCharacter between: $u and: $z)
+												or: [ currentCharacter >= $| ] ] ] ])
+						ifTrue: [ ^ self scan22 ].
 					^ self reportLastMatch ].
-			(currentCharacter == $'
-				or: [ (currentCharacter between: $0 and: $9)
-						or: [ (currentCharacter between: $A and: $Z)
-								or: [ currentCharacter == $_
-										or: [ (currentCharacter between: $a and: $c)
-												or: [ (currentCharacter between: $e and: $z)
-														or: [ ('µæ' includes: currentCharacter)
-																or: [ currentCharacter =
-																		(Character value: 960) ] ] ] ] ] ] ])
-				ifTrue: [ [ self recordMatch: #(56).
-					self step.
-					currentCharacter == $'
-						or: [ (currentCharacter between: $0 and: $9)
-								or: [ (currentCharacter between: $A and: $Z)
-										or: [ currentCharacter == $_
-												or: [ (currentCharacter between: $a and: $z)
-														or: [ ('µæ' includes: currentCharacter)
-																or: [ currentCharacter =
-																		(Character value: 960) ] ] ] ] ] ] ] whileTrue ].
+			((currentCharacter between: Character space and: $!)
+				or: [ (currentCharacter between: $# and: $[)
+						or: [ (currentCharacter between: $] and: $q)
+								or: [ (currentCharacter between: $s and: $z)
+										or: [ currentCharacter >= $| ] ] ] ])
+				ifTrue: [ ^ self scan22 ].
 			^ self reportLastMatch ].
-	(currentCharacter == $'
-		or: [ (currentCharacter between: $0 and: $9)
-				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $h)
-										or: [ (currentCharacter between: $j and: $z)
-												or: [ ('µæ' includes: currentCharacter)
-														or: [ currentCharacter =
-																(Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(56).
-			self step.
-			currentCharacter == $'
-				or: [ (currentCharacter between: $0 and: $9)
-						or: [ (currentCharacter between: $A and: $Z)
-								or: [ currentCharacter == $_
-										or: [ (currentCharacter between: $a and: $z)
-												or: [ ('µæ' includes: currentCharacter)
-														or: [ currentCharacter =
-																(Character value: 960) ] ] ] ] ] ] ] whileTrue ].
+	((currentCharacter between: Character space and: $!)
+		or: [ (currentCharacter between: $# and: $[)
+				or: [ (currentCharacter between: $] and: $n)
+						or: [ (currentCharacter between: $p and: $z)
+								or: [ currentCharacter >= $| ] ] ] ])
+		ifTrue: [ ^ self scan22 ].
 	^ self reportLastMatch

@@ -6,11 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"publicToken",
-		"confidentialToken",
-		"overrideToken",
-		"readableToken",
-		"writableToken"
+		"isToken",
+		"anns",
+		"commaTokens"
 	],
 	"name" : "GraceAnnotationNode",
 	"type" : "normal"

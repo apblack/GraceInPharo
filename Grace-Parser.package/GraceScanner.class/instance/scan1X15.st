@@ -1,12 +1,12 @@
 generated
 scan1X15
-	self recordMatch: #(49).
+	[ self recordMatch: #(51).
 	self step.
-	(currentCharacter == Character lf
-		or: [ currentCharacter == Character space
-				or: [ currentCharacter = (Character value: 160) ] ])
-		ifTrue: [ [ self recordMatch: #(49).
-			self step.
-			currentCharacter == Character space
-				or: [ currentCharacter = (Character value: 160) ] ] whileTrue ].
-	^ self reportLastMatch
+	currentCharacter == $'
+		or: [ (currentCharacter between: $0 and: $9)
+				or: [ (currentCharacter between: $A and: $Z)
+						or: [ currentCharacter == $_
+								or: [ (currentCharacter between: $a and: $z)
+										or: [ ('µæ' includes: currentCharacter)
+												or: [ currentCharacter =
+														(Character value: 960) ] ] ] ] ] ] ] whileTrue

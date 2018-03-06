@@ -6,8 +6,8 @@ inherit standard.generator
 
 def MinispecError = ProgrammingError.refine "MinispecError"
 
-def nullSuite = singletonNamed "nullSuite"
-def nullBlock = singletonNamed "nullBlock"
+def nullSuite = singleton "nullSuite"
+def nullBlock = singleton "nullBlock"
 
 var currentTestSuite := nullSuite
 var currentSetupBlock := nullBlock

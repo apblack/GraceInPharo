@@ -97,7 +97,7 @@ Return
 	: ""return"" Expression 'value' ? 																					{{ }}
 	;
 Import
-	: ""import"" StringLiteral 'resource' ""as"" Identifier 'id' AnnotationOption 'annotation' 									{{ }}
+	: ""import"" StringLiteral 'resource' ""as"" Identifier 'id' Annotation 'annotation' 										{{ }}
 	;
 Dialect
 	: ""dialect"" StringLiteral 'resource' 																				{{ }}
@@ -108,33 +108,42 @@ Declaration
 	| TypeDeclaration
 	;
 VarDeclaration
-	: ""var"" Identifier 'id' TypeOption 'type'   AnnotationOption  'annotation' ( "":="" Expression 'initializer' ) ?  				{{  }}
+	: ""var"" Identifier 'id' TypeOption 'type'   Annotation  'annotation' ( "":="" Expression 'initializer' ) ?  						{{  }}
 	;
 DefDeclaration
-	: ""def"" Identifier 'id' TypeOption 'type' AnnotationOption  'annotation' ""="" Expression 'initializer'  						{{  }}
-	;
-AnnotationOption
-	:
-	| ""is"" Annotation 'ann' ( "","" Annotation 'ann' ) *  																	{{ }}
+	: ""def"" Identifier 'id' TypeOption 'type' Annotation  'annotation' ( ""="" Expression 'initializer'  ) ?						{{  }}
 	;
 Annotation
-	: ""public"" 																									{{ }}
-	| ""confidential"" 																								{{ }}
-	| ""override"" 																									{{ }}
-	| ""readable""																									{{ }}
-	| ""writable"" 																									{{ }}
-	| ""override""  																									{{ }}
+	:
+	| ""is"" AnnotationLabel 'ann' ( "","" AnnotationLabel 'ann' ) *  														{{ }}
+	;
+AnnotationLabel
+	: <id> 'annotationPart'																						{{ }}
+	| <id> 'annotationPart'  TypeArguments 'typeArg' AnnotationArgList  'argList' 
+		( <id>  'annotationPart' AnnotationArgList 'argList' )*  							{{ }}		# Both type args and normal args
+	|  <id> 'annotationPart'  TypeArguments 'typeArg'  									{{ }}		# Just type args
+	|  <id> 'annotationPart'  AnnotationArgList  'argList' 
+		( <id>  'annotationPart' AnnotationArgList 'argList' )* 								{{ }}		# Just normal args
+	;
+AnnotationArgList
+	: ""("" Expression 'arg' ("",""  Expression 'arg' ) + "")"" 																	{{ ArgumentList }}
+	| Numeral
+	| String
+	| SequenceConstructor
+	| SpecialTerm
+	| ""("" Expression 'expr' "")""  																						{ '2' }
 	;
 MethodDeclaration
-	: ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ? ""}"" {{ }}
+	: ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation'  
+		( ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ? ""}"" ) ?  											{{ }}
 	;
 ClassDeclaration
-	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" 
+	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation' ""{"" 
 		( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ?
 	   ""}"" 																										{{  }}
 	;
 TraitDeclaration
-	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' AnnotationOption 'annotation' ""{"" 
+	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation' ""{"" 
 		( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ?
 	  ""}"" 																											{{  }}
 	;

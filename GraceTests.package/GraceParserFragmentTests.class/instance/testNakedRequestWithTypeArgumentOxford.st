@@ -1,4 +1,4 @@
 tests-Requests
 testNakedRequestWithTypeArgumentOxford
-	self good: #Request as: #RequestWithArguments parse: 'foo⟦Number⟧ 8' 
+	self good: #Request as: #ImplicitRequest parse: 'foo⟦Number⟧ 8' 
 	

@@ -1,31 +1,32 @@
 generated
 scan26
-	self recordMatch: #(56).
+	self recordMatch: #(40).
 	self step.
-	currentCharacter == $r
+	currentCharacter == $\
+		ifTrue: [ ^ self scan23 ].
+	currentCharacter == $h
 		ifTrue:
 			[ ^ self scan26X2 ].
-	currentCharacter == $u
-		ifTrue:
-			[ ^ self scan26X1 ].
-	(currentCharacter == $'
-		or: [ (currentCharacter between: $0 and: $9)
-				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $q)
-										or: [ (currentCharacter between: $s and: $t)
-												or: [ (currentCharacter between: $v and: $z)
-														or: [ ('µæ' includes: currentCharacter)
-																or: [ currentCharacter =
-																		(Character value: 960) ] ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(56).
+	currentCharacter == $t
+		ifTrue: [ self recordMatch: #(40).
 			self step.
-			currentCharacter == $'
-				or: [ (currentCharacter between: $0 and: $9)
-						or: [ (currentCharacter between: $A and: $Z)
-								or: [ currentCharacter == $_
-										or: [ (currentCharacter between: $a and: $z)
-												or: [ ('µæ' includes: currentCharacter)
-														or: [ currentCharacter =
-																(Character value: 960) ] ] ] ] ] ] ] whileTrue ].
+			currentCharacter == $\
+				ifTrue: [ ^ self scan23 ].
+			currentCharacter == $e
+				ifTrue:
+					[ ^ self scan26X1 ].
+			((currentCharacter between: Character space and: $!)
+				or: [ (currentCharacter between: $# and: $[)
+						or: [ (currentCharacter between: $] and: $d)
+								or: [ (currentCharacter between: $f and: $z)
+										or: [ currentCharacter >= $| ] ] ] ])
+				ifTrue: [ ^ self scan22 ].
+			^ self reportLastMatch ].
+	((currentCharacter between: Character space and: $!)
+		or: [ (currentCharacter between: $# and: $[)
+				or: [ (currentCharacter between: $] and: $g)
+						or: [ (currentCharacter between: $i and: $s)
+								or: [ (currentCharacter between: $u and: $z)
+										or: [ currentCharacter >= $| ] ] ] ] ])
+		ifTrue: [ ^ self scan22 ].
 	^ self reportLastMatch

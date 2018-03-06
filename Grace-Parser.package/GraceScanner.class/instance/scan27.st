@@ -1,26 +1,25 @@
 generated
 scan27
-	self recordMatch: #(56).
 	self step.
-	currentCharacter == $e
-		ifTrue: [ ^ self scan28 ].
-	(currentCharacter == $'
-		or: [ (currentCharacter between: $0 and: $9)
-				or: [ (currentCharacter between: $A and: $Z)
-						or: [ currentCharacter == $_
-								or: [ (currentCharacter between: $a and: $d)
-										or: [ (currentCharacter between: $f and: $z)
-												or: [ ('µæ' includes: currentCharacter)
-														or: [ currentCharacter =
-																(Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(56).
-			self step.
-			currentCharacter == $'
-				or: [ (currentCharacter between: $0 and: $9)
-						or: [ (currentCharacter between: $A and: $Z)
-								or: [ currentCharacter == $_
-										or: [ (currentCharacter between: $a and: $z)
-												or: [ ('µæ' includes: currentCharacter)
-														or: [ currentCharacter =
-																(Character value: 960) ] ] ] ] ] ] ] whileTrue ].
-	^ self reportLastMatch
+	currentCharacter == $#
+		ifTrue:
+			[ ^ self scan27X5 ].
+	currentCharacter == $(
+		ifTrue:
+			[ ^ self scan27X29 ].
+	currentCharacter == $)
+		ifTrue:
+			[ ^ self scan27X28 ].
+	currentCharacter == $,
+		ifTrue:
+			[ ^ self scan27X27 ].
+	currentCharacter == $.
+		ifTrue:
+			[ ^ self scan27X19 ].
+	currentCharacter == $:
+		ifTrue:
+			[ ^ self scan27X17 ].
+	currentCharacter == $;
+		ifTrue:
+			[ ^ self scan27X26 ].
+	^ self scan27X32

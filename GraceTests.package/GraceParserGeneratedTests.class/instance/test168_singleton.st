@@ -7,7 +7,7 @@ def empty = object {
     method asString -> String {"empty"}
 }
 
-def full = singletonNamed "full"
+def full = singleton "full"
 
 type OptionNumber =  Number | empty | full
 

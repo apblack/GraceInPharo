@@ -29,8 +29,8 @@ testSuite {
         deny (v1.match(v2)) description "singleton matches other!"
     }
 
-    def n1 = singletonNamed "n1"
-    def n2 = singletonNamed "n2"
+    def n1 = singleton "n1"
+    def n2 = singleton "n2"
     
     test "named singleton equals itself" by {
         assert (n1 == n1) description "singleton ≠ itself!"

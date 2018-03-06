@@ -1,0 +1,1 @@
+An abstract superclass for the various test classes of the Smalltalk Grace Compiler
