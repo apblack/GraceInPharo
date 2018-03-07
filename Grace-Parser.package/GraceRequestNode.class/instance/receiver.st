@@ -1,3 +1,0 @@
-printing
-receiver
-	^ self subclassResponsibility

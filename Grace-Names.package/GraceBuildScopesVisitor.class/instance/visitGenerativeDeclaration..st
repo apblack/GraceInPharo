@@ -1,7 +1,7 @@
 visit methods
 visitGenerativeDeclaration: aGenDeclaration
 	
-	(aGenDeclaration hasMarkerAnnotation not and: [ aGenDeclaration hasBody not ]) ifTrue: [ 
+	(aGenDeclaration isMarkerDeclaration not and: [ aGenDeclaration hasBody not ]) ifTrue: [ 
 		GraceSyntaxError noBodyIn: aGenDeclaration ].
 	(aGenDeclaration hasBody) ifTrue: [ 
 		aGenDeclaration annotationNames do: [ :each | 

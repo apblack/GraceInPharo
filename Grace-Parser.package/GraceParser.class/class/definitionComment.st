@@ -63,7 +63,7 @@ default <typeOperator>: [&|+\-];
 
 %attributes Root (scope) ;				# adds the instance variable scope to GraceRootNode, and thus to all of its subclasses 
 %attributes Identifier (isDefinition definingOccurence) ;
-%attributes Module (sourceString compilationTime name) ;
+%attributes Module (compilationTime name) ;
 %attributes ObjectConstructor (declaredName) ;
 
 #############

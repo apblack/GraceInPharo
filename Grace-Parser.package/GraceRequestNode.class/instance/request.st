@@ -1,3 +1,0 @@
-naming
-request
-	^ self subclassResponsibility

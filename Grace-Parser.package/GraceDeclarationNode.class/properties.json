@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"annotationNames"
-	],
+	"instvars" : [ ],
 	"name" : "GraceDeclarationNode",
 	"type" : "normal"
 }

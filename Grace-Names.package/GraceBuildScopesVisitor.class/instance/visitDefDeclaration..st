@@ -2,7 +2,7 @@ visit methods
 visitDefDeclaration: aDefDecl
 
 	aDefDecl	id markAsDefinition.
-	(aDefDecl hasMarkerAnnotation not and: [ aDefDecl hasInitializer not ]) ifTrue: [ 
+	(aDefDecl isMarkerDeclaration not and: [ aDefDecl hasInitializer not ]) ifTrue: [ 
 		GraceSyntaxError noInitializerIn: aDefDecl ].
 	(aDefDecl hasInitializer) ifTrue: [ 
 		aDefDecl annotationNames do: [ :each | 
