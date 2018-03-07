@@ -1,0 +1,3 @@
+testing
+hasAnnotation
+	^ annotation isNotNil 

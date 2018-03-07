@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "SmaCCParser",
-	"category" : "Grace-Parser",
+	"category" : "Grace-Parser-SmaCC-Generated",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

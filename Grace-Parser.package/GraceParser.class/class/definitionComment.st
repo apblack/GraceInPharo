@@ -138,14 +138,12 @@ MethodDeclaration
 		( ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ? ""}"" ) ?  											{{ }}
 	;
 ClassDeclaration
-	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation' ""{"" 
-		( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ?
-	   ""}"" 																										{{  }}
+	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation' 
+		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ? ""}"" ) ?											{{  }}
 	;
 TraitDeclaration
-	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation' ""{"" 
-		( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ?
-	  ""}"" 																											{{  }}
+	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation' 
+		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ? ""}"" ) ?											{{  }}
 	;
 MethodHeader
 	: AssignmentMethodHeader
@@ -334,8 +332,8 @@ UninterpretedString
 #######################
 
 ObjectConstructor
-	: ""object"" ""{"" Ss '_' ? ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * ""}"" 											{{ }}
-	| ""object"" ""{"" Ss '_' ? ""}""																					{{ }}
+	: ""object"" Annotation 'annotation'  ""{"" Ss '_' ? ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * ""}"" 					{{ }}
+	| ""object"" Annotation 'annotation' ""{"" Ss '_' ? ""}""																{{ }}
 	;
 ObjectItem
 	: Statement
@@ -375,8 +373,8 @@ Type
 	| ""("" TypeExpression "")""																			{{  }}
 	;
 TypeDeclaration
-	: ""type"" Identifier 'id' TypeParameterList 'typeParameters' ""="" TypeExpression 'value' 					{{ }}
-	| ""type"" Identifier 'id' TypeParameterList 'typeParameters'  ""="" InterfaceLiteral 'value' 					{{ }}
+	: ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotation' ""="" TypeExpression 'value' 		{{ }}
+	| ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotation' ""="" InterfaceLiteral 'value'			{{ }}
 					# special case of bare interface literal without  reserved word
 	;
 TypeOption

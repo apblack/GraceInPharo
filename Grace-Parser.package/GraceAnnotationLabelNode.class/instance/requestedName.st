@@ -1,5 +1,6 @@
 naming
 requestedName
+	"to be polymorphic with method requests"
 	argLists isEmpty ifTrue: [ ^ annotationParts first name ].
 	self assert: [annotationParts size = argLists size].
 	^ String streamContents: [ :str |

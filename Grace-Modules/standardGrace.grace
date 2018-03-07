@@ -1,5 +1,5 @@
 dialect "none"
-import "standardGraceClass" as standard
+import "standardGraceBundle" as standardBundle
 
-inherit standard.generator
+inherit standardBundle.open
 

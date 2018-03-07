@@ -1,7 +1,9 @@
 dialect "none"
+
 import "gUnit" as gu
-import "standardGraceClass" as stdGraceClass
-inherit stdGraceClass.generator
+import "standardGraceBundle" as standardBundle
+
+inherit standardBundle.open
 
 def MinitestError = ProgrammingError.refine "MinitestError"
 

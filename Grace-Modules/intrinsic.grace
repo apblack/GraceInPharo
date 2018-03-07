@@ -1,5 +1,10 @@
 dialect "none"
 
+def annotation is annotation
+def public is annotation
+def confidential is annotation
+
+
 trait graceObject { 
     method asString { ... }
     method asDebugString { ... }

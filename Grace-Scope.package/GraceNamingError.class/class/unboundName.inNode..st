@@ -1,4 +1,4 @@
-error reporting
+error handling
 unboundName: aName inNode: aNode 
 
 	^ self 

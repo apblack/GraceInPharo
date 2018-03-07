@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "<historical>",
 	"super" : "PackageManifest",
-	"category" : "Grace-Parser",
+	"category" : "Grace-Parser-Meta",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

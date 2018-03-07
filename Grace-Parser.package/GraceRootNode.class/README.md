@@ -1,1 +1,1 @@
-The root of the AST class hierarchy for Grace.
+The root of the subclass hierarchy for all of the Nodes that make up Grace's parse tree.  The name GraceRootNode is determined by the %prefix, %root and %suffix declarations in the SmaCC grammar for the GraceParser. 

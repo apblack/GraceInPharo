@@ -1,8 +1,8 @@
 dialect "none"
 import "gUnit" as gu
-import "standardGraceClass" as standard
+import "standardGraceBundle" as standardBundle
 
-inherit standard.generator
+inherit standardBundle.open
 
 def MinispecError = ProgrammingError.refine "MinispecError"
 

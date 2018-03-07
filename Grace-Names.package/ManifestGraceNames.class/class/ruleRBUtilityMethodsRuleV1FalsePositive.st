@@ -1,3 +1,3 @@
 code-critics
 ruleRBUtilityMethodsRuleV1FalsePositive
-	^ #(#(#(#RGClassDefinition #(#GraceNameResolutionVisitor)) #'2018-03-03T23:32:37.516562+13:00') #(#(#RGClassDefinition #(#GraceGatherer)) #'2018-03-05T17:01:42.95151+13:00') )
+	^ #(#(#(#RGClassDefinition #(#GraceNameResolutionVisitor)) #'2018-03-03T23:32:37.516562+13:00') #(#(#RGClassDefinition #(#GraceGatherer)) #'2018-03-05T17:01:42.95151+13:00') #(#(#RGClassDefinition #(#GraceBuildScopesVisitor)) #'2018-03-06T23:33:54.271074+13:00') #(#(#RGClassDefinition #(#GraceDisambiguationVisitor)) #'2018-03-07T12:10:32.064851+13:00') )

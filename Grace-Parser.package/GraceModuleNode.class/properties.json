@@ -9,7 +9,6 @@
 		"pragmas",
 		"dialect",
 		"compilationTime",
-		"sourceString",
 		"name"
 	],
 	"name" : "GraceModuleNode",

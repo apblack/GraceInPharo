@@ -10,7 +10,8 @@
 		"id",
 		"equalToken",
 		"value",
-		"typeParameters"
+		"typeParameters",
+		"annotation"
 	],
 	"name" : "GraceTypeDeclarationNode",
 	"type" : "normal"

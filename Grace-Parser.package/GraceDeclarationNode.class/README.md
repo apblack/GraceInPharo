@@ -1,0 +1,1 @@
+The abstract supercalss for the various kinds of declaration.

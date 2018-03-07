@@ -3,7 +3,7 @@ rewriteIdentifier: anIdentifier
 	| defs |
 	defs := GraceResolvedVariable definitionsOf: anIdentifier name visibleIn: anIdentifier scope.
 	defs isEmpty
-		ifTrue: [ self undeclaredIdentifier: anIdentifier ].
+		ifTrue: [ GraceNamingError undeclaredIdentifier: anIdentifier ].
 	defs size = 1
 		ifTrue: [ self updateIdentifier: anIdentifier using: defs first ].
 	defs size > 1

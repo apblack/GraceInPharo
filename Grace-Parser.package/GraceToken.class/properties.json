@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "AndrewBlack 10/12/2017 10:47",
 	"super" : "SmaCCToken",
-	"category" : "Grace-Parser",
+	"category" : "Grace-Parser-SmaCC-Generated",
 	"classinstvars" : [
 		"symbolTable"
 	],

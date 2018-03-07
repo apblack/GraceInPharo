@@ -54,7 +54,7 @@ var numberOfErrorsToRerun is public := 10
 
 class assertion {
     def AssertionFailure is readable = Exception.refine "AssertionFailure"
-    method countOneAssertion { abstract }
+    method countOneAssertion is abstract
     
     method failBecause(str) {
         assert (false) description (str)

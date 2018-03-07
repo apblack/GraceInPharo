@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "SmaCCParseNode",
-	"category" : "Grace-Parser",
+	"category" : "Grace-Parser-SmaCC-Generated",
 	"classinstvars" : [
 		"uniqueInstance"
 	],

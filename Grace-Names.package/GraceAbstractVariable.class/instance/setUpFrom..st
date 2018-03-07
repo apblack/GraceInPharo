@@ -1,4 +1,5 @@
 instance initialization
 setUpFrom: aDeclarationNode
 	name := aDeclarationNode declaredName.
-	definingNode := aDeclarationNode
+	definingNode := aDeclarationNode.
+	isMarker := aDeclarationNode isMarkerDeclaration 

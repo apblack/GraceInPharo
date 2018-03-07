@@ -1,0 +1,3 @@
+testing
+hasInitializer
+	^ initializer isNotNil 

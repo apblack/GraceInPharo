@@ -11,7 +11,8 @@
 		"rightBraceToken",
 		"items",
 		"_s",
-		"declaredName"
+		"declaredName",
+		"annotation"
 	],
 	"name" : "GraceObjectConstructorNode",
 	"type" : "normal"

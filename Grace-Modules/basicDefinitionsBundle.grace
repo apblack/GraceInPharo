@@ -1,11 +1,19 @@
 dialect "none"
 
 // This module defines a trait that can be used by any module that needs
-// to access the definitions of the basic types.  These types are re-exported
-// by standardGrace, so this module is mostly useful when implementing a module
-// that is _not_ written in standardGrace.
+// to access the definitions of the basic types, and annotations.  These
+// definitions are re-exported  by standardGrace, so this module is mostly
+// useful when implementing a module that is _not_ written in standardGrace.
 
-trait t {
+trait open {
+   
+    method annotation is annotation
+    method public is annotation
+    method readable is annotation
+    method writable is annotation
+    method confidential is annotation
+    method required is annotation
+    method abstract is annotation
 
     type Object = interface {
         asString -> String
