@@ -1,0 +1,1 @@
+I represent a lexical error foiund by the Grace Scanner.

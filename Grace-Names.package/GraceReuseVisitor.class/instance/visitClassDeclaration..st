@@ -1,4 +1,4 @@
 visit methods
 visitClassDeclaration: aClass
-	self collectReusedNames: aClass.
+	(GraceGatherer for: aClass) collectReusedNames.
 	^ super visitClassDeclaration: aClass

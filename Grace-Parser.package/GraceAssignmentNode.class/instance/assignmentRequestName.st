@@ -1,3 +1,3 @@
-as yet unclassified
+naming
 assignmentRequestName
 	^ lhs name , ':=(_)'

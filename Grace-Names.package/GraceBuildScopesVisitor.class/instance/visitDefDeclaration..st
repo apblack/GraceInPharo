@@ -7,10 +7,13 @@ visitDefDeclaration: aDefDecl
 	(aDefDecl hasInitializer) ifTrue: [ 
 		aDefDecl annotationNames do: [ :each | 
 			(GraceParser isMarkerAnnotation: each) ifTrue: [ 
-				self halt.
 				GraceSyntaxError initializerAndMarker: each on: aDefDecl ] ] ].
-	(aDefDecl hasAnnotations: 'public' and: 'confidential') ifTrue: [ 
-		GraceSyntaxError annotation: 'public' conflictsWith: 'confidential' in: aDefDecl annotation ].
+	(aDefDecl hasAnnotation: 'writable') ifTrue: [ GraceSyntaxError defNotWritable: aDefDecl annotation ].
+	(aDefDecl hasAnnotation: 'confidential') ifTrue: [ 
+		aDefDecl annotationNames do: [ :each | 
+			(GraceParser confidentialConflictsWith: each) ifTrue: [ 
+				GraceSyntaxError annotation: each conflictsWith: 'confidential' in: aDefDecl annotation 
+	] ] ].
 	aDefDecl id isAnonymous ifFalse: [ 
 		aDefDecl scope add: (GraceDef fromParseTreeNode: aDefDecl) ].
-	^ super visitDefDeclaration: aDefDecl
+	^ super visitDefDeclaration: aDefDecl 

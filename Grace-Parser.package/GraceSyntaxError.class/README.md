@@ -1,0 +1,1 @@
+I represent a syntax error found in a Grace program.

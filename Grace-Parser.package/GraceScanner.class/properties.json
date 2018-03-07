@@ -18,8 +18,7 @@
 		"parser",
 		"previousMatch",
 		"priorLineBraceDepth",
-		"priorLineIndent",
-		"symbolNames"
+		"priorLineIndent"
 	],
 	"name" : "GraceScanner",
 	"type" : "normal"

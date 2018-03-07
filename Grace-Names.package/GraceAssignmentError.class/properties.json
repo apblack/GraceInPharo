@@ -1,11 +1,11 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "AndrewBlack 3/7/2018 21:32",
 	"super" : "GraceCompilationError",
 	"category" : "Grace-Names-Errors",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "GraceCheckingError",
+	"name" : "GraceAssignmentError",
 	"type" : "normal"
 }

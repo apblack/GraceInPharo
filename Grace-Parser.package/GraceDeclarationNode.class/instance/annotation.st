@@ -1,0 +1,3 @@
+annotations
+annotation
+	^ self subclassResponsibility

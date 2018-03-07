@@ -1,0 +1,1 @@
+I represent an error concerned with inheritance or trait use.
