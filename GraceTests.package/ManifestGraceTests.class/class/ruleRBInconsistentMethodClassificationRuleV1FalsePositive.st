@@ -1,0 +1,3 @@
+code-critics
+ruleRBInconsistentMethodClassificationRuleV1FalsePositive
+	^ #(#(#(#RGMethodDefinition #(#GraceNameTests #testMethodWith2Params #false)) #'2018-03-08T15:31:19.937418+13:00') #(#(#RGMethodDefinition #(#GraceAmbiguityTests #testEndOfLineComment #false)) #'2018-03-08T15:32:46.432414+13:00') #(#(#RGMethodDefinition #(#GraceAmbiguityTests #test014_badElseif #false)) #'2018-03-08T15:32:54.773715+13:00') #(#(#RGMethodDefinition #(#GraceAmbiguityTests #test015_badElse #false)) #'2018-03-08T15:32:59.005371+13:00') )

@@ -1,7 +1,6 @@
 minigrace failing
 test015_badElse
-	| result |
-	result := self bad: #Module parse: 'print
+	self bad: #Module parse: 'print
   "hello"
 
 if (4>5) then {
