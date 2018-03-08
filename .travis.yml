@@ -13,10 +13,7 @@ env:
     - CI_CONFIG=.smalltalk.Unit.ston
 
 install:
-  cd /home/travis/build/
-  mkdir gracelang
-  cd gracelang
-  git clone https://github.com/gracelang/minigrace.git
+  ( cd /home/travis/build/; mkdir gracelang ; cd gracelang ; git clone https://github.com/gracelang/minigrace.git )
 
 script:
   - travis_wait 10 "$SMALLTALK_CI_HOME/run.sh" ${CI_CONFIG}
