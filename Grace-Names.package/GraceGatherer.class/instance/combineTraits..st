@@ -9,6 +9,6 @@ combineTraits: traitScopes
 					^ GraceReuseError
 							signal: 'trait conflict -- there are multiple definitions of ''' , nm , ''', ' , 
 										'but no local override'
-							withTag: s node ].
+							node: s node ].
 				tempScope add: vl withName: nm ] ] ].
 	nodeScope addLocalAndReusedFrom: tempScope

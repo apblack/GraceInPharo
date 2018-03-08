@@ -7,4 +7,4 @@ definition: aGraceMethod usedAsAnnotation: anAnnotationNode
 		location := location , ' of module "' , declaringModule , '"'].
 	message := anAnnotationNode requestedName , ', which is declared on ' , 
 				  location , ', is not an annotation'.
-	self signal: message withTag: anAnnotationNode
+	self signal: message node: anAnnotationNode

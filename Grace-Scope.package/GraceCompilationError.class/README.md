@@ -1,0 +1,1 @@
+The superclass of all of the erros raised during a Grace compilation.

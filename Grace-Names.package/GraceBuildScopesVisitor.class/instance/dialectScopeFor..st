@@ -6,6 +6,6 @@ dialectScopeFor: aDialectNode
 				at: aDialectNode name
 				ifAbsent: [GraceCompilationError 
 									signal: 'dialect ' , aDialectNode name , ' is not defined' 
-									withTag: aDialectNode ] ) scope ]
+									node: aDialectNode ] ) scope ]
 		ifNil: [ self error: 'Grace module registry not available' ]
 		

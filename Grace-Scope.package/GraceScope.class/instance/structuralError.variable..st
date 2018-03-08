@@ -1,4 +1,4 @@
 error reporting
 structuralError: aMessage variable: aGraceAbstractVariable
 	
-	^ GraceNamingError signal: aMessage withTag: aGraceAbstractVariable definingNode
+	^ GraceNamingError signal: aMessage node: aGraceAbstractVariable definingNode

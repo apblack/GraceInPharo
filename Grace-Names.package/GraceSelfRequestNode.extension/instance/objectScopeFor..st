@@ -3,6 +3,6 @@ objectScopeFor: aNode
 	self enclosingObject isModule ifFalse: [ 
 		^ GraceReuseError 
 				signal: 'Sorry, you can''t inherit from ' , self description
-				withTag: aNode ].
+				node: aNode ].
 	^ self request objectScopeFor: aNode
 		

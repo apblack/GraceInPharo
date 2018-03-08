@@ -3,4 +3,4 @@ notLegalTrait: aUseNode
 	self 
 		signal: 'the expression in your ', aUseNode description ,
 				  ' statement does not refer to a trait' 
-		withTag: aUseNode superExpr
+		node: aUseNode superExpr
