@@ -1,6 +1,6 @@
 error reporting
 notManifest: aReuseNode
 	self 
-		signal: 'Sorry, you can''t ' , aReuseNode description , ' ' , 
+		signal: 'sorry, you can''t ' , aReuseNode description , ' ' , 
 					aReuseNode superExpr description , ', because it might be overriden'
 		node: aReuseNode superExpr

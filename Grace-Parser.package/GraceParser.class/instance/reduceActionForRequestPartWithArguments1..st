@@ -1,7 +1,7 @@
 generated-reduction actions
-reduceActionForRequestWithArguments1: nodes
+reduceActionForRequestPartWithArguments1: nodes
 	| result |
-	result := GraceRequestWithArgumentsNode new.
+	result := GraceRequestPartWithArgumentsNode new.
 	result addToken: (nodes at: 1) to: result requestParts.
 	result typeArg: (nodes at: 2).
 	result addNode: (nodes at: 3) to: result argLists.

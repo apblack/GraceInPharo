@@ -18,8 +18,9 @@ mySingleton     // ok, declared in dummy dialect
 singleton       // not ok; not visible from here
 '.
 	dialectFile := GraceModuleRegistry sourceDirectory / 'dummy.grace'.
-	dialectFile writeStreamDo: [  :str | str nextPutAll: dummyDialect ; close ].
-	GraceCompiler compileModule: dummyDialect readStream named: 'dummy'.
-	dialectFile delete.
-	self should: [ GraceCompiler compileStream: exampleProgram readStream ] 
-		  raise: GraceNamingError
+	[ 
+		dialectFile writeStreamDo: [  :str | str nextPutAll: dummyDialect ; close ].
+		GraceCompiler compileModule: dummyDialect readStream named: 'dummy'.
+		self should: [ GraceCompiler compileStream: exampleProgram readStream ] 
+		  	raise: GraceNamingError
+	] ensure: [ 	dialectFile delete ]

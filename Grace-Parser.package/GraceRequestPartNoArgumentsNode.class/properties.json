@@ -8,6 +8,6 @@
 	"instvars" : [
 		"requestPart"
 	],
-	"name" : "GraceRequestWithoutArgumentsNode",
+	"name" : "GraceRequestPartNoArgumentsNode",
 	"type" : "normal"
 }

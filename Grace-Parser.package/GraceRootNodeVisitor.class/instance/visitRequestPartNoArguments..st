@@ -1,0 +1,3 @@
+generated
+visitRequestPartNoArguments: aRequestPartNoArguments
+	^ self visitRequest: aRequestPartNoArguments

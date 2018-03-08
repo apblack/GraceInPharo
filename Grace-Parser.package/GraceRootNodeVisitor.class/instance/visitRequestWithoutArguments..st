@@ -1,3 +1,0 @@
-generated
-visitRequestWithoutArguments: aRequestWithoutArguments
-	^ self visitRequest: aRequestWithoutArguments

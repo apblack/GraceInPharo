@@ -1,7 +1,7 @@
 generated
-request: aGraceRequestWithArgumentsNode
+request: aGraceRequestPartWithArgumentsNode
 	self request notNil
 		ifTrue: [ self request parent: nil ].
-	request := aGraceRequestWithArgumentsNode.
+	request := aGraceRequestPartWithArgumentsNode.
 	self request notNil
 		ifTrue: [ self request parent: self ]

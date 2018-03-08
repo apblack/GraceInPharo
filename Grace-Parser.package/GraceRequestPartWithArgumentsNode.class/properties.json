@@ -10,6 +10,6 @@
 		"argLists",
 		"requestParts"
 	],
-	"name" : "GraceRequestWithArgumentsNode",
+	"name" : "GraceRequestPartWithArgumentsNode",
 	"type" : "normal"
 }

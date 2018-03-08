@@ -50,7 +50,7 @@ default <typeOperator>: [&|+\-];
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
 %hierarchy Oneself (Self Outer) ;
-%hierarchy Request (ImplicitRequest RequestWithoutArguments DottedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
+%hierarchy Request (ImplicitRequest RequestPartNoArguments DottedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
 %hierarchy DottedRequest (OneselfRequest ExplicitRequest) ;
 %hierarchy OneselfRequest (SelfRequest OuterRequest) ;
 %hierarchy ObjectConstructor (Module) ;
@@ -192,7 +192,7 @@ Request
 	| ExplicitRequest
 	;
 ImplicitRequest
-	: RequestWithArguments 'request'																				{{ }}
+	: RequestPartWithArguments 'request'																				{{ }}
 #      the case of an implicit request without arguments is covered by ""Identifier""
 	;
 SelfRequest
@@ -210,13 +210,13 @@ AssignmentRequest
 	| <outerDot> + <id> 'id' "":="" Expression 'arg'  																		{{ }}
 	;
 RequestPart
-	: RequestWithoutArguments 
-	| RequestWithArguments
+	: RequestPartNoArguments 
+	| RequestPartWithArguments
 	;
-RequestWithoutArguments
+RequestPartNoArguments
 	: <id> 'requestPart'																							{{ }}
 	;
-RequestWithArguments 
+RequestPartWithArguments 
 	:  <id> 'requestPart'  TypeArguments 'typeArg' ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )*  		{{ }}		# Both type args and normal args
 	|  <id> 'requestPart'  TypeArguments 'typeArg'  																	{{ }}		# Just type args
 	|  <id> 'requestPart'  ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )* 								{{ }}		# Just normal args
@@ -370,7 +370,7 @@ Type
 	| SelfType
 	|  Interface
 	| Identifier 'id' TypeArguments 'typeArg' ?															{{  }}
-	| Type 'receiver' <dot> RequestWithoutArguments 'request' TypeArguments 'typeArg' ?  					{{  }}
+	| Type 'receiver' <dot> RequestPartNoArguments 'request' TypeArguments 'typeArg' ?  					{{  }}
 	| ""("" TypeExpression "")""																			{{  }}
 	;
 TypeDeclaration

@@ -5,7 +5,7 @@ updateIdentifier: anIdentifierNode using: aResolvedVariable
 	anIdentifierNode definingOccurence: aResolvedVariable definition.
 	objectsUp := aResolvedVariable objectsUp.
 	aResolvedVariable definition isMethod ifFalse: [ ^ self ].
-	request := GraceRequestWithoutArgumentsNode new requestPart: anIdentifierNode id.
+	request := GraceRequestPartNoArgumentsNode new requestPart: anIdentifierNode id.
 	objectsUp = 0 ifTrue: [ 
 		newNode := GraceSelfRequestNode new request: request.
 		newNode selfDotToken:
