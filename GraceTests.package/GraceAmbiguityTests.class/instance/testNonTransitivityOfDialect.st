@@ -20,5 +20,6 @@ singleton       // not ok; not visible from here
 	dialectFile := GraceModuleRegistry sourceDirectory / 'dummy.grace'.
 	dialectFile writeStreamDo: [  :str | str nextPutAll: dummyDialect ; close ].
 	GraceCompiler compileModule: dummyDialect readStream named: 'dummy'.
+	dialectFile delete.
 	self should: [ GraceCompiler compileStream: exampleProgram readStream ] 
 		  raise: GraceNamingError
