@@ -1,6 +1,6 @@
 default scopes
 defaultInheritedScope
 	^ node enclosingModuleNode name = 'intrinsic' 
-		ifTrue: [ GraceEmptyScope new ]
+		ifTrue: [ GraceEmptyScope instance ]
 		ifFalse: [ ((GraceModuleRegistry attributeScopeOf: 'intrinsic')  
 						attributeScopeOf: 'graceObject') ]

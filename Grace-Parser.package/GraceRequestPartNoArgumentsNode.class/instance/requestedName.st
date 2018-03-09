@@ -1,3 +1,5 @@
 naming
 requestedName
-	^ self requestPart value
+	self requestPart isIdentifier ifTrue: [ 
+		^ self requestPart value ].
+	^ 'prefix' , self requestPart value 

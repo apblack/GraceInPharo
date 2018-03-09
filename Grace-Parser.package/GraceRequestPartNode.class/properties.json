@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "GraceRequestNode",
-	"category" : "Grace-Parser-NodeSubclasses",
+	"super" : "GraceRootNode",
+	"category" : "Grace-Parser",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "GraceDottedRequestNode",
+	"name" : "GraceRequestPartNode",
 	"type" : "normal"
 }

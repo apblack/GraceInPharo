@@ -1,3 +1,3 @@
 generated
 visitBinaryRequest: aBinaryRequest
-	^ self visitRequest: aBinaryRequest
+	^ self visitDottedRequest: aBinaryRequest

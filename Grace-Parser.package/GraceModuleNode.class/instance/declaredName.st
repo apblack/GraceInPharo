@@ -1,5 +1,5 @@
 naming
 declaredName
 
-	^ 'module ', name
+	^ name ifNil: [ 'the module']  ifNotNil: [ 'module ', name ]
 	

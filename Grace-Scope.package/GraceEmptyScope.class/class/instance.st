@@ -1,3 +1,3 @@
-as yet unclassified
+instance access
 instance
-	^ uniqueInstance ifNil: [  uniqueInstance := self new ]
+	^ uniqueInstance ifNil: [  uniqueInstance := self basicNew initialize ]

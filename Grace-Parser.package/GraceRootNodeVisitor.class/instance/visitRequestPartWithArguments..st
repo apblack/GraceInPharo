@@ -1,3 +1,3 @@
 generated
 visitRequestPartWithArguments: aRequestPartWithArguments
-	^ self visitRoot: aRequestPartWithArguments
+	^ self visitRequestPart: aRequestPartWithArguments

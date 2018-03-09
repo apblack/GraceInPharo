@@ -1,0 +1,3 @@
+accessing
+isObjectScope
+	^ true
