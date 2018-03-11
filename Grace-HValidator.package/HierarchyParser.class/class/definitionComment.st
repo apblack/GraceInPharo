@@ -12,5 +12,5 @@ Hierarchy
 	: HierarchyDecl 'decl' +						{{ }}
 	;
 HierarchyDecl
-	: ""%hierarchy"" <id> 'superNode' ""(""<id> 'subNodes' + "")"" "";""		{{ }}
+	: ""%hierarchy"" <id> 'superNode' ""(""<id> 'subNodes' * "")"" "";""		{{ }}
 	;"
