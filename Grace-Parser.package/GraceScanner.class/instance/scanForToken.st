@@ -1,9 +1,9 @@
 generated
 scanForToken
 	state == #string
-		ifTrue: [ ^ self scan21 ].
+		ifTrue: [ ^ self scan22 ].
 	state == #uninterpString
-		ifTrue: [ ^ self scan27 ].
+		ifTrue: [ ^ self scan28 ].
 	state == #default
 		ifTrue: [ ^ self scan1 ].
 	^ self reportLastMatch

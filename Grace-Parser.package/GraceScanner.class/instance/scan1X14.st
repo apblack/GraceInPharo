@@ -1,11 +1,11 @@
 generated
 scan1X14
-	[ self recordMatch: #(52).
+	[ self recordMatch: #(50).
 	self step.
 	currentCharacter == $.
 		ifTrue: [ self step.
 			(currentCharacter between: $0 and: $9)
-				ifTrue: [ [ self recordMatch: #(52).
+				ifTrue: [ [ self recordMatch: #(50).
 					self step.
 					currentCharacter between: $0 and: $9 ] whileTrue.
 					('Ee' includes: currentCharacter)
@@ -16,7 +16,7 @@ scan1X14
 			((currentCharacter between: $0 and: $9)
 				or: [ (currentCharacter between: $A and: $Z)
 						or: [ currentCharacter between: $a and: $z ] ])
-				ifTrue: [ [ self recordMatch: #(54).
+				ifTrue: [ [ self recordMatch: #(52).
 					self step.
 					(currentCharacter between: $0 and: $9)
 						or: [ (currentCharacter between: $A and: $Z)

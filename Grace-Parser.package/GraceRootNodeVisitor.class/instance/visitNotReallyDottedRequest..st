@@ -1,0 +1,3 @@
+generated
+visitNotReallyDottedRequest: aNotReallyDottedRequest
+	^ self visitRequest: aNotReallyDottedRequest

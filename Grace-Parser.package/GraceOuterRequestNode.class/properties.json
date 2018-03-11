@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"outerDotTokens"
-	],
+	"instvars" : [ ],
 	"name" : "GraceOuterRequestNode",
 	"type" : "normal"
 }

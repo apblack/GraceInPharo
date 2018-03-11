@@ -6,10 +6,10 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"levelsUp",
 		"definition",
 		"isReused",
-		"objectsUp"
+		"objectsUp",
+		"definingScope"
 	],
 	"name" : "GraceResolvedVariable",
 	"type" : "normal"

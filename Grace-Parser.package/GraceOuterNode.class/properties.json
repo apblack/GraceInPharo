@@ -1,12 +1,12 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "AndrewBlack 3/11/2018 23:57",
 	"super" : "GraceOneselfNode",
 	"category" : "Grace-Parser-NodeSubclasses",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"outerToken"
+		"outersToken"
 	],
 	"name" : "GraceOuterNode",
 	"type" : "normal"

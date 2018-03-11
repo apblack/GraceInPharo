@@ -1,3 +1,0 @@
-generated
-outerDotId
-	^ 49

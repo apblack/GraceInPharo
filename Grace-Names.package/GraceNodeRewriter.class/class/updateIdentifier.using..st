@@ -1,25 +1,12 @@
 request rewriting
 updateIdentifier: anIdentifierNode using: aResolvedVariable
-	| newNode scanner outerDotToken objectsUp request |
-	scanner := anIdentifierNode scanner.
+	"we know that anIdentifierNode refers to aResolvedVariable.  Reflect this in the parse tree"
+	| newNode request |
 	anIdentifierNode definingOccurence: aResolvedVariable definition.
-	objectsUp := aResolvedVariable objectsUp.
-	aResolvedVariable definition isMethod ifFalse: [ ^ self ].
+	aResolvedVariable isSimpleVariable ifTrue: [ ^ self ].
 	request := GraceRequestPartNoArgumentsNode new requestPart: anIdentifierNode id.
-	objectsUp = 0 ifTrue: [ 
-		newNode := GraceSelfRequestNode new request: request.
-		newNode selfDotToken:
-					(GraceToken
-						value: ''
-						start: anIdentifierNode startPosition
-						ids: {scanner selfDotId}
-						scanner: scanner) ].
-	objectsUp > 0 ifTrue: [ 
-		newNode := GraceOuterRequestNode new request: request.
-		outerDotToken := GraceToken
-				value: ''
-				start: anIdentifierNode startPosition
-				ids: {scanner outerDotId}
-				scanner: scanner.
-		newNode outerDotTokens: ((1 to: objectsUp) collect: [ :_ | outerDotToken ]) ].
+	newNode := GraceOneselfRequestNode new 
+		request: request;
+	 	receivingScope: aResolvedVariable definingScope.
+	newNode fixParentPointers.
 	anIdentifierNode replaceWith: newNode

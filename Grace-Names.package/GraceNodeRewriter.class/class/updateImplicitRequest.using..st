@@ -1,25 +1,12 @@
 request rewriting
 updateImplicitRequest: anImplicitRequestNode using: aResolvedVariable
-	| newNode scanner outerDotToken objectsUp aRequestWithArgumentsNode |
+	"We know that anImplicitRequestNode has as its receiver the object captured by aResolvedVariable.  Reflect this in the parse tree"
+	| newNode aRequestWithArgumentsNode |
 	aRequestWithArgumentsNode := anImplicitRequestNode request.
-	scanner := aRequestWithArgumentsNode scanner.
-	objectsUp := aResolvedVariable objectsUp.
 	aResolvedVariable definition isMethod ifFalse: [ ^ self ].
 		"aResolvedVariable could be a type with a typeParameter"
-	objectsUp = 0 ifTrue: [ 
-		newNode := GraceSelfRequestNode new request: aRequestWithArgumentsNode copy.
-		newNode selfDotToken:
-					(GraceToken
-						value: ''
-						start: aRequestWithArgumentsNode startPosition
-						ids: {scanner selfDotId}
-						scanner: scanner) ].
-	objectsUp > 0 ifTrue: [ 
-		newNode := GraceOuterRequestNode new request: aRequestWithArgumentsNode copy.
-		outerDotToken := GraceToken
-				value: ''
-				start: aRequestWithArgumentsNode startPosition
-				ids: {scanner outerDotId}
-				scanner: scanner.
-		newNode outerDotTokens: ((1 to: objectsUp) collect: [ :_ | outerDotToken ]) ].
+	newNode := GraceOneselfRequestNode new
+		request: aRequestWithArgumentsNode copy;
+		receivingScope: aResolvedVariable definingScope.
+	newNode fixParentPointers.
 	anImplicitRequestNode replaceWith: newNode

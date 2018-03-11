@@ -1,0 +1,1 @@
+I represent one or more outer reserved words, taht is `outer`, or `outer.outer`, or `outer.outer.outer`, etc.

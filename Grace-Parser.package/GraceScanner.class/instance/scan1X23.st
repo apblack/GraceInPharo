@@ -5,14 +5,14 @@ scan1X23
 	currentCharacter == $o
 		ifTrue: [ ^ self scan16 ].
 	currentCharacter == $p
-		ifTrue: [ ^ self scan17 ].
-	currentCharacter == $r
 		ifTrue: [ ^ self scan18 ].
+	currentCharacter == $r
+		ifTrue: [ ^ self scan19 ].
 	currentCharacter == $s
 		ifTrue:
-			[ ^ self scan1X1 ].
+			[ ^ self scan1X7 ].
 	currentCharacter == $t
-		ifTrue: [ ^ self scan19 ].
+		ifTrue: [ ^ self scan20 ].
 	currentCharacter == $u
 		ifTrue:
 			[ ^ self scan1X9 ].
@@ -20,10 +20,10 @@ scan1X23
 		ifTrue:
 			[ ^ self scan1X12 ].
 	currentCharacter == ${
-		ifTrue: [ ^ self recordAndReportMatch: #(10) ].
-	currentCharacter == $}
 		ifTrue: [ ^ self recordAndReportMatch: #(7) ].
+	currentCharacter == $}
+		ifTrue: [ ^ self recordAndReportMatch: #(6) ].
 	currentCharacter =
 		(Character value: 8249)
-		ifTrue: [ ^ self recordAndReportMatch: #(33) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(34) ].
 	^ self scan1X22

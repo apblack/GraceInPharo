@@ -1,6 +1,6 @@
 generated
 scan1X3X1
-	self recordMatch: #(11 57).
+	self recordMatch: #(53 55).
 	self step.
 	(currentCharacter == $!
 		or: [ (currentCharacter between: $# and: $&)
@@ -16,7 +16,7 @@ scan1X3X1
 																		and: (Character value: 8805))
 																		or: [ currentCharacter =
 																				(Character value: 8901) ] ] ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(57).
+		ifTrue: [ [ self recordMatch: #(55).
 			self step.
 			currentCharacter == $!
 				or: [ (currentCharacter between: $# and: $&)

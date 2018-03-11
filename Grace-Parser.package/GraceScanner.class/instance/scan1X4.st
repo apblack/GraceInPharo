@@ -1,4 +1,24 @@
 generated
 scan1X4
-	self recordMatch: #(57 58).
-	^ self scan1X4X3
+	self recordMatch: #(55).
+	self step.
+	currentCharacter == $p
+		ifTrue:
+			[ ^ self scan1X4X2 ].
+	(currentCharacter == $!
+		or: [ (currentCharacter between: $# and: $&)
+				or: [ (currentCharacter between: $* and: $+)
+						or: [ (currentCharacter between: $- and: $/)
+								or: [ currentCharacter == $:
+										or: [ (currentCharacter between: $< and: $@)
+												or: [ ('\^|~÷' includes: currentCharacter)
+														or: [ currentCharacter =
+																(Character value: 8800)
+																or: [ (currentCharacter
+																		between: (Character value: 8804)
+																		and: (Character value: 8805))
+																		or: [ currentCharacter =
+																				(Character value: 8901) ] ] ] ] ] ] ] ] ])
+		ifTrue:
+			[ self scan1X4X1 ].
+	^ self reportLastMatch

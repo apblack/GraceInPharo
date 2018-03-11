@@ -1,7 +1,7 @@
 generated
 definitionComment
 "%unicode ;
-%id <error> <id> <operator> <newline> <selfDot> <outerDot> ;
+%id <error> <id> <operator> <newline> ;
 
 ### State-specific token rules ###
 
@@ -21,10 +21,8 @@ default <error>: [\x00-\x09\x0b\x0c\x0e–\x1F\x7f] ;
 default string <dot>: \. ;
 default <openTP>: ⟦ | \[\[ ;
 default <closeTP>: ⟧ | \]\] ;
-default <outer>: outer ;
-default <outerDot>: <outer> <whitespace>? <dot> ;
+default <outers>: outer <whitespace>? <dot> <whitespace>? outer ;
 default <self>: self ;
-default <selfDot> : <self> <whitespace>? <dot> ;
 default <id> :  [a-zA-Z_æπµ] [a-zA-Zæπµ0-9_'] *;				# and all the other non-ascii letters
 default <decimalNumeral> :  [0-9]+ ( [.][0-9]+ )? ;
 default <baseExponentNumeral> : <decimalNumeral> [eE][\+\-]?[0-9]+ ;
@@ -50,10 +48,10 @@ default <typeOperator>: [&|+\-];
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
 %hierarchy Oneself (Self Outer) ;
-%hierarchy Request (ImplicitRequest DottedRequest) ;
+%hierarchy Request (ImplicitRequest NotReallyDottedRequest) ;
 %hierarchy RequestPart (RequestPartNoArguments RequestPartWithArguments) ;
-%hierarchy DottedRequest (OneselfRequest ExplicitRequest AssignmentRequest UnaryRequest BinaryRequest) ;
-%hierarchy OneselfRequest (SelfRequest OuterRequest) ;
+%hierarchy NotReallyDottedRequest (OneselfRequest ExplicitRequest AssignmentRequest UnaryRequest BinaryRequest) ;
+%hierarchy OneselfRequest ( ) ;
 %hierarchy ObjectConstructor (Module) ;
 %hierarchy ReuseStatement (UseStatement InheritStatement) ;
 %hierarchy Type (Interface TypeExpression UnknownType SelfType) ;
@@ -67,6 +65,7 @@ default <typeOperator>: [&|+\-];
 %attributes Declaration (annotationNames) ;
 %attributes Module (compilationTime name) ;
 %attributes ObjectConstructor (declaredName) ;
+%attributes OneselfRequest (receivingScope request) ;
 
 #############
 # Statements #
@@ -188,27 +187,17 @@ MethodParameter
 
 Request
 	: ImplicitRequest 
-	| SelfRequest
-	| OuterRequest
 	| ExplicitRequest
 	;
 ImplicitRequest
 	: RequestPartWithArguments 'request'																				{{ }}
 #      the case of an implicit request without arguments is covered by ""Identifier""
 	;
-SelfRequest
-	: <selfDot> RequestPart 'request' 																				{{ }}
-	;
-OuterRequest
-	: <outerDot> + RequestPart 'request' 																			{{ }}
-	;
 ExplicitRequest
 	: Term 'receiver' <dot> RequestPart 'request' 																	{{ }}
 	;
 AssignmentRequest
 	: Term 'receiver' <dot> <id> 'id' "":="" Expression 'arg'  																{{ }}
-	| <selfDot> <id> 'id' "":="" Expression 'arg'  																		{{ }}
-	| <outerDot> + <id> 'id' "":="" Expression 'arg'  																		{{ }}
 	;
 RequestPart
 	: RequestPartNoArguments 
@@ -297,7 +286,7 @@ SpecialTerm
 	: ""self""  																									{{ Self }}
 	| ""true"" 																									{{ Boolean }}
 	| ""false"" 																									{{ Boolean }}
-	| ""outer"" 																								{{ Outer }}
+	| <outers>																								{{ Outer }}
 	;
 Identifier
 	: <id> 'id' 																								{{ }}

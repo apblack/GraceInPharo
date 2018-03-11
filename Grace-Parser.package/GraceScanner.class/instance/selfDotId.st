@@ -1,3 +1,0 @@
-generated
-selfDotId
-	^ 50
