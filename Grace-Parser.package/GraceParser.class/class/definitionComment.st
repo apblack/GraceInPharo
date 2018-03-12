@@ -50,9 +50,9 @@ default <typeOperator>: [&|+\-];
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
 %hierarchy Oneself (Self Outer) ;
-%hierarchy Request (ImplicitRequest DottedRequest) ;
+%hierarchy Request (ImplicitRequest ExplicitRequest) ;
 %hierarchy RequestPart (RequestPartNoArguments RequestPartWithArguments) ;
-%hierarchy DottedRequest (OneselfRequest ExplicitRequest AssignmentRequest UnaryRequest BinaryRequest) ;
+%hierarchy ExplicitRequest (OneselfRequest DottedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
 %hierarchy OneselfRequest (SelfRequest OuterRequest) ;
 %hierarchy ObjectConstructor (Module) ;
 %hierarchy ReuseStatement (UseStatement InheritStatement) ;
@@ -67,6 +67,7 @@ default <typeOperator>: [&|+\-];
 %attributes Declaration (annotationNames) ;
 %attributes Module (compilationTime name) ;
 %attributes ObjectConstructor (declaredName) ;
+%attributes Outer (outerDotTokens) ;
 
 #############
 # Statements #
@@ -190,7 +191,7 @@ Request
 	: ImplicitRequest 
 	| SelfRequest
 	| OuterRequest
-	| ExplicitRequest
+	| DottedRequest
 	;
 ImplicitRequest
 	: RequestPartWithArguments 'request'																				{{ }}
@@ -202,7 +203,7 @@ SelfRequest
 OuterRequest
 	: <outerDot> + RequestPart 'request' 																			{{ }}
 	;
-ExplicitRequest
+DottedRequest
 	: Term 'receiver' <dot> RequestPart 'request' 																	{{ }}
 	;
 AssignmentRequest

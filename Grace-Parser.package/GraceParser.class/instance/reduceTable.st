@@ -90,7 +90,7 @@ reduceTable
 	#(195 0 #reduceActionFor__Pragma_Ss__1:) 
 	#(135 3 #reduceActionForRequestPartWithArguments3:) 
 	#(144 3 #reduceActionForUnaryRequest1:) 
-	#(134 3 #reduceActionForExplicitRequest1:) 
+	#(134 3 #reduceActionForDottedRequest1:) 
 	#(147 2 #reduceActionFor___operator__TypeArguments__Factor__2:) 
 	#(191 2 #reduceActionForParameterlessMethodHeader1:) 
 	#(125 2 #reduceActionFor___operator__TypeArguments__Factor__2:) 

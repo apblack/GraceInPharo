@@ -1,0 +1,1 @@
+I represent a request with an explicit receiver.  Requests that have an implicit receiver are re-written into instnaces of me by the disambiguation visitor.

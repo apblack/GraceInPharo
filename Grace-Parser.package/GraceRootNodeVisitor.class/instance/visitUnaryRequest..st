@@ -1,3 +1,3 @@
 generated
 visitUnaryRequest: anUnaryRequest
-	^ self visitDottedRequest: anUnaryRequest
+	^ self visitExplicitRequest: anUnaryRequest

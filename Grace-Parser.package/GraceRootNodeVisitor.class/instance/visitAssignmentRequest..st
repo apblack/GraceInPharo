@@ -1,3 +1,3 @@
 generated
 visitAssignmentRequest: anAssignmentRequest
-	^ self visitDottedRequest: anAssignmentRequest
+	^ self visitExplicitRequest: anAssignmentRequest

@@ -1,3 +1,3 @@
 generated
 visitDottedRequest: aDottedRequest
-	^ self visitRequest: aDottedRequest
+	^ self visitExplicitRequest: aDottedRequest
