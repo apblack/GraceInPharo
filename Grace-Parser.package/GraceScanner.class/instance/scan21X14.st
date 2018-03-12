@@ -1,48 +1,36 @@
 generated
 scan21X14
-	self recordMatch: #(40).
+	self recordMatch: #(38).
 	self step.
 	currentCharacter == $\
 		ifTrue: [ ^ self scan23 ].
-	currentCharacter == $e
-		ifTrue: [ self recordMatch: #(40).
+	currentCharacter == $a
+		ifTrue: [ self recordMatch: #(38).
 			self step.
 			currentCharacter == $\
 				ifTrue: [ ^ self scan23 ].
-			currentCharacter == $l
-				ifTrue: [ self recordMatch: #(40).
+			currentCharacter == $r
+				ifTrue: [ self recordMatch: #(19 38).
 					self step.
 					currentCharacter == $\
 						ifTrue: [ ^ self scan23 ].
-					currentCharacter == $f
-						ifTrue: [ self recordMatch: #(18 40).
-							self step.
-							currentCharacter == $\
-								ifTrue: [ ^ self scan23 ].
-							((currentCharacter between: Character space and: $!)
-								or: [ (currentCharacter between: $# and: $[)
-										or: [ (currentCharacter between: $] and: $z)
-												or: [ currentCharacter >= $| ] ] ])
-								ifTrue: [ ^ self scan22 ].
-							^ self reportLastMatch ].
 					((currentCharacter between: Character space and: $!)
 						or: [ (currentCharacter between: $# and: $[)
-								or: [ (currentCharacter between: $] and: $e)
-										or: [ (currentCharacter between: $g and: $z)
-												or: [ currentCharacter >= $| ] ] ] ])
+								or: [ (currentCharacter between: $] and: $z)
+										or: [ currentCharacter >= $| ] ] ])
 						ifTrue: [ ^ self scan22 ].
 					^ self reportLastMatch ].
 			((currentCharacter between: Character space and: $!)
 				or: [ (currentCharacter between: $# and: $[)
-						or: [ (currentCharacter between: $] and: $k)
-								or: [ (currentCharacter between: $m and: $z)
+						or: [ (currentCharacter between: $] and: $q)
+								or: [ (currentCharacter between: $s and: $z)
 										or: [ currentCharacter >= $| ] ] ] ])
 				ifTrue: [ ^ self scan22 ].
 			^ self reportLastMatch ].
 	((currentCharacter between: Character space and: $!)
 		or: [ (currentCharacter between: $# and: $[)
-				or: [ (currentCharacter between: $] and: $d)
-						or: [ (currentCharacter between: $f and: $z)
+				or: [ (currentCharacter between: $] and: $`)
+						or: [ (currentCharacter between: $b and: $z)
 								or: [ currentCharacter >= $| ] ] ] ])
 		ifTrue: [ ^ self scan22 ].
 	^ self reportLastMatch

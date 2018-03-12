@@ -20,9 +20,9 @@ scan1X23
 		ifTrue:
 			[ ^ self scan1X12 ].
 	currentCharacter == ${
-		ifTrue: [ ^ self recordAndReportMatch: #(10) ].
-	currentCharacter == $}
 		ifTrue: [ ^ self recordAndReportMatch: #(7) ].
+	currentCharacter == $}
+		ifTrue: [ ^ self recordAndReportMatch: #(6) ].
 	currentCharacter =
 		(Character value: 8249)
 		ifTrue: [ ^ self recordAndReportMatch: #(33) ].

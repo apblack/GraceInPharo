@@ -1,7 +1,7 @@
 generated
 scan1X24
 	currentCharacter == $;
-		ifTrue: [ ^ self recordAndReportMatch: #(15) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(12) ].
 	currentCharacter == $=
 		ifTrue:
 			[ ^ self scan1X11 ].

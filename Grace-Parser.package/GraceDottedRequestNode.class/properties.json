@@ -7,8 +7,8 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"dotToken",
-		"receiver",
-		"request"
+		"request",
+		"receiver"
 	],
 	"name" : "GraceDottedRequestNode",
 	"type" : "normal"

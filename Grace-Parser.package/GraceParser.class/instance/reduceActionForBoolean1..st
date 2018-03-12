@@ -1,6 +1,6 @@
 generated-reduction actions
-reduceActionForSpecialTerm3: nodes
+reduceActionForBoolean1: nodes
 	| result |
 	result := GraceBooleanNode new.
-	result falseToken: (nodes at: 1).
+	result trueToken: (nodes at: 1).
 	^ result

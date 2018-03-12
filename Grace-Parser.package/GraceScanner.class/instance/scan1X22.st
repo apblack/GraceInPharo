@@ -2,14 +2,14 @@ generated
 scan1X22
 	currentCharacter =
 		(Character value: 8250)
-		ifTrue: [ ^ self recordAndReportMatch: #(28) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(29) ].
 	currentCharacter =
 		(Character value: 8594)
 		ifTrue: [ ^ self recordAndReportMatch: #(55) ].
 	currentCharacter isOpenOxfordBracket
-		ifTrue: [ ^ self recordAndReportMatch: #(47) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(45) ].
 	currentCharacter isCloseOxfordBracket
-		ifTrue: [ ^ self recordAndReportMatch: #(48) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(46) ].
 	(currentCharacter between: $0 and: $9)
 		ifTrue:
 			[ ^ self scan1X14 ].

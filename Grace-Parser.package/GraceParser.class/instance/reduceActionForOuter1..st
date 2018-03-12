@@ -1,6 +1,6 @@
 generated-reduction actions
-reduceActionForSpecialTerm4: nodes
+reduceActionForOuter1: nodes
 	| result |
 	result := GraceOuterNode new.
-	result outerToken: (nodes at: 1).
+	result addToken: (nodes at: 1) to: result outers.
 	^ result

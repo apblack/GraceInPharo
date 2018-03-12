@@ -1,21 +1,21 @@
 generated
-scan21X3X2
-	self recordMatch: #(40).
+scan21X9X1X1
+	self recordMatch: #(38).
 	self step.
 	currentCharacter == $\
 		ifTrue: [ ^ self scan23 ].
-	currentCharacter == $t
-		ifTrue: [ self recordMatch: #(40).
+	currentCharacter == $e
+		ifTrue: [ self recordMatch: #(38).
 			self step.
 			currentCharacter == $\
 				ifTrue: [ ^ self scan23 ].
-			currentCharacter == $e
-				ifTrue: [ self recordMatch: #(40).
+			currentCharacter == $c
+				ifTrue: [ self recordMatch: #(38).
 					self step.
 					currentCharacter == $\
 						ifTrue: [ ^ self scan23 ].
-					currentCharacter == $r
-						ifTrue: [ self recordMatch: #(39 40).
+					currentCharacter == $t
+						ifTrue: [ self recordMatch: #(28 38).
 							self step.
 							currentCharacter == $\
 								ifTrue: [ ^ self scan23 ].
@@ -27,22 +27,22 @@ scan21X3X2
 							^ self reportLastMatch ].
 					((currentCharacter between: Character space and: $!)
 						or: [ (currentCharacter between: $# and: $[)
-								or: [ (currentCharacter between: $] and: $q)
-										or: [ (currentCharacter between: $s and: $z)
+								or: [ (currentCharacter between: $] and: $s)
+										or: [ (currentCharacter between: $u and: $z)
 												or: [ currentCharacter >= $| ] ] ] ])
 						ifTrue: [ ^ self scan22 ].
 					^ self reportLastMatch ].
 			((currentCharacter between: Character space and: $!)
 				or: [ (currentCharacter between: $# and: $[)
-						or: [ (currentCharacter between: $] and: $d)
-								or: [ (currentCharacter between: $f and: $z)
+						or: [ (currentCharacter between: $] and: $b)
+								or: [ (currentCharacter between: $d and: $z)
 										or: [ currentCharacter >= $| ] ] ] ])
 				ifTrue: [ ^ self scan22 ].
 			^ self reportLastMatch ].
 	((currentCharacter between: Character space and: $!)
 		or: [ (currentCharacter between: $# and: $[)
-				or: [ (currentCharacter between: $] and: $s)
-						or: [ (currentCharacter between: $u and: $z)
+				or: [ (currentCharacter between: $] and: $d)
+						or: [ (currentCharacter between: $f and: $z)
 								or: [ currentCharacter >= $| ] ] ] ])
 		ifTrue: [ ^ self scan22 ].
 	^ self reportLastMatch

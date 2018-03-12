@@ -10,11 +10,11 @@ scan1
 		ifTrue:
 			[ ^ self scan1X5 ].
 	currentCharacter == $(
-		ifTrue: [ ^ self recordAndReportMatch: #(1) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(4) ].
 	currentCharacter == $)
 		ifTrue: [ ^ self recordAndReportMatch: #(3) ].
 	currentCharacter == $,
-		ifTrue: [ ^ self recordAndReportMatch: #(2) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(1) ].
 	currentCharacter == $-
 		ifTrue:
 			[ ^ self scan1X4 ].

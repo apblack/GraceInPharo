@@ -5,7 +5,7 @@ scan1X6X1
 	currentCharacter == $a
 		ifTrue: [ self recordMatch: #(51).
 			(self scanForString: 'ss')
-				ifTrue: [ self recordMatch: #(6 51).
+				ifTrue: [ self recordMatch: #(15 51).
 					self step.
 					(currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)

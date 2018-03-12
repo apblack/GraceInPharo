@@ -1,14 +1,14 @@
 generated
 scan27X4
-	self recordMatch: #(41).
+	self recordMatch: #(39).
 	self step.
-	currentCharacter == $x
+	currentCharacter == $p
 		ifTrue:
 			[ ^ self scan27X4X1 ].
-	(currentCharacter <= $w
-		or: [ (currentCharacter between: $y and: (Character value: 8249))
+	(currentCharacter <= $o
+		or: [ (currentCharacter between: $q and: (Character value: 8249))
 				or: [ currentCharacter >= (Character value: 8251) ] ])
-		ifTrue: [ [ self recordMatch: #(41).
+		ifTrue: [ [ self recordMatch: #(39).
 			self step.
 			currentCharacter ~~ (Character value: 8250) ] whileTrue ].
 	^ self reportLastMatch

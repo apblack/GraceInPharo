@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"outerToken",
-		"outerDotTokens"
+		"outers"
 	],
 	"name" : "GraceOuterNode",
 	"type" : "normal"

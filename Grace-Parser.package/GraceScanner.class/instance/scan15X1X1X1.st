@@ -6,7 +6,7 @@ scan15X1X1X1
 		ifTrue: [ self recordMatch: #(51).
 			self step.
 			currentCharacter == $d
-				ifTrue: [ self recordMatch: #(4 51).
+				ifTrue: [ self recordMatch: #(8 51).
 					self step.
 					(currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)

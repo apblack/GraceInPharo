@@ -9,7 +9,7 @@ scan1X21
 										or: [ currentCharacter = (Character value: 127)
 												or: [ currentCharacter =
 														(Character value: 8211) ] ] ] ] ] ])
-		ifTrue: [ ^ self recordAndReportMatch: #(45) ].
+		ifTrue: [ ^ self recordAndReportMatch: #(43) ].
 	(currentCharacter isSpecial
 		or: [ ('$^÷' includes: currentCharacter)
 				or: [ currentCharacter =

@@ -1,59 +1,59 @@
 generated
 scan27X4X1
-	self recordMatch: #(41).
+	self recordMatch: #(39).
 	self step.
-	currentCharacter == $c
-		ifTrue: [ self recordMatch: #(41).
+	currentCharacter == $r
+		ifTrue: [ self recordMatch: #(39).
 			self step.
-			currentCharacter == $l
-				ifTrue: [ self recordMatch: #(41).
+			currentCharacter == $a
+				ifTrue: [ self recordMatch: #(39).
 					self step.
-					currentCharacter == $u
-						ifTrue: [ self recordMatch: #(41).
+					currentCharacter == $g
+						ifTrue: [ self recordMatch: #(39).
 							self step.
-							currentCharacter == $d
-								ifTrue: [ self recordMatch: #(41).
+							currentCharacter == $m
+								ifTrue: [ self recordMatch: #(39).
 									self step.
-									currentCharacter == $e
-										ifTrue: [ self recordMatch: #(23 41).
+									currentCharacter == $a
+										ifTrue: [ self recordMatch: #(11 39).
 											self step.
 											currentCharacter ~~ (Character value: 8250)
-												ifTrue: [ [ self recordMatch: #(41).
+												ifTrue: [ [ self recordMatch: #(39).
 													self step.
 													currentCharacter ~~ (Character value: 8250) ] whileTrue ].
 											^ self reportLastMatch ].
-									(currentCharacter <= $d
-										or: [ (currentCharacter between: $f and: (Character value: 8249))
+									(currentCharacter <= $`
+										or: [ (currentCharacter between: $b and: (Character value: 8249))
 												or: [ currentCharacter >= (Character value: 8251) ] ])
-										ifTrue: [ [ self recordMatch: #(41).
+										ifTrue: [ [ self recordMatch: #(39).
 											self step.
 											currentCharacter ~~ (Character value: 8250) ] whileTrue ].
 									^ self reportLastMatch ].
-							(currentCharacter <= $c
-								or: [ (currentCharacter between: $e and: (Character value: 8249))
+							(currentCharacter <= $l
+								or: [ (currentCharacter between: $n and: (Character value: 8249))
 										or: [ currentCharacter >= (Character value: 8251) ] ])
-								ifTrue: [ [ self recordMatch: #(41).
+								ifTrue: [ [ self recordMatch: #(39).
 									self step.
 									currentCharacter ~~ (Character value: 8250) ] whileTrue ].
 							^ self reportLastMatch ].
-					(currentCharacter <= $t
-						or: [ (currentCharacter between: $v and: (Character value: 8249))
+					(currentCharacter <= $f
+						or: [ (currentCharacter between: $h and: (Character value: 8249))
 								or: [ currentCharacter >= (Character value: 8251) ] ])
-						ifTrue: [ [ self recordMatch: #(41).
+						ifTrue: [ [ self recordMatch: #(39).
 							self step.
 							currentCharacter ~~ (Character value: 8250) ] whileTrue ].
 					^ self reportLastMatch ].
-			(currentCharacter <= $k
-				or: [ (currentCharacter between: $m and: (Character value: 8249))
+			(currentCharacter <= $`
+				or: [ (currentCharacter between: $b and: (Character value: 8249))
 						or: [ currentCharacter >= (Character value: 8251) ] ])
-				ifTrue: [ [ self recordMatch: #(41).
+				ifTrue: [ [ self recordMatch: #(39).
 					self step.
 					currentCharacter ~~ (Character value: 8250) ] whileTrue ].
 			^ self reportLastMatch ].
-	(currentCharacter <= $b
-		or: [ (currentCharacter between: $d and: (Character value: 8249))
+	(currentCharacter <= $q
+		or: [ (currentCharacter between: $s and: (Character value: 8249))
 				or: [ currentCharacter >= (Character value: 8251) ] ])
-		ifTrue: [ [ self recordMatch: #(41).
+		ifTrue: [ [ self recordMatch: #(39).
 			self step.
 			currentCharacter ~~ (Character value: 8250) ] whileTrue ].
 	^ self reportLastMatch

@@ -9,7 +9,7 @@ scan5X1
 				ifTrue: [ self recordMatch: #(51).
 					self step.
 					currentCharacter == $n
-						ifTrue: [ self recordMatch: #(26 51).
+						ifTrue: [ self recordMatch: #(25 51).
 							self step.
 							(currentCharacter == $'
 								or: [ (currentCharacter between: $0 and: $9)

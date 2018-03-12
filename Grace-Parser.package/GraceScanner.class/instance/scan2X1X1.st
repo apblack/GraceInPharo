@@ -1,6 +1,6 @@
 generated
 scan2X1X1
-	[ self recordMatch: #(43).
+	[ self recordMatch: #(41).
 	self step.
 	currentCharacter <= Character tab
 		or: [ (currentCharacter between: Character pageUp and: Character newPage)

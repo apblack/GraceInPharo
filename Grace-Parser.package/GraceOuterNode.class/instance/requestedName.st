@@ -1,3 +1,3 @@
 naming
 requestedName
-	^ 'outer'
+	^ outers inject: '' into:  [ :acc :each | acc , each value ]

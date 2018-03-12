@@ -1,7 +1,7 @@
 generated
 definitionComment
 "%unicode ;
-%id <error> <id> <operator> <newline> <selfDot> <outerDot> ;
+%id <error> <id> <operator> <newline> <selfDot> <outerDot> <outer>;
 
 ### State-specific token rules ###
 
@@ -67,7 +67,7 @@ default <typeOperator>: [&|+\-];
 %attributes Declaration (annotationNames) ;
 %attributes Module (compilationTime name) ;
 %attributes ObjectConstructor (declaredName) ;
-%attributes Outer (outerDotTokens) ;
+# %attributes Outer (outerDotTokens) ;
 
 #############
 # Statements #
@@ -194,7 +194,7 @@ Request
 	| DottedRequest
 	;
 ImplicitRequest
-	: RequestPartWithArguments 'request'																				{{ }}
+	: RequestPartWithArguments 'request'																			{{ }}
 #      the case of an implicit request without arguments is covered by ""Identifier""
 	;
 SelfRequest
@@ -295,10 +295,20 @@ DelimitedTerm
 	| ""("" Expression 'expr' "")""  																					{ '2' }
 	;
 SpecialTerm
-	: ""self""  																									{{ Self }}
-	| ""true"" 																									{{ Boolean }}
-	| ""false"" 																									{{ Boolean }}
-	| ""outer"" 																								{{ Outer }}
+	: Self  
+	| Outer
+	| Boolean
+	;
+Outer
+	: <outer> 'outer'																							{{ }}
+	| <outerDot> 'outer' + <outer> 'outer'																		{{ }}
+	;
+Self
+	: <self>																									{{ }}
+	;
+Boolean
+	: ""true""																									{{ }}
+	| ""false""																									{{ }}
 	;
 Identifier
 	: <id> 'id' 																								{{ }}
