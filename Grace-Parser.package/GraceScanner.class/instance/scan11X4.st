@@ -1,6 +1,6 @@
 generated
 scan11X4
-	[ self recordMatch: #(51).
+	[ self recordMatch: #(53).
 	self step.
 	currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)

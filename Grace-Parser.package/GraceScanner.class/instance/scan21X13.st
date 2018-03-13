@@ -1,48 +1,53 @@
 generated
 scan21X13
-	self recordMatch: #(38).
+	self recordMatch: #(40).
 	self step.
 	currentCharacter == $\
 		ifTrue: [ ^ self scan23 ].
-	currentCharacter == $e
-		ifTrue: [ self recordMatch: #(38).
+	currentCharacter == $l
+		ifTrue: [ self recordMatch: #(40).
 			self step.
 			currentCharacter == $\
 				ifTrue: [ ^ self scan23 ].
-			currentCharacter == $l
-				ifTrue: [ self recordMatch: #(38).
+			currentCharacter == $a
+				ifTrue: [ self recordMatch: #(40).
 					self step.
 					currentCharacter == $\
 						ifTrue: [ ^ self scan23 ].
-					currentCharacter == $f
-						ifTrue: [ self recordMatch: #(10 38).
+					currentCharacter == $s
+						ifTrue: [ self recordMatch: #(40).
 							self step.
 							currentCharacter == $\
 								ifTrue: [ ^ self scan23 ].
-							((currentCharacter between: Character space and: $!)
-								or: [ (currentCharacter between: $# and: $[)
-										or: [ (currentCharacter between: $] and: $z)
-												or: [ currentCharacter >= $| ] ] ])
-								ifTrue: [ ^ self scan22 ].
-							^ self reportLastMatch ].
+							currentCharacter == $s
+								ifTrue: [ self recordMatch: #(19 40).
+									self step.
+									currentCharacter == $\
+										ifTrue: [ ^ self scan23 ].
+									((currentCharacter between: Character space and: $!)
+										or: [ (currentCharacter between: $# and: $[)
+												or: [ (currentCharacter between: $] and: $z)
+														or: [ currentCharacter >= $| ] ] ])
+										ifTrue: [ ^ self scan22 ].
+									^ self reportLastMatch ] ].
 					((currentCharacter between: Character space and: $!)
 						or: [ (currentCharacter between: $# and: $[)
-								or: [ (currentCharacter between: $] and: $e)
-										or: [ (currentCharacter between: $g and: $z)
+								or: [ (currentCharacter between: $] and: $r)
+										or: [ (currentCharacter between: $t and: $z)
 												or: [ currentCharacter >= $| ] ] ] ])
 						ifTrue: [ ^ self scan22 ].
 					^ self reportLastMatch ].
 			((currentCharacter between: Character space and: $!)
 				or: [ (currentCharacter between: $# and: $[)
-						or: [ (currentCharacter between: $] and: $k)
-								or: [ (currentCharacter between: $m and: $z)
+						or: [ (currentCharacter between: $] and: $`)
+								or: [ (currentCharacter between: $b and: $z)
 										or: [ currentCharacter >= $| ] ] ] ])
 				ifTrue: [ ^ self scan22 ].
 			^ self reportLastMatch ].
 	((currentCharacter between: Character space and: $!)
 		or: [ (currentCharacter between: $# and: $[)
-				or: [ (currentCharacter between: $] and: $d)
-						or: [ (currentCharacter between: $f and: $z)
+				or: [ (currentCharacter between: $] and: $k)
+						or: [ (currentCharacter between: $m and: $z)
 								or: [ currentCharacter >= $| ] ] ] ])
 		ifTrue: [ ^ self scan22 ].
 	^ self reportLastMatch

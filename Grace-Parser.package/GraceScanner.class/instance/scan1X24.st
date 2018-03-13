@@ -1,33 +1,30 @@
 generated
 scan1X24
-	currentCharacter == $;
-		ifTrue: [ ^ self recordAndReportMatch: #(12) ].
-	currentCharacter == $=
+	currentCharacter == $o
+		ifTrue: [ ^ self scan16 ].
+	currentCharacter == $p
+		ifTrue: [ ^ self scan17 ].
+	currentCharacter == $r
+		ifTrue: [ ^ self scan18 ].
+	currentCharacter == $s
 		ifTrue:
-			[ ^ self scan1X11 ].
-	currentCharacter == $S
+			[ ^ self scan1X1 ].
+	currentCharacter == $t
+		ifTrue: [ ^ self scan19 ].
+	currentCharacter == $u
 		ifTrue:
-			[ ^ self scan1X8 ].
-	currentCharacter == $U
-		ifTrue: [ ^ self scan4 ].
-	currentCharacter == $[
+			[ ^ self scan1X10 ].
+	currentCharacter == $v
 		ifTrue:
-			[ ^ self scan1X20 ].
-	currentCharacter == $]
+			[ ^ self scan1X13 ].
+	currentCharacter == $w
 		ifTrue:
-			[ ^ self scan1X19 ].
-	currentCharacter == $a
-		ifTrue: [ ^ self scan6 ].
-	currentCharacter == $c
-		ifTrue:
-			[ ^ self scan1X6 ].
-	currentCharacter == $d
-		ifTrue: [ ^ self scan7 ].
-	currentCharacter == $e
-		ifTrue: [ ^ self scan9 ].
-	currentCharacter == $f
-		ifTrue:
-			[ ^ self scan1X2 ].
-	currentCharacter == $i
-		ifTrue: [ ^ self scan11 ].
+			[ ^ self scan1X3 ].
+	currentCharacter == ${
+		ifTrue: [ ^ self recordAndReportMatch: #(7) ].
+	currentCharacter == $}
+		ifTrue: [ ^ self recordAndReportMatch: #(6) ].
+	currentCharacter =
+		(Character value: 8249)
+		ifTrue: [ ^ self recordAndReportMatch: #(37) ].
 	^ self scan1X23

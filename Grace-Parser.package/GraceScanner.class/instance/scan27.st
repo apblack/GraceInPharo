@@ -3,20 +3,23 @@ scan27
 	self step.
 	currentCharacter == $#
 		ifTrue:
-			[ ^ self scan27X4 ].
+			[ ^ self scan27X5 ].
 	currentCharacter == $(
 		ifTrue:
-			[ ^ self scan27X28 ].
+			[ ^ self scan27X29 ].
 	currentCharacter == $)
 		ifTrue:
-			[ ^ self scan27X27 ].
+			[ ^ self scan27X28 ].
 	currentCharacter == $,
 		ifTrue:
-			[ ^ self scan27X26 ].
+			[ ^ self scan27X27 ].
 	currentCharacter == $.
 		ifTrue:
-			[ ^ self scan27X18 ].
+			[ ^ self scan27X19 ].
 	currentCharacter == $:
 		ifTrue:
-			[ ^ self scan27X16 ].
-	^ self scan27X31
+			[ ^ self scan27X17 ].
+	currentCharacter == $;
+		ifTrue:
+			[ ^ self scan27X26 ].
+	^ self scan27X32

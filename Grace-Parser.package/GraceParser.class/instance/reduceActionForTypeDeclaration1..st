@@ -8,4 +8,5 @@ reduceActionForTypeDeclaration1: nodes
 	result annotation: (nodes at: 4).
 	result equalToken: (nodes at: 5).
 	result value: (nodes at: 6).
+	result where: (nodes at: 7).
 	^ result

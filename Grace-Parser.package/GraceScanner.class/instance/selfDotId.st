@@ -1,3 +1,3 @@
 generated
 selfDotId
-	^ 50
+	^ 52

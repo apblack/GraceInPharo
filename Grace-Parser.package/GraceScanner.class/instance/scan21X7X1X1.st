@@ -1,21 +1,21 @@
 generated
-scan21X6X1X1
-	self recordMatch: #(38).
+scan21X7X1X1
+	self recordMatch: #(40).
 	self step.
 	currentCharacter == $\
 		ifTrue: [ ^ self scan23 ].
 	currentCharacter == $h
-		ifTrue: [ self recordMatch: #(38).
+		ifTrue: [ self recordMatch: #(40).
 			self step.
 			currentCharacter == $\
 				ifTrue: [ ^ self scan23 ].
 			currentCharacter == $o
-				ifTrue: [ self recordMatch: #(38).
+				ifTrue: [ self recordMatch: #(40).
 					self step.
 					currentCharacter == $\
 						ifTrue: [ ^ self scan23 ].
 					currentCharacter == $d
-						ifTrue: [ self recordMatch: #(8 38).
+						ifTrue: [ self recordMatch: #(10 40).
 							self step.
 							currentCharacter == $\
 								ifTrue: [ ^ self scan23 ].

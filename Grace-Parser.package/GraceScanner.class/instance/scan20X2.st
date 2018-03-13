@@ -1,9 +1,9 @@
 generated
 scan20X2
-	self recordMatch: #(51).
+	self recordMatch: #(53).
 	self step.
 	currentCharacter == $e
-		ifTrue: [ self recordMatch: #(34 51).
+		ifTrue: [ self recordMatch: #(34 53).
 			self step.
 			(currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)
@@ -13,7 +13,7 @@ scan20X2
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ])
-				ifTrue: [ [ self recordMatch: #(51).
+				ifTrue: [ [ self recordMatch: #(53).
 					self step.
 					currentCharacter == $'
 						or: [ (currentCharacter between: $0 and: $9)
@@ -33,7 +33,7 @@ scan20X2
 												or: [ ('µæ' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 960) ] ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(51).
+		ifTrue: [ [ self recordMatch: #(53).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

@@ -1,6 +1,6 @@
 generated
 scan11X3
-	self recordMatch: #(2 51).
+	self recordMatch: #(5 53).
 	self step.
 	(currentCharacter == $'
 		or: [ (currentCharacter between: $0 and: $9)
@@ -10,7 +10,7 @@ scan11X3
 										or: [ ('µæ' includes: currentCharacter)
 												or: [ currentCharacter =
 														(Character value: 960) ] ] ] ] ] ])
-		ifTrue: [ [ self recordMatch: #(51).
+		ifTrue: [ [ self recordMatch: #(53).
 			self step.
 			currentCharacter == $'
 				or: [ (currentCharacter between: $0 and: $9)

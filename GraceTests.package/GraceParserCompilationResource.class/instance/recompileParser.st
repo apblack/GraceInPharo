@@ -13,7 +13,7 @@ recompileParser
 				scannerClass: 'GraceScanner';
 				parserClass: 'GraceParser'.
 		aGrammar := parserCompiler grammar.
-		aGrammar type: #LR1.
+		aGrammar type: #LAR1.
 		parserCompiler createChanges.
 		parserCompiler codeGenerator compileChanges
 	] ensure: [ 

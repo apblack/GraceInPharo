@@ -1,6 +1,6 @@
 generated
 scan26
-	self recordMatch: #(38).
+	self recordMatch: #(40).
 	self step.
 	currentCharacter == $\
 		ifTrue: [ ^ self scan23 ].
@@ -8,7 +8,7 @@ scan26
 		ifTrue:
 			[ ^ self scan26X2 ].
 	currentCharacter == $t
-		ifTrue: [ self recordMatch: #(38).
+		ifTrue: [ self recordMatch: #(40).
 			self step.
 			currentCharacter == $\
 				ifTrue: [ ^ self scan23 ].

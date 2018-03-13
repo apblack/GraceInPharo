@@ -1,6 +1,6 @@
 generated
 scan21X21
-	self recordMatch: #(6 38).
+	self recordMatch: #(37 40).
 	self step.
 	currentCharacter == $\
 		ifTrue: [ ^ self scan23 ].
