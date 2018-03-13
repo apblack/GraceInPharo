@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "OSExpression",
+	"category" : "Grace-OuterSpike",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"outers",
+		"dotTokens"
+	],
+	"name" : "OSOuter",
+	"type" : "normal"
+}

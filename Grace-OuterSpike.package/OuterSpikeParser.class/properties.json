@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SmaCCParser",
+	"category" : "Grace-OuterSpike",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "OuterSpikeParser",
+	"type" : "normal"
+}

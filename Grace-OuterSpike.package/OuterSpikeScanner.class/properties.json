@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SmaCCScanner",
+	"category" : "Grace-OuterSpike",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "OuterSpikeScanner",
+	"type" : "normal"
+}

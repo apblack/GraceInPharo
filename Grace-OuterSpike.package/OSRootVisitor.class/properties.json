@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SmaCCParseNodeVisitor",
+	"category" : "Grace-OuterSpike",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "OSRootVisitor",
+	"type" : "normal"
+}

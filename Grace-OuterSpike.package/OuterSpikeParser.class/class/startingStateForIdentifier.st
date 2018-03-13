@@ -1,0 +1,3 @@
+generated
+startingStateForIdentifier
+	^ 3

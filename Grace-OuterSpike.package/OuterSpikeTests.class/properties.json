@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceParserTests",
+	"category" : "Grace-OuterSpike",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "OuterSpikeTests",
+	"type" : "normal"
+}

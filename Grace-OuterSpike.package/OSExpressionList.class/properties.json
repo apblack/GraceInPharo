@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "OSRoot",
+	"category" : "Grace-OuterSpike",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"exprs",
+		"newlineTokens"
+	],
+	"name" : "OSExpressionList",
+	"type" : "normal"
+}

@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "OSExpression",
+	"category" : "Grace-OuterSpike",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"receiver",
+		"dotToken",
+		"message"
+	],
+	"name" : "OSRequest",
+	"type" : "normal"
+}
