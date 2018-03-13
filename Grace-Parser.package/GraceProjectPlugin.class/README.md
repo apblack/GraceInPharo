@@ -1,0 +1,1 @@
+Adds project-specific menu items fo rthe GraceInPharo project

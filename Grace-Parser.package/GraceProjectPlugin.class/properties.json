@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "AndrewBlack 3/13/2018 20:59",
+	"super" : "IcePlugin",
+	"category" : "Grace-Parser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceProjectPlugin",
+	"type" : "normal"
+}
