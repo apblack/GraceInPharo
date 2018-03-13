@@ -1,0 +1,3 @@
+testing
+isOnceMethod
+	^ onceToken isNotNil

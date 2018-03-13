@@ -33,6 +33,7 @@ default <arrow>:  -> | → ;
 default string <dquote>:  [""] ;
 default <operator>: [!!\?@#%^&\|~=≠\+÷\-\*/\\><:\.\$\x22C5≤≥]+ ;   # or any other unicode mathematical operator symbol like \x22C5
 default <typeOperator>: [&|+\-];
+default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 
 %left <typeOperator> ;
 %prefix Grace ;
@@ -137,7 +138,7 @@ AnnotationArgList
 	| ""("" Expression 'expr' "")""  																						{ '2' }
 	;
 MethodDeclaration
-	: ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation'  
+	: ""once"" ? ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation'  
 		( ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ? ""}"" ) ?  											{{ }}
 	;
 ClassDeclaration
@@ -386,9 +387,11 @@ Type
 	| ""("" TypeExpression "")""																			{{  }}
 	;
 TypeDeclaration
-	: ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotation' ""="" TypeExpression 'value' 		{{ }}
-	| ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotation' ""="" InterfaceLiteral 'value'			{{ }}
-					# special case of bare interface literal without  reserved word
+	: ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotation' ""="" 
+				TypeExpression 'value' Where 'where'													{{ }}
+	| ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotation' ""="" 
+				InterfaceLiteral 'value' Where 'where'													{{ }}
+				# special case of bare interface literal without  reserved word
 	;
 TypeOption
 	:
@@ -425,6 +428,13 @@ UnknownType
 SelfType
 	: ""Self""																							{{ }}
 	;
+Where
+	:
+	| ""where"" WhereCondition 'condition' ("","" WhereCondition 'condition') *								{{ }}
+	;
+WhereCondition
+	: <id> <typeRelation> Type	 'type'																	{{ }}
+	; 
 StartString: { self state: #string . ^ nil} ;
 StartUninterp: { self state: #uninterpString . ^ nil } ;
 RetDefault: { self state: #default . ^ nil } ;

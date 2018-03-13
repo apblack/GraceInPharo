@@ -9,6 +9,8 @@ visitGenerativeDeclaration: aGenDeclaration
 				GraceSyntaxError bodyAndMarker: each on: aGenDeclaration ] ] ].
 	(aGenDeclaration hasAnnotations: 'public' and: 'confidential') ifTrue: [ 
 		GraceSyntaxError annotation: 'public' conflictsWith: 'confidential' in: aGenDeclaration annotation ].
+	(aGenDeclaration hasAnnotation: 'writable') ifTrue: [ 
+		GraceSyntaxError declaration: aGenDeclaration cannotBeMadeWritable: aGenDeclaration annotation ].
 	aGenDeclaration scope add: (GraceMethod fromParseTreeNode: aGenDeclaration). 
 	self createScope: aGenDeclaration scopeKind in: aGenDeclaration.
 	^ super visitGenerativeDeclaration: aGenDeclaration

@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"isOnceMethod"
+	],
 	"name" : "GraceMethod",
 	"type" : "normal"
 }

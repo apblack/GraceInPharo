@@ -6,7 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"methodToken"
+		"methodToken",
+		"onceToken"
 	],
 	"name" : "GraceMethodDeclarationNode",
 	"type" : "normal"

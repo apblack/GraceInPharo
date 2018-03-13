@@ -8,7 +8,7 @@ visitDefDeclaration: aDefDecl
 		aDefDecl annotationNames do: [ :each | 
 			(GraceParser isMarkerAnnotation: each) ifTrue: [ 
 				GraceSyntaxError initializerAndMarker: each on: aDefDecl ] ] ].
-	(aDefDecl hasAnnotation: 'writable') ifTrue: [ GraceSyntaxError defNotWritable: aDefDecl annotation ].
+	(aDefDecl hasAnnotation: 'writable') ifTrue: [ GraceSyntaxError declaration: aDefDecl cannotBeMadeWritable: aDefDecl annotation ].
 	(aDefDecl hasAnnotation: 'confidential') ifTrue: [ 
 		aDefDecl annotationNames do: [ :each | 
 			(GraceParser confidentialConflictsWith: each) ifTrue: [ 

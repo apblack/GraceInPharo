@@ -1,0 +1,1 @@
+I represent one or more `outer` keywords, that is, `outer`, `outer.outer`, `outer.outer.outer`, etc.  The tokens (either outerTokens, or outerDot tokens) are stored in the collection `outers`, created by the grammar.

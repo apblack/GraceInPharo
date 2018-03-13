@@ -10,7 +10,8 @@
 		"definingNode",
 		"attributeScope",
 		"isMarker",
-		"isAnnotation"
+		"isAnnotation",
+		"isPublic"
 	],
 	"name" : "GraceAbstractVariable",
 	"type" : "normal"
