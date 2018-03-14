@@ -13,7 +13,7 @@ definitionComment
 %prefix OS ;
 %annotate_tokens ;
 %hierarchy Expression (Identifier Outer Request) ;
-%hierarchy Request (ExplicitRequest ExplicitRequest) ;
+%hierarchy Request (ExplicitRequest OuterRequest) ;
 
 ExpressionList 
 	: ( Expression 'expr' <newline> + )* 	{{ }}
