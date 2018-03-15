@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionFor__Statement___Ss_Statement___Ss__1: nodes
+reduceActionFor__Statement___Ss_Statement____Ss___1: nodes
 	| result |
 	result := Array new: 2.
 	result at: 1 put: (OrderedCollection new: 2).

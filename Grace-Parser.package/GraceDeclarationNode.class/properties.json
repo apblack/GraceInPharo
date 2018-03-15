@@ -1,12 +1,13 @@
 {
-	"commentStamp" : "AndrewBlack 3/7/2018 10:22",
+	"commentStamp" : "AndrewBlack 3/15/2018 09:58",
 	"super" : "GraceStatementNode",
 	"category" : "Grace-Parser-NodeSubclasses",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"annotationNames"
+		"annotationNames",
+		"variable"
 	],
 	"name" : "GraceDeclarationNode",
 	"type" : "normal"

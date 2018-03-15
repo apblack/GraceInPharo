@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionFor__ReuseModifier__1: nodes
+reduceActionFor__ReuseModifier___1: nodes
 	| result |
 	result := OrderedCollection new: 2.
 	^ result

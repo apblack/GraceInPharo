@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"part",
-		"typeParameters"
+		"part"
 	],
 	"name" : "GraceParameterlessMethodHeaderNode",
 	"type" : "normal"

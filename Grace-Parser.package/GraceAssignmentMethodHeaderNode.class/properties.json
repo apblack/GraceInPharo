@@ -8,8 +8,7 @@
 	"instvars" : [
 		"id",
 		"colonEqualToken",
-		"parameter",
-		"typeParameters"
+		"parameter"
 	],
 	"name" : "GraceAssignmentMethodHeaderNode",
 	"type" : "normal"

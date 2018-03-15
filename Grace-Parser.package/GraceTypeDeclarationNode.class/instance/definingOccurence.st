@@ -1,0 +1,3 @@
+accessing
+definingOccurence
+	^ id definingOccurence

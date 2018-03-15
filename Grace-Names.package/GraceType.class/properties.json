@@ -1,11 +1,13 @@
 {
-	"commentStamp" : "AndrewBlack 12/6/2017 11:10",
+	"commentStamp" : "AndrewBlack 3/15/2018 08:44",
 	"super" : "GraceAbstractVariable",
 	"category" : "Grace-Names-Variables",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"typeValue"
+	],
 	"name" : "GraceType",
 	"type" : "normal"
 }

@@ -12,7 +12,8 @@
 		"items",
 		"_s",
 		"declaredName",
-		"annotation"
+		"annotation",
+		"variable"
 	],
 	"name" : "GraceObjectConstructorNode",
 	"type" : "normal"

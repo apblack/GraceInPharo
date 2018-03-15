@@ -65,10 +65,9 @@ default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 
 %attributes Root (scope) ;				# adds the instance variable scope to GraceRootNode, and thus to all of its subclasses 
 %attributes Identifier (isDefinition definingOccurence) ;
-%attributes Declaration (annotationNames) ;
+%attributes Declaration (annotationNames variable) ;
 %attributes Module (compilationTime name) ;
-%attributes ObjectConstructor (declaredName) ;
-# %attributes Outer (outerDotTokens) ;
+%attributes ObjectConstructor (declaredName variable) ;
 
 #############
 # Statements #
@@ -160,7 +159,8 @@ AssignmentMethodHeader
 	: Identifier 'id' "":="" TypeParameterList 'typeParameters' SingleMethodParameter  'parameter' 							{{ }}
 	;
 ParameterizedMethodHeader
-	: (<id> 'part' TypeParameterList 'typeParameters' MethodParameterList 'parameterList' ) + 							{{ }}
+	: <id> 'part' TypeParameterList 'typeParameters' MethodParameterList 'parameterList' 
+	( <id> 'part' MethodParameterList 'parameterList' ) * 							{{ }}
 	;
 ParameterlessMethodHeader
 	: <id> 'part' TypeParameterList 'typeParameters' 																	{{ }}

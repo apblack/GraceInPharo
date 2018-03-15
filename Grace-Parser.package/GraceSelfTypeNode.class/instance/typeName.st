@@ -1,0 +1,3 @@
+naming
+typeName
+	^ 'Self'
