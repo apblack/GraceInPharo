@@ -4,7 +4,7 @@ combineTraits: traitScopes
 	tempScope := GraceObjectScope new.
 	traitScopes
 		do: [ :s | s localAndReusedNamesAndValuesDo: [ :nm :vl | 
-			(nodeScope definesLocally: nm) ifFalse: [ 
+			(vl isAvailableForReuse and: [(nodeScope definesLocally: nm) not]) ifTrue: [ 
 				(tempScope definesLocally: nm) ifTrue: [ 
 					^ GraceReuseError
 							signal: 'trait conflict -- there are multiple definitions of ''' , nm , ''', ' , 
