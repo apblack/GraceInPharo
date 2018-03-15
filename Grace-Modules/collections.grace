@@ -177,6 +177,26 @@ class lazyConcatenation⟦T⟧(left, right) -> Enumerable⟦T⟧{
     method size { left.size + right.size }  // may raise SizeUnknown
 }
 
+trait withConstructors⟦T⟧ {
+    method withAll(xs:Collection⟦T⟧) is required
+    method with(x1:T) { withAll [x1] }
+    method with(x1:T, x2:T) { withAll [x1, x2] }
+    method with(x1:T, x2:T, x3:T) { withAll [x1, x2, x3] }
+    method with(x1:T, x2:T, x3:T, x4:T) { withAll [x1, x2, x3, x4] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T) { withAll [x1, x2, x3, x4, x5] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T, x6:T) {
+        withAll [x1, x2, x3, x4, x5, x6] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T, x6:T, x7:T) {
+        withAll [x1, x2, x3, x4, x5, x6, x7] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T, x6:T, x7:T, x8:T) {
+        withAll [x1, x2, x3, x4, x5, x6, x7, x8] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T, x6:T, x7:T, x8:T, x9:T) {
+        withAll [x1, x2, x3, x4, x5, x6, x7, x8, x9] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T, x6:T, x7:T, x8:T, x9:T, x10:T) {
+        withAll [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10] }
+}
+
+
 trait collection⟦T⟧ {
     
     method asString { "a collection trait" }
@@ -370,6 +390,21 @@ class sequence⟦T⟧ {
         // this is an optimization: there need be just one empty sequence
         emptySequence
     }
+    method with(x1:T) { [x1] }
+    method with(x1:T, x2:T) { [x1, x2] }
+    method with(x1:T, x2:T, x3:T) { [x1, x2, x3] }
+    method with(x1:T, x2:T, x3:T, x4:T) { [x1, x2, x3, x4] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T) { [x1, x2, x3, x4, x5] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T, x6:T) {
+        [x1, x2, x3, x4, x5, x6] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T, x6:T, x7:T) {
+        [x1, x2, x3, x4, x5, x6, x7] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T, x6:T, x7:T, x8:T) {
+        [x1, x2, x3, x4, x5, x6, x7, x8] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T, x6:T, x7:T, x8:T, x9:T) {
+        [x1, x2, x3, x4, x5, x6, x7, x8, x9] }
+    method with(x1:T, x2:T, x3:T, x4:T, x5:T, x6:T, x7:T, x8:T, x9:T, x10:T) {
+        [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10] }
 
     method ++ (arg: Collection⟦T⟧) {
         withAll(arg)
@@ -481,7 +516,7 @@ class sequence⟦T⟧ {
                     method asString { "aSequenceIterator" }
                     method hasNext { idx <= sz }
                     method next {
-                        if (idx > sz) then { IteratorExhausted.raise "on sequence {outer}⟪{idx}⟫" }
+                        if (idx > sz) then { IteratorExhausted.raise "on sequence {outer.asString}⟪{idx}⟫" }
                         def ret = at(idx)
                         idx := idx + 1
                         ret
@@ -532,6 +567,7 @@ class list⟦T⟧ {
     method withAll(a: Collection⟦T⟧) -> List⟦T⟧ {
         object {
             use indexable⟦T⟧
+            use withConstructors⟦T⟧
 
             var mods is readable := 0
             var sizeCertain := true
@@ -827,6 +863,7 @@ def removed = object {
 }
 
 class set⟦T⟧ {
+    use withConstructors⟦T⟧
 
     method asString { "a set class" }
 
@@ -1146,6 +1183,7 @@ type ComparableToDictionary⟦K,T⟧ = type {
 }
 
 class dictionary⟦K,T⟧ {
+    use withConstructors⟦T⟧
 
     method asString { "a dictionary class" }
 

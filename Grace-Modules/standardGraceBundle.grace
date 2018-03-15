@@ -8,8 +8,6 @@ class open {
 
     def override is annotation
 
-    trait graceObject { use intrinsic.graceObject }
-
     trait identityEquality {
         method isMe(other) is required 
         method :: (v) { binding.key(self) value(v) }

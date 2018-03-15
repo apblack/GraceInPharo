@@ -441,7 +441,7 @@ def testSuite is public = object {
             if (each.name.startsWith "test") then {
                 if (! each.name.contains "$") then {
                     // we should also check that there are no arguments
-                    // but the C-backend needs to emit the metadata
+                    // but the C-backend needs to emit the metadata
                     newSuite.add(aTestClass.forMethod(each.name))
                 }
             }
