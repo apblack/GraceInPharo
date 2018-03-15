@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceAbstractType",
+	"category" : "Grace-Types",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"knownSuperTypes",
+		"methodDict"
+	],
+	"name" : "GraceObjectType",
+	"type" : "normal"
+}

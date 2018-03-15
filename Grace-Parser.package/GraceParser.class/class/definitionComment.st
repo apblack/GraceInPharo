@@ -64,7 +64,7 @@ default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 %start ArgumentList Block Declaration Expression MethodDeclaration Module Numeral ObjectItem Request Statement String Term Type ;
 
 %attributes Root (scope) ;				# adds the instance variable scope to GraceRootNode, and thus to all of its subclasses 
-%attributes Identifier (isDefinition definingOccurence) ;
+%attributes Identifier (isDefinition variable) ;
 %attributes Declaration (annotationNames variable) ;
 %attributes Module (compilationTime name) ;
 %attributes ObjectConstructor (declaredName variable) ;

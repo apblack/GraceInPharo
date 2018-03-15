@@ -1,0 +1,3 @@
+testing
+methodNames
+	^ methodDict keys

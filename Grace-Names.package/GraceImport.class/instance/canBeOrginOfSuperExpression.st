@@ -1,0 +1,3 @@
+testing
+canBeOrginOfSuperExpression
+	^ true

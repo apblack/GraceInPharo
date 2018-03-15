@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceAbstractType",
+	"category" : "Grace-Types",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceSelfType",
+	"type" : "normal"
+}

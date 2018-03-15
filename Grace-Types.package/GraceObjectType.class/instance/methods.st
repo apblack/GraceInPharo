@@ -1,0 +1,3 @@
+testing
+methods
+	^ methodDict values
