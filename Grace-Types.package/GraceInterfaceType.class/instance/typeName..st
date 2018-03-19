@@ -1,3 +1,4 @@
 accessing
 typeName: anObject
-	typeName := anObject
+	anObject ifNotNil: [ 
+		typeName := anObject ]

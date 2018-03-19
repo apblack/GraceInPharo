@@ -1,6 +1,5 @@
 instance creation
-fromNode: aTypeNode
-	methodDict := Dictionary new.
+from: aTypeNode
 	typeName := aTypeNode typeName.
 	aTypeNode methods do: [ :each | 	| mt |
 		mt := GraceSignature fromSignature: each.

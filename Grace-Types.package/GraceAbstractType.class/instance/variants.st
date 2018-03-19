@@ -1,0 +1,3 @@
+DNF conversion
+variants
+	^ { self }

@@ -1,3 +1,3 @@
-as yet unclassified
+naming
 typeName
 	^ typeName ifNil: [ 'anonymous interface' ]
