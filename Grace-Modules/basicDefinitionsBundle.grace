@@ -4,7 +4,6 @@ dialect "none"
 // to access the definitions of the basic types, and annotations.  These
 // definitions are re-exported  by standardGrace, so this module is mostly
 // useful when implementing a module that is _not_ written in standardGrace.
-// In particular, this module is imported by intrinsic as well as by standardGrace.
 
 trait open {
    
@@ -33,7 +32,7 @@ trait open {
         hash -> Number
     }
 
-    type Boolean =  EqualityObject & interface {
+    type Boolean =  {
         not -> Boolean
         prefix ! -> Boolean
         // the negation of self

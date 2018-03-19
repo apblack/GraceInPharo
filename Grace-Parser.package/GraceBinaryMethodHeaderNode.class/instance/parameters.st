@@ -1,3 +1,3 @@
 acessing
 parameters
-	^ {  parameter }
+	^ {  self parameter }
