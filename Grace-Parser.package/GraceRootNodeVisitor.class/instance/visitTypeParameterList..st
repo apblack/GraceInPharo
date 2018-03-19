@@ -1,3 +1,3 @@
 generated
 visitTypeParameterList: aTypeParameterList
-	^ self visitRoot: aTypeParameterList
+	^ self visitSomeParameters: aTypeParameterList

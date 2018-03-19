@@ -1,0 +1,1 @@
+I represent a type operator expression, such as A & B & C or W + X + Y.  I have two or more operands, but only one operator, because type expressions like A & B | C are illegal, and must be parenthesized.

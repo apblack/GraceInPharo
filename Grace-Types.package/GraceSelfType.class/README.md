@@ -1,0 +1,1 @@
+I represent Self, the type in which I appear.

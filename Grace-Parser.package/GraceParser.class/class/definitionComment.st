@@ -46,6 +46,7 @@ default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 %hierarchy GenerativeDeclaration (MethodDeclaration ClassDeclaration TraitDeclaration) ; 
 %hierarchy VariableDeclaration (VarDeclaration DefDeclaration) ;
 %hierarchy Parameter (TypeParameter MethodParameter BlockParameter) ;
+%hierarchy SomeParameters (BlockParameterList ParameterList SingleMethodParameter TypeParameterList) ;
 %hierarchy Expression (Request Block Boolean Ellipsis Factor Term Identifier ObjectConstructor Numeral String Sequence Oneself Type) ;
 %hierarchy Numeral (DecimalNumeral BaseExponentNumeral BasedRadixNumeral) ;
 %hierarchy String (StringLiteral StringConstructor) ;

@@ -1,0 +1,1 @@
+I represent an operator expression containing the | operator, representing a type variant expression.

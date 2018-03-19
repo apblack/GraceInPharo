@@ -1,3 +1,3 @@
 generated
 visitSingleMethodParameter: aSingleMethodParameter
-	^ self visitRoot: aSingleMethodParameter
+	^ self visitSomeParameters: aSingleMethodParameter

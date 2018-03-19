@@ -7,12 +7,12 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"header",
-		"returnType",
 		"annotation",
 		"leftBraceToken",
 		"items",
 		"_s",
-		"rightBraceToken"
+		"rightBraceToken",
+		"returnType"
 	],
 	"name" : "GraceGenerativeDeclarationNode",
 	"type" : "normal"

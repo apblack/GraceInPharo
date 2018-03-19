@@ -6,4 +6,5 @@ addModuleFilesToIndex
 	dir := repo location / 'Grace-Modules'.
 	moduleFiles := dir entries select: [ : each | 
 		each basename endsWith: '.grace' ].
+	self halt.
 	repo addFilesToIndex: (moduleFiles collect: [ :each | each fullName ])

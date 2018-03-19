@@ -1,3 +1,3 @@
 generated
 visitBlockParameterList: aBlockParameterList
-	^ self visitRoot: aBlockParameterList
+	^ self visitSomeParameters: aBlockParameterList

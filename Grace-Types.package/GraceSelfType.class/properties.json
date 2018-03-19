@@ -1,8 +1,10 @@
 {
-	"commentStamp" : "",
-	"super" : "GraceAbstractType",
+	"commentStamp" : "AndrewBlack 3/19/2018 21:16",
+	"super" : "GraceInterfaceType",
 	"category" : "Grace-Types",
-	"classinstvars" : [ ],
+	"classinstvars" : [
+		"instance"
+	],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],

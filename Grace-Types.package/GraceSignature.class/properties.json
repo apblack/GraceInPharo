@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "AndrewBlack 3/19/2018 21:09",
+	"super" : "GraceAbstractType",
+	"category" : "Grace-Types",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"name",
+		"parameters",
+		"result",
+		"typeParameters"
+	],
+	"name" : "GraceSignature",
+	"type" : "normal"
+}

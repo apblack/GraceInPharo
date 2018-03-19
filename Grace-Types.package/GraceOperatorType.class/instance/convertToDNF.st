@@ -1,0 +1,3 @@
+DNF conversion
+convertToDNF
+	self subclassResponsibility

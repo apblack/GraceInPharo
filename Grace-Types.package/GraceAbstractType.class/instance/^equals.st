@@ -1,0 +1,3 @@
+testing
+= anotherType
+	^ self == anotherType

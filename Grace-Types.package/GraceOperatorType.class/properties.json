@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "AndrewBlack 3/19/2018 21:19",
+	"super" : "GraceAbstractType",
+	"category" : "Grace-Types",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"operands"
+	],
+	"name" : "GraceOperatorType",
+	"type" : "normal"
+}

@@ -6,8 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"returnType",
-		"header"
+		"header",
+		"returnType"
 	],
 	"name" : "GraceSignatureNode",
 	"type" : "normal"

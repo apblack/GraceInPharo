@@ -1,3 +1,4 @@
 accessing
-typeValue: anObject
-	typeValue := anObject
+typeValue: aTypeObject
+	"sets the typeValue field, and returns the new value"
+	^ typeValue := aTypeObject
