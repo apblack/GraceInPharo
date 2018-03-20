@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "AndrewBlack 9/28/2017 15:51",
+	"super" : "Object",
+	"category" : "Grace-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"testFiles",
+		"sourceFiles"
+	],
+	"name" : "ParserTestGenerator",
+	"type" : "normal"
+}
