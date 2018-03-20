@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceLiteralAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"numberValue"
+	],
+	"name" : "GraceNumberAst",
+	"type" : "normal"
+}

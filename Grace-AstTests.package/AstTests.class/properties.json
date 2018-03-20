@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceTests",
+	"category" : "Grace-AstTests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "AstTests",
+	"type" : "normal"
+}

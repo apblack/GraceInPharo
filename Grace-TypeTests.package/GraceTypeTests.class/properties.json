@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceAmbiguityTests",
+	"category" : "Grace-TypeTests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceTypeTests",
+	"type" : "normal"
+}

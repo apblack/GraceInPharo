@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceRootAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"resourceName"
+	],
+	"name" : "GraceDialectAst",
+	"type" : "normal"
+}

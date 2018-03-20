@@ -18,5 +18,9 @@ baseline: spec
 		spec package: 'Grace-Compiler' with: [ 
 			spec requires: {'Grace-Parser' . 'Grace-Names'} ].
 		spec package: 'GraceTests' with: [ 
-			spec requires: {'Grace-Parser' . 'Grace-Names' . 'Grace-HValidator'} ] 
+			spec requires: {'Grace-Parser' . 'Grace-Names' . 'Grace-HValidator'} ].
+		spec package: 'Grace-Types' with: [ 
+			spec requires: {'Grace-Parser' . 'Grace-Names' . 'Grace-Scope'} ]. 
+		spec package: 'GraceTypeTests' with: [ 
+			spec requires: {'Grace-Tests' . 'Grace-Types' } ]. 
 	]

@@ -1,1 +1,0 @@
-I am a dummy node, used when a node is required, but there is no real node.

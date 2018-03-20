@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceObjectConstructorAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"dialect"
+	],
+	"name" : "GraceModuleAst",
+	"type" : "normal"
+}

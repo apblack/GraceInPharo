@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "AndrewBlack 3/15/2018 22:34",
+	"super" : "TestCase",
+	"category" : "Grace-TypeTests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"empty",
+		"key"
+	],
+	"name" : "MultiDicitonaryTests",
+	"type" : "normal"
+}

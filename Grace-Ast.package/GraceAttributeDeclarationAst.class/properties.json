@@ -1,0 +1,20 @@
+{
+	"commentStamp" : "AndrewBlack 3/20/2018 17:12",
+	"super" : "GraceRootAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"declaredThing",
+		"rhs",
+		"isDef",
+		"isVar",
+		"isType",
+		"isMethod",
+		"isGraceClass",
+		"isGraceTrait"
+	],
+	"name" : "GraceAttributeDeclarationAst",
+	"type" : "normal"
+}

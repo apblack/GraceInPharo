@@ -1,0 +1,1 @@
+This node represents things that are not thre, such as the rhs of a var declaration that has no initializer, or the body of a marker method.

@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "AndrewBlack 3/20/2018 17:36",
+	"super" : "GraceRootAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"innerList"
+	],
+	"name" : "GraceListAst",
+	"type" : "normal"
+}
