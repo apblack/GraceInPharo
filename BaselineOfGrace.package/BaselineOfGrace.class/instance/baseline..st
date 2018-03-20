@@ -17,10 +17,14 @@ baseline: spec
 			spec requires: {'FileDialog' . 'Grace-Compiler'} ].
 		spec package: 'Grace-Compiler' with: [ 
 			spec requires: {'Grace-Parser' . 'Grace-Names'} ].
-		spec package: 'GraceTests' with: [ 
+		spec package: 'Grace-Tests' with: [ 
 			spec requires: {'Grace-Parser' . 'Grace-Names' . 'Grace-HValidator'} ].
 		spec package: 'Grace-Types' with: [ 
 			spec requires: {'Grace-Parser' . 'Grace-Names' . 'Grace-Scope'} ]. 
-		spec package: 'GraceTypeTests' with: [ 
+		spec package: 'Grace-TypeTests' with: [ 
 			spec requires: {'Grace-Tests' . 'Grace-Types' } ]. 
+		spec package: 'Grace-Ast' with: [ 
+			spec requires: {'Grace-Parser' . 'Grace-Names' . 'Grace-Scope'} ].
+		spec package: 'Grace-AstTests' with: [ 
+			spec requires: {'Grace-Tests' . 'Grace-Ast'} ].
 	]
