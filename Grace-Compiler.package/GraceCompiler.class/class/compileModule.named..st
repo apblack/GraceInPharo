@@ -1,3 +1,5 @@
 instance creation
-compileModule: aString named: aName
-	^ self new compileModule: aString readStream named: aName
+compileModule: source named: aName
+	| input |
+	input := source isStream ifTrue: [ source ] ifFalse: [ source readStream ].
+	^ self new compileModule: input named: aName
