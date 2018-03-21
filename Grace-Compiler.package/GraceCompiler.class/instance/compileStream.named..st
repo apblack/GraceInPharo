@@ -1,11 +1,4 @@
 compiling
 compileStream: aStream named: aName
-	| parseTree treeWithScopes resolved theSource |
-	theSource := aStream contents.
-	parseTree := GraceParser parseStream: aStream named: aName.
-	self assert: [ parseTree isKindOf: GraceModuleNode ].
-	parseTree name: aName; compilationTime: DateAndTime now; completeSource: theSource.
-	treeWithScopes := GraceBuildScopesVisitor new acceptNode: parseTree.
-	treeWithScopes := GraceReuseVisitor new acceptNode: treeWithScopes.
-	resolved := GraceDisambiguationVisitor new acceptNode: treeWithScopes.
-	^ resolved
+	"It seems as though compiling directly from a stream won't work with the new Zn streams"
+	^ self compileString: aStream contents named: aName
