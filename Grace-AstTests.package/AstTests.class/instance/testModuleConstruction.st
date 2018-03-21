@@ -15,4 +15,5 @@ method two { 202 }
 	methTwo := ast items at: 2.
 	self assert: (methTwo isKindOf: GraceAttributeDeclarationAst).
 	self assert: methTwo isMethod description: 'methTwo is not a method'.
-	self assert: (methTwo rhs at: 1) numberValue equals: 202
+	self assert: (methTwo rhs at: 1) numberValue equals: 202.
+	self checkAllNodesAreAst: ast

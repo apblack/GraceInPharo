@@ -1,11 +1,11 @@
 {
-	"commentStamp" : "",
-	"super" : "GraceParserFragmentTests",
+	"commentStamp" : "<historical>",
+	"super" : "PackageManifest",
 	"category" : "Grace-AstTests",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "AstTests",
+	"name" : "ManifestGraceAstTests",
 	"type" : "normal"
 }
