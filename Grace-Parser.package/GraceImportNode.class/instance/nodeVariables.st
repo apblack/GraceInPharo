@@ -1,3 +1,3 @@
 generated
 nodeVariables
-	^ #(#resource #id #annotation)
+	^ #(#resource #id #annotationList)

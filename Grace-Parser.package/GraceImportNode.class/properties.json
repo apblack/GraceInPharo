@@ -10,7 +10,7 @@
 		"resource",
 		"asToken",
 		"id",
-		"annotation"
+		"annotationList"
 	],
 	"name" : "GraceImportNode",
 	"type" : "normal"

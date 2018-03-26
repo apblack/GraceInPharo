@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "AndrewBlack 3/21/2018 16:29",
+	"super" : "GraceStatementAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"resourceName"
+	],
+	"name" : "GraceExternalAst",
+	"type" : "normal"
+}

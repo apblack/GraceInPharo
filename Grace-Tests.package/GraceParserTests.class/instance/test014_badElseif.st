@@ -14,7 +14,6 @@ method print(str) { ... }
 '.
 	self assert: result isA: #Module.
 	self assert: result items size equals: 5.
-	(result items copyWithoutIndex: 5) do: [ :each | self assert: each isA: #ImplicitRequest ].
 	self assert: result items first requestedName equals:'print(_)'.
 	self assert: result items second requestedName equals:'if(_)then(_)'.
 	self assert: result items third requestedName equals: 'elseif(_)then(_)'.

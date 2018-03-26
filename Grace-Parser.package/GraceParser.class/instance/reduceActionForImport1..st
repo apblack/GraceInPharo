@@ -6,5 +6,5 @@ reduceActionForImport1: nodes
 	result resource: (nodes at: 2).
 	result asToken: (nodes at: 3).
 	result id: (nodes at: 4).
-	result annotation: (nodes at: 5).
+	result annotationList: (nodes at: 5).
 	^ result

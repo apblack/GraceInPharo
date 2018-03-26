@@ -1,4 +1,4 @@
-as yet unclassified
+types
 typeValue
 	"answers the actual type object, not the parse tree node"
 

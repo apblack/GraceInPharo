@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceExternalAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"declaredThing"
+	],
+	"name" : "GraceImportAst",
+	"type" : "normal"
+}

@@ -1,3 +1,3 @@
 generated
 nodeVariables
-	^ #(#id #typeParameters #annotation #value #where)
+	^ #(#id #typeParameters #annotationList #value #where)

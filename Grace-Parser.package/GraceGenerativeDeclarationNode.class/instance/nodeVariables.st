@@ -1,3 +1,3 @@
 generated
 nodeVariables
-	^ #(#header #returnType #annotation)
+	^ #(#header #returnType #annotationList)

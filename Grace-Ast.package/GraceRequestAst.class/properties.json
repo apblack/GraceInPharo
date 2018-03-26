@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceRootAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"receiver",
+		"requestedName",
+		"typeArguments",
+		"arguments"
+	],
+	"name" : "GraceRequestAst",
+	"type" : "normal"
+}

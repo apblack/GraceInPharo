@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "AndrewBlack 3/20/2018 17:13",
-	"super" : "GraceRootAst",
+	"super" : "GraceDeclarationAst",
 	"category" : "Grace-Ast",
 	"classinstvars" : [ ],
 	"pools" : [ ],

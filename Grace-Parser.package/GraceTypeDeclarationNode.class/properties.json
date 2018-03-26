@@ -11,8 +11,8 @@
 		"equalToken",
 		"value",
 		"typeParameters",
-		"annotation",
-		"where"
+		"where",
+		"annotationList"
 	],
 	"name" : "GraceTypeDeclarationNode",
 	"type" : "normal"

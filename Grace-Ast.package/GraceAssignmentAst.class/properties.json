@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceStatementAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"lhs",
+		"rhs"
+	],
+	"name" : "GraceAssignmentAst",
+	"type" : "normal"
+}

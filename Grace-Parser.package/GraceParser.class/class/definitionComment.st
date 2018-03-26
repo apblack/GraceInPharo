@@ -101,7 +101,7 @@ Return
 	: ""return"" Expression 'value' ? 																					{{ }}
 	;
 Import
-	: ""import"" StringLiteral 'resource' ""as"" Identifier 'id' Annotation 'annotation' 										{{ }}
+	: ""import"" StringLiteral 'resource' ""as"" Identifier 'id' Annotation 'annotationList' 										{{ }}
 	;
 Dialect
 	: ""dialect"" StringLiteral 'resource' 																				{{ }}
@@ -112,10 +112,10 @@ Declaration
 	| TypeDeclaration
 	;
 VarDeclaration
-	: ""var"" Identifier 'id' TypeOption 'type'   Annotation  'annotation' ( "":="" Expression 'initializer' ) ?  						{{  }}
+	: ""var"" Identifier 'id' TypeOption 'type'   Annotation  'annotationList' ( "":="" Expression 'initializer' ) ?  						{{  }}
 	;
 DefDeclaration
-	: ""def"" Identifier 'id' TypeOption 'type' Annotation  'annotation' ( ""="" Expression 'initializer'  ) ?						{{  }}
+	: ""def"" Identifier 'id' TypeOption 'type' Annotation  'annotationList' ( ""="" Expression 'initializer'  ) ?						{{  }}
 	;
 Annotation
 	:
@@ -138,15 +138,15 @@ AnnotationArgList
 	| ""("" Expression 'expr' "")""  																						{ '2' }
 	;
 MethodDeclaration
-	: ""once"" ? ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation'  
+	: ""once"" ? ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotationList'  
 		( ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ? ""}"" ) ?  											{{ }}
 	;
 ClassDeclaration
-	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation' 
+	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotationList' 
 		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ? ""}"" ) ?											{{  }}
 	;
 TraitDeclaration
-	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotation' 
+	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotationList' 
 		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ? ""}"" ) ?											{{  }}
 	;
 MethodHeader
@@ -243,7 +243,7 @@ BinaryRequest
 Block
 	# this is written as two alternatives, rather than making the BlockParameterList optional,
 	# because the latter creates a shift-reduce conflict that SmaCC can't resolve.
-	: ""{"" Ss '_' ? BlockParameterList  'parameters' <arrow> Ss '_' ? (Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ?) ? ""}""  {{ }}
+	: ""{"" Ss '_' ? BlockParameterList  'parameterList' <arrow> Ss '_' ? (Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ?) ? ""}""  {{ }}
 	| ""{"" Ss '_' ? ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ?  ""}""  											{{ }}
 	;
 BlockParameterList
@@ -347,8 +347,8 @@ UninterpretedString
 #######################
 
 ObjectConstructor
-	: ""object"" Annotation 'annotation'  ""{"" Ss '_' ? ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * ""}"" 					{{ }}
-	| ""object"" Annotation 'annotation' ""{"" Ss '_' ? ""}""																{{ }}
+	: ""object"" Annotation 'annotationList'  ""{"" Ss '_' ? ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * ""}"" 					{{ }}
+	| ""object"" Annotation 'annotationList' ""{"" Ss '_' ? ""}""																{{ }}
 	;
 ObjectItem
 	: Statement
@@ -388,9 +388,9 @@ Type
 	| ""("" TypeExpression "")""																			{{  }}
 	;
 TypeDeclaration
-	: ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotation' ""="" 
+	: ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotationList' ""="" 
 				TypeExpression 'value' Where 'where'													{{ }}
-	| ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotation' ""="" 
+	| ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotationList' ""="" 
 				InterfaceLiteral 'value' Where 'where'													{{ }}
 				# special case of bare interface literal without  reserved word
 	;

@@ -6,7 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"sourceRange"
+		"scope",
+		"range"
 	],
 	"name" : "GraceRootAst",
 	"type" : "normal"

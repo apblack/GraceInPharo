@@ -1,0 +1,3 @@
+instance initialization
+isDialect
+	^ false

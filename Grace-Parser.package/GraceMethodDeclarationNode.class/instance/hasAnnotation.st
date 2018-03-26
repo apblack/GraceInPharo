@@ -1,3 +1,3 @@
 testing
 hasAnnotation
-	^ annotation isNotNil 
+	^ annotationList isNotNil 

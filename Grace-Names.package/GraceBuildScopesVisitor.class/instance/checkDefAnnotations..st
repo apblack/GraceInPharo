@@ -11,7 +11,7 @@ checkDefAnnotations: aDefDecl
 	(aDefDecl hasAnnotation: 'writable')
 		ifTrue: [ GraceSyntaxError
 				declaration: aDefDecl
-				cannotBeMadeWritable: aDefDecl annotation ].
+				cannotBeMadeWritable: aDefDecl annotationList ].
 	(aDefDecl hasAnnotation: 'confidential')
 		ifTrue: [ aDefDecl annotationNames
 				do: [ :each | 

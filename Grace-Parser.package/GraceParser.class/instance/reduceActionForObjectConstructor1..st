@@ -3,7 +3,7 @@ reduceActionForObjectConstructor1: nodes
 	| result |
 	result := GraceObjectConstructorNode new.
 	result objectToken: (nodes at: 1).
-	result annotation: (nodes at: 2).
+	result annotationList: (nodes at: 2).
 	result leftBraceToken: (nodes at: 3).
 	result addNode: (nodes at: 4) to: result _s.
 	result addObject: (nodes at: 5) to: result items.

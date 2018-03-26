@@ -6,7 +6,7 @@ reduceActionForMethodDeclaration1: nodes
 	result methodToken: (nodes at: 2).
 	result header: (nodes at: 3).
 	result returnType: (nodes at: 4).
-	result annotation: (nodes at: 5).
+	result annotationList: (nodes at: 5).
 	result leftBraceToken: ((nodes at: 6) at: 1).
 	result addObjects: ((nodes at: 6) at: 2) to: result items.
 	result addNodes: ((nodes at: 6) at: 3) to: result _s.

@@ -1,4 +1,4 @@
 instance initialization
-initializeFrom: aRange items: aGraceListAst 
+initializeFrom: aRange items: aGraceListAst
 	items := aGraceListAst.
-	self initializeFrom: aRange
+	self initializeFrom: aRange scope: self scope

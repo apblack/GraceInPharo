@@ -7,11 +7,11 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"leftBraceToken",
-		"parameters",
 		"arrowToken",
 		"rightBraceToken",
 		"items",
-		"_s"
+		"_s",
+		"parameterList"
 	],
 	"name" : "GraceBlockNode",
 	"type" : "normal"

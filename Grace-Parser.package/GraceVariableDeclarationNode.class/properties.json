@@ -8,8 +8,8 @@
 	"instvars" : [
 		"id",
 		"type",
-		"annotation",
-		"initializer"
+		"initializer",
+		"annotationList"
 	],
 	"name" : "GraceVariableDeclarationNode",
 	"type" : "normal"
