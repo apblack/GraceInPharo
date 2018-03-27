@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceDeclarationAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"declaredName",
+		"parameters",
+		"typeParameters",
+		"declaredType",
+		"isOnceMethod",
+		"isDeclaredAsClass",
+		"isDeclaredAsTrait"
+	],
+	"name" : "GraceMethodDeclAst",
+	"type" : "normal"
+}

@@ -9,4 +9,5 @@ updateImplicitRequest: anImplicitRequestNode using: aResolvedVariable
 		generateOneselfRequestOf: request
 		from: anImplicitRequestNode
 		objectsOut: aResolvedVariable objectsUp.
-	anImplicitRequestNode replaceWith: newNode
+	anImplicitRequestNode replaceWith: newNode.
+	^ newNode

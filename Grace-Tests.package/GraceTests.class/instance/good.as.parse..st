@@ -1,4 +1,4 @@
-test helpers
+test helpers
 good: startSymbol as: subKind parse: aString
 	"try parsing aString as a startSymbol.  Fail
 	iff the parse fails, or if the result is not a sub-instance of subKind"

@@ -2,7 +2,7 @@ assignment requests
 buildRequestFromAssignment: anAssignment
 	"return a new RequestPartWithArgumentsNode to replace anAssignment"
 	| newNode scanner requestToken argList |
-	newNode := GraceRequestPartWithArgumentsNode new.
+	newNode := GraceRequestPartsWithArgumentsNode new.
 	scanner := anAssignment scanner.
 	requestToken := GraceToken value: anAssignment lhs name , ':=' 
 										start: anAssignment startPosition 

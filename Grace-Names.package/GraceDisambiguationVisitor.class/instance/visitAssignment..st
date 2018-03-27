@@ -14,4 +14,4 @@ visitAssignment: anAssignment
 	binding isMethod ifFalse: [ ^ super visitAssignment: anAssignment ].
 	newNode := self buildRequestFromAssignment: anAssignment.
 	anAssignment replaceWith: newNode.
-	^ self visitRequestPartWithArguments: newNode
+	^ self visitRequestPartsWithArguments: newNode

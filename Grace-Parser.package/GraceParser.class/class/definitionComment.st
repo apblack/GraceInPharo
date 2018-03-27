@@ -53,7 +53,7 @@ default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
 %hierarchy Oneself (Self Outer) ;
 %hierarchy Request (ImplicitRequest ExplicitRequest) ;
-%hierarchy RequestPart (RequestPartNoArguments RequestPartWithArguments) ;
+%hierarchy RequestPart (RequestPartNoArguments RequestPartsWithArguments) ;
 %hierarchy ExplicitRequest (OneselfRequest DottedRequest AssignmentRequest UnaryRequest BinaryRequest) ;
 %hierarchy OneselfRequest (SelfRequest OuterRequest) ;
 %hierarchy ObjectConstructor (Module) ;
@@ -101,7 +101,7 @@ Return
 	: ""return"" Expression 'value' ? 																					{{ }}
 	;
 Import
-	: ""import"" StringLiteral 'resource' ""as"" Identifier 'id' Annotation 'annotationList' 										{{ }}
+	: ""import"" StringLiteral 'resource' ""as"" Identifier 'id' Annotations 'annotationList' 										{{ }}
 	;
 Dialect
 	: ""dialect"" StringLiteral 'resource' 																				{{ }}
@@ -112,22 +112,22 @@ Declaration
 	| TypeDeclaration
 	;
 VarDeclaration
-	: ""var"" Identifier 'id' TypeOption 'type'   Annotation  'annotationList' ( "":="" Expression 'initializer' ) ?  						{{  }}
+	: ""var"" Identifier 'id' TypeOption 'type' Annotations 'annotationList' ( "":="" Expression 'initializer' ) ?  						{{  }}
 	;
 DefDeclaration
-	: ""def"" Identifier 'id' TypeOption 'type' Annotation  'annotationList' ( ""="" Expression 'initializer'  ) ?						{{  }}
+	: ""def"" Identifier 'id' TypeOption 'type' Annotations 'annotationList' ( ""="" Expression 'initializer'  ) ?						{{  }}
 	;
-Annotation
+Annotations
 	:
 	| ""is"" AnnotationLabel 'ann' ( "","" AnnotationLabel 'ann' ) *  														{{ }}
 	;
 AnnotationLabel
-	: <id> 'annotationPart'																						{{ }}
-	| <id> 'annotationPart'  TypeArguments 'typeArg' AnnotationArgList  'argList' 
-		( <id>  'annotationPart' AnnotationArgList 'argList' )*  							{{ }}		# Both type args and normal args
-	|  <id> 'annotationPart'  TypeArguments 'typeArg'  									{{ }}		# Just type args
-	|  <id> 'annotationPart'  AnnotationArgList  'argList' 
-		( <id>  'annotationPart' AnnotationArgList 'argList' )* 								{{ }}		# Just normal args
+	: <id> 'id'																	{{ Identifier }}
+	| <id> 'requestPart'  TypeArguments 'typeArgList' AnnotationArgList  'argList' 
+		( <id>  'requestPart' AnnotationArgList 'argList' )*  							{{ RequestPartsWithArguments }}		# Both type args and normal args
+	|  <id> 'requestPart'  TypeArguments 'typeArgList'  								{{ RequestPartsWithArguments }}		# Just type args
+	|  <id> 'requestPart'  AnnotationArgList  'argList' 
+		( <id>  'requestPart' AnnotationArgList 'argList' )* 							{{ RequestPartsWithArguments }}		# Just normal args
 	;
 AnnotationArgList
 	: ""("" Expression 'arg' ("",""  Expression 'arg' ) + "")"" 																	{{ ArgumentList }}
@@ -138,15 +138,15 @@ AnnotationArgList
 	| ""("" Expression 'expr' "")""  																						{ '2' }
 	;
 MethodDeclaration
-	: ""once"" ? ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotationList'  
+	: ""once"" ? ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotations 'annotationList'  
 		( ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ? ""}"" ) ?  											{{ }}
 	;
 ClassDeclaration
-	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotationList' 
+	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotations 'annotationList' 
 		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ? ""}"" ) ?											{{  }}
 	;
 TraitDeclaration
-	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotation 'annotationList' 
+	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotations 'annotationList' 
 		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ? ""}"" ) ?											{{  }}
 	;
 MethodHeader
@@ -196,7 +196,7 @@ Request
 	| DottedRequest
 	;
 ImplicitRequest
-	: RequestPartWithArguments 'request'																			{{ }}
+	: RequestPartsWithArguments 'request'																			{{ }}
 #      the case of an implicit request without arguments is covered by ""Identifier""
 	;
 SelfRequest
@@ -215,14 +215,14 @@ AssignmentRequest
 	;
 RequestPart
 	: RequestPartNoArguments 
-	| RequestPartWithArguments
+	| RequestPartsWithArguments
 	;
 RequestPartNoArguments
 	: <id> 'requestPart'																							{{ }}
 	;
-RequestPartWithArguments 
-	:  <id> 'requestPart'  TypeArguments 'typeArg' ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )*  		{{ }}		# Both type args and normal args
-	|  <id> 'requestPart'  TypeArguments 'typeArg'  																	{{ }}		# Just type args
+RequestPartsWithArguments 
+	:  <id> 'requestPart'  TypeArguments 'typeArgList' ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )*  		{{ }}		# Both type args and normal args
+	|  <id> 'requestPart'  TypeArguments 'typeArgList'  																	{{ }}		# Just type args
 	|  <id> 'requestPart'  ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )* 								{{ }}		# Just normal args
 	;
 ArgumentList
@@ -230,10 +230,10 @@ ArgumentList
 	| ""("" Expression 'arg' ("",""  Expression 'arg' ) + "")""  																	{{ }}
 	;
 UnaryRequest
-	: <operator> 'op' TypeArguments 'typeArg' ? Term 'receiver' 														{{  }}
+	: <operator> 'op' TypeArguments 'typeArgList' ? Term 'receiver' 														{{  }}
 	;
 BinaryRequest
-	: Factor 'receiver'  (<operator> 'op' TypeArguments 'typeArg' ? Factor 'arg')+  										{{  }}
+	: Factor 'receiver'  (<operator> 'op' TypeArguments 'typeArgList' ? Factor 'arg')+  										{{  }}
 	;
 
 #########################
@@ -347,8 +347,8 @@ UninterpretedString
 #######################
 
 ObjectConstructor
-	: ""object"" Annotation 'annotationList'  ""{"" Ss '_' ? ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * ""}"" 					{{ }}
-	| ""object"" Annotation 'annotationList' ""{"" Ss '_' ? ""}""																{{ }}
+	: ""object"" Annotations 'annotationList'  ""{"" Ss '_' ? ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * ""}"" 					{{ }}
+	| ""object"" Annotations 'annotationList' ""{"" Ss '_' ? ""}""																{{ }}
 	;
 ObjectItem
 	: Statement
@@ -383,14 +383,14 @@ Type
 	:  UnknownType
 	| SelfType
 	|  Interface
-	| Identifier 'id' TypeArguments 'typeArg' ?															{{  }}
-	| Type 'receiver' <dot> RequestPartNoArguments 'request' TypeArguments 'typeArg' ?  					{{  }}
+	| Identifier 'id' TypeArguments 'typeArgList' ?														{{  }}
+	| Type 'receiver' <dot> RequestPartNoArguments 'request' TypeArguments 'typeArgList' ?  				{{  }}
 	| ""("" TypeExpression "")""																			{{  }}
 	;
 TypeDeclaration
-	: ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotationList' ""="" 
+	: ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotations  'annotationList' ""="" 
 				TypeExpression 'value' Where 'where'													{{ }}
-	| ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotation  'annotationList' ""="" 
+	| ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotations  'annotationList' ""="" 
 				InterfaceLiteral 'value' Where 'where'													{{ }}
 				# special case of bare interface literal without  reserved word
 	;
@@ -406,7 +406,7 @@ TypeParameter
 	: Identifier 'id' 																					{{  }}
 	;
 TypeExpression
-	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArg' ? Type 'arg') *  								{{ }}
+	: Type 'term' (<typeOperator> 'op' TypeArguments 'typeArgList' ? Type 'arg') *  							{{ }}
 	;
 TypeArguments
 	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   											{{ }}

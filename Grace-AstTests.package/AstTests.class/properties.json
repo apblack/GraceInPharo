@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "GraceNameTests",
+	"super" : "GraceAmbiguityTests",
 	"category" : "Grace-AstTests",
 	"classinstvars" : [ ],
 	"pools" : [ ],

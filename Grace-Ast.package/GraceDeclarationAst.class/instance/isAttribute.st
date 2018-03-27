@@ -1,0 +1,3 @@
+accessing
+isAttribute
+	^ self subclassResponsibility

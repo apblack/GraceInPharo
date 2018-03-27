@@ -1,3 +1,3 @@
 generated
 nodeVariables
-	^ #(#typeArg #receiver)
+	^ #(#typeArgList #receiver)

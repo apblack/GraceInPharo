@@ -1,7 +1,7 @@
 generated
 visitModule: aModule
 	^ GraceModuleAst 
-		from: aModule 
+		from: aModule range
 		scope: aModule scope 
 		dialect: (aModule dialect ifNil: [
 				GraceDialectAst 	

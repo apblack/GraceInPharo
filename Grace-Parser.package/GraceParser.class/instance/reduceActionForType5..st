@@ -5,5 +5,5 @@ reduceActionForType5: nodes
 	result receiver: (nodes at: 1).
 	result dotToken: (nodes at: 2).
 	result request: (nodes at: 3).
-	result typeArg: (nodes at: 4).
+	result typeArgList: (nodes at: 4).
 	^ result

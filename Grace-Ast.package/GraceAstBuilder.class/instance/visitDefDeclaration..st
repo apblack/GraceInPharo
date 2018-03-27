@@ -1,16 +1,13 @@
 generated
 visitDefDeclaration: aDeclaration
-	| astNodeClass |
-	astNodeClass := aDeclaration parent isObjectConstructor
-			ifTrue: [ GraceAttributeDeclarationAst ] ifFalse: [ GraceTempDeclarationAst ].
-	^ (astNodeClass 
+	^ (GraceVariableDeclAst 
 			from: aDeclaration range
 			scope: aDeclaration scope
 			declaring: (aDeclaration id acceptVisitor: self)
 			rhs: (aDeclaration initializer 
 						ifNil: [ GraceNullAst new ]
 						ifNotNil: [ :init | init acceptVisitor: self ] )
-			annotations: (aDeclaration annotations 
-						ifNil: [ GraceListAst new ]
-						ifNotNil: [ :anns | anns acceptVisitor: self ] )
-	  ) isDef: true
+			annotations: (GraceListAst from: (
+				aDeclaration annotations collect: [ :ann | ann acceptVisitor: self ] ))
+	  ) isDef: true;
+		 isAttribute: aDeclaration parent isObjectConstructor

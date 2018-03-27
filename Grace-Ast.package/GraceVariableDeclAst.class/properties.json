@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "AndrewBlack 3/27/2018 15:55",
+	"super" : "GraceAttributeOrTempAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"isDef"
+	],
+	"name" : "GraceVariableDeclAst",
+	"type" : "normal"
+}

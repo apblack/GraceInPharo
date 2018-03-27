@@ -1,3 +1,3 @@
 accessing
 isMethod
-	^ isMethod
+	^ false

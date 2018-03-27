@@ -3,11 +3,7 @@ the perspective of an applied occurrence of that name.
 
 - definition: an subinstance of GraceAbstractVariable, representing the defining occurence.
 
-- levelsUp: the number of levels of lexical nesting above me where the
-   defining occurence was found.  0 means that the definiing occurence
-   is in the local scope.
-
-- objectsUp: the number of levels of object nesgting above me where the
+- objectsUp: the number of levels of object nesting above me where the
    defining occurence was found.  0 means that the definiing occurence
    is in the current object, 1 in the outer object, etc.
 

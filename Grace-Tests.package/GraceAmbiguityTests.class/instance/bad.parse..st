@@ -1,4 +1,4 @@
-test helpers
+test helpers
 bad: startSymbol parse: aString
 	"try parsing aString as a startSymbol.  The parse and Scope building should succeed, 
 	but the ambiguity resolution should fail."

@@ -1,3 +1,3 @@
 accessing
 isType
-	^ isType
+	^ false

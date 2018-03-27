@@ -1,4 +1,4 @@
-test helpers
+test helpers
 assert: aName in: aScope is: visibilities andIsNot: nonVisibilities
 	| var |
 	var := aScope lookupLocally: aName ifAbsent: [

@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceDeclarationAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"isAttribute"
+	],
+	"name" : "GraceAttributeOrTempAst",
+	"type" : "normal"
+}

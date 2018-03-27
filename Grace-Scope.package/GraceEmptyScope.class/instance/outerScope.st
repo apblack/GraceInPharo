@@ -1,3 +1,3 @@
 accessing
 outerScope
-	^ self
+	^ self error: 'the empty scope has no outerScope'

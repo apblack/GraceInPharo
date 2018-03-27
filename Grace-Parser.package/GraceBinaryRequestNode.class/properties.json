@@ -7,9 +7,9 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"ops",
-		"typeArgs",
 		"args",
-		"receiver"
+		"receiver",
+		"typeArgLists"
 	],
 	"name" : "GraceBinaryRequestNode",
 	"type" : "normal"

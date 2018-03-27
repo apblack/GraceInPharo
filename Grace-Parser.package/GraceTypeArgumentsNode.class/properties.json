@@ -7,9 +7,9 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"openTPToken",
-		"typeArgs",
 		"commaTokens",
-		"closeTPToken"
+		"closeTPToken",
+		"typeArgs"
 	],
 	"name" : "GraceTypeArgumentsNode",
 	"type" : "normal"
