@@ -1,3 +1,3 @@
-visiting
+visitation
 visitInterfaceLiteral: anInterface
-	^ GraceInterfaceType from: anInterface.
+	^ GraceInterfaceType from: anInterface withName: typeName

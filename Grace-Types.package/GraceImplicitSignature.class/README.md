@@ -1,0 +1,1 @@
+I represent a signature created implicitly while calculating the meet and join of other signatures.

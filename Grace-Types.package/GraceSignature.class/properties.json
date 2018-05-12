@@ -6,10 +6,10 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"name",
 		"parameters",
 		"result",
-		"typeParameters"
+		"typeParameters",
+		"methodName"
 	],
 	"name" : "GraceSignature",
 	"type" : "normal"

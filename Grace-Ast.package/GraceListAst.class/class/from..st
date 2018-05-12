@@ -1,3 +1,3 @@
 instance creation
 from: aCollection 
-	^ self new from: aCollection
+	^ super new from: aCollection

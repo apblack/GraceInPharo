@@ -1,3 +1,3 @@
 accessing
 range
-	^ self definingNode range
+	^ self definingParseNode range

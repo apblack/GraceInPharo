@@ -1,3 +1,3 @@
 accessing
 stopPosition
-	^ definingNode stopPosition
+	^ definingParseNode stopPosition

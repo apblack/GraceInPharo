@@ -1,4 +1,4 @@
-generated
+visitation
 visitAssignment: anAssignment
 	^ GraceAssignmentAst 
 			from: anAssignment range

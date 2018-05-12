@@ -1,1 +1,0 @@
-My instances represent declarations of defs, vars and types in temporary contexts, such as inside mthods and blocks.  Contrast with GraceAttributeDeclarationAst.

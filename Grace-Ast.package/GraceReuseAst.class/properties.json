@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceStatementAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"superExpression",
+		"aliases",
+		"excludes"
+	],
+	"name" : "GraceReuseAst",
+	"type" : "normal"
+}

@@ -1,4 +1,4 @@
-visiting
+visitation
 acceptNodes: aCollection
 	| results |
 	results := aCollection collect: [ :each | self acceptNode: each ].

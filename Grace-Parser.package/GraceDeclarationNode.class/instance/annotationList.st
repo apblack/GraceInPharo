@@ -1,3 +1,0 @@
-annotations
-annotationList
-	^ self subclassResponsibility 

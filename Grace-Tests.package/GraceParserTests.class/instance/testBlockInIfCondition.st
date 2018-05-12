@@ -6,5 +6,5 @@ testBlockInIfCondition
 if ((false != p.dtype) && {
     p.dtype.nameString != "Unknown" 
 }) then {
-    return true
+    true
 }'

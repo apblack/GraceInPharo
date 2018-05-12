@@ -1,4 +1,4 @@
-generated
+visitation
 visitBinaryRequest: aBinaryRequest
 	| result |
 	result := aBinaryRequest receiver acceptVisitor: self.

@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceRequestPartNode",
+	"category" : "Grace-Parser-NodeSubclasses",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"requestParts",
+		"typeArgList",
+		"argLists"
+	],
+	"name" : "GraceRequestPartsWithArgumentsNode",
+	"type" : "normal"
+}

@@ -1,3 +1,3 @@
 testing
 canBeOrginOfSuperExpression
-	^ self definingNode parent isModule
+	^ self definingParseNode parent isModule

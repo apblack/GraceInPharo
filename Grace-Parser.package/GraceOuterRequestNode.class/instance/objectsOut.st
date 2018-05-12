@@ -1,0 +1,3 @@
+scopes
+objectsOut
+	^ outerDotTokens size

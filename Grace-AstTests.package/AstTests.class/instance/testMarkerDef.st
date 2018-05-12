@@ -8,6 +8,6 @@ testMarkerDef
 	self assert: (result scope lookupLocally: 'final' 
 			ifAbsent: [ ^ self fail: 'final is not defined' ]) isMarker description: 'final is not a marker definition'.
 	def := result items first.
-	self assert: def isA: #AttributeDeclaration.
+	self assert: def isA: #VariableDecl.
 	self assert: def annotationNames equals: (OrderedCollection with: 'annotation')	
 	

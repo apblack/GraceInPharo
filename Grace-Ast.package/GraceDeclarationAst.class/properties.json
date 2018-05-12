@@ -9,12 +9,7 @@
 		"declaredThing",
 		"rhs",
 		"annotations",
-		"isDef",
-		"isVar",
-		"isType",
-		"isMethod",
-		"isGraceClass",
-		"isGraceTrait"
+		"annotationNames"
 	],
 	"name" : "GraceDeclarationAst",
 	"type" : "normal"

@@ -1,3 +1,3 @@
 printing
 printOn: s
-	s << 'Signature ' << name
+	s << 'Signature ' << methodName

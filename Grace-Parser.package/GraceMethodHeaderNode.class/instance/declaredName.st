@@ -1,0 +1,3 @@
+naming
+declaredName
+	^ self subclassResponsibility 

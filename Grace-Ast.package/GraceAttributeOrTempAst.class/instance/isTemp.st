@@ -1,0 +1,3 @@
+testing
+isTemp
+	^ isAttribute not

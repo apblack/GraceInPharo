@@ -7,11 +7,12 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"name",
-		"definingNode",
+		"definingAstNode",
 		"attributeScope",
 		"isMarker",
 		"isAnnotation",
-		"isPublic"
+		"isPublic",
+		"definingParseNode"
 	],
 	"name" : "GraceAbstractVariable",
 	"type" : "normal"

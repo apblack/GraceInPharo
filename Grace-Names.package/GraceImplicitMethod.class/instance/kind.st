@@ -1,0 +1,3 @@
+naming
+kind
+	^ 'variable'

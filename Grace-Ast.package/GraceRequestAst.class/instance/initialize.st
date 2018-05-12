@@ -1,4 +1,4 @@
 initialization
 initialize
-	typeArguments := GraceListAst new.
-	arguments := GraceListAst new
+	typeArguments := GraceListAst empty.
+	arguments := GraceListAst empty

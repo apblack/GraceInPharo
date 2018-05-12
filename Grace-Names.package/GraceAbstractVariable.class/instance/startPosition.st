@@ -1,3 +1,3 @@
 accessing
 startPosition
-	^ definingNode startPosition
+	^ definingParseNode startPosition

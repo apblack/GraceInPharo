@@ -1,0 +1,3 @@
+scopes
+referencedScope
+	^ self subclassResponsibility 

@@ -1,0 +1,3 @@
+inspecting
+asOrderedCollection
+	^ innerList 

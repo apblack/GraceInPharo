@@ -1,3 +1,0 @@
-module access
-enclosingModuleNode
-	^ self

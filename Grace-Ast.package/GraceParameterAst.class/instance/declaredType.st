@@ -1,0 +1,3 @@
+naming
+declaredType
+	^ declaredType

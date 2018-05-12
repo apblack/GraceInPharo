@@ -7,12 +7,12 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"id",
-		"typeArg",
 		"dotToken",
 		"leftParenToken",
 		"rightParenToken",
 		"receiver",
-		"request"
+		"request",
+		"typeArgList"
 	],
 	"name" : "GraceTypeNode",
 	"type" : "normal"

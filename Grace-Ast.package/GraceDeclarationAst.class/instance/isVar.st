@@ -1,3 +1,3 @@
-accessing
+testing
 isVar
-	^ isVar
+	^ false

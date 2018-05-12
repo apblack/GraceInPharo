@@ -1,3 +1,3 @@
 generated
 visitInterfaceLiteral: anInterfaceLiteral
-	^ self visitInterface: anInterfaceLiteral
+	^ self visitType: anInterfaceLiteral

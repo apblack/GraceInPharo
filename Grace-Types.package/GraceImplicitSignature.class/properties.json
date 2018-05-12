@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "AndrewBlack 5/2/2018 16:34",
+	"super" : "GraceMethod",
+	"category" : "Grace-Types",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"argumentTypes",
+		"resultType"
+	],
+	"name" : "GraceImplicitSignature",
+	"type" : "normal"
+}

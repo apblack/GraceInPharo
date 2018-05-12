@@ -1,6 +1,6 @@
 {
-	"commentStamp" : "",
-	"super" : "GraceNameTests",
+	"commentStamp" : "AndrewBlack 3/29/2018 12:14",
+	"super" : "GraceAmbiguityTests",
 	"category" : "Grace-AstTests",
 	"classinstvars" : [ ],
 	"pools" : [ ],

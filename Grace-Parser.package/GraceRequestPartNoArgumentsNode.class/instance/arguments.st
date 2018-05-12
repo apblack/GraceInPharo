@@ -1,0 +1,3 @@
+argument access
+arguments
+	^ #()

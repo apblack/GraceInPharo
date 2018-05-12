@@ -1,4 +1,4 @@
-generated
+visitation
 visitAssignmentRequest: aRequest
 	^ GraceRequestAst 
 			from: aRequest range

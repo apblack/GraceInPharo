@@ -1,4 +1,4 @@
 accessing
 attributeScope
 	^ attributeScope ifNil: [
-		attributeScope := GraceModuleRegistry attributeScopeOf: definingNode resourceValue ]
+		attributeScope := GraceModuleRegistry attributeScopeOf: definingParseNode resourceValue ]

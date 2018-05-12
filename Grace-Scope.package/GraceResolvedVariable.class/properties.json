@@ -1,15 +1,15 @@
 {
-	"commentStamp" : "AndrewBlack 3/5/2018 09:09",
+	"commentStamp" : "AndrewBlack 3/27/2018 12:02",
 	"super" : "Object",
 	"category" : "Grace-Scope",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"levelsUp",
 		"definition",
 		"isReused",
-		"objectsUp"
+		"objectsUp",
+		"levelsUp"
 	],
 	"name" : "GraceResolvedVariable",
 	"type" : "normal"

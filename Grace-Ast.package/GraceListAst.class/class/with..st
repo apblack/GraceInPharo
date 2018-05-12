@@ -1,3 +1,3 @@
 instance creation
 with: anAstNode
-	^ self new from: (OrderedCollection with: anAstNode)
+	^ super new from: (OrderedCollection with: anAstNode)

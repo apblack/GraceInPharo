@@ -1,3 +1,3 @@
 testing
 isOnceMethod
-	^ isOnceMethod ifNil: [ isOnceMethod := self definingNode isOnceMethod ]
+	^ isOnceMethod ifNil: [ isOnceMethod := self definingParseNode isOnceMethod ]

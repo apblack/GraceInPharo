@@ -1,0 +1,3 @@
+accessing
+typeParameters
+	^ header typeParameters

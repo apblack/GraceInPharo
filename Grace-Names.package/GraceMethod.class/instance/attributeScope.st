@@ -1,4 +1,4 @@
-accessing
+scopes
 attributeScope
 	^ attributeScope ifNil: [ 
-		attributeScope := definingNode attributeScope ]
+		attributeScope := definingParseNode attributeScope ]

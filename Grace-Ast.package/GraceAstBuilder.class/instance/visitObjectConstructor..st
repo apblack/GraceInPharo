@@ -1,6 +1,14 @@
-generated
+visitation
 visitObjectConstructor: anObjectCons
-	^ GraceModuleAst 
-		from: anObjectCons 
+	^ GraceObjectConstructorAst
+		from: anObjectCons range
 		scope: anObjectCons scope 
-		items: (GraceListAst from: (anObjectCons items collect: [ :each | each acceptVisitor: self ]))
+		inherits: (self inheritanceOf: anObjectCons)
+		uses: (GraceListAst from: 
+					(anObjectCons items 
+						select: [ :each | each isUseStatement ]
+						thenCollect: [ :each | each acceptVisitor: self ]))
+		items: (GraceListAst from: 
+					(anObjectCons items 
+						reject: [ :each | each isReuseStatement ]
+						thenCollect: [ :each | each acceptVisitor: self ]))

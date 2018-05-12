@@ -2,7 +2,7 @@
 objectScopeFor: aNode
 	| receiverScope |
 	receiverScope := aNode scope.
-	outerDotTokens size timesRepeat: [
+	self objectsOut timesRepeat: [
 		receiverScope := receiverScope enclosingObjectScope ].
 	receiverScope isReusable ifTrue: [
 		^ GraceReuseError notManifest: aNode ]. 

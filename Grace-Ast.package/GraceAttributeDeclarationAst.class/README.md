@@ -1,1 +1,0 @@
-My instances represent declarations of defs, vars, types and methods (including classes and traits) directly in persistent contexts, that is, directly inside modules and objects constructors.  In these locations, declarations define attributes of the enclosing object.  Contrast with GraceTempDeclarationAst.

@@ -1,3 +1,3 @@
 private
 isAnnotatedWith: anAnnotationName
-	^ self definingNode annotationNames includes: anAnnotationName
+	^ self definingParseNode annotationNames includes: anAnnotationName

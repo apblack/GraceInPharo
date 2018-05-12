@@ -1,0 +1,3 @@
+variant types
+variants
+	^ { self }

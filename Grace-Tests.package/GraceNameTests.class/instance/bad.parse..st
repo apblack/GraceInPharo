@@ -1,4 +1,4 @@
-test helpers
+test helpers
 bad: startSymbol parse: aString
 	"try parsing aString as a startSymbol.  The parse should succeed, but the
 	name resolution should fail."

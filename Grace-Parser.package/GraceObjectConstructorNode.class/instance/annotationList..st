@@ -1,7 +1,7 @@
 generated
-annotationList: aGraceAnnotationNode
+annotationList: aGraceAnnotationsNode
 	self annotationList notNil
 		ifTrue: [ self annotationList parent: nil ].
-	annotationList := aGraceAnnotationNode.
+	annotationList := aGraceAnnotationsNode.
 	self annotationList notNil
 		ifTrue: [ self annotationList parent: self ]

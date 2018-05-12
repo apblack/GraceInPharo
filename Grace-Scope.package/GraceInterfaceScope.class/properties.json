@@ -1,6 +1,6 @@
 {
-	"commentStamp" : "",
-	"super" : "GraceTypeScope",
+	"commentStamp" : "AndrewBlack 5/2/2018 15:27",
+	"super" : "GraceScope",
 	"category" : "Grace-Scope",
 	"classinstvars" : [ ],
 	"pools" : [ ],

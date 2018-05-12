@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "AndrewBlack 4/26/2018 22:28",
+	"super" : "GraceScope",
+	"category" : "Grace-Scope",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceParameterScope",
+	"type" : "normal"
+}

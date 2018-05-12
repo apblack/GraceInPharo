@@ -1,10 +1,10 @@
-visiting
+visitation
 visitTypeExpression: aTypeExpression
 	| symbol |
 	aTypeExpression ops ifEmpty: [ 
-			^ GraceBuildType from: aTypeExpression term ].
+			^ aTypeExpression term acceptVisitor: self ].
 	aTypeExpression ops overlappingPairsDo: [ :ea :eb | (ea value = eb value) ifFalse: [ 
-		GraceTypeError mixedOperatorsIn: aTypeExpression ]].
+		^ GraceTypeError mixedOperatorsIn: aTypeExpression ]].
 	symbol := aTypeExpression ops first value.
 	('&' = symbol) ifTrue: [  ^ GraceAmpersandType from: aTypeExpression withName: typeName].
 	('+' = symbol) ifTrue: [  ^ GracePlusType from: aTypeExpression withName: typeName].

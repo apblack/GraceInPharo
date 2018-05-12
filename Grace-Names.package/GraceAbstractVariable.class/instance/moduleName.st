@@ -1,3 +1,3 @@
 naming
 moduleName
-	^ self definingNode moduleName
+	^ self definingParseNode moduleName

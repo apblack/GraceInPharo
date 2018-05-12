@@ -1,0 +1,3 @@
+constants
+graceObject
+	^ GraceGraceObjectAst instance

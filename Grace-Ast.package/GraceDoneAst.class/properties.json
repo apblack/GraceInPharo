@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "GraceConstantAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceDoneAst",
+	"type" : "normal"
+}

@@ -1,0 +1,3 @@
+scopes
+attributeScope
+	^ self scope

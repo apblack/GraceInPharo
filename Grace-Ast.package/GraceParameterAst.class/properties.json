@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "AndrewBlack 4/7/2018 11:39",
+	"super" : "GraceDeclarationAst",
+	"category" : "Grace-Ast",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"variable",
+		"declaredType",
+		"isTypeParameter"
+	],
+	"name" : "GraceParameterAst",
+	"type" : "normal"
+}

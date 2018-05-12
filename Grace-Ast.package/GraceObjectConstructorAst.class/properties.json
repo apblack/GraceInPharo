@@ -6,7 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"items"
+		"items",
+		"inheritance",
+		"uses"
 	],
 	"name" : "GraceObjectConstructorAst",
 	"type" : "normal"

@@ -1,3 +1,3 @@
 printing
 printOn: aStream
-	aStream << 'psdVar for' << name
+	aStream << 'psdVar for ' << name

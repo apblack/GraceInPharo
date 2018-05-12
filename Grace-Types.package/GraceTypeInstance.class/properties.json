@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "AndrewBlack 4/25/2018 16:43",
+	"super" : "GraceType",
+	"category" : "Grace-Types",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"arguments"
+	],
+	"name" : "GraceTypeInstance",
+	"type" : "normal"
+}

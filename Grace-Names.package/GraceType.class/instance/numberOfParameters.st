@@ -1,0 +1,3 @@
+accessing
+numberOfParameters
+	^ definingParseNode numberOfTypeParameters

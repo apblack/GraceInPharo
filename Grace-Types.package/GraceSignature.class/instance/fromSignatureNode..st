@@ -1,6 +1,9 @@
 instance initialization
 fromSignatureNode: aNode
-	name := aNode declaredName.
-	parameters := aNode parameters collect: [ :each | each typeValue ].
+	methodName := aNode declaredName.
+	parameters := aNode parameters collect: [ :each | each declaredType ].
+	typeParameters := aNode typeParameters 
+								ifNil: [ #() ] 
+								ifNotNil: [ :tp | tp parameters collect: [ :each | each name ] ].
 	result := aNode returnTypeValue.
 	self assert: result isNotNil
