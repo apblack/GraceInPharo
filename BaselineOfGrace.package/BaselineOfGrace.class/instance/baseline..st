@@ -24,7 +24,7 @@ baseline: spec
 		spec package: 'Grace-TypeTests' with: [ 
 			spec requires: {'Grace-Tests' . 'Grace-Types' } ]. 
 		spec package: 'Grace-Ast' with: [ 
-			spec requires: {'Grace-Parser' . 'Grace-Names' . 'Grace-Scope'} ].
+			spec requires: {'Grace-Parser' . 'Grace-Names' . 'Grace-Scope' . 'Grace-Types'} ].
 		spec package: 'Grace-AstTests' with: [ 
 			spec requires: {'Grace-Tests' . 'Grace-Ast'} ].
 	]

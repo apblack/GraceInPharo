@@ -200,6 +200,7 @@ trait withConstructors⟦T⟧ {
 trait collection⟦T⟧ {
     
     method asString { "a collection trait" }
+    method asDebugString { asString }
     method sizeIfUnknown(action) {
         action.apply
     }
@@ -691,12 +692,12 @@ class list⟦T⟧ {
             method removeAt(n) {
                 mods := mods + 1
                 boundsCheck(n)
-                def removed = inner.at(n-1)
+                def removedElement = inner.at(n-1)
                 (n..(size-1)).do {i->
                     inner.at(i-1)put(inner.at(i))
                 }
                 size := size - 1
-                return removed
+                return removedElement
             }
 
             method remove(elt:T) {
@@ -1243,9 +1244,9 @@ class dictionary⟦K,T⟧ {
             }
             false
         }
-        method removeAllKeys(keys) {
+        method removeAllKeys(keysToRemove) {
             mods := mods + 1
-            keys.do { k ->
+            keysToRemove.do { k ->
                 var t := findPosition(k)
                 if (inner.at(t).key == k) then {
                     inner.at(t)put(removed)

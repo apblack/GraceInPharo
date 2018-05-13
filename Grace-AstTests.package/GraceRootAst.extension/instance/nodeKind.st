@@ -1,4 +1,4 @@
-*Grace-Tests
+*Grace-AstTests
 nodeKind
 	"answers the name of this node's kind.  So, if I am a 
 	GraceMethodDeclAst, answers 'MethodDecl'"

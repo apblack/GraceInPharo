@@ -103,7 +103,7 @@ class open {
         ifTrue⟦T⟧ (trueBlock:Procedure0⟦T⟧) ifFalse (falseBlock:Procedure0⟦T⟧) -> T
     }
 
-    type Binding⟦K,T⟧ = {
+    type Binding⟦K,T⟧ = interface {
         key -> K
         value -> T
         hash -> Number
