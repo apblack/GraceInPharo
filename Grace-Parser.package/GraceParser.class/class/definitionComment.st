@@ -43,11 +43,14 @@ default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 
 %hierarchy Root (Statement) ;
 %hierarchy Declaration (GenerativeDeclaration Import Dialect VariableDeclaration Parameter TypeDeclaration) ;
-%hierarchy GenerativeDeclaration (MethodDeclaration ClassDeclaration TraitDeclaration) ; 
+%hierarchy GenerativeDeclaration (MethodDeclaration ClassDeclaration TraitDeclaration) ;
 %hierarchy VariableDeclaration (VarDeclaration DefDeclaration) ;
 %hierarchy Parameter (TypeParameter MethodParameter BlockParameter) ;
-%hierarchy SomeParameters (BlockParameterList ParameterList SingleMethodParameter TypeParameterList) ;
-%hierarchy Expression (Request Block Boolean Ellipsis Factor Term Identifier ObjectConstructor Numeral String Sequence Oneself Type) ;
+%hierarchy SomeParameters (BlockParameterList MethodParameterList SingleMethodParameter TypeParameterList) ;
+%hierarchy Expression (Factor Oneself Type) ;
+%hierarchy Factor (Term ObjectConstructor) ;
+%hierarchy Term (Identifier Numeral Block String SequenceConstructor SpecialTerm Request Ellipsis) ;
+%hierarchy SpecialTerm (Self Outer Boolean) ;
 %hierarchy Numeral (DecimalNumeral BaseExponentNumeral BasedRadixNumeral) ;
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
