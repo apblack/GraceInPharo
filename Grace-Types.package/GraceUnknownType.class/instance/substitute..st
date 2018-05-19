@@ -1,0 +1,3 @@
+conformance
+substitute: bindings 
+	^ self

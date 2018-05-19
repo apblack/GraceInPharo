@@ -1,3 +1,3 @@
 generated
 visitNumeral: aNumeral
-	^ self visitExpression: aNumeral
+	^ self visitTerm: aNumeral

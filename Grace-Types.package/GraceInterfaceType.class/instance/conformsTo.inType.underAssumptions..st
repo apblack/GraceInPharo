@@ -2,7 +2,7 @@ conformance
 conformsTo: anotherObjectType inType: selfType underAssumptions: assumptionsDictionary
 	| other |
 	anotherObjectType isUnknown ifTrue: [ ^ true ].
-	anotherObjectType == self ifTrue: [ ^ true ].
+	anotherObjectType typeValue == self ifTrue: [ ^ true ].
 	other := anotherObjectType isSelfType ifTrue: [ selfType ] ifFalse: [ anotherObjectType ].
 	other isVariant ifTrue: [ ^ other variants anySatisfy: [ :each | 
 			self conformsTo: each inType: selfType underAssumptions: assumptionsDictionary ] ].

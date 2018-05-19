@@ -1,3 +1,3 @@
 generated
 visitMethodParameterList: aMethodParameterList
-	^ self visitRoot: aMethodParameterList
+	^ self visitSomeParameters: aMethodParameterList

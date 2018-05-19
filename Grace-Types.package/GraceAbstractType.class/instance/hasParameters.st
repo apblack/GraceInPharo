@@ -1,3 +1,3 @@
 accessing
 hasParameters
-	^ parameterNames isEmpty
+	^ false

@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "AndrewBlack 3/4/2018 11:32",
-	"super" : "GraceExpressionNode",
+	"super" : "GraceTermNode",
 	"category" : "Grace-Parser-NodeSubclasses",
 	"classinstvars" : [ ],
 	"pools" : [ ],

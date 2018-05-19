@@ -5,10 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"arguments",
-		"parameterNames"
-	],
+	"instvars" : [ ],
 	"name" : "GraceAbstractType",
 	"type" : "normal"
 }

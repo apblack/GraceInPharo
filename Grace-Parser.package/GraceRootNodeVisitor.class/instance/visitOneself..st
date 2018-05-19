@@ -1,3 +1,3 @@
 generated
 visitOneself: anOneself
-	^ self visitExpression: anOneself
+	^ self visitSpecialTerm: anOneself

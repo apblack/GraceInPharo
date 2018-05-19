@@ -11,8 +11,8 @@
 		"items",
 		"_s",
 		"rightBraceToken",
-		"returnType",
-		"annotationList"
+		"annotationList",
+		"returns"
 	],
 	"name" : "GraceGenerativeDeclarationNode",
 	"type" : "normal"

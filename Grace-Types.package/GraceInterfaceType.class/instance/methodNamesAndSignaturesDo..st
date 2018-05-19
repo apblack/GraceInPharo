@@ -1,0 +1,3 @@
+conformance
+methodNamesAndSignaturesDo: a2ArgBlock 
+	methodDict keysAndValuesDo: a2ArgBlock

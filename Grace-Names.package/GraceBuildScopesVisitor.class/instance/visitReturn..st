@@ -6,5 +6,5 @@ visitReturn: aReturn
 		GraceSyntaxError 
 			signal: 'a return statement is meaningful only inside a method'
 			node: aReturn ].
-	aReturn declaredType: method returnType.
+	aReturn declaredType: method returns.
 	^ super visitReturn: aReturn

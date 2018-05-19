@@ -1,7 +1,7 @@
 generated
-superExpr: aGraceRootNode
+superExpr: aGraceExpressionNode
 	self superExpr notNil
 		ifTrue: [ self superExpr parent: nil ].
-	superExpr := aGraceRootNode.
+	superExpr := aGraceExpressionNode.
 	self superExpr notNil
 		ifTrue: [ self superExpr parent: self ]

@@ -1,3 +1,3 @@
 parameters
 parameters
-	^ definingParseNode header parameters
+	^ definingParseNode typeParameters parameters

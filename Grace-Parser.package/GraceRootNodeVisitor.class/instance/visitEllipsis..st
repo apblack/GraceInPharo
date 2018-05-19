@@ -1,3 +1,3 @@
 generated
 visitEllipsis: anEllipsis
-	^ self visitExpression: anEllipsis
+	^ self visitTerm: anEllipsis

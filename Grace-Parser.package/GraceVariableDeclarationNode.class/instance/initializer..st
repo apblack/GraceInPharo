@@ -1,7 +1,7 @@
 generated
-initializer: aGraceRootNode
+initializer: aGraceExpressionNode
 	self initializer notNil
 		ifTrue: [ self initializer parent: nil ].
-	initializer := aGraceRootNode.
+	initializer := aGraceExpressionNode.
 	self initializer notNil
 		ifTrue: [ self initializer parent: self ]

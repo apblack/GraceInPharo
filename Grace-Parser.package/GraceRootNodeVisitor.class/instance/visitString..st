@@ -1,3 +1,3 @@
 generated
 visitString: aString
-	^ self visitExpression: aString
+	^ self visitTerm: aString

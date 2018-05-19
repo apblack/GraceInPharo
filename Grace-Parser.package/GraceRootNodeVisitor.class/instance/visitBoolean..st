@@ -1,3 +1,3 @@
 generated
 visitBoolean: aBoolean
-	^ self visitExpression: aBoolean
+	^ self visitSpecialTerm: aBoolean

@@ -1,3 +1,3 @@
 generated
 visitIdentifier: anIdentifier
-	^ self visitExpression: anIdentifier
+	^ self visitTerm: anIdentifier

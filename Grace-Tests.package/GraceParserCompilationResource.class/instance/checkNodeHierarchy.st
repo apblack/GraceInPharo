@@ -19,4 +19,5 @@ checkNodeHierarchy
 	resultTree := HierarchyParser parseStream: hierarchyDirectives.
 	self assert: resultTree class equals: HCheckerHierarchyNode.
 	reports := ValidatorVisitor new visitRoot: resultTree.
+	reports ifNotEmpty: [ reports inspect ].
 	self assert: reports isEmpty description: 'Some node classes have the wrong superclasses'

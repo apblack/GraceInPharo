@@ -5,7 +5,7 @@ reduceActionForMethodDeclaration1: nodes
 	result onceToken: (nodes at: 1).
 	result methodToken: (nodes at: 2).
 	result header: (nodes at: 3).
-	result returnType: (nodes at: 4).
+	result returns: (nodes at: 4).
 	result annotationList: (nodes at: 5).
 	result leftBraceToken: ((nodes at: 6) at: 1).
 	result addObjects: ((nodes at: 6) at: 2) to: result items.

@@ -1,3 +1,3 @@
 generated
 visitRequest: aRequest
-	^ self visitExpression: aRequest
+	^ self visitTerm: aRequest

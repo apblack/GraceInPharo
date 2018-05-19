@@ -1,7 +1,7 @@
 generated
-arg: aGraceRootNode
+arg: aGraceExpressionNode
 	self arg notNil
 		ifTrue: [ self arg parent: nil ].
-	arg := aGraceRootNode.
+	arg := aGraceExpressionNode.
 	self arg notNil
 		ifTrue: [ self arg parent: self ]

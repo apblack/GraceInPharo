@@ -1,3 +1,3 @@
 generated
 visitObjectConstructor: anObjectConstructor
-	^ self visitExpression: anObjectConstructor
+	^ self visitFactor: anObjectConstructor

@@ -1,3 +1,3 @@
 generated
 visitTerm: aTerm
-	^ self visitExpression: aTerm
+	^ self visitFactor: aTerm

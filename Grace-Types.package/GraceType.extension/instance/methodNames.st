@@ -1,3 +1,3 @@
 *Grace-Types
 methodNames
-	^ typeValue methodNames
+	^ self typeValue methodNames

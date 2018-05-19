@@ -1,4 +1,4 @@
 visitation
 visitTypeExpression: aTypeExpr
 
-	^ aTypeExpr acceptVisitor: GraceBuildType new
+	^ GraceBuildType from: aTypeExpr

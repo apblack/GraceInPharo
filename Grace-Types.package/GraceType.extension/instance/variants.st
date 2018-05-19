@@ -2,7 +2,7 @@
 variants
 	| tv |
 	self halt: 'check on variants'.
-	tv := definingParseNode value acceptVisitor: GraceBuildType new.
+	tv := GraceBuildType from: definingParseNode value.
 	true ifTrue: [^ tv variants].
 	
 	definingParseNode value isInterface ifTrue: [ ^ { self } ].

@@ -1,3 +1,3 @@
-as yet unclassified
+conformance
 conformsTo: anotherType inType: selfType underAssumptions: assumptions
 	

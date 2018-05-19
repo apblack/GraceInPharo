@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "GraceRootNode",
+	"super" : "GraceTermNode",
 	"category" : "Grace-Parser-NodeSubclasses",
 	"classinstvars" : [ ],
 	"pools" : [ ],

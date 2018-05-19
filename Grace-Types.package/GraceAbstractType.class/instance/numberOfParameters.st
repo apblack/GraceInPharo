@@ -1,3 +1,3 @@
 accessing
 numberOfParameters
-	^ parameterNames size
+	^ 0

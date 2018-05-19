@@ -4,7 +4,7 @@ reduceActionForTraitDeclaration1: nodes
 	result := GraceTraitDeclarationNode new.
 	result traitToken: (nodes at: 1).
 	result header: (nodes at: 2).
-	result returnType: (nodes at: 3).
+	result returns: (nodes at: 3).
 	result annotationList: (nodes at: 4).
 	result leftBraceToken: ((nodes at: 5) at: 1).
 	result addObjects: ((nodes at: 5) at: 2) to: result items.

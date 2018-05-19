@@ -1,3 +1,3 @@
 generated
 visitSequenceConstructor: aSequenceConstructor
-	^ self visitRoot: aSequenceConstructor
+	^ self visitTerm: aSequenceConstructor

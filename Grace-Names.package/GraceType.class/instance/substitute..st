@@ -1,0 +1,3 @@
+instantiation
+substitute: bindings 
+	^ self

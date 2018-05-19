@@ -47,10 +47,10 @@ default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 %hierarchy VariableDeclaration (VarDeclaration DefDeclaration) ;
 %hierarchy Parameter (TypeParameter MethodParameter BlockParameter) ;
 %hierarchy SomeParameters (BlockParameterList MethodParameterList SingleMethodParameter TypeParameterList) ;
-%hierarchy Expression (Factor Oneself Type) ;
+%hierarchy Expression (Factor Type) ;
 %hierarchy Factor (Term ObjectConstructor) ;
 %hierarchy Term (Identifier Numeral Block String SequenceConstructor SpecialTerm Request Ellipsis) ;
-%hierarchy SpecialTerm (Self Outer Boolean) ;
+%hierarchy SpecialTerm (Oneself Boolean) ;
 %hierarchy Numeral (DecimalNumeral BaseExponentNumeral BasedRadixNumeral) ;
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
@@ -141,15 +141,15 @@ AnnotationArgList
 	| ""("" Expression 'expr' "")""  																						{ '2' }
 	;
 MethodDeclaration
-	: ""once"" ? ""method"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotations 'annotationList'  
+	: ""once"" ? ""method"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList'  
 		( ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ? ""}"" ) ?  											{{ }}
 	;
 ClassDeclaration
-	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotations 'annotationList' 
+	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList' 
 		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ? ""}"" ) ?											{{  }}
 	;
 TraitDeclaration
-	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returnType' Annotations 'annotationList' 
+	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList' 
 		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ? ""}"" ) ?											{{  }}
 	;
 MethodHeader
@@ -415,7 +415,7 @@ TypeArguments
 	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   											{{ }}
 	;
 Signature
-	: MethodHeader 'header' ReturnTypeOption 'returnType'  											{{ }}
+	: MethodHeader 'header' ReturnTypeOption 'returns'  											{{ }}
 	;
 Interface
 	:  ""interface"" InterfaceLiteral																		{{ InterfaceLiteral }}
