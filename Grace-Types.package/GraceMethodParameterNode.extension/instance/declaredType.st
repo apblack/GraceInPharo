@@ -1,4 +1,4 @@
-types
+*Grace-Types
 declaredType
 	"answers the actual type object, not the parse tree node"
 
