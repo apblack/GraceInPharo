@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionFor__StartInterp_____Expression_StartString______stringSegment____1: nodes
+reduceActionFor__StartInterp_________Expression__interpolation__StartString______stringSegment___stringSegment_____1: nodes
 	| result |
 	result := Array new: 5.
 	result at: 1 put: (nodes at: 1).

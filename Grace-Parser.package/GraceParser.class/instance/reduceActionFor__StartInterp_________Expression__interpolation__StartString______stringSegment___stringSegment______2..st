@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionFor__StartInterp_____Expression_StartString______stringSegment_____2: nodes
+reduceActionFor__StartInterp_________Expression__interpolation__StartString______stringSegment___stringSegment______2: nodes
 	| result |
 	result := nodes at: 1.
 	self add: ((nodes at: 2) at: 1) to: (result at: 1).

@@ -1,3 +1,3 @@
 generated-reduction actions
-reduceActionForSs_2: nodes
+reduceActionForSs______2: nodes
 	^ nodes at: 1

@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionFor___operator__TypeArguments__Factor__1: nodes
+reduceActionFor___operator___op__TypeArguments__typeArgList____Factor__arg___1: nodes
 	| result |
 	result := Array new: 3.
 	result at: 1 put: (nodes at: 1).

@@ -1,3 +1,3 @@
 naming
 requestedName
-	^ outers inject: '' into:  [ :acc :each | acc , each value ]
+	^ (outerDotTokens inject: '' into:  [ :acc :each | acc , each value ]) , outerToken value

@@ -8,9 +8,8 @@
 	"instvars" : [
 		"leftBracketToken",
 		"rightBracketToken",
-		"element",
 		"commaTokens",
-		"args"
+		"elements"
 	],
 	"name" : "GraceSequenceConstructorNode",
 	"type" : "normal"

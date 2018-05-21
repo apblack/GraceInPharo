@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionFor__Pragma_Ss__1: nodes
+reduceActionFor__Pragma__pragma__Ss______1: nodes
 	| result |
 	result := Array new: 2.
 	result at: 1 put: (nodes at: 1).

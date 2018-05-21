@@ -305,8 +305,8 @@ SpecialTerm
 	| Boolean
 	;
 Outer
-	: <outer> 'outer'																							{{ }}
-	| <outerDot> 'outer' + <outer> 'outer'																		{{ }}
+	: <outer>																								{{ }}
+	| <outerDot>+ <outer>																						{{ }}
 	;
 Self
 	: <self>																									{{ }}

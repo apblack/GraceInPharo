@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionFor___typeOperator__TypeArguments__Type___1: nodes
+reduceActionFor___typeOperator___op__TypeArguments__typeArgList____Type__arg____1: nodes
 	| result |
 	result := Array new: 3.
 	result at: 1 put: (OrderedCollection new: 2).
