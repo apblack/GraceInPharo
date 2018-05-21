@@ -10,8 +10,7 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"isModule",
-		"isDialect",
-		"elementScope"
+		"isDialect"
 	],
 	"name" : "GracePseudovariable",
 	"type" : "normal"

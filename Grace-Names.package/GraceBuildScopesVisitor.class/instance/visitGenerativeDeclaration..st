@@ -1,6 +1,5 @@
 visit methods
 visitGenerativeDeclaration: aGenDeclaration
-	
 	(aGenDeclaration isMarkerDeclaration not and: [ aGenDeclaration hasBody not ]) ifTrue: [ 
 		GraceSyntaxError noBodyIn: aGenDeclaration ].
 	(aGenDeclaration hasBody) ifTrue: [ 
