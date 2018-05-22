@@ -2,14 +2,12 @@ scope creation
 createScope: ScopeClass in: aNode
 	| newScope enclosingObjectScope |
 	newScope := ScopeClass new.
-	newScope 
+	newScope
 		outerScope: aNode parent scope;
 		node: aNode.
 	aNode scope: newScope.
-	(ScopeClass = GraceObjectScope) ifTrue: [ 
+	newScope isObjectScope ifTrue: [ 
 		enclosingObjectScope := newScope enclosingObjectScope.
-		(enclosingObjectScope == GraceEmptyScope instance) ifFalse: [
-			newScope add: ((GracePseudovariable fromParseTreeNode: enclosingObjectScope node)
-									attributeScope: enclosingObjectScope)
-			  			withName: 'outer' ] ].
+		enclosingObjectScope isTheEmptyScope ifFalse: [ 
+			self addOuterBindingFor: enclosingObjectScope in: newScope ] ].
 	^ newScope
