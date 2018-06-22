@@ -23,6 +23,6 @@ newline
 			^ self whitespace ].
 	currentLineIndent < priorLineIndent ifTrue: [ self checkOutdent ].
 	self saveDataForPriorLine.
-	^ ( ')]}' includes: currentCharacter) 
+	^ ( ')]}⟧' includes: currentCharacter) 
 		ifTrue: [ self whitespace  ] 
 		ifFalse: [ self createTokenFor: Character cr asString ]

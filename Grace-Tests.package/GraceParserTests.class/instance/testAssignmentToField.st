@@ -1,4 +1,4 @@
-tests - indentation
+tests - assignment
 testAssignmentToField
 	"Check that the body of incSecret parses as an assignment" 
 	| parseTree cls meth |
