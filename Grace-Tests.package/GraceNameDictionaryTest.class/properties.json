@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "AndrewBlack 6/30/2018 16:38",
+	"super" : "DictionaryTest",
+	"category" : "Grace-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"markerDef"
+	],
+	"name" : "GraceNameDictionaryTest",
+	"type" : "normal"
+}

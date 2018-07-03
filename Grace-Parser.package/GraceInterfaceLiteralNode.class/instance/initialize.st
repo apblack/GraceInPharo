@@ -3,3 +3,4 @@ initialize
 	super initialize.
 	_s := OrderedCollection new: 2.
 	methods := OrderedCollection new: 2.
+	typeDecls := OrderedCollection new: 2.

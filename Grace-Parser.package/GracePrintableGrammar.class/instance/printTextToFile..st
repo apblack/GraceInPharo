@@ -2,6 +2,8 @@ printing
 printTextToFile: aFile
 	aFile
 		writeStreamDo: [ :out | 
+			grammar inspect.
+			self halt.
 			(grammar classDefinitions sort: [ :a :b | a name <= b name ])
 				do: [ :def | 
 					def productions isEmpty ifFalse: [ 

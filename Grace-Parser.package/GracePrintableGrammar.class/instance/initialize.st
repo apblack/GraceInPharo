@@ -5,4 +5,4 @@ initialize
 	(GraceParser class >> #definitionComment) ast comments do: [ :e | 
 		grammarSource nextPutAll: e contents asUncommentedCode ].
 	grammarSource reset.
-	grammar := SmaCCDefinitionParser parseStream: grammarSource.
+	grammar := SmaCCGrammarParser parseStream: grammarSource.

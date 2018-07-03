@@ -1,5 +1,5 @@
 initialization
 initialize
 	super initialize.
-	reusedNames := Dictionary new.
+	reusedNames := GraceNameDictionary new.
 	statusOfReusedNames := #undiscovered
