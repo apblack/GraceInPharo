@@ -1,4 +1,4 @@
 initialization
 initialize
-	names := Dictionary new.
+	names := GraceNameDictionary new.
 	outerScope := GraceEmptyScope instance.

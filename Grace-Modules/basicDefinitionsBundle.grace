@@ -14,6 +14,7 @@ trait open {
     method confidential is annotation
     method required is annotation
     method abstract is annotation
+    method override is annotation
 
     type Object = interface {
         asString -> String

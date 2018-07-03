@@ -424,7 +424,8 @@ Interface
 	;
 InterfaceLiteral
 	:  ""{"" Ss '_' ? ""}""																					{{ }}
-	|  ""{"" Ss '_' ? Signature 'method' ( Ss '_' Signature 'method' ) * Ss '_' ? ""}""								{{ }}	
+	|  ""{"" Ss '_' ? ( Signature 'method' | TypeDeclaration 'typeDecl' ) 
+	    	( Ss '_' Signature 'method' | TypeDeclaration 'typeDecl' ) * Ss '_' ? ""}""								{{ }}	
 	; 
 UnknownType
 	: ""Unknown""																						{{ }}
