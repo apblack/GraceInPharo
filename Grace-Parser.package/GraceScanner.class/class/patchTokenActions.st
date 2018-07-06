@@ -9,6 +9,7 @@ patchTokenActions
 	self patch: '"{"' withAction: #leftBrace inArray: newTokenActions.
 	self patch: '"}"' withAction: #rightBrace inArray: newTokenActions.
 	self patch: '":="' withAction: #assignmentSymbol inArray: newTokenActions.
+	self patch: '"="' withAction: #equals inArray: newTokenActions.
 	self patchReservedWordsWithAction: #reservedWord inArray: newTokenActions.
 	
 	(newTokenActions = tokenActionsLiteral) ifFalse: [ 
