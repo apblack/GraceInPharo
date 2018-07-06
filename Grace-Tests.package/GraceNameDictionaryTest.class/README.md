@@ -1,0 +1,1 @@
+Tests for GraceName Dictioanry.  It should pass all of the dictionary tests, but also additional tests for the special names like if(_)then(_)else(_).

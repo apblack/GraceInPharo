@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "AndrewBlack 6/30/2018 16:26",
+	"super" : "GraceMethod",
+	"category" : "Grace-Names-Variables",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "GraceSpecialControlStructure",
+	"type" : "normal"
+}
