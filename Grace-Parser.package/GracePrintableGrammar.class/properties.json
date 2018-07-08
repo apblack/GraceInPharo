@@ -2,7 +2,11 @@
 	"commentStamp" : "AndrewBlack 3/14/2018 12:09",
 	"super" : "Object",
 	"category" : "Grace-Parser-Meta",
-	"classinstvars" : [ ],
+	"classinstvars" : [
+		"grammar",
+		"productions",
+		"nonTerminalsDerivingEmpty"
+	],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [

@@ -11,7 +11,8 @@ baseline: spec
 			with: [ spec repository: 'github://peteruhnak/file-dialog/repository' ].
 		spec package: 'Grace-Scope'.
 		spec package: 'Grace-Names' with: [ spec requires: {'Grace-Parser' . 'Grace-Scope'} ].
-		spec package: 'Grace-Parser' with: [ spec requires: {'SmaCC' . 'Grace-Scope'} ].
+		spec package: 'Grace-Parser' with: [ 
+			spec requires: {'SmaCC' . 'SmaCC-Reification'. 'Grace-Scope'} ].
 		spec package: 'Grace-HValidator' with: [ spec requires: {'SmaCC' } ].
 		spec package: 'Grace-IDE' with: [ 
 			spec requires: {'FileDialog' . 'Grace-Compiler'} ].
