@@ -121,7 +121,7 @@ DefDeclaration
 	: ""def"" Identifier 'id' TypeOption 'type' Annotations 'annotationList' ( ""="" Expression 'initializer'  ) ?					{{  }}
 	;
 Annotations
-	:
+	: Empty
 	| ""is"" AnnotationLabel 'ann' ( "","" AnnotationLabel 'ann' ) *  														{{ }}
 	;
 AnnotationLabel
@@ -182,7 +182,7 @@ SingleMethodParameter
 	:  ""("" MethodParameter 'parameter' "")"" 																			{{  }}
 	;
 ReturnTypeOption
-	: 
+	: Empty
 	| <arrow> TypeExpression 		 																				{ '2' }
 	;
 MethodParameter
@@ -257,7 +257,7 @@ BlockParameter
 	| NonIdExpression 'pattern' 																					{{ }}
 	;
 PatternOption
-	:
+	: Empty
 	| "":"" Expression  { ^ '2' }
 	;
 NonIdExpression
@@ -398,11 +398,11 @@ TypeDeclaration
 				# special case of bare interface literal without  reserved word
 	;
 TypeOption
-	:
+	: Empty
 	| "":"" TypeExpression																				{ '2' }
 	;
 TypeParameterList
-	: 
+	: Empty
 	| <openTP> TypeParameter 'parameter' ( "","" '_' TypeParameter 'parameter' ) * <closeTP>   				{{  }}
 	;
 TypeParameter
@@ -415,7 +415,7 @@ TypeArguments
 	: <openTP> Type 'typeArg' ("","" Type 'typeArg') * <closeTP>   											{{ }}
 	;
 Signature
-	: MethodHeader 'header' ReturnTypeOption 'returns'  											{{ }}
+	: MethodHeader 'header' ReturnTypeOption 'returns'  												{{ }}
 	;
 Interface
 	:  ""interface"" InterfaceLiteral																		{{ InterfaceLiteral }}
@@ -425,7 +425,7 @@ Interface
 InterfaceLiteral
 	:  ""{"" Ss '_' ? ""}""																					{{ }}
 	|  ""{"" Ss '_' ? ( Signature 'method' | TypeDeclaration 'typeDecl' ) 
-	    	( Ss '_' Signature 'method' | TypeDeclaration 'typeDecl' ) * Ss '_' ? ""}""								{{ }}	
+	    	( Ss '_' ( Signature 'method' | TypeDeclaration 'typeDecl' ) ) * Ss '_' ? ""}""								{{ }}	
 	; 
 UnknownType
 	: ""Unknown""																						{{ }}
@@ -434,12 +434,15 @@ SelfType
 	: ""Self""																							{{ }}
 	;
 Where
-	:
+	: Empty
 	| ""where"" WhereCondition 'condition' ("","" WhereCondition 'condition') *								{{ }}
 	;
 WhereCondition
 	: <id> <typeRelation> Type	 'type'																	{{ }}
 	; 
+Empty																
+	:
+	;
 StartString: { self state: #string . ^ nil} ;
 StartUninterp: { self state: #uninterpString . ^ nil } ;
 RetDefault: { self state: #default . ^ nil } ;
