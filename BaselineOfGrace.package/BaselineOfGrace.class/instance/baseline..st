@@ -7,6 +7,9 @@ baseline: spec
 			baseline: 'SmaCC' 
 			with: [ spec repository: 'github://apblack/SmaCC:working' ].
 		spec
+			baseline: 'SmaCC-Reification' 
+			with: [ spec repository: 'github://apblack/SmaCC:fglr' ].
+		spec
 			baseline: 'FileDialog'
 			with: [ spec repository: 'github://peteruhnak/file-dialog/repository' ].
 		spec package: 'Grace-Scope'.
