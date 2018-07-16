@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionFor__Pragma__pragma__Ss_______2: nodes
+reduceActionFor__Pragma__pragma__Ss______2: nodes
 	| result |
 	result := nodes at: 1.
 	self add: ((nodes at: 2) at: 1) to: (result at: 1).

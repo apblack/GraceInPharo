@@ -1,7 +1,7 @@
 continuation lines
 terminateContinuationIfNecessary
 	indentOfLineBeingContinued ifNil: [ ^ self ].
-	(braceChange < 1 and: [currentLineIndent >= maxIndentOfContinuation]) ifTrue: [ 
+	(braceChange = 0 and: [currentLineIndent >= maxIndentOfContinuation]) ifTrue: [ 
 		maxIndentOfContinuation := currentLineIndent.
 		^ self 
 	].

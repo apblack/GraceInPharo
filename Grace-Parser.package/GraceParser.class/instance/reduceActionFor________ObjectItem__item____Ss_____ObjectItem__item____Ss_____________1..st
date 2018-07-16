@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionFor________ObjectItem__item____Ss_____ObjectItem__item_____Ss_______________1: nodes
+reduceActionFor________ObjectItem__item____Ss_____ObjectItem__item____Ss_____________1: nodes
 	| result |
 	result := Array new: 4.
 	result at: 2 put: (OrderedCollection new: 2).

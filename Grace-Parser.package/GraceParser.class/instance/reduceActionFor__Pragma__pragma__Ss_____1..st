@@ -1,7 +1,7 @@
 generated-reduction actions
-reduceActionFor__Ss_____Signature__method__TypeDeclaration__typeDecl___1: nodes
+reduceActionFor__Pragma__pragma__Ss_____1: nodes
 	| result |
-	result := Array new: 3.
+	result := Array new: 2.
 	result at: 1 put: (nodes at: 1).
 	result at: 2 put: (nodes at: 2).
 	^ result

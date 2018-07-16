@@ -1,6 +1,6 @@
 tests-Types
 testTypeExpressionCloseBraceOnSameLine
-	self good: #Type as: #Interface parse: 
+	self good: #Type as: #InterfaceLiteral parse: 
 		'interface {
     push(item:ElementType) → Done
     pop → ElementType
