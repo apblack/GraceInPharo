@@ -7,6 +7,7 @@ initialize
 	grammarSource reset.
 	grammar := SmaCCGrammarParser parseStream: grammarSource.
 	productions := grammar rules select: [ :each | each isKindOf: GrammarProductionRuleNode ].
+	nonTerminalsDerivingEmpty := #().			"to break a circularity"
 	nonTerminalsDerivingEmpty := productions 
 			select: [ :each | each rhs printString isEmpty ] 
 			thenCollect: [ :each | each lhs name ].
