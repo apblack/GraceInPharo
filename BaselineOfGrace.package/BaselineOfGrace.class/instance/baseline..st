@@ -5,7 +5,7 @@ baseline: spec
 	spec for: #'common' do: [
 		spec
 			baseline: 'SmaCC' 
-			with: [ spec repository: 'github://apblack/SmaCC:working' ].
+			with: [ spec repository: 'github://apblack/SmaCC:fglr' ].
 		spec
 			baseline: 'SmaCC-Reification' 
 			with: [ spec repository: 'github://apblack/SmaCC:fglr' ].
