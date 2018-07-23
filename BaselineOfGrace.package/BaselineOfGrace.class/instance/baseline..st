@@ -7,7 +7,7 @@ baseline: spec
 			baseline: 'SmaCC' 
 			with: [ spec repository: 'github://apblack/SmaCC:fglr' ].
 		spec
-			baseline: 'SmaCC-Reification' 
+			package: 'SmaCC-Reification' 
 			with: [ spec repository: 'github://apblack/SmaCC:fglr' ].
 		spec
 			baseline: 'FileDialog'
