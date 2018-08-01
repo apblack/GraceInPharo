@@ -1,14 +1,14 @@
 enumeration - private
 allNamesAndValuesDo: aBlock filteringOut: closerDefinitions
-	names keysAndValuesDo: [ :name :def | 
+	names keysAndValuesDo: [ :name :defn | 
 		(closerDefinitions includes: name) ifFalse: [
-			aBlock value: name value: def.
+			aBlock value: name value: defn.
 			closerDefinitions add: name 
 		]
 	].
-	self reusedNames keysAndValuesDo: [ :name :def | 
+	self reusedNames keysAndValuesDo: [ :name :defn | 
 		(closerDefinitions includes: name) ifFalse: [
-			aBlock value: name value: def.
+			aBlock value: name value: defn.
 			closerDefinitions add: name 
 		]
 	].
