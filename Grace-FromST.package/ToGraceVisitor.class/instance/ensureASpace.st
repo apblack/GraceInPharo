@@ -1,0 +1,3 @@
+output
+ensureASpace
+	outStream ensureASpace

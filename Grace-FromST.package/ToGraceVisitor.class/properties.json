@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "AndrewBlack 7/29/2018 10:20",
+	"super" : "RBProgramNodeVisitor",
+	"category" : "Grace-FromST",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"outStream",
+		"indentCount",
+		"isLineEmpty",
+		"tempAssignments"
+	],
+	"name" : "ToGraceVisitor",
+	"type" : "normal"
+}

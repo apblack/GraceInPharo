@@ -1,0 +1,3 @@
+*Grace-FromST
+isLiteralValue
+	^ true
