@@ -1,4 +1,4 @@
-tests
+as yet unclassified
 testEqualityMethod
 	| m grace |
 	m := GraceScope >> #=.
