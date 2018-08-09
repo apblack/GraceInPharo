@@ -1,4 +1,4 @@
-as yet unclassified
+tests
 testEqualityMethod
 	| m grace |
 	m := GraceScope >> #=.
@@ -7,11 +7,11 @@ testEqualityMethod
 		m ast acceptVisitor: v.
 	].
 	self assert: grace equals: 'method == (other) {
-    (class == other.class).ifFalse {
+    if ((class == other.class).not) then {
         return false
     }
-    return (localNames.keys.sort == other.localNames.keys.sort).and {
+    return ((localNames.keys.sort == other.localNames.keys.sort) && {
         (reusedNames.keys.sort == other.reusedNames.keys.sort)
-    }
+    })
 }
 ' 

@@ -1,12 +1,18 @@
 private
 doHeaderFor: aMethod
+	| selector |
 	self << 'method '.
-	aMethod numArgs = 0
-		ifTrue: [ self << aMethod selector ]
-		ifFalse: [ | kws params |
+	selector := aMethod selector.
+	selector isBinary ifTrue: [ 
+		selector := specialMessageDictionary at: selector ifAbsent: [ selector ].
+		self << selector << ' (' << aMethod arguments first name << ') '
+	] ifFalse: [ 
+		(aMethod numArgs = 0) ifTrue: [ 
+			self << aMethod selector << ' '
+		] ifFalse: [ | kws params |
 			kws := aMethod keywords collect: [ :each | each copyReplaceAll: ':' with: '' ].
-			self rewriteEqualitySelectors: kws.
 			params := aMethod arguments.
 			1 to: aMethod numArgs do: [ :i | 
-				self ensureASpace ; << (kws at: i).
-				self << ' (' << (params at: i) name << ')' ] ]
+				self << (kws at: i) << ' (' << (params at: i) name << ') ' ] 
+		]
+	]

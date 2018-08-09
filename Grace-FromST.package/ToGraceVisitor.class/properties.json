@@ -9,7 +9,9 @@
 		"outStream",
 		"indentCount",
 		"isLineEmpty",
-		"tempAssignments"
+		"tempAssignments",
+		"specialMessageDictionary",
+		"specialOperatorDictionary"
 	],
 	"name" : "ToGraceVisitor",
 	"type" : "normal"

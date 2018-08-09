@@ -5,5 +5,5 @@ testScopeClass
 	generatedGrace := String streamContents: [ :s | 
 		translator translateOnto: s
 	].
-	parseTree := GraceParser parseStream: generatedGrace readStream.
-	self assert: (parseTree isKindOf: GraceModuleNode) description: 'parse tree is not for a module'
+	self should: [GraceParser parseStream: generatedGrace readStream] raise: GraceSyntaxError 
+			whoseDescriptionIncludes: '"class"] not expected' description: 'wrong syntax error'
