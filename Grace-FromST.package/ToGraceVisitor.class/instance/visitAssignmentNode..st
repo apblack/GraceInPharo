@@ -1,11 +1,13 @@
 visiting
 visitAssignmentNode: anAssignment
-	(anAssignment variable isTemp and: [self isAssignedOnce: anAssignment variable name]) ifTrue: [ 
+	| lhs |
+	lhs := anAssignment variable.
+	(lhs isTemp and: [self isAssignedOnce: lhs name]) ifTrue: [ 
 		self << 'def '.
-		self visitNode: anAssignment variable.
+		self visitNode: lhs.
 		self << '= '
 	] ifFalse: [
-		self visitNode: anAssignment variable.
+		self visitNode: lhs.
 		self << ':= '
 	].
 	self visitNode: anAssignment value

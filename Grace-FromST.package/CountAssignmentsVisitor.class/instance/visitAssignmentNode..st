@@ -1,5 +1,6 @@
 visiting
 visitAssignmentNode: anAssignment
-	| priorCount |
-	priorCount := assignmentCounts at: anAssignment variable ifAbsent: [ 0 ].
-	assignmentCounts at: anAssignment variable name put: priorCount + 1
+	| priorCount lhsName |
+	lhsName := anAssignment variable name.
+	priorCount := assignmentCounts at: lhsName ifAbsent: [ 0 ].
+	assignmentCounts at: lhsName put: priorCount + 1

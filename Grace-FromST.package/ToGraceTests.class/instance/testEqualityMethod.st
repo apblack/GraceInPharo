@@ -1,12 +1,6 @@
 tests
 testEqualityMethod
-	| m grace |
-	m := GraceScope >> #=.
-	grace := String streamContents: [ :s | | v |
-		v := ToGraceVisitor new outStream: s.
-		m ast acceptVisitor: v.
-	].
-	self assert: grace equals: 'method == (other) {
+	self assertMethod: GraceScope >> #= inGraceIs:'method == (other) {
     if ((class == other.class).not) then {
         return false
     }
