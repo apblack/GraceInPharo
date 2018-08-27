@@ -4,5 +4,5 @@ visitArrayNode: anArray
 	anArray statements 
 		do: [:each | self visitNode: each] 
 		separatedBy: [ self ensureNoSpace ; << ', ' ].
-	self ensureNoSpace ; << '] '
+	self ensureNoSpace ; << ' ] '
 	

@@ -4,5 +4,5 @@ visitLiteralArrayNode: aLiteralArray
 	aLiteralArray contents 
 		do: [:each | self visitNode: each] 
 		separatedBy: [ self ensureNoSpace ; << ', ' ].
-	self ensureNoSpace ; << '] '
+	self ensureNoSpace ; << ' ] '
 	
