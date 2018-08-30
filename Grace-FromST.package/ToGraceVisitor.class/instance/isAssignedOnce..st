@@ -1,3 +1,3 @@
 temporaries
 isAssignedOnce: aTempVarName 
-	^ (tempAssignments at: aTempVarName) = 1
+	^ (tempAssignments at: aTempVarName ifAbsent: [0]) = 1

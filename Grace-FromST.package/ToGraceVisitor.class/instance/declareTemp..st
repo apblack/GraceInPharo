@@ -1,6 +1,8 @@
 temporaries
 declareTemp: aTemporaryNode 
-	(self isAssignedOnce: aTemporaryNode name) ifFalse: [ 
-		self << 'var ' << aTemporaryNode name.
+	| tempName |
+	tempName := aTemporaryNode name.
+	(self isAssignedOnce: tempName) ifFalse: [ 
+		self << 'var ' << tempName.
 		self newline
 	]

@@ -1,6 +1,6 @@
 visiting
 visitLiteralArrayNode: aLiteralArray
-	self << '['.
+	self << '[ '.
 	aLiteralArray contents 
 		do: [:each | self visitNode: each] 
 		separatedBy: [ self ensureNoSpace ; << ', ' ].
