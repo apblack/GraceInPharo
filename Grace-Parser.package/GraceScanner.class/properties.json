@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "AndrewBlack 10/7/2017 12:05",
+	"commentStamp" : "AndrewBlack 8/29/2018 21:27",
 	"super" : "SmaCCScanner",
 	"category" : "Grace-Parser-SmaCC-Generated",
 	"classinstvars" : [
@@ -16,9 +16,10 @@
 		"maxIndentOfContinuation",
 		"newlineChars",
 		"parser",
-		"previousMatch",
 		"priorLineBraceDepth",
-		"priorLineIndent"
+		"priorLineIndent",
+		"unmatchedLeftBraces",
+		"lastNonCommentToken"
 	],
 	"name" : "GraceScanner",
 	"type" : "normal"

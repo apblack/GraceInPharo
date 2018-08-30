@@ -5,7 +5,7 @@ initialize
 	priorLineBraceDepth := 0.
 	priorLineIndent := 0.
 	currentLineIndent := 0.
+	unmatchedLeftBraces := 0.
 	indentStack := OrderedCollection with: 0.  "the initial indent"
-	newlineChars := self class newlineChars. 
-		"all line break chars"
+	newlineChars := self class newlineChars.  "all line break chars"
 		

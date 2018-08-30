@@ -2,4 +2,5 @@ line handling
 saveDataForPriorLine
 	
 	priorLineBraceDepth := priorLineBraceDepth + braceChange.
-	priorLineIndent := currentLineIndent
+	priorLineIndent := currentLineIndent.
+	unmatchedLeftBraces := 0.

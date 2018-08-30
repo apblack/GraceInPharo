@@ -1,7 +1,7 @@
 generated
 definitionComment
 "%unicode ;
-%id <error> <id> <operator> <newline> <selfDot> <outerDot> <outer>;
+%id <error> <id> <comment> <operator> <newline> <selfDot> <outerDot> <outer>;
 
 ### State-specific token rules ###
 
@@ -446,4 +446,4 @@ Empty
 StartString: { self state: #string . ^ nil} ;
 StartUninterp: { self state: #uninterpString . ^ nil } ;
 RetDefault: { self state: #default . ^ nil } ;
-StartInterp: { self state: #default.  scanner incrementBraceDepth . ^ nil } ;"
+StartInterp: { self state: #default.  scanner tallyLeftBrace. ^ nil } ;"

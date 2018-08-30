@@ -1,3 +1,3 @@
 line handling
 isBlockStart
-	^ braceChange > 0
+	^ unmatchedLeftBraces > 0 and: [ currentCharacter ~= $} ]

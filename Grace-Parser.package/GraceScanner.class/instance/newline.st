@@ -5,24 +5,21 @@ newline
 	the following line is a continuation line) or a real <newline> token."
 
 	self checkAndRecordIndentStatus.
-	self isLineEmpty
-		ifTrue: [ ^ self whitespace ].
-	self isIndentationChangeOne
-		ifTrue: [ self lexicalError: 'a change of indentation of 1 is not permitted' ].
+	self isLineEmpty ifTrue: [ ^ self whitespace ].
+	self isIndentationChangeOne ifTrue: [ self lexicalError: 'a change of indentation of 1 is not permitted' ].
 	self terminateContinuationIfNecessary.
-	self isBlockStart ifTrue: [ 
-			self recordNewIndentation.
-			self saveDataForPriorLine.
-			^ self priorLineEndsWithOpenBracket 
-				ifTrue: [ self whitespace ]
-				ifFalse: [ self createTokenFor: Character cr asString ] ].
-	self isBlockEnd ifTrue: [ self checkIndentationReset ].
 	self isContinuationLine ifTrue: [ 
 			self recordContinuationStatus.
 			self saveDataForPriorLine.
 			^ self whitespace ].
-	currentLineIndent < priorLineIndent ifTrue: [ self checkOutdent ].
+	self isBlockStart ifTrue: [ 
+		self recordNewIndentation 
+	] ifFalse: [ 
+		self isBlockEnd ifTrue: [ 
+			self checkIndentationReset 
+			] ifFalse: [ self checkConstantIndent ]
+	].
 	self saveDataForPriorLine.
-	^ ( ')]}⟧' includes: currentCharacter) 
-		ifTrue: [ self whitespace  ] 
-		ifFalse: [ self createTokenFor: Character cr asString ]
+	^ (self priorLineEndsWithOpenBracket or: [self currentLineStartsWithCloseBracket])
+			ifTrue: [ self whitespace ]
+			ifFalse: [ self createTokenFor: Character cr asString ]
