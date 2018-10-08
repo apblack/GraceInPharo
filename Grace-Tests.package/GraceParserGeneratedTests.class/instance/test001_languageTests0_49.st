@@ -35,7 +35,7 @@ method t040_assertValue(v) andThen (trueBlock) otherwise (falseBlock) {
     }
 }
 method t042_test(n) {
-    out(n);
+    out(n)
 }
 method t044_runFirst(a)second(b)third(c) {
     a.apply
@@ -300,8 +300,8 @@ def aGraceLangTest = object {
             deny("Hello" == "world") description "Hello = world"
             assert("Hello" == "Hello") description "Hello ≠ Hello"
             var x := object {
+                use identityEquality
                 var v := 1
-                method ==(other) { self.isMe(other) }
             }
             var y := object {
                 var v := 1
@@ -325,8 +325,8 @@ def aGraceLangTest = object {
             assert("Hello" != "world") description "Hello = world"
             deny("Hello" != "Hello") description "Hello ≠ Hello"
             var x := object {
+                use identityEquality
                 var v := 1
-                method ==(other) { self.isMe(other) }
             }
             var y := object {
                 var v := 1

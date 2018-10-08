@@ -7,7 +7,7 @@ import "ast" as ast
 import "util" as util
 import "io" as io
 
-def input = [
+def input = sequence [
     "import \"stuff\" as stuff",
     "",
     "//Pre-comment def x",
@@ -52,12 +52,7 @@ def input = [
 ]
 
 util.lines.addAll(input)
-
-//input.keysAndValuesDo { linenum, code -> 
-//    print "{linenum}    {code}"
-//}
-
-def tokens = lexer.new.lexinput(input)
+def tokens = lexer.lexInputLines
 def module = parser.parse(tokens)
 def nodes = module.value
 
@@ -76,7 +71,7 @@ testSuiteNamed "comment tests" with {
             description "first.comments doesn''t include Post-comment def x"
     }
     test "blanks" by {
-        def blankLineNums = list.empty
+        def blankLineNums = emptyList
         input.keysAndValuesDo { n, s ->
             if (s.isEmpty) then { blankLineNums.add(n) }
         }
@@ -138,8 +133,9 @@ testSuiteNamed "comment tests" with {
     }
     
     test "method m" by {
-        def methodMNode = nodes.filter { each -> (each.kind == "method")
-             && {each.nameString == "m"} }.first
+        def methodMNode = nodes.filter { each ->
+            (each.kind == "method") && {each.nameString == "m"}
+        }.first
         def mComments = methodMNode.comments.value
         assert (mComments.contains "post-comment (sameline) method m") 
             description "method m is missing the sameline comment"

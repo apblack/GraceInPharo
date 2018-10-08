@@ -83,8 +83,8 @@ def stringMapTest = object {
             deny (m123.contains "foo") description "m123 contains \"foo\""
         }
         method testMany {
-            def n = 10000
-            def keys = randomStrings(n)
+            def n = if (engine == "c") then { 1000 } else { 10000 }
+            def keys = randomStrings(n);
             def m = map.new
             def startTime = sys.elapsedTime
             keys.keysAndValuesDo { i, k ->
@@ -105,17 +105,17 @@ def stringMapTest = object {
             assert (sum) shouldBe 6
         }
         method testKeysDo {
-            def keys = set.empty
+            def keys = emptySet
             m123.keysDo { k -> keys.add(k) }
-            assert (keys) shouldBe (set.withAll ["one", "two", "three"])
+            assert (keys) shouldBe (set ["one", "two", "three"])
         }
         method testKeyAndValuesDo {
-            def pairs = set.empty
+            def pairs = emptySet
             m123.keysAndValuesDo { k, v -> pairs.add (k::v) }
-            assert (pairs) shouldBe (set.withAll ["one"::1, "two"::2, "three"::3])
+            assert (pairs) shouldBe (set ["one"::1, "two"::2, "three"::3])
         }
         method randomStrings(n) {
-            def result = list.empty
+            def result = emptyList
             (1..n).do { ix ->
                 if ((ix % 100) == 0) then {
                     result.add(shortRandomString)

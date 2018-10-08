@@ -9,98 +9,32 @@ method out(s) {
 
 // space for methods
 
-class aa_101(v'') {
-    var v := v''
-    method foo {
-        out "A''s foo: {self.v}"
-    }
-    method baz {
-        out "A''s baz"
-    }
-}
-class bb_101(x) {
-    inherit aa_101(x) alias aabaz = baz
-    method bar {
-        out "B''s bar"
-    }
-    method baz {
-        out "B''s baz invokes..."
-        aabaz
-    }
-}
-class cc_101(y) {
-    inherit bb_101(y) alias bbbaz = baz
-    method baz {
-        out "C''s baz invokes..."
-        bbbaz
-    }
-}
-class a_103 {
-    method foo { "world" }
-}
-
-class b_103 {
-    inherit a_103
-    method bar { "hello {foo}" }
-}
-
-class c_103 {
-    inherit b_103
-    method quux { "X " ++ bar }
-}
-
-class d_103 {
-    inherit c_103
-    method foo is override { "Nyssa" }
-}
-
-type T_103 = {
-    foo -> String
-    quux -> String
-}
-
-class aa_107 {
-    method a {
-        b_107
-    }
-    method b_107 {
-        out("A")
-    }
-}
-
-class bb_107 {
-    inherit aa_107
-    method b {
-        out("B")
-    }
-}
-
 method t108_a {
-    out("out")
+  out("out")
 }
 method t116_tryMatch(pattern, obj) {
-    if (pattern.match(obj)) then {
+    if (pattern.matches(obj)) then {
         out "OK"
     } else {
         out "Not OK; {obj} should have matched"
     }
 }
 method t116_tryNoMatch(pattern, obj) {
-    if (pattern.match(obj)) then {
+    if (pattern.matches(obj)) then {
         out "Not OK; {obj} should not have matched"
     } else {
         out "OK"
     }
 }
 method t117_tryMatch(pattern, value) {
-    if (pattern.match(value)) then {
+    if (pattern.matches(value)) then {
         out "OK"
     } else {
         out "Not OK; {pattern} should have matched {value}"
     }
 }
 method t117_tryNoMatch(pattern, value) {
-    if (pattern.match(value)) then {
+    if (pattern.matches(value)) then {
         out "Not OK; {pattern} should not have matched {value}"
     } else {
         out "OK"
@@ -221,8 +155,35 @@ def aGraceLangTest = object {
         }
 
         method test_101_super {
-            object { 
-                var b := cc_101 "ARGUMENT"
+            object {
+                class aa(v'') {
+                    var v := v''
+                    method foo {
+                        out "A''s foo: {self.v}"
+                    }
+                    method baz {
+                        out "A''s baz"
+                    }
+                }
+                class bb(x) {
+                    inherit aa(x) alias aabaz = baz
+                    method bar {
+                        out "B''s bar"
+                    }
+                    method baz {
+                        out "B''s baz invokes..."
+                        aabaz
+                    }
+                }
+                class cc(y) {
+                    inherit bb(y) alias bbbaz = baz
+                    method baz {
+                        out "C''s baz invokes..."
+                        bbbaz
+                    }
+                }
+                
+                var b := cc "ARGUMENT"
                 b.foo
                 b.bar
                 b.baz
@@ -263,6 +224,30 @@ def aGraceLangTest = object {
             ab.test2
             
             assert(str)shouldBe("Hello\nworld\n")
+        }
+        
+        class a_103 {
+            method foo { "world" }
+        }
+        
+        class b_103 {
+            inherit a_103
+            method bar { "hello {foo}" }
+        }
+        
+        class c_103 {
+            inherit b_103
+            method quux { "X " ++ bar }
+        }
+        
+        class d_103 {
+            inherit c_103
+            method foo is override { "Nyssa" }
+        }
+
+        type T_103 = {
+            foo -> String
+            quux -> String
         }
 
         method test_103_inherit2 {
@@ -310,7 +295,25 @@ def aGraceLangTest = object {
 
         method test_107_downcall {
             object {
-                bb_107.a
+            
+                class aa {
+                  method a {
+                    b
+                  }
+                  method b {
+                    out("A")
+                  }
+                }
+                
+                class bb {
+                  inherit aa
+                  method b {
+                    out("B")
+                  }
+                }
+                
+                bb.a
+                
                 assert(str)shouldBe("B\n")
             }
         }
@@ -378,6 +381,56 @@ def aGraceLangTest = object {
             }
         }
 
+        method test_114_inheritboolean {
+            
+            def x = object {
+                inherit true
+                method isAnX {
+                    self
+                }
+            }
+            
+            def y = object {
+                inherit false
+                method isAnX {
+                    false
+                }
+            }
+            
+            if (x) then {
+                out "OK"
+            } else {
+                out "Not OK; x inherit true and should be true."
+            }
+            if (y) then {
+                out "Not OK; y inherit false and should be false."
+            } else {
+                out "OK"
+            }
+            if (x.isAnX) then {
+                out "OK"
+            } else {
+                out "Not OK; x.isAnX should return a true value."
+            }
+            if (x == true) then {
+                out "OK"
+            } else {
+                out "Not OK; two booleanish object are equal if they share the same prototype and underlying value"
+            }
+            if (true == !y) then {
+                out "OK"
+            } else {
+                out "Not OK; !y should be true."
+            }
+            if (false == !x) then {
+                out "OK"
+            } else {
+                out "Not OK; !x should be false."
+            }
+            
+            assert(str)shouldBe("OK\nOK\nOK\nOK\nOK\nOK\n")
+        }
+
         method test_115_typematch {
             type Foo = {
                 bar
@@ -390,12 +443,12 @@ def aGraceLangTest = object {
             def y = object {
                 def baz = 2
             }
-            if (Foo.match(x)) then {
+            if (Foo.matches(x)) then {
                 out "OK"
             } else {
                 out "Not OK; x conforms to type Foo"
             }
-            if (Foo.match(y)) then {
+            if (Foo.matches(y)) then {
                 out "Not OK; y does not conform to type Foo"
             } else {
                 out "OK"
@@ -650,7 +703,7 @@ def aGraceLangTest = object {
         }
         
         method test_142_anontypevalue {
-            if (interface { y -> String }.match(t142_x)) then {
+            if (interface { y -> String }.matches(t142_x)) then {
                 out(t142_x.y)
             }
 

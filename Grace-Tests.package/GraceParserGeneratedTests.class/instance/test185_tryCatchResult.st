@@ -36,13 +36,13 @@ method tryOKFinally -> Number | String {
     try {
         5
     } catch {e: ProgrammingError ->
-        4
+        "five"
     } finally {
         print "OK"
     }
 }
 
-method tryExceptionalFinally -> Number | String {
+method tryExceptionalFinally -> Number {
     try {
         ProgrammingError.raise "an error occurred"
     } catch {e: ProgrammingError ->
@@ -56,17 +56,17 @@ method tryReturnOKFinally -> Number | String {
     try {
         return 5
     } catch {e: ProgrammingError ->
-        return 4
+        return "four"
     } finally {
         print "OK"
     }
 }
 
-method tryReturnExceptionalFinally -> Number | String {
+method tryReturnExceptionalFinally -> Done | String {
     try {
         ProgrammingError.raise "an error occurred"
     } catch {e: ProgrammingError ->
-        return 4
+        return "four"
     } finally {
         print "OK"
     }
@@ -76,7 +76,7 @@ method tryOKFinallyReturns -> Number | String {
     try {
         5
     } catch {e: ProgrammingError ->
-        4
+        "four"
     } finally {
         return "OK"
     }
@@ -102,7 +102,7 @@ method tryReturnOKFinallyReturns -> Number | String {
     }
 }
 
-method tryReturnExceptionalFinallyReturns -> Number | String {
+method tryReturnExceptionalFinallyReturns -> Number | Done {
     try {
         ProgrammingError.raise "an error occurred"
     } catch {e: ProgrammingError ->

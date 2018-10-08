@@ -6,6 +6,12 @@ test054_selfAfterInherit
 // object.  It also checks that outer from a nested
 // object also refers to the module object.
 
+inherit prelude.methods
+    // the implementation of inheit in the C backend
+    // replaces the object under construction by the
+    // inherited object.  So this inherit statment
+    // is here to check that self is still correctly
+    // bound
 
 method three { "three " }
 method this { self }

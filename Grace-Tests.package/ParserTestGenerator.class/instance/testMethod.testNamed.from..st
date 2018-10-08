@@ -9,7 +9,7 @@ testMethod: kind testNamed: name from: stream
 	testBody nextPutAll: 'self '.
 	testBody nextPutAll: kind.
 	testBody nextPutAll: ': #Module parse: '''.
-	stream do: [ :ch | 
+	stream contents do: [ :ch | 
 		testBody nextPut: ch.
 		(ch == $') ifTrue: [ testBody nextPut: ch ] ].
 	testBody nextPut: $'.

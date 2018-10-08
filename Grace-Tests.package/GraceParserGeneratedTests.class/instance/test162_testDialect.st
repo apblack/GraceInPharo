@@ -10,15 +10,15 @@ testSuite {
         assert {hook} shouldRaise (SubobjectResponsibility)
     }
     
-    def v1 = singleton
-    def v2 = singleton
+    def v1 = Singleton.new
+    def v2 = Singleton.new
     
     test "singleton equals itself" by {
         assert (v1 == v1) description "singleton ≠ itself!"
     }
 
     test "singleton matches itself" by {
-        assert (v1.match(v1)) description "singleton doesn''t match itself!"
+        assert (v1.matches(v1)) description "singleton doesn''t match itself!"
     }
     
     test "singleton not equal other" by {
@@ -26,18 +26,18 @@ testSuite {
     }
 
     test "singleton doesn''t match itself" by {
-        deny (v1.match(v2)) description "singleton matches other!"
+        deny (v1.matches(v2)) description "singleton matches other!"
     }
 
-    def n1 = singleton "n1"
-    def n2 = singleton "n2"
+    def n1 = Singleton.named "n1"
+    def n2 = Singleton.named "n2"
     
     test "named singleton equals itself" by {
         assert (n1 == n1) description "singleton ≠ itself!"
     }
 
     test "named singleton matches itself" by {
-        assert (n1.match(n1)) description "named singleton doesn''t match itself!"
+        assert (n1.matches(n1)) description "named singleton doesn''t match itself!"
     }
     
     test "named singleton not equal other" by {
@@ -45,7 +45,7 @@ testSuite {
     }
 
     test "named singleton doesn''t match itself" by {
-        deny (n1.match(n2)) description "named singleton matches other!"
+        deny (n1.matches(n2)) description "named singleton matches other!"
     }
     
     test "named singleton asString" by {
@@ -58,16 +58,16 @@ testSuite {
     
     test "Do-While once" by {
         var v := 4
-        def accum = list.empty
+        def accum = emptyList
         do { accum.addLast(v) ; v := v - 1 } while { false }
-        assert (accum) shouldBe (list.with 4)
+        assert (accum) shouldBe (list [4])
     }   
 
     test "Do-While many" by {
         var v := 4
-        def accum = list.empty
-        do { accum.addLast(v) ; v := v - 1 } while { accum.size < 4 }
-        assert (accum) shouldBe ([4, 3, 2, 1] >> list)
+        def accum = emptyList
+        do { accum.addLast(v) ; v := v - 1 } while { accum.size < 4}
+        assert (accum) shouldBe (list [4, 3, 2, 1])
     }
 
 }

@@ -103,7 +103,7 @@ def stringTest = object {
             assert (vowels4.indexOf "iou" startingAt 16 ifAbsent { 0 }) shouldBe 21
             assert {
                 vowels4.indexOf "iou" startingAt 22 ifAbsent {
-                    ProgrammingError.raise "not found" 
+                    ProgrammingError.raise "not found"
                 }
             } shouldRaise (ProgrammingError)
         }
@@ -423,10 +423,10 @@ def stringTest = object {
         }
         method testMap {
             assert(vowels.map { ch -> ch.ord })
-                shouldBe ([97, 101, 105, 111, 117, 121])
+                shouldBe (sequence [97, 101, 105, 111, 117, 121])
 
             assert(concatLetters.map { ch -> ch.ord })
-                shouldBe ([97, 98, 99, 100, 101, 102])
+                shouldBe (sequence [97, 98, 99, 100, 101, 102])
         }
         method testFilter {
             assert(vowels.filter { ch -> ch < "j" }) shouldBe "aei"
@@ -440,6 +440,12 @@ def stringTest = object {
             assert(concatLetters.fold { acc, ch -> acc ++ ch } startingWith "<")
                 shouldBe ("<" ++ "abcdef")
 
+        }
+        method testSplit {
+            def result = "this is the way the world ends".split " "
+            def desired = ["this", "is", "the", "way", "the", "world", "ends"] >> list.empty
+            assert (result) shouldBe (desired)
+            assert (result) hasType (List)
         }
     }
 }

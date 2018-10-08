@@ -3,7 +3,6 @@ test182_inheritsExternal
 	self good: #Module parse: 'dialect "minitest"
 import "mirrors" as mirror
 import "stringMap" as stringMap
-import "standardGraceBundle" as standardBundle
 
 method hook { abstract }
 
@@ -30,12 +29,12 @@ class stringSet {
 }
 
 class newPrelude {
-    inherit standardBundle.open
+    inherit prelude.methods
     
     method compareProtocols {
         def mSelf = mirror.reflect(self).methodNames --
-                    self.set.withAll ["hook", "compareProtocols", "doIt(_)"]
-        def mPrelude = mirror.reflect(standardBundle.open).methodNames
+                    self.set ["hook", "compareProtocols", "doIt(_)"]
+        def mPrelude = mirror.reflect(_prelude).methodNames
         if (mPrelude == mSelf) then {
             true
         } else {

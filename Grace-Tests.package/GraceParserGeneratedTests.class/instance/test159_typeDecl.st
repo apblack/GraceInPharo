@@ -3,7 +3,7 @@ test159_typeDecl
 	self good: #Module parse: 'import "mirrors" as m
 
 type A = {a(n:Number) -> Number}
-type B = type {b(s:String) -> String}
+type B = interface {b(s:String) -> String}
 type A'' = A
 type B'' = B
 type C = {c -> Done }
@@ -21,7 +21,7 @@ showType(A'')
 showType(B'')
 showType(AB)
 
-def seq = sequence.withAll [2, 3, 4]
+def seq = sequence [2, 3, 4]
 match (seq)
     case { l:List -> print "{l} is a list — but shouldn''t be!" }
     case { s:Sequence -> print "{s} is a sequence" }

@@ -71,7 +71,7 @@ def uVarTest = object {
             "hola"
         }
         method testCircularBlock {
-            assert {circularBlock.apply} shouldRaise (UninitializedVariable)
+            assert {circularBlock.apply "bye"} shouldRaise (UninitializedVariable)
         }
     }
 }

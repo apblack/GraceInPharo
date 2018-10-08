@@ -3,15 +3,15 @@ test168_singleton
 	self good: #Module parse: 'dialect "minitest"
 
 def empty = object {
-    inherit singleton
+    inherit Singleton.new
     method asString -> String {"empty"}
 }
 
-def full = singleton "full"
+def full = Singleton.named "full"
 
 type OptionNumber =  Number | empty | full
 
-def items = list.withAll [6, 7, empty, 9, full]
+def items = list [6, 7, empty, 9, full]
 
 def block1 = { x:OptionNumber ->
     match(x)
