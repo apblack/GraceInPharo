@@ -1,5 +1,5 @@
 generated-reduction actions
-reduceActionFor__Dialect__dialect__Ss______2: nodes
+reduceActionFor__Statement__item____Ss_____Statement__item_____2: nodes
 	| result |
 	result := nodes at: 1.
 	^ result

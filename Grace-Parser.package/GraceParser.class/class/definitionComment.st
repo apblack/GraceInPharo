@@ -78,7 +78,7 @@ default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 #############
 
 Module
-	: Ss '_' ? ( Pragma 'pragma' Ss '_'  ) *  (Dialect 'dialect' Ss '_' ) ?  (ObjectItem 'item' Ss '_' ) * ObjectItem 'item' ?	{{ }}
+	: Ss '_' ?  ( Pragma 'pragma' Ss '_'  ) *  (Dialect 'dialect' Ss '_' ) ?  (ObjectItem 'item' Ss '_' ) * ObjectItem 'item' ?			{{ }}
 	;
 Ss
 	: "";"" 																											{{ }}
@@ -142,15 +142,15 @@ AnnotationArgList
 	;
 MethodDeclaration
 	: ""once"" ? ""method"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList'  
-		( ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ? ""}"" ) ?  											{{ }}
+		( ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * )  ? ""}"" ) ?  													{{ }}
 	;
 ClassDeclaration
 	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList' 
-		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ? ""}"" ) ?											{{  }}
+		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) *  ) ? ""}"" ) ?													{{  }}
 	;
 TraitDeclaration
 	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList' 
-		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * Ss '_' ?  ) ? ""}"" ) ?											{{  }}
+		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) *  ) ? ""}"" ) ?													{{  }}
 	;
 MethodHeader
 	: AssignmentMethodHeader
@@ -160,14 +160,14 @@ MethodHeader
 	| UnaryMethodHeader 
 	;
 AssignmentMethodHeader
-	: Identifier 'id' "":="" TypeParameterList 'typeParameters' SingleMethodParameter  'parameter' 							{{ }}
+	: Identifier 'id' "":="" TypeParameterList 'typeParameters' SingleMethodParameter  'parameter' 						{{ }}
 	;
 ParameterizedMethodHeader
 	: <id> 'part' TypeParameterList 'typeParameters' MethodParameterList 'parameterList' 
-	( <id> 'part' MethodParameterList 'parameterList' ) * 							{{ }}
+	( <id> 'part' MethodParameterList 'parameterList' ) * 																{{ }}
 	;
 ParameterlessMethodHeader
-	: <id> 'part' TypeParameterList 'typeParameters' 																	{{ }}
+	: <id> 'part' TypeParameterList 'typeParameters' 																{{ }}
 	;
 BinaryMethodHeader
 	: <operator> 'operatorToken' TypeParameterList 'typeParameters' SingleMethodParameter 'parameter' 				{{ }}
@@ -224,8 +224,8 @@ RequestPartNoArguments
 	: <id> 'requestPart'																							{{ }}
 	;
 RequestPartsWithArguments 
-	:  <id> 'requestPart'  TypeArguments 'typeArgList' ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )*  		{{ }}		# Both type args and normal args
-	|  <id> 'requestPart'  TypeArguments 'typeArgList'  																	{{ }}		# Just type args
+	:  <id> 'requestPart'  TypeArguments 'typeArgList' ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )*  	{{ }}		# Both type args and normal args
+	|  <id> 'requestPart'  TypeArguments 'typeArgList'  																{{ }}		# Just type args
 	|  <id> 'requestPart'  ArgumentList  'argList' ( <id>  'requestPart' ArgumentList 'argList' )* 								{{ }}		# Just normal args
 	;
 ArgumentList
@@ -233,10 +233,10 @@ ArgumentList
 	| ""("" Expression 'arg' ("",""  Expression 'arg' ) + "")""  																	{{ }}
 	;
 UnaryRequest
-	: <operator> 'op' TypeArguments 'typeArgList' ? Term 'receiver' 														{{  }}
+	: <operator> 'op' TypeArguments 'typeArgList' ? Term 'receiver' 													{{  }}
 	;
 BinaryRequest
-	: Factor 'receiver'  (<operator> 'op' TypeArguments 'typeArgList' ? Factor 'arg')+  										{{  }}
+	: Factor 'receiver'  (<operator> 'op' TypeArguments 'typeArgList' ? Factor 'arg')+  									{{  }}
 	;
 
 #########################
@@ -246,8 +246,8 @@ BinaryRequest
 Block
 	# this is written as two alternatives, rather than making the BlockParameterList optional,
 	# because the latter creates a shift-reduce conflict that SmaCC can't resolve.
-	: ""{"" Ss '_' ? BlockParameterList  'parameterList' <arrow> Ss '_' ? (Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ?) ? ""}""  {{ }}
-	| ""{"" Ss '_' ? ( Statement 'item' ( Ss '_' Statement  'item' ) * Ss '_' ? ) ?  ""}""  											{{ }}
+	: ""{"" BlockParameterList  'parameterList' <arrow> Ss '_' ? (Statement 'item' ( Ss '_' Statement  'item' ) *  ) ? ""}""  			{{ }}
+	| ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) *  ) ? ""}""  															{{ }}
 	;
 BlockParameterList
 	: BlockParameter 'parameter' ( "","" BlockParameter 'parameter' ) *													{{ }}
@@ -271,6 +271,8 @@ Expression
 NonIdTerm
 	: DelimitedTerm
 	| Interface
+	| UnknownType
+	| SelfType
 	| Request
 	| Ellipsis
 	;
@@ -324,8 +326,8 @@ Numeral
 	| <basedRadixNumeral> 																					{{ BasedRadixNumeral }}
 	;
 SequenceConstructor
-	: ""["" ""]""	{{ }}
-	| ""["" Expression 'element' ("","" Expression 'element' ) * ""]"" {{ }}
+	: ""["" ""]""																									{{ }}
+	| ""["" Expression 'element' ("","" Expression 'element' ) * ""]""														{{ }}
 	;
 String
 	: StringLiteral
@@ -333,16 +335,16 @@ String
 	| UninterpretedString
 	;	
 StringLiteral
-	: StartString '_' <dquote> 'openQuote' <stringSegment> 'chars' ? RetDefault '_' <dquote> 'closeQuote' {{ }}
+	: StartString '_' <dquote> 'openQuote' <stringSegment> 'chars' ? RetDefault '_' <dquote> 'closeQuote' 			{{ }}
 	;
 StringConstructor
 	: StartString '_' <dquote> 'openQuote' 
 		<stringSegment> 'stringSegment' ? 
-		( StartInterp  '_' ""{"" Expression 'interpolation' StartString ""}"" <stringSegment> 'stringSegment' ? ) + RetDefault '_' 
-		<dquote> 'closeQuote' {{ }}
+		( StartInterp  '_' ""{"" Expression 'interpolation' StartString ""}"" <stringSegment> 'stringSegment' ? ) + 
+		RetDefault '_'  <dquote> 'closeQuote' 																	{{ }}
 	;
 UninterpretedString
-	: StartUninterp '_' ""‹"" 'openQuote' <uninterpretedString> 'chars' ? RetDefault '_' ""›"" 'closeQuote'  {{ StringLiteral }}
+	: StartUninterp '_' ""‹"" 'openQuote' <uninterpretedString> 'chars' ? RetDefault '_' ""›"" 'closeQuote'  					{{ StringLiteral }}
 	;
 
 #######################
@@ -350,8 +352,8 @@ UninterpretedString
 #######################
 
 ObjectConstructor
-	: ""object"" Annotations 'annotationList'  ""{"" Ss '_' ? ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * ""}"" 					{{ }}
-	| ""object"" Annotations 'annotationList' ""{"" Ss '_' ? ""}""																{{ }}
+	: ""object"" Annotations 'annotationList'  ""{"" ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * ""}"" 						{{ }}
+	| ""object"" Annotations 'annotationList' ""{""  ""}""																{{ }}
 	;
 ObjectItem
 	: Statement
@@ -423,9 +425,9 @@ Interface
 		# type is allowed for backward compatibility
 	;
 InterfaceLiteral
-	:  ""{"" Ss '_' ? ""}""																					{{ }}
-	|  ""{"" Ss '_' ? ( Signature 'method' | TypeDeclaration 'typeDecl' ) 
-	    	( Ss '_' ( Signature 'method' | TypeDeclaration 'typeDecl' ) ) * Ss '_' ? ""}""								{{ }}	
+	:  ""{"" ""}""																							{{ }}
+	|  ""{""( Signature 'method' | TypeDeclaration 'typeDecl' ) 
+	    	( Ss '_' ( Signature 'method' | TypeDeclaration 'typeDecl' ) ) * ""}""									{{ }}	
 	; 
 UnknownType
 	: ""Unknown""																						{{ }}

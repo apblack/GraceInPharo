@@ -1,3 +1,3 @@
 generated
 compositeNodeVariables
-	^ #(#_s #methods #typeDecls)
+	^ #(#methods #typeDecls #_s)
