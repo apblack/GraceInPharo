@@ -2,19 +2,23 @@ as yet unclassified
 createTabForFile: aFileReference
 	| tab editor |
 	editor := self instantiate: GraceSourcePresenter.
-	editor onFile: aFileReference;
+	editor
+		onFile: aFileReference;
 		ide: self ide;
 		whenBuiltDo: [ :w | editor editingMorph: (self editingMorphInWidget: w widget) ].
 	filesToEditorsDict at: aFileReference put: editor.
 	tab := self newTab.
-	tab label: aFileReference basenameWithoutExtension;
-		model: editor;
-		whenTabSelected: [ currentTab := tab. currentEditor := editor ];
+	tab
+		label: aFileReference basenameWithoutExtension;
+		presenter: editor;
+		whenTabSelected: [ currentTab := tab.
+			currentEditor := editor ];
 		whenBuiltDo: [ :w | 
-			w widget when: #tabDeleted evaluate: [ :_ | self tabDeletedFor: aFileReference ].
-		].
+			w widget
+				when: #tabDeleted
+				evaluate: [ :_ | self tabDeletedFor: aFileReference ] ].
 	currentTab := tab.
 	currentEditor := editor.
 	filesToTabsDict at: aFileReference put: tab.
 	self tabsPresenter addTab: tab.
-	^ tab 
+	^ tab
