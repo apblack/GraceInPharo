@@ -1,3 +1,3 @@
-expected failures
+testing
 expectedFailures
-	^ #(test167_ambiguousName_fail)
+	^#()
