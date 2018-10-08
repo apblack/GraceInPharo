@@ -45,25 +45,6 @@ trait open {
         // returns true when either self or other (or both) are true
     }
 
-    type Function0⟦ResultT⟧  = interface {
-        apply -> ResultT     // Function with no arguments and a result of type ResultT
-        //  matches -> Boolean   // answers true
-    }
-    type Function1⟦ArgT1, ResultT⟧ = interface {
-        apply(a1:ArgT1) -> ResultT    // Function with argument a1 of type ArgT1, and a result of type ResultT
-        //  matches(a1:Object) -> Boolean   // answers true if a1 <: ArgT1
-    }
-    type Function2⟦ArgT1, ArgT2, ResultT⟧ = interface {
-        apply(a1:ArgT1, a2:ArgT2) -> ResultT
-        // Function with arguments of types ArgT1 and ArgT2, and a result of type ResultT
-        //  matches(a1:Object, a2:Object) -> Boolean
-            // answers true if a1 <: ArgT1 and a2 <: ArgT2
-    }
-    type Function3⟦ArgT1, ArgT2, ArgT3, ResultT⟧  = interface {
-        apply(a1:ArgT1, a2:ArgT2, a3:ArgT3) -> ResultT
-        //  matches(a1:Object, a2:Object, a3:Object) -> Boolean
-            // answers true if a1 <: ArgT1 and a2 <: ArgT2 and a3 :< ArgT3
-    }
     type Number = interface {
 
         + (other: Number) -> Number
@@ -409,22 +390,26 @@ trait open {
 
     type Function0⟦ResultT⟧  = interface {
         apply -> ResultT     // Function with no arguments and a result of type ResultT
-        //  matches -> Boolean   // answers true
+        matches -> Boolean   // answers true
     }
     type Function1⟦ArgT1, ResultT⟧ = interface {
-        apply(a1:ArgT1) -> ResultT    // Function with argument a1 of type ArgT1, and a result of type ResultT
-        //  matches(a1:Object) -> Boolean   // answers true if a1 <: ArgT1
+        apply(a1:ArgT1) -> ResultT
+            // Function with argument a1 of type ArgT1, and a result of type ResultT
+        matches(a1:Object) -> Boolean   // answers true iff a1 <: ArgT1
     }
     type Function2⟦ArgT1, ArgT2, ResultT⟧ = interface {
         apply(a1:ArgT1, a2:ArgT2) -> ResultT
-        // Function with arguments of types ArgT1 and ArgT2, and a result of type ResultT
-        //  matches(a1:Object, a2:Object) -> Boolean
-            // answers true if a1 <: ArgT1 and a2 <: ArgT2
+            // Function with arguments of types ArgT1 and ArgT2, and a result of
+            // type ResultT
+        matches(a1:Object, a2:Object) -> Boolean
+            // answers true iff a1 <: ArgT1 and a2 <: ArgT2
     }
     type Function3⟦ArgT1, ArgT2, ArgT3, ResultT⟧  = interface {
         apply(a1:ArgT1, a2:ArgT2, a3:ArgT3) -> ResultT
-        //  matches(a1:Object, a2:Object, a3:Object) -> Boolean
-            // answers true if a1 <: ArgT1 and a2 <: ArgT2 and a3 :< ArgT3
+            // Function with arguments of types ArgT1, ArgT2, and ArgT3, and a
+            // result of type ResultT
+        matches(a1:Object, a2:Object, a3:Object) -> Boolean
+            // answers true iff a1 <: ArgT1 and a2 <: ArgT2 and a3 :< ArgT3
     }
 
     // Procedures are functions that have no (interesting) result
