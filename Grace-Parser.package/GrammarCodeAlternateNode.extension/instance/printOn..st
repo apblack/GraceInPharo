@@ -1,3 +1,3 @@
 *Grace-Parser
 printOn: s
-	rhsTerms printOn: s
+	self rhsTerms printOn: s

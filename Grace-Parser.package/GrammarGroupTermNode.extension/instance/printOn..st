@@ -1,3 +1,7 @@
 *Grace-Parser
 printOn: s
-	terms do: [ :each | each printOn: s ] separatedBy: [ s space ]
+	| separator |
+	s << ' ( '.
+	separator := orTokens ifEmpty: [ ' ' ] ifNotEmpty: [ ' | ' ]. 
+	terms do: [ :each | each printOn: s ] separatedBy: [ s << separator].
+	s << ' ) '

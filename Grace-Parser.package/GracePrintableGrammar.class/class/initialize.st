@@ -11,5 +11,5 @@ initialize
 	nonTerminalsDerivingEmpty := productions 
 			select: [ :each | each rhs printString isEmpty ] 
 			thenCollect: [ :each | each lhs name ].
-	nonTerminalsDerivingEmpty remove: #('Empty') ifAbsent: [ ] 
+	nonTerminalsDerivingEmpty remove: 'Empty' ifAbsent: [ ] 
 			"so that we can use 'Empty' to mark empty productions explicitly"
