@@ -1,0 +1,3 @@
+generated
+visitExplicitRadixNumeral: anExplicitRadixNumeral
+	^ self visitNumeral: anExplicitRadixNumeral

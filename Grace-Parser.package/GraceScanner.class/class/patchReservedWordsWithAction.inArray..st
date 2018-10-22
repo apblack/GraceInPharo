@@ -1,13 +1,13 @@
 initialization
-patchReservedWordsWithAction: action inArray: actionArray
+patchReservedWordsWithAction: action inArray: actions
 	self reservedWords do: [ :rw | | ix |
 		ix := symbolNames indexOf: '"' , rw , '"'.
 		(ix = 0) ifTrue: [ 
 			ix := symbolNames indexOf: '<' , rw , '>'.
 			(ix = 0) ifTrue: [ 
 				self error: 'Grammar error: there is no symbol for the reserved word ' , rw 
-			] ifFalse: [ actionArray at: ix put: action ]
+			] ifFalse: [ self makeActionAt: ix of: actions be: action ]
 		] ifFalse: [ 
-			actionArray at: ix put: action
+			self makeActionAt: ix of: actions be: action
 		]
 	]

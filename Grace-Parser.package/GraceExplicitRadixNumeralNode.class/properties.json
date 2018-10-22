@@ -6,8 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"basedRadixNumeralToken"
+		"explicitRadixNumeralToken"
 	],
-	"name" : "GraceBasedRadixNumeralNode",
+	"name" : "GraceExplicitRadixNumeralNode",
 	"type" : "normal"
 }

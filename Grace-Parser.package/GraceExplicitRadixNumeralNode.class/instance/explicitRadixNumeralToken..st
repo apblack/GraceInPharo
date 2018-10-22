@@ -1,0 +1,3 @@
+generated
+explicitRadixNumeralToken: aSmaCCToken
+	explicitRadixNumeralToken := aSmaCCToken

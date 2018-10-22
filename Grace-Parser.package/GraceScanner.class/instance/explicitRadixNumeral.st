@@ -1,5 +1,5 @@
 token-actions
-basedRadixNumeral
+explicitRadixNumeral
 	"a numeral of the form 16x34aE has been recognized. Check that the digits are less than the radix."
 	
 	| wholeNumeral base str |

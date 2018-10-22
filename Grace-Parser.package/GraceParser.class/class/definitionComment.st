@@ -28,7 +28,7 @@ default <selfDot> : <self> <whitespace>? <dot> ;
 default <id> :  [a-zA-Z_æπµ] [a-zA-Zæπµ0-9_'] *;				# and all the other non-ascii letters
 default <decimalNumeral> :  [0-9]+ ( [.][0-9]+ )? ;
 default <baseExponentNumeral> : <decimalNumeral> [eE][\+\-]?[0-9]+ ;
-default <basedRadixNumeral>: [0-9]+x[0-9A-Za-z]+ ;
+default <explicitRadixNumeral>: [0-9]+x[0-9A-Za-z]+ ;
 default <arrow>:  -> | → ;
 default string <dquote>:  [""] ;
 default <operator>: [!!\?@#%^&\|~=≠\+÷\-\*/\\><:\.\$\x22C5≤≥]+ ;   # or any other unicode mathematical operator symbol like \x22C5
@@ -51,7 +51,7 @@ default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 %hierarchy Factor (Term ObjectConstructor) ;
 %hierarchy Term (Identifier Numeral Block String SequenceConstructor SpecialTerm Request Ellipsis) ;
 %hierarchy SpecialTerm (Oneself Boolean) ;
-%hierarchy Numeral (DecimalNumeral BaseExponentNumeral BasedRadixNumeral) ;
+%hierarchy Numeral (DecimalNumeral BaseExponentNumeral ExplicitRadixNumeral) ;
 %hierarchy String (StringLiteral StringConstructor) ;
 %hierarchy Statement (Expression Pragma Declaration Assignment Return ) ;
 %hierarchy Oneself (Self Outer) ;
@@ -323,7 +323,7 @@ Identifier
 Numeral
 	: <decimalNumeral> 																						{{ DecimalNumeral }}
 	| <baseExponentNumeral> 																				{{ BaseExponentNumeral }}
-	| <basedRadixNumeral> 																					{{ BasedRadixNumeral }}
+	| <explicitRadixNumeral> 																					{{ ExplicitRadixNumeral }}
 	;
 SequenceConstructor
 	: ""["" ""]""																									{{ }}
