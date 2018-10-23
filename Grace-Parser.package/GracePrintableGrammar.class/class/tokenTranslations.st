@@ -1,0 +1,3 @@
+grammar extensions
+tokenTranslations
+	^ tokenTranslations

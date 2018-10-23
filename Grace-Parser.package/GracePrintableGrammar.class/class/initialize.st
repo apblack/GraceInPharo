@@ -1,6 +1,7 @@
 class initialization
 initialize
 	| grammarSource |
+	self initializeTokenTranslations.
 	grammarSource := ReadWriteStream on: String new.
 	(GraceParser class >> #definitionComment) ast comments do: [ :e | 
 		grammarSource nextPutAll: e contents asUncommentedCode ].

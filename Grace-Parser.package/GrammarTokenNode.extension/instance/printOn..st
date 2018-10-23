@@ -1,3 +1,6 @@
 *Grace-Parser
 printOn: s
-	s << tokennameToken value
+	| tokString |
+	tokString := tokennameToken value.
+	tokString := GracePrintableGrammar tokenTranslations at: tokString ifAbsent: [ tokString ].
+	s << tokString

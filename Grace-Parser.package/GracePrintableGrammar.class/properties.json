@@ -5,7 +5,8 @@
 	"classinstvars" : [
 		"grammar",
 		"productions",
-		"nonTerminalsDerivingEmpty"
+		"nonTerminalsDerivingEmpty",
+		"tokenTranslations"
 	],
 	"pools" : [ ],
 	"classvars" : [ ],
