@@ -141,16 +141,16 @@ AnnotationArgList
 	| ""("" Expression 'expr' "")""  																						{ '2' }
 	;
 MethodDeclaration
-	: ""once"" ? ""method"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList'  
-		( ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * )  ? ""}"" ) ?  													{{ }}
+	: ""once"" ? ""method"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList' MethodBody ?  	{{ }}
+	;
+MethodBody
+	: ""{"" ( Statement 'item' ( Ss '_' Statement  'item' ) * )  ? ""}"" 
 	;
 ClassDeclaration
-	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList' 
-		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) *  ) ? ""}"" ) ?													{{  }}
+	:  ""class"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList' ObjectBody ?				{{ }}
 	;
 TraitDeclaration
-	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList' 
-		( ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) *  ) ? ""}"" ) ?													{{  }}
+	:  ""trait"" MethodHeader 'header' ReturnTypeOption 'returns' Annotations 'annotationList' ObjectBody ?				{{  }}
 	;
 MethodHeader
 	: AssignmentMethodHeader
@@ -352,8 +352,10 @@ UninterpretedString
 #######################
 
 ObjectConstructor
-	: ""object"" Annotations 'annotationList'  ""{"" ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) * ""}"" 						{{ }}
-	| ""object"" Annotations 'annotationList' ""{""  ""}""																{{ }}
+	: ""object"" Annotations 'annotationList'  ObjectBody									 						{{ }}
+	;
+ObjectBody
+	: ""{"" ( ObjectItem 'item' ( Ss '_' ObjectItem 'item' ) *  ) ? ""}""
 	;
 ObjectItem
 	: Statement

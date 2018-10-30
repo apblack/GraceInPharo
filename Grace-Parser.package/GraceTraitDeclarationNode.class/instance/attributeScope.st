@@ -1,3 +1,3 @@
 scope
 attributeScope
-	^ scope
+	^ self scope
