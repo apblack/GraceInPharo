@@ -1,6 +1,6 @@
 tests-Types
 testTypeWithComments
-	self good: #Declaration as: #TypeDeclaration parse: 'type AstNode = interface {
+	self good: #ObjectItem as: #TypeDeclaration parse: 'type AstNode = interface {
     kind -> String
         // Used for pseudo-instanceof tests, and for printing
     register -> String

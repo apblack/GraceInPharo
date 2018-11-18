@@ -112,7 +112,6 @@ Dialect
 Declaration
 	: VarDeclaration
 	| DefDeclaration
-	| TypeDeclaration
 	;
 VarDeclaration
 	: ""var"" Identifier 'id' TypeOption 'type' Annotations 'annotationList' ( "":="" Expression 'initializer' ) ?  					{{  }}
@@ -360,6 +359,7 @@ ObjectBody
 ObjectItem
 	: Statement
 	| MethodDeclaration
+	| TypeDeclaration
 	| ClassDeclaration
 	| TraitDeclaration
 	| UseStatement
@@ -428,8 +428,7 @@ Interface
 	;
 InterfaceLiteral
 	:  ""{"" ""}""																							{{ }}
-	|  ""{""( Signature 'method' | TypeDeclaration 'typeDecl' ) 
-	    	( Ss '_' ( Signature 'method' | TypeDeclaration 'typeDecl' ) ) * ""}""									{{ }}	
+	|  ""{"" Signature 'method'  ( Ss '_' Signature 'method' ) * ""}""												{{ }}	
 	; 
 UnknownType
 	: ""Unknown""																						{{ }}

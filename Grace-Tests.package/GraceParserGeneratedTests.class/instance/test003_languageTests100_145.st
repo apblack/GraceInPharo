@@ -430,12 +430,12 @@ def aGraceLangTest = object {
             
             assert(str)shouldBe("OK\nOK\nOK\nOK\nOK\nOK\n")
         }
-
+        type Foo = {
+            bar
+            baz
+        }
         method test_115_typematch {
-            type Foo = {
-                bar
-                baz
-            }
+
             def x = object {
                 def bar = 1
                 def baz = 2
@@ -530,16 +530,14 @@ def aGraceLangTest = object {
             assert {t129_foo(y)} shouldRaise (NoSuchMethod)
             // because y.bar is confidential
         }
+        type A = {
+            bar -> String
+        }
         
+        type B = A & interface {
+            quux -> Number
+        }
         method test_131_anonintersection {
-            type A = {
-                bar -> String
-            }
-            
-            type B = A & interface {
-                quux -> Number
-            }
-            
             def t131_context = object {
                 method btaker(b : B) {
                     out "{b.bar}{b.quux}"
@@ -554,13 +552,6 @@ def aGraceLangTest = object {
         }
         
         method test_131_anonintersectionFail {
-            type A = {
-                bar -> String
-            }
-            
-            type B = A & interface {
-                quux -> Number
-            }
             def t131_context = object {
                 method btaker(b : B) {
                     out "{b.bar}{b.quux}"
@@ -720,11 +711,11 @@ def aGraceLangTest = object {
             assert (str) shouldBe "once\nfour times\nfour times\nfour times\nfour times\n"
         }
         
-        method test_145_builtInListDo {
+        method test_145_lineupDo {
             def l = [1, 2, 3, 4]
             out(l)
             l.do { each -> out(each) }
-            assert (str) shouldBe "[1, 2, 3, 4]\n1\n2\n3\n4\n"
+            assert (str) shouldBe "⟨1, 2, 3, 4⟩\n1\n2\n3\n4\n"
         }
 
     }

@@ -1,6 +1,6 @@
 tests-Types
 testTypeWithOperators
-	self good: #Declaration as: #TypeDeclaration parse: 
+	self good: #ObjectItem as: #TypeDeclaration parse: 
 		'type Position = interface {
     line -> Number
     column -> Number

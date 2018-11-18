@@ -1,10 +1,10 @@
-minigrace good
-test215_typeInType
-	self good: #Module parse: 'dialect "minitest"
+minigrace bad
+test214_typeInType_fail
+	self bad: #Module parse: 'dialect "minitest"
 
 type A = {
     m (n:Number) → Number
-    B → Type[[Number]]
+    type B = Number
 }
 
 def a = object {
@@ -14,11 +14,17 @@ def a = object {
     type B = Number
 }
 
-def x:a.B = 3
+def x:A.B = 3
 
 testSuite {
     test "type methods" by {
         assert (A.methodNames) shouldBe (set.withAll ["m(_)", "B"])
+    }
+    test "type types" by {
+        assert (A.typeNames) shouldBe (set.with "B")
+    }
+    test "test nested type" by {
+        assert (A.B) shouldBe (Number)
     }
     test "test type in object" by {
         assert (a.B) shouldBe (Number)

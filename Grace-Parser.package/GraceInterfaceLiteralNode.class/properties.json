@@ -11,8 +11,7 @@
 		"rightBraceToken",
 		"methods",
 		"interfaceToken",
-		"typeToken",
-		"typeDecls"
+		"typeToken"
 	],
 	"name" : "GraceInterfaceLiteralNode",
 	"type" : "normal"

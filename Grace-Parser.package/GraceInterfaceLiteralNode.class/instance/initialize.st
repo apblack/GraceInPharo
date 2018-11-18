@@ -2,5 +2,4 @@ generated-initialize-release
 initialize
 	super initialize.
 	methods := OrderedCollection new: 2.
-	typeDecls := OrderedCollection new: 2.
 	_s := OrderedCollection new: 2.

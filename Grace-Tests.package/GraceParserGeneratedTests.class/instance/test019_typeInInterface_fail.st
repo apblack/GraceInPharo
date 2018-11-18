@@ -1,12 +1,12 @@
-minigrace good
-test020_typeInInterface
-	self good: #Module parse: 'dialect "minitest"
+minigrace bad
+test019_typeInInterface_fail
+	self bad: #Module parse: 'dialect "minitest"
 import "mirrors" as mirror
 
 type T = interface {
     x -> Number
-    U -> Type[[String]]
-    y -> String
+    type U = String
+    y -> U
 }
 
 method foo -> T {
@@ -30,7 +30,11 @@ testSuite {
     test "type T has U method" by {
         assert (T.methodNames) shouldBe (set.withAll ["x", "y", "U"])
     }
-    
+
+    test "type T''s U attribute is String" by {
+        assert (T.U) shouldBe (String)
+    }
+
     test "foo doesn''t return a T" by {
         assert { foo } shouldRaise (TypeError) mentioning "missing method U"
     }
@@ -40,13 +44,11 @@ testSuite {
     }
 
     test "local type has method W" by {
-        def local = object {
-            type L = interface {
-                W -> Type
-                x -> Number
-            }
+        type Local = interface {
+            type W = T
+            x -> Number
         }
-        assert (local.L.methodNames) shouldBe (set.withAll ["x", "W"])
+        assert (Local.methodNames) shouldBe (set.withAll ["x", "W"])
     }
 }
 '

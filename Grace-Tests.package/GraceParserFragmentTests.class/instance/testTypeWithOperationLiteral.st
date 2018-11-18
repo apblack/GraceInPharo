@@ -1,6 +1,6 @@
 tests-Declarations
 testTypeWithOperationLiteral
-	self good: #Declaration as: #TypeDeclaration parse: 
+	self good: #ObjectItem as: #TypeDeclaration parse: 
 		'type X = Object & interface {
     x -> X
     y(_) -> Unknown
