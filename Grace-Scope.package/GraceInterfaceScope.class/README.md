@@ -1,1 +1,1 @@
-I represent an iterface scope, that is, a set of methods.  Thus, I also represent the methods in analyseForLinks: interface type.
+I represent an iterface scope, that is, a set of methods.  Thus, I also represent the methods in an interface type.

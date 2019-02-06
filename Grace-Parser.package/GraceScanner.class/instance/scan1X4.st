@@ -11,7 +11,7 @@ scan1X4
 						or: [ (currentCharacter between: $- and: $/)
 								or: [ (':<' includes: currentCharacter)
 										or: [ (currentCharacter between: $> and: $@)
-												or: [ ('\^|~÷' includes: currentCharacter)
+												or: [ ('\^|~¬÷' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 8800)
 																or: [ (currentCharacter

@@ -11,13 +11,14 @@ outerDefinitionOf: aName in: aScope addTo: aCollection
 			scopeLevel := scopeLevel + 1.
 			currentScope isObjectScope ifTrue: [ objectLevel := objectLevel + 1 ].
 			currentScope := currentScope outerScope.
-			(currentScope lookupLocally: aName ifAbsent: [
-				(currentScope lookupReused: aName ifAbsent: [  ])
-					ifNotNil: [ :def | 
+			currentScope lookupLocally: aName 
+				ifAbsent: [ currentScope lookupReused: aName 
+					ifAbsent: [  ] 
+					ifPresent: [ :def | 
 						aCollection 
 							add: (self reusedDefinition: def atObject: objectLevel levels: scopeLevel).
-						^ aCollection ] ] )
-				ifNotNil: [ :def | 
+						^ aCollection ] ]
+				ifPresent: [ :def | 
 					aCollection add: (self definition: def atObject: objectLevel levels: scopeLevel).
 					^ aCollection ] ].
 	dialectDef := currentScope outerScope lookupLocallyOrReused: aName ifAbsent: [ ^ aCollection ].
