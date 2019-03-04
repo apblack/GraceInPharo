@@ -1,6 +1,6 @@
 tests
 testWhileFalseWithArg
-	self assertMethod: GraceScanner >> #basedRadixNumeral inGraceIs: 'method basedRadixNumeral {
+	self assertMethod: GraceScanner >> #explicitRadixNumeral inGraceIs: 'method explicitRadixNumeral {
     // a numeral of the form 16x34aE has been recognized. Check that the digits are less than the radix.
     var base
     def wholeNumeral = outputStream.contents

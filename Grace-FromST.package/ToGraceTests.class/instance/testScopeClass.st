@@ -1,6 +1,6 @@
 test whole class translation
 testScopeClass
-	| translator generatedGrace parseTree |
+	| translator generatedGrace |
 	translator := ToGrace fromSmalltalkClass: GraceRootNode.
 	generatedGrace := String streamContents: [ :s | 
 		translator translateOnto: s

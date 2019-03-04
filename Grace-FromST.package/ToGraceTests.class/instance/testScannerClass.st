@@ -1,6 +1,6 @@
 test whole class translation
 testScannerClass
-	| translator generatedGrace parseTree |
+	| translator generatedGrace |
 	translator := ToGrace fromSmalltalkClass: GraceScanner.
 	generatedGrace := translator translate.
 	self should: [GraceParser parseStream: generatedGrace readStream] raise: GraceSyntaxError 
