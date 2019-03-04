@@ -1,1 +1,1 @@
-I represent th eempty scope, with no definitions, and to which no definitions can be added.
+I represent the empty scope, with no definitions, and to which no definitions can be added.

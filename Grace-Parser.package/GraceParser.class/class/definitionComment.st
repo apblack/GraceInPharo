@@ -78,7 +78,7 @@ default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 #############
 
 Module
-	: Ss '_' ?  ( Pragma 'pragma' Ss '_'  ) *  (Dialect 'dialect' Ss '_' ) ?  (ObjectItem 'item' Ss '_' ) * ObjectItem 'item' ?			{{ }}
+	: Ss '_' ? ( Pragma 'pragma' Ss '_'  ) *  (Dialect 'dialect' Ss '_' ) ?  (ObjectItem 'item' Ss '_' ) * ObjectItem 'item' ?	{{ }}
 	;
 Ss
 	: "";"" 																											{{ }}
@@ -322,11 +322,11 @@ Identifier
 Numeral
 	: <decimalNumeral> 																						{{ DecimalNumeral }}
 	| <baseExponentNumeral> 																				{{ BaseExponentNumeral }}
-	| <explicitRadixNumeral> 																					{{ ExplicitRadixNumeral }}
+	| <explicitRadixNumeral> 																				{{ ExplicitRadixNumeral }}
 	;
 SequenceConstructor
-	: ""["" ""]""																									{{ }}
-	| ""["" Expression 'element' ("","" Expression 'element' ) * ""]""														{{ }}
+	: ""["" ""]""																							{{ }}
+	| ""["" Expression 'element' ("","" Expression 'element' ) * ""]""										{{ }}
 	;
 String
 	: StringLiteral
