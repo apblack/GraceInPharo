@@ -31,7 +31,7 @@ default <baseExponentNumeral> : <decimalNumeral> [eE][\+\-]?[0-9]+ ;
 default <explicitRadixNumeral>: [0-9]+x[0-9A-Za-z]+ ;
 default <arrow>:  -> | → ;
 default string <dquote>:  [""] ;
-default <operator>: [!!\?@#%^&\|~=≠\+÷\-\*/\\><:\.\$\x22C5≤≥]+ ;   # or any other unicode mathematical operator symbol like \x22C5
+default <operator>: [!!\?@#%^&\|~=≠\+÷\-\*/\\><:\.\$\x22C5≤≥¬]+ ;   # or any other unicode mathematical operator symbol like \x22C5
 default <typeOperator>: [&|+\-];
 default <typeRelation>: \<\: | \:\> | \<\* | \*\> ;
 

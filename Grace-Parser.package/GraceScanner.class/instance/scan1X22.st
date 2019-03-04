@@ -11,7 +11,7 @@ scan1X22
 														(Character value: 8211) ] ] ] ] ] ])
 		ifTrue: [ ^ self recordAndReportMatch: #(45) ].
 	(currentCharacter isSpecial
-		or: [ ('$^÷' includes: currentCharacter)
+		or: [ ('$^¬÷' includes: currentCharacter)
 				or: [ currentCharacter =
 						(Character value: 8800)
 						or: [ (currentCharacter

@@ -8,7 +8,7 @@ scan1X11
 						or: [ (currentCharacter between: $- and: $/)
 								or: [ currentCharacter == $:
 										or: [ (currentCharacter between: $< and: $@)
-												or: [ ('\^|~÷' includes: currentCharacter)
+												or: [ ('\^|~¬÷' includes: currentCharacter)
 														or: [ currentCharacter =
 																(Character value: 8800)
 																or: [ (currentCharacter
@@ -24,7 +24,7 @@ scan1X11
 								or: [ (currentCharacter between: $- and: $/)
 										or: [ currentCharacter == $:
 												or: [ (currentCharacter between: $< and: $@)
-														or: [ ('\^|~÷' includes: currentCharacter)
+														or: [ ('\^|~¬÷' includes: currentCharacter)
 																or: [ currentCharacter =
 																		(Character value: 8800)
 																		or: [ (currentCharacter
