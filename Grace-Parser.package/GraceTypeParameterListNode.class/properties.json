@@ -9,7 +9,8 @@
 		"openTPToken",
 		"parameters",
 		"_s",
-		"closeTPToken"
+		"closeTPToken",
+		"where"
 	],
 	"name" : "GraceTypeParameterListNode",
 	"type" : "normal"

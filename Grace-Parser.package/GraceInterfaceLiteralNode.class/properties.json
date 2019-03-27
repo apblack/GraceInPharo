@@ -10,8 +10,7 @@
 		"_s",
 		"rightBraceToken",
 		"methods",
-		"interfaceToken",
-		"typeToken"
+		"interfaceToken"
 	],
 	"name" : "GraceInterfaceLiteralNode",
 	"type" : "normal"

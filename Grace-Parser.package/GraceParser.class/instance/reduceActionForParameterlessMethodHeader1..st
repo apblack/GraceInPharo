@@ -3,5 +3,5 @@ reduceActionForParameterlessMethodHeader1: nodes
 	| result |
 	result := GraceParameterlessMethodHeaderNode new.
 	result part: (nodes at: 1).
-	result typeParameters: (nodes at: 2).
+	result typeParameterList: (nodes at: 2).
 	^ result

@@ -159,20 +159,20 @@ MethodHeader
 	| UnaryMethodHeader 
 	;
 AssignmentMethodHeader
-	: Identifier 'id' "":="" TypeParameterList 'typeParameters' SingleMethodParameter  'parameter' 						{{ }}
+	: Identifier 'id' "":="" TypeParameterList 'typeParameterList' SingleMethodParameter  'parameter' 						{{ }}
 	;
 ParameterizedMethodHeader
-	: <id> 'part' TypeParameterList 'typeParameters' MethodParameterList 'parameterList' 
+	: <id> 'part' TypeParameterList 'typeParameterList' MethodParameterList 'parameterList' 
 	( <id> 'part' MethodParameterList 'parameterList' ) * 																{{ }}
 	;
 ParameterlessMethodHeader
-	: <id> 'part' TypeParameterList 'typeParameters' 																{{ }}
+	: <id> 'part' TypeParameterList 'typeParameterList' 																{{ }}
 	;
 BinaryMethodHeader
-	: <operator> 'operatorToken' TypeParameterList 'typeParameters' SingleMethodParameter 'parameter' 				{{ }}
+	: <operator> 'operatorToken' TypeParameterList 'typeParameterList' SingleMethodParameter 'parameter' 				{{ }}
 	;
 UnaryMethodHeader
-	: ""prefix"" <operator> 'operatorToken' TypeParameterList 'typeParameters'											{{ }}
+	: ""prefix"" <operator> 'operatorToken' TypeParameterList 'typeParameterList'											{{ }}
 	;
 MethodParameterList
 	:  ""("" MethodParameter 'parameter' ("","" MethodParameter 'parameter' ) * "")"" 										{{ }}
@@ -395,10 +395,10 @@ Type
 	| ""("" TypeExpression "")""																			{{  }}
 	;
 TypeDeclaration
-	: ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotations  'annotationList' ""="" 
-				TypeExpression 'value' Where 'where'													{{ }}
-	| ""type"" Identifier 'id' TypeParameterList 'typeParameters' Annotations  'annotationList' ""="" 
-				InterfaceLiteral 'value' Where 'where'													{{ }}
+	: ""type"" Identifier 'id' TypeParameterList 'typeParameterList' Annotations  'annotationList' ""="" 
+				TypeExpression 'value'																{{ }}
+	| ""type"" Identifier 'id' TypeParameterList 'typeParameterList' Annotations  'annotationList' ""="" 
+				InterfaceLiteral 'value'																{{ }}
 				# special case of bare interface literal without  reserved word
 	;
 TypeOption
@@ -407,7 +407,7 @@ TypeOption
 	;
 TypeParameterList
 	: Empty
-	| <openTP> TypeParameter 'parameter' ( "","" '_' TypeParameter 'parameter' ) * <closeTP>   				{{  }}
+	| <openTP> TypeParameter 'parameter' ( "","" '_' TypeParameter 'parameter' ) * Where 'where' <closeTP>   	{{  }}
 	;
 TypeParameter
 	: Identifier 'id' 																					{{  }}
@@ -423,8 +423,6 @@ Signature
 	;
 Interface
 	:  ""interface"" InterfaceLiteral																		{{ InterfaceLiteral }}
-	| ""type"" InterfaceLiteral 																			{{ InterfaceLiteral }} 	
-		# type is allowed for backward compatibility
 	;
 InterfaceLiteral
 	:  ""{"" ""}""																							{{ }}
