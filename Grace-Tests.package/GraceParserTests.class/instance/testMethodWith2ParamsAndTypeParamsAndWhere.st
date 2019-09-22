@@ -2,7 +2,7 @@ tests - methods
 testMethodWith2ParamsAndTypeParamsAndWhere
 	| result def sumHeader |
 	result := self good: #Module parse: 'def testObj = object {
-    method sum⟦T where T <* interface { +(o:T) -> Number }⟧(x:T, y:T)  { print (x + y) }
+    method sum⟦T where T <* interface { +(o:T) -> Number } ⟧(x:T, y:T)  { print (x + y) }
 }
 
 print(testObj.a(3, 4))
