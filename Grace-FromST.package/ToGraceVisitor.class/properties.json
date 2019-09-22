@@ -10,8 +10,7 @@
 		"indentCount",
 		"isLineEmpty",
 		"tempAssignments",
-		"specialMessageDictionary",
-		"specialOperatorDictionary"
+		"specialMessageDictionary"
 	],
 	"name" : "ToGraceVisitor",
 	"type" : "normal"

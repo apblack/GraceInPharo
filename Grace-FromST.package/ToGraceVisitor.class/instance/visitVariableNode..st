@@ -1,3 +1,3 @@
 visiting
 visitVariableNode: aVariable
-	self << aVariable name << ' '
+	self << aVariable nameForGrace << ' '

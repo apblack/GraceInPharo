@@ -1,7 +1,7 @@
 temporaries
 declareTemp: aTemporaryNode 
 	| tempName |
-	tempName := aTemporaryNode name.
+	tempName := aTemporaryNode nameForGrace.
 	(self isAssignedOnce: tempName) ifFalse: [ 
 		self << 'var ' << tempName.
 		self newline

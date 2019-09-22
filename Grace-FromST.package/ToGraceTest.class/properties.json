@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "ToGraceTests",
+	"name" : "ToGraceTest",
 	"type" : "normal"
 }
